@@ -12,6 +12,7 @@
 		0090F2812977477E00CBDD2F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0090F2802977477E00CBDD2F /* Assets.xcassets */; };
 		0090F2842977477E00CBDD2F /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0090F2832977477E00CBDD2F /* Preview Assets.xcassets */; };
 		0090F29229774F8F00CBDD2F /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0090F29129774F8F00CBDD2F /* HomeView.swift */; };
+		B4D9769A297752D0001E9016 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4D97699297752D0001E9016 /* User.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -21,6 +22,7 @@
 		0090F2802977477E00CBDD2F /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		0090F2832977477E00CBDD2F /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		0090F29129774F8F00CBDD2F /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
+		B4D97699297752D0001E9016 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -75,6 +77,7 @@
 		0090F28A29774E6100CBDD2F /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				B4D97699297752D0001E9016 /* User.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -172,6 +175,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B4D9769A297752D0001E9016 /* User.swift in Sources */,
 				0090F29229774F8F00CBDD2F /* HomeView.swift in Sources */,
 				0090F27F2977477D00CBDD2F /* ContentView.swift in Sources */,
 				0090F27D2977477D00CBDD2F /* tamagachaApp.swift in Sources */,

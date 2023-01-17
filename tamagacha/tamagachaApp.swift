@@ -11,7 +11,9 @@ import SwiftUI
 struct tamagachaApp: App {
     var body: some Scene {
         WindowGroup {
-            ContentView()
+            NavigationStack {
+                MenuView()
+            }
         }
     }
 }

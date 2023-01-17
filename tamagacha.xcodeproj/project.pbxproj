@@ -11,6 +11,7 @@
 		0090F27F2977477D00CBDD2F /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0090F27E2977477D00CBDD2F /* ContentView.swift */; };
 		0090F2812977477E00CBDD2F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0090F2802977477E00CBDD2F /* Assets.xcassets */; };
 		0090F2842977477E00CBDD2F /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0090F2832977477E00CBDD2F /* Preview Assets.xcassets */; };
+		0090F29229774F8F00CBDD2F /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0090F29129774F8F00CBDD2F /* HomeView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -19,6 +20,7 @@
 		0090F27E2977477D00CBDD2F /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		0090F2802977477E00CBDD2F /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		0090F2832977477E00CBDD2F /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		0090F29129774F8F00CBDD2F /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -51,8 +53,11 @@
 		0090F27B2977477D00CBDD2F /* tamagacha */ = {
 			isa = PBXGroup;
 			children = (
+				0090F28E29774E8500CBDD2F /* Extentions */,
+				0090F28A29774E6100CBDD2F /* Model */,
+				0090F28B29774E6600CBDD2F /* View Model */,
+				0090F28D29774E7700CBDD2F /* View */,
 				0090F27C2977477D00CBDD2F /* tamagachaApp.swift */,
-				0090F27E2977477D00CBDD2F /* ContentView.swift */,
 				0090F2802977477E00CBDD2F /* Assets.xcassets */,
 				0090F2822977477E00CBDD2F /* Preview Content */,
 			);
@@ -65,6 +70,36 @@
 				0090F2832977477E00CBDD2F /* Preview Assets.xcassets */,
 			);
 			path = "Preview Content";
+			sourceTree = "<group>";
+		};
+		0090F28A29774E6100CBDD2F /* Model */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		0090F28B29774E6600CBDD2F /* View Model */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = "View Model";
+			sourceTree = "<group>";
+		};
+		0090F28D29774E7700CBDD2F /* View */ = {
+			isa = PBXGroup;
+			children = (
+				0090F27E2977477D00CBDD2F /* ContentView.swift */,
+				0090F29129774F8F00CBDD2F /* HomeView.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		0090F28E29774E8500CBDD2F /* Extentions */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Extentions;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -137,6 +172,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0090F29229774F8F00CBDD2F /* HomeView.swift in Sources */,
 				0090F27F2977477D00CBDD2F /* ContentView.swift in Sources */,
 				0090F27D2977477D00CBDD2F /* tamagachaApp.swift in Sources */,
 			);

@@ -11,6 +11,15 @@
 		0090F27F2977477D00CBDD2F /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0090F27E2977477D00CBDD2F /* ContentView.swift */; };
 		0090F2812977477E00CBDD2F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0090F2802977477E00CBDD2F /* Assets.xcassets */; };
 		0090F2842977477E00CBDD2F /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0090F2832977477E00CBDD2F /* Preview Assets.xcassets */; };
+		0090F29229774F8F00CBDD2F /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0090F29129774F8F00CBDD2F /* HomeView.swift */; };
+		0090F29629776AF500CBDD2F /* PetModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0090F29529776AF500CBDD2F /* PetModel.swift */; };
+		0090F29829776B0E00CBDD2F /* TimeModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0090F29729776B0E00CBDD2F /* TimeModel.swift */; };
+		0090F29A29776B2A00CBDD2F /* PetStats.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0090F29929776B2A00CBDD2F /* PetStats.swift */; };
+		0090F29C29776B3A00CBDD2F /* PetView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0090F29B29776B3A00CBDD2F /* PetView.swift */; };
+		0090F29E29776B4E00CBDD2F /* NavigationBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0090F29D29776B4E00CBDD2F /* NavigationBar.swift */; };
+		0090F2A029776B6A00CBDD2F /* PetViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0090F29F29776B6A00CBDD2F /* PetViewModel.swift */; };
+		B4D9769A297752D0001E9016 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4D97699297752D0001E9016 /* User.swift */; };
+		B4D976A0297795B8001E9016 /* TestView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4D9769F297795B8001E9016 /* TestView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -19,6 +28,15 @@
 		0090F27E2977477D00CBDD2F /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		0090F2802977477E00CBDD2F /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		0090F2832977477E00CBDD2F /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		0090F29129774F8F00CBDD2F /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
+		0090F29529776AF500CBDD2F /* PetModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PetModel.swift; sourceTree = "<group>"; };
+		0090F29729776B0E00CBDD2F /* TimeModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeModel.swift; sourceTree = "<group>"; };
+		0090F29929776B2A00CBDD2F /* PetStats.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PetStats.swift; sourceTree = "<group>"; };
+		0090F29B29776B3A00CBDD2F /* PetView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PetView.swift; sourceTree = "<group>"; };
+		0090F29D29776B4E00CBDD2F /* NavigationBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationBar.swift; sourceTree = "<group>"; };
+		0090F29F29776B6A00CBDD2F /* PetViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PetViewModel.swift; sourceTree = "<group>"; };
+		B4D97699297752D0001E9016 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
+		B4D9769F297795B8001E9016 /* TestView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -51,10 +69,14 @@
 		0090F27B2977477D00CBDD2F /* tamagacha */ = {
 			isa = PBXGroup;
 			children = (
+				0090F28E29774E8500CBDD2F /* Extentions */,
+				0090F28A29774E6100CBDD2F /* Model */,
+				0090F28B29774E6600CBDD2F /* View Model */,
+				0090F28D29774E7700CBDD2F /* View */,
 				0090F27C2977477D00CBDD2F /* tamagachaApp.swift */,
-				0090F27E2977477D00CBDD2F /* ContentView.swift */,
 				0090F2802977477E00CBDD2F /* Assets.xcassets */,
 				0090F2822977477E00CBDD2F /* Preview Content */,
+				B4D9769F297795B8001E9016 /* TestView.swift */,
 			);
 			path = tamagacha;
 			sourceTree = "<group>";
@@ -65,6 +87,43 @@
 				0090F2832977477E00CBDD2F /* Preview Assets.xcassets */,
 			);
 			path = "Preview Content";
+			sourceTree = "<group>";
+		};
+		0090F28A29774E6100CBDD2F /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				B4D97699297752D0001E9016 /* User.swift */,
+				0090F29529776AF500CBDD2F /* PetModel.swift */,
+				0090F29729776B0E00CBDD2F /* TimeModel.swift */,
+				0090F29929776B2A00CBDD2F /* PetStats.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		0090F28B29774E6600CBDD2F /* View Model */ = {
+			isa = PBXGroup;
+			children = (
+				0090F29F29776B6A00CBDD2F /* PetViewModel.swift */,
+			);
+			path = "View Model";
+			sourceTree = "<group>";
+		};
+		0090F28D29774E7700CBDD2F /* View */ = {
+			isa = PBXGroup;
+			children = (
+				0090F27E2977477D00CBDD2F /* ContentView.swift */,
+				0090F29129774F8F00CBDD2F /* HomeView.swift */,
+				0090F29B29776B3A00CBDD2F /* PetView.swift */,
+				0090F29D29776B4E00CBDD2F /* NavigationBar.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		0090F28E29774E8500CBDD2F /* Extentions */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Extentions;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -137,7 +196,16 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B4D9769A297752D0001E9016 /* User.swift in Sources */,
+				0090F29229774F8F00CBDD2F /* HomeView.swift in Sources */,
 				0090F27F2977477D00CBDD2F /* ContentView.swift in Sources */,
+				0090F29629776AF500CBDD2F /* PetModel.swift in Sources */,
+				0090F29C29776B3A00CBDD2F /* PetView.swift in Sources */,
+				B4D976A0297795B8001E9016 /* TestView.swift in Sources */,
+				0090F29E29776B4E00CBDD2F /* NavigationBar.swift in Sources */,
+				0090F2A029776B6A00CBDD2F /* PetViewModel.swift in Sources */,
+				0090F29A29776B2A00CBDD2F /* PetStats.swift in Sources */,
+				0090F29829776B0E00CBDD2F /* TimeModel.swift in Sources */,
 				0090F27D2977477D00CBDD2F /* tamagachaApp.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

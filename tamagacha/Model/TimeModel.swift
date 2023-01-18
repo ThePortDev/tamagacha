@@ -9,7 +9,7 @@ import Foundation
 
 class PetUserDefaults {
     private var PET_KEY = "PET_KEY"
-    private var pet: Pet
+    private var pet: Pet()
     
     init() {
         if let data = UserDefaults.standard.data(forKey: PET_KEY) {
@@ -19,7 +19,7 @@ class PetUserDefaults {
                 return
             }
         }
-        self.pet = Pet.PetType.dog
+        self.pet = Pet(name: "Default", lastMeal: Date(), lastDrink: Date(), hygiene: Date())
     }
     
     func loadData() -> Pet {

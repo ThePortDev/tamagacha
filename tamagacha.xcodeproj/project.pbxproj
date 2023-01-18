@@ -18,6 +18,8 @@
 		0090F29C29776B3A00CBDD2F /* PetView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0090F29B29776B3A00CBDD2F /* PetView.swift */; };
 		0090F29E29776B4E00CBDD2F /* NavigationBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0090F29D29776B4E00CBDD2F /* NavigationBar.swift */; };
 		0090F2A029776B6A00CBDD2F /* PetViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0090F29F29776B6A00CBDD2F /* PetViewModel.swift */; };
+		0090F2A62978A65600CBDD2F /* StatView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0090F2A52978A65600CBDD2F /* StatView.swift */; };
+		0090F2A82978A68400CBDD2F /* statsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0090F2A72978A68400CBDD2F /* statsViewModel.swift */; };
 		B4D9769A297752D0001E9016 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4D97699297752D0001E9016 /* User.swift */; };
 /* End PBXBuildFile section */
 
@@ -34,6 +36,8 @@
 		0090F29B29776B3A00CBDD2F /* PetView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PetView.swift; sourceTree = "<group>"; };
 		0090F29D29776B4E00CBDD2F /* NavigationBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationBar.swift; sourceTree = "<group>"; };
 		0090F29F29776B6A00CBDD2F /* PetViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PetViewModel.swift; sourceTree = "<group>"; };
+		0090F2A52978A65600CBDD2F /* StatView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatView.swift; sourceTree = "<group>"; };
+		0090F2A72978A68400CBDD2F /* statsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = statsViewModel.swift; sourceTree = "<group>"; };
 		B4D97699297752D0001E9016 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -101,6 +105,7 @@
 			isa = PBXGroup;
 			children = (
 				0090F29F29776B6A00CBDD2F /* PetViewModel.swift */,
+				0090F2A72978A68400CBDD2F /* statsViewModel.swift */,
 			);
 			path = "View Model";
 			sourceTree = "<group>";
@@ -112,6 +117,7 @@
 				0090F29129774F8F00CBDD2F /* HomeView.swift */,
 				0090F29B29776B3A00CBDD2F /* PetView.swift */,
 				0090F29D29776B4E00CBDD2F /* NavigationBar.swift */,
+				0090F2A52978A65600CBDD2F /* StatView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -193,11 +199,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0090F2A62978A65600CBDD2F /* StatView.swift in Sources */,
 				B4D9769A297752D0001E9016 /* User.swift in Sources */,
 				0090F29229774F8F00CBDD2F /* HomeView.swift in Sources */,
 				0090F27F2977477D00CBDD2F /* ContentView.swift in Sources */,
 				0090F29629776AF500CBDD2F /* PetModel.swift in Sources */,
 				0090F29C29776B3A00CBDD2F /* PetView.swift in Sources */,
+				0090F2A82978A68400CBDD2F /* statsViewModel.swift in Sources */,
 				0090F29E29776B4E00CBDD2F /* NavigationBar.swift in Sources */,
 				0090F2A029776B6A00CBDD2F /* PetViewModel.swift in Sources */,
 				0090F29A29776B2A00CBDD2F /* PetStats.swift in Sources */,

@@ -10,7 +10,7 @@ import Foundation
 struct User {
     
     var exp: Int = 0
-    var money: Int = 1000
+    var money: Int = 100
     //var pets: [Pet]
     
     

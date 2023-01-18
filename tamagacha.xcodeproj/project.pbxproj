@@ -19,6 +19,7 @@
 		0090F29E29776B4E00CBDD2F /* NavigationBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0090F29D29776B4E00CBDD2F /* NavigationBar.swift */; };
 		0090F2A029776B6A00CBDD2F /* PetViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0090F29F29776B6A00CBDD2F /* PetViewModel.swift */; };
 		B4D9769A297752D0001E9016 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4D97699297752D0001E9016 /* User.swift */; };
+		B4D976A0297795B8001E9016 /* TestView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4D9769F297795B8001E9016 /* TestView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -35,6 +36,7 @@
 		0090F29D29776B4E00CBDD2F /* NavigationBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationBar.swift; sourceTree = "<group>"; };
 		0090F29F29776B6A00CBDD2F /* PetViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PetViewModel.swift; sourceTree = "<group>"; };
 		B4D97699297752D0001E9016 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
+		B4D9769F297795B8001E9016 /* TestView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -74,6 +76,7 @@
 				0090F27C2977477D00CBDD2F /* tamagachaApp.swift */,
 				0090F2802977477E00CBDD2F /* Assets.xcassets */,
 				0090F2822977477E00CBDD2F /* Preview Content */,
+				B4D9769F297795B8001E9016 /* TestView.swift */,
 			);
 			path = tamagacha;
 			sourceTree = "<group>";
@@ -198,6 +201,7 @@
 				0090F27F2977477D00CBDD2F /* ContentView.swift in Sources */,
 				0090F29629776AF500CBDD2F /* PetModel.swift in Sources */,
 				0090F29C29776B3A00CBDD2F /* PetView.swift in Sources */,
+				B4D976A0297795B8001E9016 /* TestView.swift in Sources */,
 				0090F29E29776B4E00CBDD2F /* NavigationBar.swift in Sources */,
 				0090F2A029776B6A00CBDD2F /* PetViewModel.swift in Sources */,
 				0090F29A29776B2A00CBDD2F /* PetStats.swift in Sources */,

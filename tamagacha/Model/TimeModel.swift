@@ -7,7 +7,7 @@
 
 import Foundation
 
-class PetRepository {
+class PetUserDefaults {
     private var PET_KEY = "PET_KEY"
     private var pet: Pet
     

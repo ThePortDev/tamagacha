@@ -9,7 +9,7 @@ import SwiftUI
 import SpriteKit
 
 struct RoomView: View {
-    @State var activeView: currentView
+    //@State var activeView: currentView
     @State var isExpanded = false
     
     var scene: SKScene {
@@ -29,7 +29,7 @@ struct RoomView: View {
                 }
                 .frame(width: geometry.size.width, height: geometry.size.height, alignment: .center)
                 statView
-                swipeLeft
+//                swipeLeft
             }
         }
         .background(Color.white)

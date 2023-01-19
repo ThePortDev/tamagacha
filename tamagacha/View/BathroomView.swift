@@ -8,14 +8,38 @@
 import SwiftUI
 
 struct BathroomView: View {
-    @State var activeView: currentView
+    @Binding var activeView: currentView
     
     var body: some View {
-        GeometryReader { geometry in
-            Text("Bathroom")
-                .frame(width: screenSize.size.width, height: screenSize.size.height, alignment: .center)
+        HStack {
+            GeometryReader { geometry in
+                HStack {
+                    ZStack {
+                        Rectangle()
+                            .cornerRadius(20, corners: [.topRight, .bottomRight])
+                            .foregroundColor(.purple)
+                        Text("Bathroom")
+                    }
+                    //.background(Color.purple)
+                    .edgesIgnoringSafeArea(.all)
+                    //RoundedRectangle(cornerRadius: 10)
+                    if activeView == .center {
+                        ZStack {
+                            Rectangle().cornerRadius(20, corners: [.topRight, .bottomRight])
+                                .frame(width: 40, height: 80)
+                            Text("🛀")
+                        }
+                    } else {
+                        Rectangle().cornerRadius(20, corners: [.topRight, .bottomRight])
+                            .frame(width: 40, height: 80)
+                            .foregroundColor(.red)
+                    }
+                }
+            }
+            
+            
         }
-        .background(Color.purple)
-        .edgesIgnoringSafeArea(.all)
+        
     }
 }
+

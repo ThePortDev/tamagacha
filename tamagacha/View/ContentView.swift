@@ -14,6 +14,7 @@ struct MenuView: View {
             NavigationView {
                 NavigationLink("play") {
                     HomeView()
+                        .navigationBarBackButtonHidden(true)
                 }
             }
         }

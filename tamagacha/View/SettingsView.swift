@@ -17,9 +17,20 @@ struct SettingsView: View {
     var body: some View {
         VStack {
             Text("Settings")
-            Button("Back") {
-                presentationMode.wrappedValue.dismiss()
+                .font(.largeTitle)
+                .padding(15)
+            
+                Spacer()
+            HStack {
+                Text("UI Color:")
+                    .font(.headline)
+                Image(systemName: "paintpalette")
             }
+            
+//            HStack {
+//                Text("Sound")
+//                Slider(
+//            }
             
             TextField("Code", text: $enterCode)
                 .multilineTextAlignment(.center)
@@ -29,10 +40,21 @@ struct SettingsView: View {
                         navigateToDevTools = true
                     }
                 }
+                .padding(5)
             
+            Spacer()
+            
+            Button("Back") {
+                presentationMode.wrappedValue.dismiss()
+            }
         }
         .navigate(to: DeveloperToolsView(), when: $navigateToDevTools)
 
     }
-    
+}
+
+struct SettingsView_Preview: PreviewProvider {
+    static var previews: some View {
+        SettingsView()
+    }
 }

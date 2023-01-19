@@ -13,70 +13,11 @@ enum currentView {
     case bottom
     case left
 }
+
 let screenSize = UIScreen.main.bounds
 let screenWidth = screenSize.width
 let screenHeight = screenSize.height
 
-class GameScene: SKScene {
-    
-    //@State var sceneSize:CGSize = CGSize(width: 400, height: 700)
-    
-//    private var spriteAtlas
-    
-    override func sceneDidLoad() {
-
-        backgroundColor = .white
-        
-        let box = SKSpriteNode(imageNamed: "cheesepuffs")
-        box.position = CGPoint(x: 0.5, y: 0.5)
-        box.physicsBody = SKPhysicsBody(rectangleOf: CGSize(width: 200, height: 150))
-        box.name = "draggable"
-            
-        addChild(box)
-        
-    }
-        
-    private var currentNode: SKNode?
-    
-    override func didMove(to view: SKView) {
-        physicsBody = SKPhysicsBody(edgeLoopFrom: frame)
-        self.physicsWorld.gravity = CGVector(dx: 0, dy: -0.5)
-    }
-    
-    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
-        if let touch = touches.first {
-
-            let location = touch.location(in: self)
-            let touchedNodes = self.nodes(at: location)
-            for node in touchedNodes.reversed() {
-                if node.name == "draggable" {
-                    self.currentNode = node
-                }
-            }
-        }
-    }
-    
-    override func touchesMoved(_ touches: Set<UITouch>, with event: UIEvent?) {
-        if let touch = touches.first, let node = self.currentNode {
-            let touchLocation = touch.location(in: self)
-            if touchLocation.y < -350 || touchLocation.y > 350 {
-                return
-            } else {
-                //self.sceneSize = CGSize(width: 700, height: 400)
-                node.position = touchLocation
-            }
-        }
-    }
-    
-    override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
-        self.currentNode = nil
-    }
-    
-    override func touchesCancelled(_ touches: Set<UITouch>, with event: UIEvent?) {
-        self.currentNode = nil
-    }
-    
-}
 
 struct HomeView: View {
     
@@ -120,7 +61,7 @@ struct HomeView: View {
                                 self.viewState = .zero
                             }
                         }
-                        else if value.predictedEndTranslation.width > screenWidth / 2 {
+                        else if value.predictedEndTranslation.width > screenWidth * 2 {
                             withAnimation(.easeInOut) {
                                 self.activeView = currentView.left
                                 self.viewState = .zero
@@ -188,6 +129,78 @@ struct HomeView: View {
 
 }
 
+class GameScene: SKScene {
+    
+    //@State var sceneSize:CGSize = CGSize(width: 400, height: 700)
+    
+//    private var spriteAtlas
+    
+    override func sceneDidLoad() {
+
+        backgroundColor = .white
+        
+        let box = SKSpriteNode(imageNamed: "cheesepuffs")
+        box.position = CGPoint(x: 0.5, y: 0.5)
+        box.physicsBody = SKPhysicsBody(rectangleOf: CGSize(width: 200, height: 150))
+        box.name = "draggable"
+            
+        addChild(box)
+        
+    }
+        
+    private var currentNode: SKNode?
+    
+    override func didMove(to view: SKView) {
+        physicsBody = SKPhysicsBody(edgeLoopFrom: frame)
+        self.physicsWorld.gravity = CGVector(dx: 0, dy: -0.5)
+    }
+    
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        if let touch = touches.first {
+
+            let location = touch.location(in: self)
+            let touchedNodes = self.nodes(at: location)
+            for node in touchedNodes.reversed() {
+                if node.name == "draggable" {
+                    self.currentNode = node
+                }
+            }
+        }
+    }
+    
+    override func touchesMoved(_ touches: Set<UITouch>, with event: UIEvent?) {
+        if let touch = touches.first, let node = self.currentNode {
+            let touchLocation = touch.location(in: self)
+            if touchLocation.y < -350 || touchLocation.y > 350 {
+                return
+            } else {
+                //self.sceneSize = CGSize(width: 700, height: 400)
+                node.position = touchLocation
+            }
+        }
+    }
+    
+    override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
+        self.currentNode = nil
+    }
+    
+    override func touchesCancelled(_ touches: Set<UITouch>, with event: UIEvent?) {
+        self.currentNode = nil
+    }
+    
+}
+
+struct HomeView_Previews: PreviewProvider {
+    static var previews: some View {
+        HomeView()
+    }
+}
+
+
+// MARK: ADD FILES
+
+// View Files
+/// HouseView
 struct HouseView: View {
     @State var activeView: currentView
     @State var isExpanded = false
@@ -209,10 +222,23 @@ struct HouseView: View {
                 }
                 .frame(width: geometry.size.width, height: geometry.size.height, alignment: .center)
                 statView
+                swipeLeft
             }
         }
         .background(Color.white)
         .edgesIgnoringSafeArea(.all)
+    }
+    
+    var swipeLeft: some View {
+        ZStack {
+        Rectangle()
+            Image(systemName: "arrow.right")
+                .foregroundColor(Color.black)
+        }
+        .foregroundColor(.purple)
+        .cornerRadius(20, corners: [.topRight, .bottomRight])
+        .frame(width: 20, height: 100)
+        .padding(.trailing, screenWidth - 20)
     }
     
     var statView: some View {
@@ -251,6 +277,7 @@ struct HouseView: View {
     
 }
 
+/// StoreView
 struct StoreView: View {
     @Binding var activeView: currentView
     @Binding var navigateToSettings: Bool
@@ -293,6 +320,7 @@ struct StoreView: View {
     }
 }
 
+/// BathroomView
 struct BathroomView: View {
     @State var activeView: currentView
     
@@ -306,16 +334,6 @@ struct BathroomView: View {
     }
 }
 
-struct HomeView_Previews: PreviewProvider {
-    static var previews: some View {
-        HomeView()
-    }
-}
-
-
-// MARK: ADD FILES
-
-// View Files
 /// SettingsView
 struct SettingsView: View {
     @State var enterCode = ""
@@ -395,7 +413,7 @@ struct DeveloperToolsView: View {
 }
 
 // Extentions
-/// Rounded Rectangle
+/// RoundedRectangle
 extension View {
     func cornerRadius(_ radius: CGFloat, corners: UIRectCorner) -> some View {
         clipShape( RoundedCorner(radius: radius, corners: corners) )
@@ -413,7 +431,7 @@ struct RoundedCorner: Shape {
     }
 }
 
-/// Custom Navigation
+/// NavigateIfTrue
 extension View {
     /// Navigate to a new view.
     /// - Parameters:

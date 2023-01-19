@@ -10,32 +10,29 @@ import Foundation
 struct Pet: Codable {
     var name: String
     var birthday = Date()
+    var isAlive = true
     
     var age: Int {
         let timeSince = calculateTimeSince(data: birthday)
         return timeSince
     }
     
-    var happinessLevel: String {
-        hunger == "Hungry" || thirst == "Thirsty" ? "Unhappy" : "Happy"
+    
+    var hunger: CGFloat {
+        let timeSince = calculateTimeSince(data: lastMeal)
+        var hunger = 1.0
+        
+        if timeSince >= 1 {
+            hunger -= 0.01
+        }
+        print(hunger)
+        
+        return hunger
     }
     
-    var hunger: String {
-        let timeSince = calculateTimeSince(data: lastMeal)
-        var string = ""
-        
-        switch timeSince {
-            case 0..<30: string = "Not hungry"
-            case 30..<60: string = "Getting hungry"
-            case 60...: string = "Hungry"
-            default: string = "IDK"
-        }
-        
-        return string
-    }
     
     var thirst: String {
-        let timeSince = calculateTimeSince(data: lastMeal)
+        let timeSince = calculateTimeSince(data: lastDrink)
         var string = ""
         
         switch timeSince {
@@ -70,5 +67,6 @@ struct Pet: Codable {
         case hygiene
         case love
     }
+    
     
 }

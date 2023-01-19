@@ -71,9 +71,4 @@ struct Pet: Codable {
         case love
     }
     
-    func calculateTimeSince(data: Date) -> Int {
-        let seconds = Int(-data.timeIntervalSinceNow)
-        return seconds
-    }
-    
 }

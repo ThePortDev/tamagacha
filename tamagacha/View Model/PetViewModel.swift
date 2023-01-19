@@ -6,15 +6,16 @@
 //
 
 import SwiftUI
+import Foundation
 
-struct PetViewModel: View {
-    var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+class PetViewModel {
+    
+    let petDataModel: Pet
+    let timeDataModel = PetUserDefaults(
+    
+    init(pet: Pet) {
+        self.petDataModel = pet
     }
-}
-
-struct PetViewModel_Previews: PreviewProvider {
-    static var previews: some View {
-        PetViewModel()
-    }
+    
+    
 }

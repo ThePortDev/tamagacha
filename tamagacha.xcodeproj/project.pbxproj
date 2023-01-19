@@ -20,6 +20,13 @@
 		0090F2A029776B6A00CBDD2F /* PetViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0090F29F29776B6A00CBDD2F /* PetViewModel.swift */; };
 		0090F2A62978A65600CBDD2F /* StatView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0090F2A52978A65600CBDD2F /* StatView.swift */; };
 		0090F2A82978A68400CBDD2F /* statsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0090F2A72978A68400CBDD2F /* statsViewModel.swift */; };
+		0090F2AA2979DEDF00CBDD2F /* RoundedRectangle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0090F2A92979DEDF00CBDD2F /* RoundedRectangle.swift */; };
+		0090F2AC2979DEF000CBDD2F /* NavigateIfTrue.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0090F2AB2979DEF000CBDD2F /* NavigateIfTrue.swift */; };
+		0090F2AE2979DEFF00CBDD2F /* RoomView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0090F2AD2979DEFF00CBDD2F /* RoomView.swift */; };
+		0090F2B02979DF0B00CBDD2F /* StoreView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0090F2AF2979DF0B00CBDD2F /* StoreView.swift */; };
+		0090F2B22979DF1800CBDD2F /* BathroomView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0090F2B12979DF1800CBDD2F /* BathroomView.swift */; };
+		0090F2B42979DF2500CBDD2F /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0090F2B32979DF2500CBDD2F /* SettingsView.swift */; };
+		0090F2B62979DF4F00CBDD2F /* DeveloperToolsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0090F2B52979DF4F00CBDD2F /* DeveloperToolsView.swift */; };
 		B4D9769A297752D0001E9016 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4D97699297752D0001E9016 /* User.swift */; };
 /* End PBXBuildFile section */
 
@@ -38,6 +45,13 @@
 		0090F29F29776B6A00CBDD2F /* PetViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PetViewModel.swift; sourceTree = "<group>"; };
 		0090F2A52978A65600CBDD2F /* StatView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatView.swift; sourceTree = "<group>"; };
 		0090F2A72978A68400CBDD2F /* statsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = statsViewModel.swift; sourceTree = "<group>"; };
+		0090F2A92979DEDF00CBDD2F /* RoundedRectangle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoundedRectangle.swift; sourceTree = "<group>"; };
+		0090F2AB2979DEF000CBDD2F /* NavigateIfTrue.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigateIfTrue.swift; sourceTree = "<group>"; };
+		0090F2AD2979DEFF00CBDD2F /* RoomView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoomView.swift; sourceTree = "<group>"; };
+		0090F2AF2979DF0B00CBDD2F /* StoreView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoreView.swift; sourceTree = "<group>"; };
+		0090F2B12979DF1800CBDD2F /* BathroomView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BathroomView.swift; sourceTree = "<group>"; };
+		0090F2B32979DF2500CBDD2F /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
+		0090F2B52979DF4F00CBDD2F /* DeveloperToolsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeveloperToolsView.swift; sourceTree = "<group>"; };
 		B4D97699297752D0001E9016 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -118,6 +132,11 @@
 				0090F29B29776B3A00CBDD2F /* PetView.swift */,
 				0090F29D29776B4E00CBDD2F /* NavigationBar.swift */,
 				0090F2A52978A65600CBDD2F /* StatView.swift */,
+				0090F2AD2979DEFF00CBDD2F /* RoomView.swift */,
+				0090F2AF2979DF0B00CBDD2F /* StoreView.swift */,
+				0090F2B12979DF1800CBDD2F /* BathroomView.swift */,
+				0090F2B32979DF2500CBDD2F /* SettingsView.swift */,
+				0090F2B52979DF4F00CBDD2F /* DeveloperToolsView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -125,6 +144,8 @@
 		0090F28E29774E8500CBDD2F /* Extentions */ = {
 			isa = PBXGroup;
 			children = (
+				0090F2A92979DEDF00CBDD2F /* RoundedRectangle.swift */,
+				0090F2AB2979DEF000CBDD2F /* NavigateIfTrue.swift */,
 			);
 			path = Extentions;
 			sourceTree = "<group>";
@@ -201,14 +222,21 @@
 			files = (
 				0090F2A62978A65600CBDD2F /* StatView.swift in Sources */,
 				B4D9769A297752D0001E9016 /* User.swift in Sources */,
+				0090F2B02979DF0B00CBDD2F /* StoreView.swift in Sources */,
+				0090F2B42979DF2500CBDD2F /* SettingsView.swift in Sources */,
+				0090F2B22979DF1800CBDD2F /* BathroomView.swift in Sources */,
 				0090F29229774F8F00CBDD2F /* HomeView.swift in Sources */,
 				0090F27F2977477D00CBDD2F /* ContentView.swift in Sources */,
 				0090F29629776AF500CBDD2F /* PetModel.swift in Sources */,
 				0090F29C29776B3A00CBDD2F /* PetView.swift in Sources */,
+				0090F2AA2979DEDF00CBDD2F /* RoundedRectangle.swift in Sources */,
 				0090F2A82978A68400CBDD2F /* statsViewModel.swift in Sources */,
 				0090F29E29776B4E00CBDD2F /* NavigationBar.swift in Sources */,
 				0090F2A029776B6A00CBDD2F /* PetViewModel.swift in Sources */,
+				0090F2B62979DF4F00CBDD2F /* DeveloperToolsView.swift in Sources */,
 				0090F29A29776B2A00CBDD2F /* PetStats.swift in Sources */,
+				0090F2AC2979DEF000CBDD2F /* NavigateIfTrue.swift in Sources */,
+				0090F2AE2979DEFF00CBDD2F /* RoomView.swift in Sources */,
 				0090F29829776B0E00CBDD2F /* TimeModel.swift in Sources */,
 				0090F27D2977477D00CBDD2F /* tamagachaApp.swift in Sources */,
 			);

@@ -19,3 +19,9 @@ struct BathroomView: View {
         .edgesIgnoringSafeArea(.all)
     }
 }
+
+struct BathroomView_Previews: PreviewProvider {
+    static var previews: some View {
+        PetView()
+    }
+}

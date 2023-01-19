@@ -21,12 +21,24 @@ let screenHeight = screenSize.height
 
 struct HomeView: View {
     
+    // swipe gesture
     @State var activeView = currentView.center
-    @State var viewState = CGSize.zero
+//    @State var viewState = CGSize.zero
     
+    // navbar
     @State var navigateToSettings: Bool = false
     @State var navigateToToychest: Bool = false
     @State var navigateToKitchen: Bool = false
+    
+    // drag gesture X
+    @State private var startingOffsetX: CGFloat = -UIScreen.main.bounds.width
+    @State private var currentDragOffsetX: CGFloat = 0
+    @State private var endingOffsetX: CGFloat = 0
+    
+    //drag gesture Y
+    @State private var startingOffsetY: CGFloat = UIScreen.main.bounds.height - 125
+    @State private var currentDragOffsetY: CGFloat = 0
+    @State private var endingOffsetY: CGFloat = 0
 
     
     var scene: SKScene {
@@ -41,74 +53,123 @@ struct HomeView: View {
     
     var body: some View {
         VStack {
+            Text("\(currentDragOffsetY)")
             ZStack {
-                RoomView(activeView: self.activeView)
-                StoreView(activeView: self.$activeView, navigateToSettings: $navigateToSettings, navigateToToyChest: $navigateToToychest, navigateToKitchen: $navigateToKitchen)
-                    .offset(y: self.activeView == currentView.bottom ? 0 : screenHeight * 0.85)
-                BathroomView(activeView: self.activeView)
-                    .offset(x: self.activeView == currentView.left ? 0 : -screenWidth)
+                RoomView()
+                StoreView(activeView: $activeView, navigateToSettings: $navigateToSettings, navigateToToyChest: $navigateToToychest, navigateToKitchen: $navigateToKitchen)
+                    .offset(y: startingOffsetY)
+                    .offset(y: currentDragOffsetY)
+                    .offset(y: endingOffsetY)
+                    .gesture (
+                        DragGesture()
+                            .onChanged { value in
+                                withAnimation(.spring()) {
+                                    currentDragOffsetY = value.translation.height
+                                }
+                            }
+                            .onEnded({ value in
+                                withAnimation(.spring()) {
+                                    if currentDragOffsetY < -100 {
+                                        endingOffsetY = -startingOffsetY
+                                        activeView = .bottom
+                                    }
+                                    else if endingOffsetY != 0 && currentDragOffsetY > 150{
+                                        endingOffsetY = 0
+                                        activeView = .center
+                                    }
+                                    currentDragOffsetY = 0
+                                }
+                            })
+                    )
+                BathroomView(activeView: $activeView)
+                    .frame(width: 450, height: 800)
+                    .offset(x: startingOffsetX)
+                    .offset(x: currentDragOffsetX)
+                    .offset(x: endingOffsetX)
+                    .gesture (
+                        DragGesture()
+                            .onChanged { value in
+                                withAnimation(.spring()) {
+                                    currentDragOffsetX = value.translation.width
+                                }
+                            }
+                            .onEnded({ value in
+                                withAnimation(.spring()) {
+                                    if currentDragOffsetX > 100 {
+                                        endingOffsetX = -startingOffsetX + 20
+                                        activeView = .left
+                                    }
+                                    else if endingOffsetX != 0 && currentDragOffsetX < -150{
+                                        endingOffsetX = 0
+                                        activeView = .center
+                                    }
+                                    currentDragOffsetX = 0
+                                }
+                            })
+                    )
             }
-            .gesture(
-                (self.activeView == currentView.center) ?
-                
-                DragGesture().onChanged { value in
-                    self.viewState = value.translation
-                }
-                    .onEnded { value in
-                        if value.predictedEndTranslation.height < -screenHeight / 2 {
-                            withAnimation(.easeInOut) {
-                                self.activeView = currentView.bottom
-                                self.viewState = .zero
-                            }
-                        }
-                        else if value.predictedEndTranslation.width > screenWidth * 2 {
-                            withAnimation(.easeInOut) {
-                                self.activeView = currentView.left
-                                self.viewState = .zero
-                            }
-                        }
-                        else {
-                            self.viewState = .zero
-                        }
-                    }
-                : DragGesture().onChanged { value in
-                    switch self.activeView {
-                        case.left:
-                            guard value.translation.width < 1 else { return }
-                            self.viewState = value.translation
-                        case.bottom:
-                            guard value.translation.height < 1 else { return }
-                            self.viewState = value.translation
-                        case.center:
-                            self.viewState = value.translation
-                    }
-                }
-                    .onEnded { value in
-                        switch self.activeView {
-                            case.left:
-                                if value.predictedEndTranslation.width < -screenWidth / 2 {
-                                    withAnimation(.easeInOut) {
-                                        self.activeView = .center
-                                        self.viewState = .zero
-                                    }
-                                }
-                                else {
-                                    self.viewState = .zero
-                                }
-                            case.bottom:
-                                if value.predictedEndTranslation.height > screenHeight / 2 {
-                                    withAnimation(.easeInOut) {
-                                        self.activeView = .center
-                                        self.viewState = .zero
-                                    }
-                                } else {
-                                    self.viewState = .zero
-                                }
-                            case .center:
-                                self.viewState = .zero
-                        }
-                    }
-            )
+//            .gesture(
+//                (self.activeView == currentView.center) ?
+//
+//                DragGesture().onChanged { value in
+//                    self.viewState = value.translation
+//                }
+//                    .onEnded { value in
+//                        if value.predictedEndTranslation.height < -screenHeight / 2 {
+//                            withAnimation(.easeInOut) {
+//                                self.activeView = currentView.bottom
+//                                self.viewState = .zero
+//                            }
+//                        }
+//                        else if value.predictedEndTranslation.width > screenWidth * 2 {
+//                            withAnimation(.easeInOut) {
+//                                self.activeView = currentView.left
+//                                self.viewState = .zero
+//                            }
+//                        }
+//                        else {
+//                            self.viewState = .zero
+//                        }
+//                    }
+//                : DragGesture().onChanged { value in
+//                    switch self.activeView {
+//                        case.left:
+//                            guard value.translation.width < 1 else { return }
+//                            self.viewState = value.translation
+//                        case.bottom:
+//                            guard value.translation.height < 1 else { return }
+//                            self.viewState = value.translation
+//                        case.center:
+//                            self.viewState = value.translation
+//                    }
+//                }
+//                    .onEnded { value in
+//                        switch self.activeView {
+//                            case.left:
+//                                if value.predictedEndTranslation.width < -screenWidth / 2 {
+//                                    withAnimation(.easeInOut) {
+//                                        self.activeView = .center
+//                                        self.viewState = .zero
+//                                    }
+//                                }
+//                                else {
+//                                    self.viewState = .zero
+//                                }
+//                            case.bottom:
+//                                if value.predictedEndTranslation.height > screenHeight / 2 {
+//                                    withAnimation(.easeInOut) {
+//                                        self.activeView = .center
+//                                        self.viewState = .zero
+//                                    }
+//                                } else {
+//                                    self.viewState = .zero
+//                                }
+//                            case .center:
+//                                self.viewState = .zero
+//                        }
+//                    }
+//            )
+//
         }
         .navigate(to: SettingsView(), when: $navigateToSettings)
         .navigate(to: ToychestView(), when: $navigateToToychest)

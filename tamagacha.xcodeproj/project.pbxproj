@@ -129,12 +129,12 @@
 			children = (
 				0090F27E2977477D00CBDD2F /* ContentView.swift */,
 				0090F29129774F8F00CBDD2F /* HomeView.swift */,
+				0090F2AF2979DF0B00CBDD2F /* StoreView.swift */,
+				0090F2B12979DF1800CBDD2F /* BathroomView.swift */,
 				0090F29B29776B3A00CBDD2F /* PetView.swift */,
 				0090F29D29776B4E00CBDD2F /* NavigationBar.swift */,
 				0090F2A52978A65600CBDD2F /* StatView.swift */,
 				0090F2AD2979DEFF00CBDD2F /* RoomView.swift */,
-				0090F2AF2979DF0B00CBDD2F /* StoreView.swift */,
-				0090F2B12979DF1800CBDD2F /* BathroomView.swift */,
 				0090F2B32979DF2500CBDD2F /* SettingsView.swift */,
 				0090F2B52979DF4F00CBDD2F /* DeveloperToolsView.swift */,
 			);

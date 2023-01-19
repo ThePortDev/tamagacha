@@ -16,16 +16,21 @@ struct StoreView: View {
     var body: some View {
         GeometryReader { geometry in
             VStack {
+                
                 ZStack {
-
-                    RoundedRectangle(cornerRadius: 20)
-                        .foregroundColor(.red)
-                    Text("Store")
-                    VStack {
-                        activeView == .center ? Image(systemName: "arrow.up") : Image(systemName: "arrow.down")
-                        if activeView == .center {
+                        
+                        RoundedRectangle(cornerRadius: 20)
+                            .foregroundColor(.red)
+                        
+                        VStack {
+                            if activeView == .center {
+                                Image(systemName: "chevron.up")
+                                Text("Store")
+                                    .padding(.top)
+                                    .padding(.bottom, 650)
+                            }
                             HStack {
-
+                                
                                 Button("Kitchen") {
                                     navigateToKitchen = true
                                 }
@@ -35,11 +40,10 @@ struct StoreView: View {
                                 Button("Settings") {
                                     navigateToSettings = true
                                 }
-
-                            }}
-                        
-                    }
-                    .padding(.bottom, 700)
+                                
+                            }
+                            .frame(width: 100, height: 100, alignment: .top)                            
+                        }
                 }
             }
             .frame(width: geometry.size.width, height: geometry.size.height, alignment: .center)

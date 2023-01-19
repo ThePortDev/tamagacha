@@ -42,4 +42,3 @@ struct BathroomView: View {
         
     }
 }
-

@@ -8,14 +8,34 @@
 import SwiftUI
 import Foundation
 
-class PetViewModel {
+class PetViewModel: ObservableObject {
     
-    let petDataModel: Pet
-    let timeDataModel = PetUserDefaults()
+    @Published var pet: Pet
+    private var userDefaultPet = PetUserDefaults()
     
-    init(pet: Pet) {
-        self.petDataModel = pet
+    init() {
+        pet = userDefaultPet.loadData()
     }
     
+    func saveData() {
+        objectWillChange.send()
+        userDefaultPet.saveData(pet: pet)
+    }
+    
+    func feed(amount: CGFloat) {
+        //TODO: add pet hunger var by amount
+    }
+    
+    func giveWater(amount: CGFloat) {
+        //TODO: add pet thirst var by amount
+    }
+    
+    func petPet(amount: CGFloat) {
+        //TODO: add pet love var by amount
+    }
+    
+    func shower(amount: CGFloat) {
+        //TODO: add pet hygiene var by amount
+    }
     
 }

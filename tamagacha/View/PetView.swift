@@ -11,10 +11,10 @@ import SwiftUI
 
 struct PetView: View {
     
-    let viewModel = PetViewModel(pet: Pet(name: "steve", birthday: Date(), lastMeal: Date(), lastDrink: Date(), hygiene: Date()))
+    let viewModel = PetViewModel()
     
     var body: some View {
-        Text("")
+        Text("Pet")
     }
 }
 

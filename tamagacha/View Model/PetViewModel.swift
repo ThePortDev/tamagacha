@@ -11,7 +11,7 @@ import Foundation
 class PetViewModel {
     
     let petDataModel: Pet
-    let timeDataModel = PetUserDefaults(
+    let timeDataModel = PetUserDefaults()
     
     init(pet: Pet) {
         self.petDataModel = pet

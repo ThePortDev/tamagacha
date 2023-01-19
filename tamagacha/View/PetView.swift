@@ -11,7 +11,7 @@ import SwiftUI
 
 struct PetView: View {
     
-    let viewModel = PetViewModel()
+    let viewModel = PetViewModel(pet: Pet(name: "steve", birthday: Date(), lastMeal: Date(), lastDrink: Date(), hygiene: Date()))
     
     var body: some View {
         Text("")

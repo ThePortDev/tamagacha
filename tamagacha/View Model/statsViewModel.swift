@@ -9,13 +9,7 @@ import SwiftUI
 import Foundation
 
 
-struct StatsViewModel {
-    
-//    private var userDefaultTime: PetUserDefaults()
-//
-//    init() {
-//        pet = userDefaultTime.loadData()
-//    }
+class StatsViewModel {
     
     var hungerPercent: CGFloat = 1.00 {
         willSet {
@@ -24,6 +18,7 @@ struct StatsViewModel {
             }
         }
     }
+    
     var thirstPercent: CGFloat = 0.70 {
         willSet {
             if newValue <= 0 {
@@ -31,6 +26,7 @@ struct StatsViewModel {
             }
         }
     }
+    
     var hygienePercent: CGFloat = 1.00 {
         willSet {
             if newValue <= 0 {
@@ -38,6 +34,7 @@ struct StatsViewModel {
             }
         }
     }
+    
     var lovePercent: CGFloat = 1.00 {
         willSet {
             if newValue <= 0 {
@@ -45,6 +42,7 @@ struct StatsViewModel {
             }
         }
     }
+    
     var energyPercent: CGFloat = 1.00 {
         willSet {
             if newValue <= 0 {

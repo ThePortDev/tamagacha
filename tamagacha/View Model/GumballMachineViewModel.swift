@@ -1,5 +1,5 @@
 //
-//  GumballMachineModel.swift
+//  GumballMachineViewModel.swift
 //  tamagacha
 //
 //  Created by Porter Dover on 1/23/23.

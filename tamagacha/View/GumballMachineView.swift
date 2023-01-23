@@ -7,14 +7,14 @@
 
 import SwiftUI
 
-struct Gumball_Machine_View: View {
+struct GumballMachineView: View {
     var body: some View {
         Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
     }
 }
 
-struct Gumball_Machine_View_Previews: PreviewProvider {
+struct GumballMachineViewPreviews: PreviewProvider {
     static var previews: some View {
-        Gumball_Machine_View()
+        GumballMachineView()
     }
 }

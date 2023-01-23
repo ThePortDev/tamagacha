@@ -9,12 +9,12 @@
 /* Begin PBXBuildFile section */
 		00255CAD297F287C0035C37F /* PopOverView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00255CAC297F287C0035C37F /* PopOverView.swift */; };
 		00255CAF297F288B0035C37F /* DeathScreenPopOverView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00255CAE297F288B0035C37F /* DeathScreenPopOverView.swift */; };
-		00255CB1297F289D0035C37F /* Gumball Machine View.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00255CB0297F289D0035C37F /* Gumball Machine View.swift */; };
-		00255CB3297F28B70035C37F /* GumballMachineModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00255CB2297F28B70035C37F /* GumballMachineModel.swift */; };
+		00255CB1297F289D0035C37F /* GumballMachineView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00255CB0297F289D0035C37F /* GumballMachineView.swift */; };
 		00255CB5297F28C50035C37F /* GumballMachineModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00255CB4297F28C50035C37F /* GumballMachineModel.swift */; };
 		00255CB7297F28D70035C37F /* StoreViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00255CB6297F28D70035C37F /* StoreViewModel.swift */; };
 		00255CB9297F28E10035C37F /* StoreModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00255CB8297F28E10035C37F /* StoreModel.swift */; };
 		00255CBB297F28EF0035C37F /* DeveloperToolsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00255CBA297F28EF0035C37F /* DeveloperToolsViewModel.swift */; };
+		00255CBD297F29850035C37F /* GumballMachineViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00255CBC297F29850035C37F /* GumballMachineViewModel.swift */; };
 		0090F27D2977477D00CBDD2F /* tamagachaApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0090F27C2977477D00CBDD2F /* tamagachaApp.swift */; };
 		0090F27F2977477D00CBDD2F /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0090F27E2977477D00CBDD2F /* ContentView.swift */; };
 		0090F2812977477E00CBDD2F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0090F2802977477E00CBDD2F /* Assets.xcassets */; };
@@ -41,12 +41,12 @@
 /* Begin PBXFileReference section */
 		00255CAC297F287C0035C37F /* PopOverView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PopOverView.swift; sourceTree = "<group>"; };
 		00255CAE297F288B0035C37F /* DeathScreenPopOverView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeathScreenPopOverView.swift; sourceTree = "<group>"; };
-		00255CB0297F289D0035C37F /* Gumball Machine View.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Gumball Machine View.swift"; sourceTree = "<group>"; };
-		00255CB2297F28B70035C37F /* GumballMachineModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GumballMachineModel.swift; sourceTree = "<group>"; };
+		00255CB0297F289D0035C37F /* GumballMachineView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GumballMachineView.swift; sourceTree = "<group>"; };
 		00255CB4297F28C50035C37F /* GumballMachineModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GumballMachineModel.swift; sourceTree = "<group>"; };
 		00255CB6297F28D70035C37F /* StoreViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoreViewModel.swift; sourceTree = "<group>"; };
 		00255CB8297F28E10035C37F /* StoreModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoreModel.swift; sourceTree = "<group>"; };
 		00255CBA297F28EF0035C37F /* DeveloperToolsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeveloperToolsViewModel.swift; sourceTree = "<group>"; };
+		00255CBC297F29850035C37F /* GumballMachineViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GumballMachineViewModel.swift; sourceTree = "<group>"; };
 		0090F2792977477D00CBDD2F /* tamagacha.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = tamagacha.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		0090F27C2977477D00CBDD2F /* tamagachaApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = tamagachaApp.swift; sourceTree = "<group>"; };
 		0090F27E2977477D00CBDD2F /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -138,9 +138,9 @@
 			children = (
 				0090F29F29776B6A00CBDD2F /* PetViewModel.swift */,
 				0090F2A72978A68400CBDD2F /* statsViewModel.swift */,
-				00255CB2297F28B70035C37F /* GumballMachineModel.swift */,
 				00255CB6297F28D70035C37F /* StoreViewModel.swift */,
 				00255CBA297F28EF0035C37F /* DeveloperToolsViewModel.swift */,
+				00255CBC297F29850035C37F /* GumballMachineViewModel.swift */,
 			);
 			path = "View Model";
 			sourceTree = "<group>";
@@ -160,7 +160,7 @@
 				0090F2B52979DF4F00CBDD2F /* DeveloperToolsView.swift */,
 				00255CAC297F287C0035C37F /* PopOverView.swift */,
 				00255CAE297F288B0035C37F /* DeathScreenPopOverView.swift */,
-				00255CB0297F289D0035C37F /* Gumball Machine View.swift */,
+				00255CB0297F289D0035C37F /* GumballMachineView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -251,7 +251,6 @@
 				0090F2B22979DF1800CBDD2F /* BathroomView.swift in Sources */,
 				00255CB9297F28E10035C37F /* StoreModel.swift in Sources */,
 				0090F29229774F8F00CBDD2F /* HomeView.swift in Sources */,
-				00255CB3297F28B70035C37F /* GumballMachineModel.swift in Sources */,
 				0090F27F2977477D00CBDD2F /* ContentView.swift in Sources */,
 				00255CB7297F28D70035C37F /* StoreViewModel.swift in Sources */,
 				00255CAF297F288B0035C37F /* DeathScreenPopOverView.swift in Sources */,
@@ -261,7 +260,7 @@
 				0090F2AA2979DEDF00CBDD2F /* RoundedRectangle.swift in Sources */,
 				0090F2A82978A68400CBDD2F /* statsViewModel.swift in Sources */,
 				0090F29E29776B4E00CBDD2F /* NavigationBar.swift in Sources */,
-				00255CB1297F289D0035C37F /* Gumball Machine View.swift in Sources */,
+				00255CB1297F289D0035C37F /* GumballMachineView.swift in Sources */,
 				0090F2A029776B6A00CBDD2F /* PetViewModel.swift in Sources */,
 				0090F2B62979DF4F00CBDD2F /* DeveloperToolsView.swift in Sources */,
 				00255CAD297F287C0035C37F /* PopOverView.swift in Sources */,
@@ -269,6 +268,7 @@
 				0090F2AC2979DEF000CBDD2F /* NavigateIfTrue.swift in Sources */,
 				0090F2AE2979DEFF00CBDD2F /* RoomView.swift in Sources */,
 				0090F29829776B0E00CBDD2F /* TimeModel.swift in Sources */,
+				00255CBD297F29850035C37F /* GumballMachineViewModel.swift in Sources */,
 				00255CB5297F28C50035C37F /* GumballMachineModel.swift in Sources */,
 				0090F27D2977477D00CBDD2F /* tamagachaApp.swift in Sources */,
 			);

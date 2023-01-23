@@ -19,7 +19,7 @@ class PetUserDefaults {
                 return
             }
         }
-        self.pet = Pet(name: "Default", lastMeal: Date(), lastDrink: Date(), hygiene: Date())
+        self.pet = Pet(name: "Steve", lastMeal: Date(), lastDrink: Date(), lastShower: Date(), lastShownAffection: Date())
     }
     
     func loadData() -> Pet {

@@ -2,30 +2,33 @@ import SwiftUI
 
 struct StatView: View {
     
-    var statsViewModel = StatsViewModel()
+    @State var viewModel = PetViewModel()
     @State var frame: CGSize = .zero
     
     var body: some View {
         List {
-            VStack {
+            VStack(spacing: 20) {
                 waterBar
                 foodBar
                 loveBar
                 hygieneBar
-                energyBar
             }
+            .padding()
         }
     }
     
     var waterBar: some View {
-        ZStack(alignment: .leading) {
-            RoundedRectangle(cornerRadius: 15)
-                .foregroundColor(.gray)
-                .frame(width: 150)
-            RoundedRectangle(cornerRadius: 15)
-                .foregroundColor(.blue)
-                .frame(width: 150 * statsViewModel.thirstPercent)
-            Text("Thirst: \(Double(statsViewModel.thirstPercent).formatted(.percent))")
+        GeometryReader { geometry in
+            ZStack(alignment: .leading) {
+                RoundedRectangle(cornerRadius: 15)
+                    .foregroundColor(.gray)
+                    .frame(width: geometry.size.width)
+                RoundedRectangle(cornerRadius: 15)
+                    .foregroundColor(.blue)
+                    .frame(width: geometry.size.width * viewModel.pet.thirst)
+                Text("Thirst: \(Double(viewModel.pet.thirst).formatted(.percent))")
+                    .padding(5)
+            }
         }
     }
     
@@ -34,47 +37,43 @@ struct StatView: View {
             ZStack(alignment: .leading) {
                 RoundedRectangle(cornerRadius: 15)
                     .foregroundColor(.gray)
+                    .frame(width: geometry.size.width)
                 RoundedRectangle(cornerRadius: 15)
                     .foregroundColor(.yellow)
-                    .frame(width: geometry.size.width * statsViewModel.hungerPercent)
-                Text("Hunger: \(Double(statsViewModel.hungerPercent).formatted(.percent))")
+                    .frame(width: geometry.size.width * viewModel.pet.hunger)
+                Text("Hunger: \(Double(viewModel.pet.hunger).formatted(.percent))")
+                    .padding(5)
             }
         }
     }
     
-    var energyBar: some View {
-        ZStack {
-            RoundedRectangle(cornerRadius: 15)
-                .foregroundColor(.gray)
-                .frame(width: 150)
-            RoundedRectangle(cornerRadius: 15)
-                .foregroundColor(.cyan)
-                .frame(width: 150 * statsViewModel.energyPercent)
-            Text("Energy: \(Double(statsViewModel.energyPercent).formatted(.percent))")
-        }
-    }
-    
     var loveBar: some View {
-        ZStack {
-            RoundedRectangle(cornerRadius: 15)
-                .foregroundColor(.gray)
-                .frame(width: 150)
-            RoundedRectangle(cornerRadius: 15)
-                .foregroundColor(.red)
-                .frame(width: 150 * statsViewModel.lovePercent)
-            Text("Love: \(Double(statsViewModel.lovePercent).formatted(.percent))")
+        GeometryReader { geometry in
+            ZStack(alignment: .leading) {
+                RoundedRectangle(cornerRadius: 15)
+                    .foregroundColor(.gray)
+                    .frame(width: geometry.size.width)
+                RoundedRectangle(cornerRadius: 15)
+                    .foregroundColor(.red)
+                    .frame(width: geometry.size.width * viewModel.pet.love)
+                Text("Love: \(Double(viewModel.pet.love).formatted(.percent))")
+                    .padding(5)
+            }
         }
     }
     
     var hygieneBar: some View {
-        ZStack {
-            RoundedRectangle(cornerRadius: 15)
-                .foregroundColor(.gray)
-                .frame(width: 150)
-            RoundedRectangle(cornerRadius: 15)
-                .foregroundColor(.green)
-                .frame(width: 150 * statsViewModel.hygienePercent)
-            Text("Hygiene: \(Double(statsViewModel.hygienePercent).formatted(.percent))")
+        GeometryReader { geometry in
+            ZStack(alignment: .leading) {
+                RoundedRectangle(cornerRadius: 15)
+                    .foregroundColor(.gray)
+                    .frame(width: geometry.size.width)
+                RoundedRectangle(cornerRadius: 15)
+                    .foregroundColor(.green)
+                    .frame(width: geometry.size.width * viewModel.pet.hygiene)
+                Text("Hygiene: \(Double(viewModel.pet.hygiene).formatted(.percent))")
+                    .padding(5)
+            }
         }
     }
 }

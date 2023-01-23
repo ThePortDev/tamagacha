@@ -23,19 +23,19 @@ class PetViewModel: ObservableObject {
     }
     
     func feed(amount: CGFloat) {
-        //TODO: add pet hunger var by amount
+        pet.hunger += amount
     }
     
     func giveWater(amount: CGFloat) {
-        //TODO: add pet thirst var by amount
+        pet.thirst += amount
     }
     
     func petPet(amount: CGFloat) {
-        //TODO: add pet love var by amount
+        pet.love += amount
     }
     
     func shower(amount: CGFloat) {
-        //TODO: add pet hygiene var by amount
+        pet.hygiene += amount
     }
     
 }

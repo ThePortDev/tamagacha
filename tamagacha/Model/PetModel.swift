@@ -31,33 +31,52 @@ struct Pet: Codable {
     }
     
     
-    var thirst: String {
+    var thirst: CGFloat {
         let timeSince = calculateTimeSince(data: lastDrink)
-        var string = ""
+        var thirst = 1.0
         
-        switch timeSince {
-            case 0..<30: string = "Not thirsty"
-            case 30..<60: string = "Getting thirsty"
-            case 60...: string = "Thirsty"
-            default: string = "IDK"
+        if timeSince >= 1 {
+            thirst -= 0.01
         }
         
-        return string
+        return thirst
+    }
+    
+    var hygiene: CGFloat {
+        let timeSince = calculateTimeSince(data: lastShower)
+        var hygiene = 1.0
+        
+        if timeSince >= 1 {
+            hygiene -= 0.01
+        }
+        
+        return hygiene
+    }
+    
+    var love: CGFloat {
+        let timeSince = calculateTimeSince(data: lastShownAffection)
+        var love = 1.0
+        
+        if timeSince >= 1 {
+            love -= 0.01
+        }
+        
+        return love
     }
     
     var lastMeal: Date
     var lastDrink: Date
-    var hygiene: Date
+    var lastShower: Date
+    var lastShownAffection: Date
     
-    mutating func takeShower() {
-        hygiene += 50
-    }
+   
     
     enum PetType {
         case dog
         case fish
         case cat
         case bird
+        case slime
     }
     
     enum Emotions {

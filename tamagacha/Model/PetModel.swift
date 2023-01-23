@@ -12,6 +12,20 @@ struct Pet: Codable {
     var birthday = Date()
     var isAlive = true
     
+    private var _hunger: CGFloat = 1.00
+    private var _thirst: CGFloat = 1.00
+    private var _hygiene: CGFloat = 1.00
+    private var _love: CGFloat = 1.00
+    
+    init(name: String, lastMeal: Date, lastDrink: Date, lastShower: Date, lastShownAffection: Date) {
+        self.name = name
+        self.lastMeal = lastMeal
+        self.lastDrink = lastDrink
+        self.lastShower = lastShower
+        self.lastShownAffection = lastShownAffection
+    }
+    
+    
     var age: Int {
         let timeSince = calculateTimeSince(data: birthday)
         return timeSince
@@ -19,49 +33,69 @@ struct Pet: Codable {
     
     
     var hunger: CGFloat {
-        let timeSince = calculateTimeSince(data: lastMeal)
-        var hunger = 1.0
-        
-        if timeSince >= 1 {
-            hunger -= 0.01
+        get {
+            let timeSince = calculateTimeSince(data: lastMeal)
+            var hunger = 1.0
+            
+            if timeSince >= 1 {
+                hunger -= 0.01
+            }
+            print(hunger)
+            
+            return hunger
         }
-        print(hunger)
-        
-        return hunger
+        set {
+            _hunger = newValue
+        }
     }
     
     
     var thirst: CGFloat {
-        let timeSince = calculateTimeSince(data: lastDrink)
-        var thirst = 1.0
-        
-        if timeSince >= 1 {
-            thirst -= 0.01
+        get {
+            let timeSince = calculateTimeSince(data: lastDrink)
+            var thirst = 1.0
+            
+            if timeSince >= 1 {
+                thirst -= 0.01
+            }
+            
+            return thirst
         }
-        
-        return thirst
+        set {
+            _thirst = newValue
+        }
     }
     
     var hygiene: CGFloat {
-        let timeSince = calculateTimeSince(data: lastShower)
-        var hygiene = 1.0
-        
-        if timeSince >= 1 {
-            hygiene -= 0.01
+        get {
+            let timeSince = calculateTimeSince(data: lastShower)
+            var hygiene = 1.0
+            
+            if timeSince >= 1 {
+                hygiene -= 0.01
+            }
+            
+            return hygiene
         }
-        
-        return hygiene
+        set {
+            _hygiene = newValue
+        }
     }
     
     var love: CGFloat {
-        let timeSince = calculateTimeSince(data: lastShownAffection)
-        var love = 1.0
-        
-        if timeSince >= 1 {
-            love -= 0.01
+        get {
+            let timeSince = calculateTimeSince(data: lastShownAffection)
+            var love = 1.0
+            
+            if timeSince >= 1 {
+                love -= 0.01
+            }
+            
+            return love
         }
-        
-        return love
+        set {
+            _love = newValue
+        }
     }
     
     var lastMeal: Date

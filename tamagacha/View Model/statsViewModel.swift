@@ -11,6 +11,8 @@ import Foundation
 
 class StatsViewModel {
     
+    
+    
     var hungerPercent: CGFloat = 1.00 {
         willSet {
             if newValue <= 0 {

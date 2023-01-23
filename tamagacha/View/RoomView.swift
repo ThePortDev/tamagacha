@@ -23,16 +23,16 @@ struct RoomView: View {
     var body: some View {
         GeometryReader { geometry in
             ZStack {
-                VStack {
-                    SpriteView(scene: scene)
-                        .frame(width: 400, height: UIScreen.main.bounds.height - 100)
-                }
-                .frame(width: geometry.size.width, height: geometry.size.height - 100, alignment: .center)
+                SpriteView(scene: scene)
+                    .frame(width: 400, height: UIScreen.main.bounds.height - 100)
                 statView
+                    .zIndex(.infinity)
             }
+            .frame(width: geometry.size.width, height: geometry.size.height - 100, alignment: .center)
         }
+        //.animation(Animation.linear(duration: 1), value: isExpanded)
         //.background(Color.white)
-        .edgesIgnoringSafeArea(.all)
+        //.edgesIgnoringSafeArea(.all)
     }
     
     var statView: some View {
@@ -53,8 +53,9 @@ struct RoomView: View {
     
     var expandedStatView: some View {
         StatView()
+            .frame(width: screenWidth, height: 230)
             .padding(.top, 100)
-            .padding(.bottom, 700)
+            .padding(.bottom, 500)
     }
     
     var collapsedStatView: some View {

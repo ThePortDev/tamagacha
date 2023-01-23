@@ -25,10 +25,8 @@ struct HomeView: View {
     @State var activeView = currentView.center
 //    @State var viewState = CGSize.zero
     
-    // navbar
+    // settings
     @State var navigateToSettings: Bool = false
-    @State var navigateToToychest: Bool = false
-    @State var navigateToKitchen: Bool = false
     
     // drag gesture X
     @State private var startingOffsetX: CGFloat = -UIScreen.main.bounds.width
@@ -36,7 +34,7 @@ struct HomeView: View {
     @State private var endingOffsetX: CGFloat = 0
     
     //drag gesture Y
-    @State private var startingOffsetY: CGFloat = UIScreen.main.bounds.height - 39
+    @State private var startingOffsetY: CGFloat = UIScreen.main.bounds.height - 46
     @State private var currentDragOffsetY: CGFloat = 0
     @State private var endingOffsetY: CGFloat = 0
 
@@ -52,10 +50,15 @@ struct HomeView: View {
     @State private var showWelcomeMessage = true
     
     var body: some View {
+        VStack(spacing: 0) {
+//            Rectangle()
+//                .foregroundColor(.blue)
+//                .ignoresSafeArea()
+//                .frame(height: 10)
             ZStack {
                 RoomView()
-                StoreView(activeView: $activeView, navigateToSettings: $navigateToSettings, navigateToToyChest: $navigateToToychest, navigateToKitchen: $navigateToKitchen)
-                    .frame(width: screenWidth, height: 1000)
+                StoreView(activeView: $activeView, navigateToSettings: $navigateToSettings)
+                    .frame(width: screenWidth, height: 960)
                     .offset(y: startingOffsetY)
                     .offset(y: currentDragOffsetY)
                     .offset(y: endingOffsetY)
@@ -115,9 +118,8 @@ struct HomeView: View {
                             })
                     )
             }
-        .navigate(to: SettingsView(), when: $navigateToSettings)
-        .navigate(to: ToychestView(), when: $navigateToToychest)
-        .navigate(to: KitchenView(), when: $navigateToKitchen)
+            .navigate(to: SettingsView(), when: $navigateToSettings)
+        }
     }
     
     
@@ -142,8 +144,8 @@ class GameScene: SKScene {
     
     override func sceneDidLoad() {
 
-        let background = SKSpriteNode(imageNamed: "cheesepuffs")
-        background.size = CGSize(width: 500, height: 700)
+        let background = SKSpriteNode(imageNamed: "cheesepuffs 1")
+        background.size = CGSize(width: 500, height: 701)
         background.position = CGPoint(x: frame.midX, y: frame.midY)
         addChild(background)
         
@@ -154,7 +156,7 @@ class GameScene: SKScene {
     private var currentNode: SKNode?
     
     override func didMove(to view: SKView) {
-        let box = SKSpriteNode(imageNamed: "cheesepuffs")
+        let box = SKSpriteNode(imageNamed: "cheesepuffs 1")
         box.size = CGSize(width: 200, height: 150)
         box.position = CGPoint(x: 0.5, y: 0.5)
         box.physicsBody = SKPhysicsBody(rectangleOf: CGSize(width: 200, height: 150))

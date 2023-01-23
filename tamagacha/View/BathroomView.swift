@@ -9,6 +9,7 @@ import SwiftUI
 
 struct BathroomView: View {
     @Binding var activeView: currentView
+    @State var trailingPadding = 0
     
     var body: some View {
 
@@ -28,12 +29,9 @@ struct BathroomView: View {
                                 .frame(width: 40, height: 80)
                             Text("🛀")
                         }
-                    } else {
-                        Rectangle().cornerRadius(20, corners: [.topRight, .bottomRight])
-                            .frame(width: 40, height: 80)
-                            .foregroundColor(.red)
                     }
                 }
+                .padding(.trailing, activeView != .bottom ? 0 : 40)
             }
         
     }

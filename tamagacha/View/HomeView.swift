@@ -36,7 +36,7 @@ struct HomeView: View {
     @State private var endingOffsetX: CGFloat = 0
     
     //drag gesture Y
-    @State private var startingOffsetY: CGFloat = UIScreen.main.bounds.height - 125
+    @State private var startingOffsetY: CGFloat = UIScreen.main.bounds.height - 39
     @State private var currentDragOffsetY: CGFloat = 0
     @State private var endingOffsetY: CGFloat = 0
 
@@ -52,11 +52,10 @@ struct HomeView: View {
     @State private var showWelcomeMessage = true
     
     var body: some View {
-        VStack {
-            Text("\(currentDragOffsetY)")
             ZStack {
                 RoomView()
                 StoreView(activeView: $activeView, navigateToSettings: $navigateToSettings, navigateToToyChest: $navigateToToychest, navigateToKitchen: $navigateToKitchen)
+                    .frame(width: screenWidth, height: 1000)
                     .offset(y: startingOffsetY)
                     .offset(y: currentDragOffsetY)
                     .offset(y: endingOffsetY)
@@ -64,13 +63,17 @@ struct HomeView: View {
                         DragGesture()
                             .onChanged { value in
                                 withAnimation(.spring()) {
-                                    currentDragOffsetY = value.translation.height
+                                    if activeView == .bottom && value.translation.height < 0 {
+                                        return
+                                    } else {
+                                        currentDragOffsetY = value.translation.height
+                                    }
                                 }
                             }
                             .onEnded({ value in
                                 withAnimation(.spring()) {
                                     if currentDragOffsetY < -100 {
-                                        endingOffsetY = -startingOffsetY
+                                        endingOffsetY = -startingOffsetY - 100
                                         activeView = .bottom
                                     }
                                     else if endingOffsetY != 0 && currentDragOffsetY > 150{
@@ -82,7 +85,7 @@ struct HomeView: View {
                             })
                     )
                 BathroomView(activeView: $activeView)
-                    .frame(width: 450, height: 800)
+                    .frame(width: 470, height: 800)
                     .offset(x: startingOffsetX)
                     .offset(x: currentDragOffsetX)
                     .offset(x: endingOffsetX)
@@ -90,7 +93,11 @@ struct HomeView: View {
                         DragGesture()
                             .onChanged { value in
                                 withAnimation(.spring()) {
-                                    currentDragOffsetX = value.translation.width
+                                    if activeView == .left && value.translation.width > 0 {
+                                        return
+                                    } else {
+                                        currentDragOffsetX = value.translation.width
+                                    }
                                 }
                             }
                             .onEnded({ value in
@@ -108,69 +115,6 @@ struct HomeView: View {
                             })
                     )
             }
-//            .gesture(
-//                (self.activeView == currentView.center) ?
-//
-//                DragGesture().onChanged { value in
-//                    self.viewState = value.translation
-//                }
-//                    .onEnded { value in
-//                        if value.predictedEndTranslation.height < -screenHeight / 2 {
-//                            withAnimation(.easeInOut) {
-//                                self.activeView = currentView.bottom
-//                                self.viewState = .zero
-//                            }
-//                        }
-//                        else if value.predictedEndTranslation.width > screenWidth * 2 {
-//                            withAnimation(.easeInOut) {
-//                                self.activeView = currentView.left
-//                                self.viewState = .zero
-//                            }
-//                        }
-//                        else {
-//                            self.viewState = .zero
-//                        }
-//                    }
-//                : DragGesture().onChanged { value in
-//                    switch self.activeView {
-//                        case.left:
-//                            guard value.translation.width < 1 else { return }
-//                            self.viewState = value.translation
-//                        case.bottom:
-//                            guard value.translation.height < 1 else { return }
-//                            self.viewState = value.translation
-//                        case.center:
-//                            self.viewState = value.translation
-//                    }
-//                }
-//                    .onEnded { value in
-//                        switch self.activeView {
-//                            case.left:
-//                                if value.predictedEndTranslation.width < -screenWidth / 2 {
-//                                    withAnimation(.easeInOut) {
-//                                        self.activeView = .center
-//                                        self.viewState = .zero
-//                                    }
-//                                }
-//                                else {
-//                                    self.viewState = .zero
-//                                }
-//                            case.bottom:
-//                                if value.predictedEndTranslation.height > screenHeight / 2 {
-//                                    withAnimation(.easeInOut) {
-//                                        self.activeView = .center
-//                                        self.viewState = .zero
-//                                    }
-//                                } else {
-//                                    self.viewState = .zero
-//                                }
-//                            case .center:
-//                                self.viewState = .zero
-//                        }
-//                    }
-//            )
-//
-        }
         .navigate(to: SettingsView(), when: $navigateToSettings)
         .navigate(to: ToychestView(), when: $navigateToToychest)
         .navigate(to: KitchenView(), when: $navigateToKitchen)
@@ -198,20 +142,25 @@ class GameScene: SKScene {
     
     override func sceneDidLoad() {
 
-        backgroundColor = .white
+        let background = SKSpriteNode(imageNamed: "cheesepuffs")
+        background.size = CGSize(width: 500, height: 700)
+        background.position = CGPoint(x: frame.midX, y: frame.midY)
+        addChild(background)
         
-        let box = SKSpriteNode(imageNamed: "cheesepuffs")
-        box.position = CGPoint(x: 0.5, y: 0.5)
-        box.physicsBody = SKPhysicsBody(rectangleOf: CGSize(width: 200, height: 150))
-        box.name = "draggable"
-            
-        addChild(box)
+        
         
     }
         
     private var currentNode: SKNode?
     
     override func didMove(to view: SKView) {
+        let box = SKSpriteNode(imageNamed: "cheesepuffs")
+        box.size = CGSize(width: 200, height: 150)
+        box.position = CGPoint(x: 0.5, y: 0.5)
+        box.physicsBody = SKPhysicsBody(rectangleOf: CGSize(width: 200, height: 150))
+        box.name = "draggable"
+            
+        addChild(box)
         physicsBody = SKPhysicsBody(edgeLoopFrom: frame)
         self.physicsWorld.gravity = CGVector(dx: 0, dy: -0.5)
     }
@@ -237,6 +186,7 @@ class GameScene: SKScene {
             } else {
                 //self.sceneSize = CGSize(width: 700, height: 400)
                 node.position = touchLocation
+                //print("\(touchLocation)")
             }
         }
     }

@@ -8,18 +8,22 @@
 import SwiftUI
 
 struct MenuView: View {
+    @State var navigateToHomeView = false
+    
     var body: some View {
-        VStack {
-            Text("this is the menu i guess")
-            NavigationView {
-                NavigationLink("play") {
-                    HomeView()
-                        .navigationBarBackButtonHidden(true)
-                }
-            }
+        ZStack {
+            Text("Tamagacha")
         }
-        
-        .padding()
+        .background(
+            Image("cheesepuffs")
+                .resizable()
+                .frame(width: screenWidth, height: screenHeight)
+        )
+        .onTapGesture {
+            navigateToHomeView = true
+        }
+        .navigate(to: HomeView(), when: $navigateToHomeView)
+
     }
 }
 

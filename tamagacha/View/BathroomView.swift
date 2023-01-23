@@ -11,9 +11,9 @@ struct BathroomView: View {
     @Binding var activeView: currentView
     
     var body: some View {
-        HStack {
+
             GeometryReader { geometry in
-                HStack {
+                HStack(spacing: 0) {
                     ZStack {
                         Rectangle()
                             .cornerRadius(20, corners: [.topRight, .bottomRight])
@@ -22,8 +22,7 @@ struct BathroomView: View {
                     }
                     //.background(Color.purple)
                     .edgesIgnoringSafeArea(.all)
-                    //RoundedRectangle(cornerRadius: 10)
-                    if activeView == .center {
+                    if activeView != .bottom {
                         ZStack {
                             Rectangle().cornerRadius(20, corners: [.topRight, .bottomRight])
                                 .frame(width: 40, height: 80)
@@ -36,9 +35,12 @@ struct BathroomView: View {
                     }
                 }
             }
-            
-            
-        }
         
+    }
+}
+
+struct HomeView3_Previews: PreviewProvider {
+    static var previews: some View {
+        HomeView()
     }
 }

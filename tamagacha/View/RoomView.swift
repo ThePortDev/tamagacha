@@ -25,27 +25,14 @@ struct RoomView: View {
             ZStack {
                 VStack {
                     SpriteView(scene: scene)
-                        .frame(width: 400, height: 700)
+                        .frame(width: 400, height: UIScreen.main.bounds.height - 100)
                 }
-                .frame(width: geometry.size.width, height: geometry.size.height, alignment: .center)
+                .frame(width: geometry.size.width, height: geometry.size.height - 100, alignment: .center)
                 statView
-//                swipeLeft
             }
         }
-        .background(Color.white)
+        //.background(Color.white)
         .edgesIgnoringSafeArea(.all)
-    }
-    
-    var swipeLeft: some View {
-        ZStack {
-        Rectangle()
-            Image(systemName: "arrow.right")
-                .foregroundColor(Color.black)
-        }
-        .foregroundColor(.purple)
-        .cornerRadius(20, corners: [.topRight, .bottomRight])
-        .frame(width: 20, height: 100)
-        .padding(.trailing, screenWidth - 20)
     }
     
     var statView: some View {
@@ -66,8 +53,8 @@ struct RoomView: View {
     
     var expandedStatView: some View {
         StatView()
-            .padding(.top, 70)
-            .padding(.bottom, 550)
+            .padding(.top, 100)
+            .padding(.bottom, 700)
     }
     
     var collapsedStatView: some View {
@@ -82,4 +69,10 @@ struct RoomView: View {
     }
     
     
+}
+
+struct HomeView_Previews3: PreviewProvider {
+    static var previews: some View {
+        HomeView()
+    }
 }

@@ -15,22 +15,25 @@ struct StoreView: View {
 
     var body: some View {
         GeometryReader { geometry in
-            VStack {
-                
+            VStack(spacing: 0) {
+                ZStack {
+                    Rectangle()
+                        .cornerRadius(90, corners: [.topLeft, .topRight])
+                        .frame(width: screenWidth, height: 100)
+                        .foregroundColor(.blue)
+                    VStack {
+                        Image(systemName: "chevron.up")
+                        Text("Store")
+                    }
+                }
                 ZStack {
                         
                         RoundedRectangle(cornerRadius: 20)
                             .foregroundColor(.red)
-                        
-                        VStack {
-                            if activeView == .center {
-                                Image(systemName: "chevron.up")
-                                Text("Store")
-                                    .padding(.top)
-                                    .padding(.bottom, 650)
-                            }
+                            .edgesIgnoringSafeArea(.all)
+
                             HStack {
-                                
+
                                 Button("Kitchen") {
                                     navigateToKitchen = true
                                 }
@@ -40,15 +43,13 @@ struct StoreView: View {
                                 Button("Settings") {
                                     navigateToSettings = true
                                 }
-                                
+
                             }
-                            .frame(width: 100, height: 100, alignment: .top)                            
-                        }
                 }
             }
-            .frame(width: geometry.size.width, height: geometry.size.height, alignment: .center)
+            //.frame(width: geometry.size.width, height: geometry.size.height, alignment: .center)
         }
-        .edgesIgnoringSafeArea(.all)
+//        .edgesIgnoringSafeArea(.all)
         
     }
 }
@@ -83,4 +84,11 @@ struct ToychestView: View {
         }
     }
     
+}
+
+
+struct HomeView2_Previews: PreviewProvider {
+    static var previews: some View {
+        HomeView()
+    }
 }

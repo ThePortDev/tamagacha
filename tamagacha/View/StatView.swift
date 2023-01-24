@@ -2,19 +2,22 @@ import SwiftUI
 
 struct StatView: View {
     
-    @State var viewModel = PetViewModel()
-    @State var frame: CGSize = .zero
+//    @StateObject private var viewModel = PetViewModel()
+    @EnvironmentObject var viewModel: PetViewModel
+    private let timer = Timer.publish(every: 15, on: .main, in: .common)
     
     var body: some View {
-        List {
             VStack(spacing: 20) {
                 waterBar
                 foodBar
                 loveBar
                 hygieneBar
             }
+            .frame(height: 150)
             .padding()
-        }
+            .onReceive(timer) { _ in
+                viewModel.saveData()
+            }
     }
     
     var waterBar: some View {
@@ -25,8 +28,9 @@ struct StatView: View {
                     .frame(width: geometry.size.width)
                 RoundedRectangle(cornerRadius: 15)
                     .foregroundColor(.blue)
-                    .frame(width: geometry.size.width * viewModel.pet.thirst)
-                Text("Thirst: \(Double(viewModel.pet.thirst).formatted(.percent))")
+                    .frame(width: geometry.size.width * (viewModel.pet.thirst / 100))
+                Text("Thirst: \(Int(viewModel.pet.thirst))")
+                    .padding(.leading, 10)
                     .padding(5)
             }
         }
@@ -40,8 +44,9 @@ struct StatView: View {
                     .frame(width: geometry.size.width)
                 RoundedRectangle(cornerRadius: 15)
                     .foregroundColor(.yellow)
-                    .frame(width: geometry.size.width * viewModel.pet.hunger)
-                Text("Hunger: \(Double(viewModel.pet.hunger).formatted(.percent))")
+                    .frame(width: geometry.size.width * (viewModel.pet.hunger / 100))
+                Text("Hunger: \(Int(viewModel.pet.hunger))")
+                    .padding(.leading, 10)
                     .padding(5)
             }
         }
@@ -55,8 +60,9 @@ struct StatView: View {
                     .frame(width: geometry.size.width)
                 RoundedRectangle(cornerRadius: 15)
                     .foregroundColor(.red)
-                    .frame(width: geometry.size.width * viewModel.pet.love)
-                Text("Love: \(Double(viewModel.pet.love).formatted(.percent))")
+                    .frame(width: geometry.size.width * (viewModel.pet.love / 100))
+                Text("Love: \(Int(viewModel.pet.love))")
+                    .padding(.leading, 10)
                     .padding(5)
             }
         }
@@ -70,8 +76,9 @@ struct StatView: View {
                     .frame(width: geometry.size.width)
                 RoundedRectangle(cornerRadius: 15)
                     .foregroundColor(.green)
-                    .frame(width: geometry.size.width * viewModel.pet.hygiene)
-                Text("Hygiene: \(Double(viewModel.pet.hygiene).formatted(.percent))")
+                    .frame(width: geometry.size.width * (viewModel.pet.hygiene / 100))
+                Text("Hygiene: \(Int(viewModel.pet.hygiene))")
+                    .padding(.leading, 10)
                     .padding(5)
             }
         }

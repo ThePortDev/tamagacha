@@ -9,6 +9,7 @@ import SwiftUI
 
 struct BathroomView: View {
     @Binding var activeView: currentView
+    @EnvironmentObject var viewModel: PetViewModel
     @State var trailingPadding = 0
     
     var body: some View {
@@ -16,10 +17,17 @@ struct BathroomView: View {
             GeometryReader { geometry in
                 HStack(spacing: 0) {
                     ZStack {
-                        Rectangle()
-                            .cornerRadius(20, corners: [.topRight, .bottomRight])
-                            .foregroundColor(.purple)
-                        Text("Bathroom")
+                        Image("bathroom")
+                            .resizable()
+                            .scaledToFit()
+                            .ignoresSafeArea()
+                        Button("Shower") {
+                            viewModel.shower(amount: 10)
+                        }
+                        .padding()
+                        .background(
+                            RoundedRectangle(cornerRadius: 15)
+                        )
                     }
                     //.background(Color.purple)
                     .edgesIgnoringSafeArea(.all)

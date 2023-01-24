@@ -21,6 +21,8 @@ let screenHeight = screenSize.height
 
 struct HomeView: View {
     
+    @StateObject var viewModel = PetViewModel()
+    
     // swipe gesture
     @State var activeView = currentView.center
 //    @State var viewState = CGSize.zero
@@ -41,6 +43,7 @@ struct HomeView: View {
     
     var scene: SKScene {
         let scene = GameScene()
+        scene.setup(with: viewModel)
         scene.size = CGSize(width: 400, height: 700)
         scene.scaleMode = .fill
         scene.anchorPoint = CGPoint(x: 0.5, y: 0.5)
@@ -119,6 +122,7 @@ struct HomeView: View {
                     )
             }
             .navigate(to: SettingsView(), when: $navigateToSettings)
+            .environmentObject(viewModel)
         }
     }
     
@@ -138,25 +142,26 @@ struct HomeView: View {
 
 class GameScene: SKScene {
     
+    var viewModel: PetViewModel!
     //@State var sceneSize:CGSize = CGSize(width: 400, height: 700)
     
 //    private var spriteAtlas
     
+    func setup(with viewModel: PetViewModel) {
+        self.viewModel = viewModel
+    }
+    
     override func sceneDidLoad() {
-
-        let background = SKSpriteNode(imageNamed: "cheesepuffs 1")
+        let background = SKSpriteNode(imageNamed: "living")
         background.size = CGSize(width: 500, height: 701)
         background.position = CGPoint(x: frame.midX, y: frame.midY)
         addChild(background)
-        
-        
-        
     }
         
     private var currentNode: SKNode?
     
     override func didMove(to view: SKView) {
-        let box = SKSpriteNode(imageNamed: "cheesepuffs 1")
+        let box = viewModel.getPetType()
         box.size = CGSize(width: 200, height: 150)
         box.position = CGPoint(x: 0.5, y: 0.5)
         box.physicsBody = SKPhysicsBody(rectangleOf: CGSize(width: 200, height: 150))
@@ -174,6 +179,9 @@ class GameScene: SKScene {
             let touchedNodes = self.nodes(at: location)
             for node in touchedNodes.reversed() {
                 if node.name == "draggable" {
+                    if viewModel.pet.isAlive {
+                        viewModel.petPet(amount: 10)
+                    }
                     self.currentNode = node
                 }
             }

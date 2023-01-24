@@ -11,9 +11,11 @@ import SpriteKit
 struct RoomView: View {
     //@State var activeView: currentView
     @State var isExpanded = false
+    @EnvironmentObject var viewModel: PetViewModel
     
     var scene: SKScene {
         let scene = GameScene()
+        scene.setup(with: viewModel)
         scene.size = CGSize(width: 400, height: 700)
         scene.scaleMode = .fill
         scene.anchorPoint = CGPoint(x: 0.5, y: 0.5)
@@ -25,7 +27,7 @@ struct RoomView: View {
             ZStack {
                 SpriteView(scene: scene)
                     .frame(width: 400, height: UIScreen.main.bounds.height - 100)
-                statView
+                expandedStatView
                     .zIndex(.infinity)
             }
             .frame(width: geometry.size.width, height: geometry.size.height - 100, alignment: .center)

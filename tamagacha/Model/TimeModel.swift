@@ -19,7 +19,9 @@ class PetUserDefaults {
                 return
             }
         }
-        self.pet = Pet(name: "Steve", image: "TESTBIRD",lastMeal: Date(), lastDrink: Date(), lastShower: Date(), lastShownAffection: Date())
+
+        self.pet = Pet(name: "Steve", image: "TESTBIRD", lastMeal: Date(), lastDrink: Date(), lastShower: Date(), lastShownAffection: Date(), petType: .dog, maxHunger: 100, maxThirst: 100, maxHygiene: 100, maxLove: 100)
+
     }
     
     func loadData() -> Pet {

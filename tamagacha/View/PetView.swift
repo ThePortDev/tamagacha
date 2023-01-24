@@ -11,16 +11,20 @@ import SwiftUI
 
 struct PetView: View {
     
-    let viewModel = PetViewModel()
+    @State var viewModel: PetViewModel
     
     var body: some View {
-        Text("Pet")
+        VStack {
+            Text("\(viewModel.pet.name) - \(viewModel.pet.age)")
+                .font(.largeTitle)
+                .bold()
+        }
     }
 }
 
 struct PetView_Previews: PreviewProvider {
     static var previews: some View {
-        PetView()
+        PetView(viewModel: PetViewModel())
     }
 }
 

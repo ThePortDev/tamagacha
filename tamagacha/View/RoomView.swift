@@ -11,18 +11,25 @@ import SpriteKit
 struct RoomView: View {
     //@State var activeView: currentView
     @State var isExpanded = false
-    @State var viewModel: PetViewModel
-        
-    @State var scene: GameScene
+
+    @EnvironmentObject var viewModel: PetViewModel
     
-    @State var changeScene = false
+    var scene: SKScene {
+        let scene = GameScene()
+        scene.setup(with: viewModel)
+        scene.size = CGSize(width: 400, height: 700)
+        scene.scaleMode = .fill
+        scene.anchorPoint = CGPoint(x: 0.5, y: 0.5)
+        return scene
+    }
+
     
     var body: some View {
         GeometryReader { geometry in
             ZStack {
                 SpriteView(scene: scene)
                     .frame(width: 400, height: UIScreen.main.bounds.height - 100)
-                statView
+                expandedStatView
                     .zIndex(.infinity)
                 Button("change scene") {
                     withAnimation {

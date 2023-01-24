@@ -38,4 +38,6 @@ class PetViewModel: ObservableObject {
         pet.hygiene += amount
     }
     
+    
+    
 }

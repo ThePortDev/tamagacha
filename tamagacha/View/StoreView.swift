@@ -10,8 +10,9 @@ import SwiftUI
 struct StoreView: View {
     @Binding var activeView: currentView
     @Binding var navigateToSettings: Bool
-    
+        
     @State var selectedTab = "house"
+    
 
     var body: some View {
         GeometryReader { geometry in
@@ -68,13 +69,13 @@ struct StoreView: View {
             }
         }
     }
-    }
+}
 
 struct CustomTabBar: View {
     
     @Binding var selectedTab: String
     @Binding var navigateToSettings: Bool
-    
+        
     var body: some View {
         ZStack(alignment: .top) {
             Rectangle()
@@ -109,11 +110,18 @@ struct CustomTabBar: View {
                     .foregroundColor(.green)
             }
             else if selectedTab == "bookmark" {
-                Rectangle()
-                    .cornerRadius(30, corners: [.bottomLeft, .bottomRight])
-                    .padding(.horizontal)
-                    .padding(.bottom)
-                    .foregroundColor(.yellow)
+                ZStack(alignment: .center) {
+                    Rectangle()
+                        .cornerRadius(30, corners: [.bottomLeft, .bottomRight])
+                        .padding(.horizontal)
+                        .padding(.bottom)
+                        .foregroundColor(.yellow)
+                    Button("Food") {
+                        //roomScene.addDogFood()
+                    }
+                    .frame(width: 50, height: 50, alignment: .center)
+                }
+                
             }
             else if selectedTab == "message" {
                 Rectangle()

@@ -21,7 +21,9 @@ let screenHeight = screenSize.height
 
 struct HomeView: View {
     
+
     @StateObject var viewModel = PetViewModel()
+
     
     // swipe gesture
     @State var activeView = currentView.center
@@ -39,9 +41,9 @@ struct HomeView: View {
     @State private var startingOffsetY: CGFloat = UIScreen.main.bounds.height - 46
     @State private var currentDragOffsetY: CGFloat = 0
     @State private var endingOffsetY: CGFloat = 0
-
     
-    var scene: SKScene {
+    //@State var scene: GameScene = GameScene()
+    var scene: GameScene {
         let scene = GameScene()
         scene.setup(with: viewModel)
         scene.size = CGSize(width: 400, height: 700)
@@ -49,7 +51,7 @@ struct HomeView: View {
         scene.anchorPoint = CGPoint(x: 0.5, y: 0.5)
         return scene
     }
-    
+        
     @State private var showWelcomeMessage = true
     
     var body: some View {
@@ -59,7 +61,7 @@ struct HomeView: View {
 //                .ignoresSafeArea()
 //                .frame(height: 10)
             ZStack {
-                RoomView()
+                RoomView(viewModel: viewModel, scene: scene)
                 StoreView(activeView: $activeView, navigateToSettings: $navigateToSettings)
                     .frame(width: screenWidth, height: 960)
                     .offset(y: startingOffsetY)
@@ -111,6 +113,7 @@ struct HomeView: View {
                                     if currentDragOffsetX > 100 {
                                         endingOffsetX = -startingOffsetX + 20
                                         activeView = .left
+                                        //changeScene = true
                                     }
                                     else if endingOffsetX != 0 && currentDragOffsetX < -150{
                                         endingOffsetX = 0
@@ -139,6 +142,7 @@ struct HomeView: View {
     
 
 }
+
 
 class GameScene: SKScene {
     
@@ -208,8 +212,10 @@ class GameScene: SKScene {
     override func touchesCancelled(_ touches: Set<UITouch>, with event: UIEvent?) {
         self.currentNode = nil
     }
+
     
 }
+
 
 struct HomeView_Previews: PreviewProvider {
     static var previews: some View {

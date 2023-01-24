@@ -9,6 +9,7 @@ import Foundation
 
 struct Pet: Codable {
     var name: String
+    var image: String
     var birthday = Date()
     var isAlive = true
     
@@ -17,13 +18,15 @@ struct Pet: Codable {
     var hygiene: CGFloat
     var love: CGFloat
     
+
     var maxHunger: CGFloat
     var maxThirst: CGFloat
     var maxHygiene: CGFloat
     var maxLove: CGFloat
     
-    init(name: String, lastMeal: Date, lastDrink: Date, lastShower: Date, lastShownAffection: Date, petType: PetType, maxHunger: CGFloat, maxThirst: CGFloat, maxHygiene: CGFloat, maxLove: CGFloat) {
+    init(name: String, image: String, lastMeal: Date, lastDrink: Date, lastShower: Date, lastShownAffection: Date, petType: PetType, maxHunger: CGFloat, maxThirst: CGFloat, maxHygiene: CGFloat, maxLove: CGFloat) {
         self.name = name
+        self.image = image
         self.petType = petType
         
         self.lastMeal = lastMeal

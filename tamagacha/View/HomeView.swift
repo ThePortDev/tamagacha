@@ -21,6 +21,8 @@ let screenHeight = screenSize.height
 
 struct HomeView: View {
     
+    @State var viewModel = PetViewModel()
+    
     // swipe gesture
     @State var activeView = currentView.center
 //    @State var viewState = CGSize.zero
@@ -37,16 +39,16 @@ struct HomeView: View {
     @State private var startingOffsetY: CGFloat = UIScreen.main.bounds.height - 46
     @State private var currentDragOffsetY: CGFloat = 0
     @State private var endingOffsetY: CGFloat = 0
-
     
-    var scene: SKScene {
+    //@State var scene: GameScene = GameScene()
+    var scene: GameScene {
         let scene = GameScene()
         scene.size = CGSize(width: 400, height: 700)
         scene.scaleMode = .fill
         scene.anchorPoint = CGPoint(x: 0.5, y: 0.5)
         return scene
     }
-    
+        
     @State private var showWelcomeMessage = true
     
     var body: some View {
@@ -56,7 +58,7 @@ struct HomeView: View {
 //                .ignoresSafeArea()
 //                .frame(height: 10)
             ZStack {
-                RoomView()
+                RoomView(viewModel: viewModel, scene: scene)
                 StoreView(activeView: $activeView, navigateToSettings: $navigateToSettings)
                     .frame(width: screenWidth, height: 960)
                     .offset(y: startingOffsetY)
@@ -108,6 +110,7 @@ struct HomeView: View {
                                     if currentDragOffsetX > 100 {
                                         endingOffsetX = -startingOffsetX + 20
                                         activeView = .left
+                                        //changeScene = true
                                     }
                                     else if endingOffsetX != 0 && currentDragOffsetX < -150{
                                         endingOffsetX = 0
@@ -136,72 +139,10 @@ struct HomeView: View {
 
 }
 
-class GameScene: SKScene {
-    
-    //@State var sceneSize:CGSize = CGSize(width: 400, height: 700)
-    
-//    private var spriteAtlas
-    
-    override func sceneDidLoad() {
-
-        let background = SKSpriteNode(imageNamed: "cheesepuffs 1")
-        background.size = CGSize(width: 500, height: 701)
-        background.position = CGPoint(x: frame.midX, y: frame.midY)
-        addChild(background)
-        
-        
-        
-    }
-        
-    private var currentNode: SKNode?
-    
-    override func didMove(to view: SKView) {
-        let box = SKSpriteNode(imageNamed: "cheesepuffs 1")
-        box.size = CGSize(width: 200, height: 150)
-        box.position = CGPoint(x: 0.5, y: 0.5)
-        box.physicsBody = SKPhysicsBody(rectangleOf: CGSize(width: 200, height: 150))
-        box.name = "draggable"
-            
-        addChild(box)
-        physicsBody = SKPhysicsBody(edgeLoopFrom: frame)
-        self.physicsWorld.gravity = CGVector(dx: 0, dy: -0.5)
-    }
-    
-    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
-        if let touch = touches.first {
-
-            let location = touch.location(in: self)
-            let touchedNodes = self.nodes(at: location)
-            for node in touchedNodes.reversed() {
-                if node.name == "draggable" {
-                    self.currentNode = node
-                }
-            }
-        }
-    }
-    
-    override func touchesMoved(_ touches: Set<UITouch>, with event: UIEvent?) {
-        if let touch = touches.first, let node = self.currentNode {
-            let touchLocation = touch.location(in: self)
-            if touchLocation.y < -350 || touchLocation.y > 350 {
-                return
-            } else {
-                //self.sceneSize = CGSize(width: 700, height: 400)
-                node.position = touchLocation
-                //print("\(touchLocation)")
-            }
-        }
-    }
-    
-    override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
-        self.currentNode = nil
-    }
-    
-    override func touchesCancelled(_ touches: Set<UITouch>, with event: UIEvent?) {
-        self.currentNode = nil
-    }
+class BathroomScene: SKScene {
     
 }
+
 
 struct HomeView_Previews: PreviewProvider {
     static var previews: some View {

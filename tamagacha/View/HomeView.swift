@@ -61,7 +61,7 @@ struct HomeView: View {
 //                .ignoresSafeArea()
 //                .frame(height: 10)
             ZStack {
-                RoomView(viewModel: viewModel, scene: scene)
+                RoomView()
                 StoreView(activeView: $activeView, navigateToSettings: $navigateToSettings)
                     .frame(width: screenWidth, height: 960)
                     .offset(y: startingOffsetY)

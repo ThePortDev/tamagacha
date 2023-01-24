@@ -33,7 +33,7 @@ struct RoomView: View {
                     .zIndex(.infinity)
                 Button("change scene") {
                     withAnimation {
-                        changeScene.toggle()
+//                        changeScene.toggle()
                     }
                 }
             }
@@ -79,80 +79,6 @@ struct RoomView: View {
     }
     
     
-}
-
-class GameScene: SKScene {
-    
-    //var food = ["dogFood"]
-    //@State var sceneSize:CGSize = CGSize(width: 400, height: 700)
-    
-//    private var spriteAtlas
-    
-    override func sceneDidLoad() {
-        let background = SKSpriteNode(imageNamed: "cheesepuffs 1")
-        background.size = CGSize(width: 500, height: 701)
-        background.position = CGPoint(x: frame.midX, y: frame.midY)
-        addChild(background)
-    }
-        
-    private var currentNode: SKNode?
-    
-    override func didMove(to view: SKView) {
-        let box = SKSpriteNode(imageNamed: "cheesepuffs 1")
-        box.size = CGSize(width: 200, height: 150)
-        box.position = CGPoint(x: 0.5, y: 0.5)
-        box.physicsBody = SKPhysicsBody(rectangleOf: CGSize(width: 200, height: 150))
-        box.name = "pet"
-            
-        addChild(box)
-        physicsBody = SKPhysicsBody(edgeLoopFrom: frame)
-        self.physicsWorld.gravity = CGVector(dx: 0, dy: -0.5)
-    }
-    
-    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
-        if let touch = touches.first {
-
-            let location = touch.location(in: self)
-            let touchedNodes = self.nodes(at: location)
-            for node in touchedNodes.reversed() {
-                if node.name == "pet" {
-                    
-                    self.currentNode = node
-                }
-            }
-        }
-    }
-    
-    override func touchesMoved(_ touches: Set<UITouch>, with event: UIEvent?) {
-        if let touch = touches.first, let node = self.currentNode {
-            let touchLocation = touch.location(in: self)
-            if touchLocation.y < -350 || touchLocation.y > 350 {
-                return
-            } else {
-                //self.sceneSize = CGSize(width: 700, height: 400)
-                node.position = touchLocation
-                //print("\(touchLocation)")
-            }
-        }
-    }
-    
-    override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
-        self.currentNode = nil
-    }
-    
-    override func touchesCancelled(_ touches: Set<UITouch>, with event: UIEvent?) {
-        self.currentNode = nil
-    }
-    
-    func addDogFood() {
-        let dogFood = SKSpriteNode(imageNamed: "dogFood")
-        dogFood.size = CGSize(width: 50, height: 100)
-        dogFood.position = CGPoint(x: 0.5, y: 0.5)
-        dogFood.physicsBody = SKPhysicsBody(rectangleOf: CGSize(width: 50, height: 100))
-        dogFood.name = "dogFood"
-
-        addChild(dogFood)
-    }
 }
 
 

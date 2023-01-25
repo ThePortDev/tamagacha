@@ -24,6 +24,7 @@ class SoundManager {
         
         do {
             player = try AVAudioPlayer(contentsOf: url)
+            player?.prepareToPlay()
             player?.play()
         } catch let error {
             print("Error playing sound. \(error.localizedDescription)")

@@ -15,7 +15,7 @@ class PetViewModel: ObservableObject {
 
     @Published var store: Store
     
-    private var userDefaultPet = PetUserDefaults()
+    private(set) var userDefaultPet = PetUserDefaults()
     private var userDefaultStore = StoreUserDefaults()
 
     private var timer: Timer?

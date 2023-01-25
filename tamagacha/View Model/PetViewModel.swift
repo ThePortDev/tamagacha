@@ -12,7 +12,7 @@ import SpriteKit
 class PetViewModel: ObservableObject {
     
     @Published var pet: Pet
-    private var userDefaultPet = PetUserDefaults()
+    private(set) var userDefaultPet = PetUserDefaults()
     private var timer: Timer?
     init() {
         pet = userDefaultPet.loadData()

@@ -113,7 +113,7 @@ struct CustomTabBar: View {
                     .padding(.bottom)
                     .foregroundColor(.green)
                 Text("Food")
-                    .frame(width: .infinity,height: .infinity, alignment: .topTrailing)
+                    .frame(width: .infinity, height: .infinity, alignment: .topTrailing)
             }
             else if selectedTab == "bookmark" {
                 ZStack(alignment: .center) {

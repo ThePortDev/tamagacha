@@ -10,18 +10,25 @@ import Foundation
 class PetUserDefaults {
     private var PET_KEY = "PET_KEY"
     private var pet: Pet
+    var petLoaded = false
     
     init() {
         if let data = UserDefaults.standard.data(forKey: PET_KEY) {
             if let decoded = try? JSONDecoder().decode(Pet.self, from: data) {
                 self.pet = decoded
                 print("Pet data successfully retrieved!")
+                self.petLoaded = true
                 return
             }
         }
 
-        self.pet = Pet(name: "Steve", image: "TESTBIRD", lastMeal: Date(), lastDrink: Date(), lastShower: Date(), lastShownAffection: Date(), petType: .dog, maxHunger: 100, maxThirst: 100, maxHygiene: 100, maxLove: 100)
+        self.pet = Pet(name: "Steve", image: "TESTBIRD", petType: .dog, maxHunger: 100, maxThirst: 100, maxHygiene: 100, maxLove: 100, description: "This pet is quite rare. Only obtain in explicit and illegal ways. Due to the difficulties, only super rich people tend to take care of them. To be honest, its not a great pet. Super annoying.")
+        
 
+    }
+    
+    func deleteData() {
+        UserDefaults.standard.removeObject(forKey: PET_KEY)
     }
     
     func loadData() -> Pet {

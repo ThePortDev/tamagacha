@@ -12,10 +12,12 @@ import SpriteKit
 class PetViewModel: ObservableObject {
     
     @Published var pet: Pet
+
     @Published var store: Store
     
     private var userDefaultPet = PetUserDefaults()
     private var userDefaultStore = StoreUserDefaults()
+
     private var timer: Timer?
     
     

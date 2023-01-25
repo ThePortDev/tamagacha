@@ -16,8 +16,10 @@ struct tamagachaApp: App {
         WindowGroup {
             NavigationStack {
                 MenuView()
+
 //                PopOverView()
 //                    .environmentObject(viewModel)
+
             }
         }
     }

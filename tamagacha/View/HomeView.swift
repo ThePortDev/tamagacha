@@ -22,7 +22,9 @@ let screenHeight = screenSize.height
 struct HomeView: View {
     
 
+
     @StateObject var viewModel = PetViewModel()
+
 
     
     // swipe gesture
@@ -124,7 +126,7 @@ struct HomeView: View {
                             })
                     )
             }
-            .navigate(to: SettingsView(), when: $navigateToSettings)
+            .navigate(to: SettingsView().environmentObject(viewModel), when: $navigateToSettings)
             .environmentObject(viewModel)
         }
     }

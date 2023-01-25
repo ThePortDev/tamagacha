@@ -28,7 +28,7 @@ struct StatView: View {
     
 //    @StateObject private var viewModel = PetViewModel()
     @EnvironmentObject var viewModel: PetViewModel
-    private let timer = Timer.publish(every: 15, on: .main, in: .common)
+    private let timer = Timer.publish(every: 5, on: .main, in: .common)
     
     var body: some View {
             VStack(spacing: 20) {

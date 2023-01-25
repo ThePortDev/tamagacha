@@ -57,7 +57,11 @@ struct SettingsView: View {
         HStack {
             Text("UI Color:")
                 .font(.headline)
-            Image(systemName: "paintpalette")
+            
+            Button(action: buttonPressed) {
+                Image(systemName: "paintpalette")
+                    .foregroundColor(.black)
+            }
         }
         .padding(15)
     }
@@ -70,10 +74,10 @@ struct SettingsView: View {
                 decreaseButton
                     .foregroundColor(.black)
                 
-//                Slider(value: $volume)
-//                    .onChange(of: self.volume) { value in
-//                        SoundManager.soundInstance.player?.volume = Float(value)
-//                    }
+                Slider(value: $volume)
+                    .onChange(of: self.volume) { value in
+                        SoundManager.soundInstance.player?.volume = Float(value)
+                    }
                 
                 increaseButton
                     .foregroundColor(.black)
@@ -102,7 +106,13 @@ struct SettingsView: View {
         }
         
     }
+}
+
+private extension SettingsView {
     
+    func buttonPressed() {
+        print("Button Has Been Pressed")
+    }
 }
 
 private extension SettingsView {

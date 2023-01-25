@@ -39,6 +39,7 @@
 		0090F2B42979DF2500CBDD2F /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0090F2B32979DF2500CBDD2F /* SettingsView.swift */; };
 		0090F2B62979DF4F00CBDD2F /* DeveloperToolsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0090F2B52979DF4F00CBDD2F /* DeveloperToolsView.swift */; };
 		B4D9769A297752D0001E9016 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4D97699297752D0001E9016 /* User.swift */; };
+		ED7B3FE12981E71F00D7F01C /* retro-game.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = ED7B3FE02981E71F00D7F01C /* retro-game.mp3 */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -75,6 +76,7 @@
 		0090F2B32979DF2500CBDD2F /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
 		0090F2B52979DF4F00CBDD2F /* DeveloperToolsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeveloperToolsView.swift; sourceTree = "<group>"; };
 		B4D97699297752D0001E9016 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
+		ED7B3FE02981E71F00D7F01C /* retro-game.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "retro-game.mp3"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -107,6 +109,7 @@
 		0090F27B2977477D00CBDD2F /* tamagacha */ = {
 			isa = PBXGroup;
 			children = (
+				ED7B3FDF2981D69500D7F01C /* Sounds */,
 				0090F28E29774E8500CBDD2F /* Extentions */,
 				0090F28A29774E6100CBDD2F /* Model */,
 				0090F28B29774E6600CBDD2F /* View Model */,
@@ -183,6 +186,14 @@
 			path = Extentions;
 			sourceTree = "<group>";
 		};
+		ED7B3FDF2981D69500D7F01C /* Sounds */ = {
+			isa = PBXGroup;
+			children = (
+				ED7B3FE02981E71F00D7F01C /* retro-game.mp3 */,
+			);
+			path = Sounds;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -243,6 +254,7 @@
 			files = (
 				0090F2842977477E00CBDD2F /* Preview Assets.xcassets in Resources */,
 				0090F2812977477E00CBDD2F /* Assets.xcassets in Resources */,
+				ED7B3FE12981E71F00D7F01C /* retro-game.mp3 in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

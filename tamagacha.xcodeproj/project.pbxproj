@@ -15,6 +15,9 @@
 		00255CB9297F28E10035C37F /* StoreModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00255CB8297F28E10035C37F /* StoreModel.swift */; };
 		00255CBB297F28EF0035C37F /* DeveloperToolsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00255CBA297F28EF0035C37F /* DeveloperToolsViewModel.swift */; };
 		00255CBD297F29850035C37F /* GumballMachineViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00255CBC297F29850035C37F /* GumballMachineViewModel.swift */; };
+		007011C22981CA4400185FC2 /* SoundManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 007011C12981CA4400185FC2 /* SoundManager.swift */; };
+		007011C42981CA5600185FC2 /* GameScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 007011C32981CA5600185FC2 /* GameScene.swift */; };
+		007011C62981CA8900185FC2 /* TabBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 007011C52981CA8900185FC2 /* TabBar.swift */; };
 		0090F27D2977477D00CBDD2F /* tamagachaApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0090F27C2977477D00CBDD2F /* tamagachaApp.swift */; };
 		0090F27F2977477D00CBDD2F /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0090F27E2977477D00CBDD2F /* ContentView.swift */; };
 		0090F2812977477E00CBDD2F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0090F2802977477E00CBDD2F /* Assets.xcassets */; };
@@ -47,6 +50,9 @@
 		00255CB8297F28E10035C37F /* StoreModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoreModel.swift; sourceTree = "<group>"; };
 		00255CBA297F28EF0035C37F /* DeveloperToolsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeveloperToolsViewModel.swift; sourceTree = "<group>"; };
 		00255CBC297F29850035C37F /* GumballMachineViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GumballMachineViewModel.swift; sourceTree = "<group>"; };
+		007011C12981CA4400185FC2 /* SoundManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SoundManager.swift; sourceTree = "<group>"; };
+		007011C32981CA5600185FC2 /* GameScene.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameScene.swift; sourceTree = "<group>"; };
+		007011C52981CA8900185FC2 /* TabBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBar.swift; sourceTree = "<group>"; };
 		0090F2792977477D00CBDD2F /* tamagacha.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = tamagacha.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		0090F27C2977477D00CBDD2F /* tamagachaApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = tamagachaApp.swift; sourceTree = "<group>"; };
 		0090F27E2977477D00CBDD2F /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -161,6 +167,9 @@
 				00255CAC297F287C0035C37F /* PopOverView.swift */,
 				00255CAE297F288B0035C37F /* DeathScreenPopOverView.swift */,
 				00255CB0297F289D0035C37F /* GumballMachineView.swift */,
+				007011C12981CA4400185FC2 /* SoundManager.swift */,
+				007011C32981CA5600185FC2 /* GameScene.swift */,
+				007011C52981CA8900185FC2 /* TabBar.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -247,10 +256,13 @@
 				0090F2A62978A65600CBDD2F /* StatView.swift in Sources */,
 				B4D9769A297752D0001E9016 /* User.swift in Sources */,
 				0090F2B02979DF0B00CBDD2F /* StoreView.swift in Sources */,
+				007011C42981CA5600185FC2 /* GameScene.swift in Sources */,
 				0090F2B42979DF2500CBDD2F /* SettingsView.swift in Sources */,
 				0090F2B22979DF1800CBDD2F /* BathroomView.swift in Sources */,
+				007011C22981CA4400185FC2 /* SoundManager.swift in Sources */,
 				00255CB9297F28E10035C37F /* StoreModel.swift in Sources */,
 				0090F29229774F8F00CBDD2F /* HomeView.swift in Sources */,
+				007011C62981CA8900185FC2 /* TabBar.swift in Sources */,
 				0090F27F2977477D00CBDD2F /* ContentView.swift in Sources */,
 				00255CB7297F28D70035C37F /* StoreViewModel.swift in Sources */,
 				00255CAF297F288B0035C37F /* DeathScreenPopOverView.swift in Sources */,

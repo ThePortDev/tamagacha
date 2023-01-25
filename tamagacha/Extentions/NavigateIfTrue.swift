@@ -13,7 +13,7 @@ extension View {
     ///   - view: View to navigate to.
     ///   - binding: Only navigates when this condition is `true`.
     func navigate<NewView: View>(to view: NewView, when binding: Binding<Bool>) -> some View {
-        NavigationView {
+//        NavigationView {
             ZStack {
                 self
                     .navigationBarTitle("")
@@ -28,7 +28,7 @@ extension View {
                     EmptyView()
                 }
             }
-        }
+//        }
         .navigationViewStyle(.stack)
     }
 }

@@ -10,8 +10,7 @@ import SwiftUI
 struct PopOverView: View {
     @State private var showingPopover = false
     
-    @StateObject var viewModel = PetViewModel()
-//    var statViewModel = StatsViewModel()
+    @EnvironmentObject var viewModel: PetViewModel
     
     var body: some View {
         VStack {
@@ -72,6 +71,7 @@ struct PopOverView: View {
     }
     
     var stats: some View {
+
         VStack {
             StatView()
         }
@@ -87,7 +87,7 @@ struct PopOverView: View {
     }
     
     var petDescription: some View {
-        Text("This pet is quite rare. Only obtain in explicit and illeagal ways. Due to the difficulties, only super rich people tend to take care of them. To be honest, its not a great pet. Super annoying.")
+        Text(viewModel.pet.description)
             .frame(width: 320, height: 120)
             .padding(10)
             .multilineTextAlignment(.center)

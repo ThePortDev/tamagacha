@@ -66,16 +66,12 @@ struct PopOverView: View {
                 AngularGradient(colors: [.white, .black], center: .topLeading)
                     .cornerRadius(20)
                     .shadow(
-                        color: .black.opacity(0.3),
+                        color: .black.opacity(0.5),
                         radius: 10,
                         x: 0.0, y: 5))
     }
     
     var stats: some View {
-        
-//        var statView = StatView()
-//            .environmentObject(viewModel)
-        
         VStack {
             StatView()
         }
@@ -85,7 +81,7 @@ struct PopOverView: View {
             Color.gray
                 .cornerRadius(20)
                 .shadow(
-                    color: .black.opacity(0.7),
+                    color: .black.opacity(0.5),
                     radius: 10,
                     x: 0.0, y: 10))
     }
@@ -99,7 +95,7 @@ struct PopOverView: View {
                 Color.white
                     .cornerRadius(20)
                     .shadow(
-                        color: .black.opacity(0.3),
+                        color: .black.opacity(0.5),
                         radius: 10,
                         x: 0.0, y: 10))
     }

@@ -9,10 +9,15 @@ import SwiftUI
 
 @main
 struct tamagachaApp: App {
+    
+    @StateObject var viewModel = PetViewModel()
+    
     var body: some Scene {
         WindowGroup {
             NavigationStack {
-                MenuView()
+//                MenuView()
+                PopOverView()
+                    .environmentObject(viewModel)
             }
         }
     }

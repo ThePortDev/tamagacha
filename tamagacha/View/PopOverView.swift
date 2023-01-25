@@ -10,8 +10,8 @@ import SwiftUI
 struct PopOverView: View {
     @State private var showingPopover = false
     
-    var viewModel = PetViewModel()
-    var statViewModel = StatsViewModel()
+    @StateObject var viewModel = PetViewModel()
+//    var statViewModel = StatsViewModel()
     
     var body: some View {
         VStack {
@@ -31,11 +31,14 @@ struct PopOverView: View {
                     swipeText
                     
                 }
+                .environmentObject(viewModel)
                 .background(
                     AngularGradient(colors: [.gray, .white], center: .topLeading))
                 
             }
         }
+        
+//        .environmentObject(statViewModel)
     }
     
     var petNameView: some View {
@@ -69,12 +72,14 @@ struct PopOverView: View {
     }
     
     var stats: some View {
+        
+//        var statView = StatView()
+//            .environmentObject(viewModel)
+        
         VStack {
-            StatView().foodBar
-            StatView().waterBar
-            StatView().hygieneBar
-            StatView().loveBar
+            StatView()
         }
+        .environmentObject(viewModel)
         .frame(width: 350, height: 250)
         .background(
             Color.gray
@@ -111,5 +116,6 @@ struct PopOverView: View {
 struct PopOverView_Previews: PreviewProvider {
     static var previews: some View {
         PopOverView()
+            .environmentObject(PetViewModel())
     }
 }

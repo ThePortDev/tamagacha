@@ -1,5 +1,29 @@
 import SwiftUI
 
+struct StatBar: View {
+    
+    var name: String
+    var value: CGFloat
+    var color: Color
+    
+    var body: some View {
+        GeometryReader { geometry in
+            ZStack(alignment: .leading) {
+                RoundedRectangle(cornerRadius: 15)
+                    .foregroundColor(.gray)
+                    .frame(width: geometry.size.width)
+                RoundedRectangle(cornerRadius: 15)
+                    .foregroundColor(color)
+                    .frame(width: geometry.size.width * (value / 100))
+                Text("\(name): \(Int(value))")
+                    .padding(.leading, 10)
+                    .padding(5)
+            }
+        }
+    }
+}
+
+
 struct StatView: View {
     
 //    @StateObject private var viewModel = PetViewModel()
@@ -8,10 +32,11 @@ struct StatView: View {
     
     var body: some View {
             VStack(spacing: 20) {
-                waterBar
-                foodBar
-                loveBar
-                hygieneBar
+
+                StatBar(name: "Thirst", value: viewModel.pet.thirst, color: .blue)
+                StatBar(name: "Hunger", value: viewModel.pet.hunger, color: .yellow)
+                StatBar(name: "Love", value: viewModel.pet.love, color: .red)
+                StatBar(name: "Hygiene", value: viewModel.pet.hygiene, color: .green)
             }
             .frame(height: 150)
             .padding()
@@ -20,69 +45,7 @@ struct StatView: View {
             }
     }
     
-    var waterBar: some View {
-        GeometryReader { geometry in
-            ZStack(alignment: .leading) {
-                RoundedRectangle(cornerRadius: 15)
-                    .foregroundColor(.gray)
-                    .frame(width: geometry.size.width)
-                RoundedRectangle(cornerRadius: 15)
-                    .foregroundColor(.blue)
-                    .frame(width: geometry.size.width * (viewModel.pet.thirst / 100))
-                Text("Thirst: \(Int(viewModel.pet.thirst))")
-                    .padding(.leading, 10)
-                    .padding(5)
-            }
-        }
-    }
-    
-    var foodBar: some View {
-        GeometryReader { geometry in
-            ZStack(alignment: .leading) {
-                RoundedRectangle(cornerRadius: 15)
-                    .foregroundColor(.gray)
-                    .frame(width: geometry.size.width)
-                RoundedRectangle(cornerRadius: 15)
-                    .foregroundColor(.yellow)
-                    .frame(width: geometry.size.width * (viewModel.pet.hunger / 100))
-                Text("Hunger: \(Int(viewModel.pet.hunger))")
-                    .padding(.leading, 10)
-                    .padding(5)
-            }
-        }
-    }
-    
-    var loveBar: some View {
-        GeometryReader { geometry in
-            ZStack(alignment: .leading) {
-                RoundedRectangle(cornerRadius: 15)
-                    .foregroundColor(.gray)
-                    .frame(width: geometry.size.width)
-                RoundedRectangle(cornerRadius: 15)
-                    .foregroundColor(.red)
-                    .frame(width: geometry.size.width * (viewModel.pet.love / 100))
-                Text("Love: \(Int(viewModel.pet.love))")
-                    .padding(.leading, 10)
-                    .padding(5)
-            }
-        }
-    }
-    
-    var hygieneBar: some View {
-        GeometryReader { geometry in
-            ZStack(alignment: .leading) {
-                RoundedRectangle(cornerRadius: 15)
-                    .foregroundColor(.gray)
-                    .frame(width: geometry.size.width)
-                RoundedRectangle(cornerRadius: 15)
-                    .foregroundColor(.green)
-                    .frame(width: geometry.size.width * (viewModel.pet.hygiene / 100))
-                Text("Hygiene: \(Int(viewModel.pet.hygiene))")
-                    .padding(.leading, 10)
-                    .padding(5)
-            }
-        }
-    }
+
 }
 
 struct StatView_Previews: PreviewProvider {

@@ -157,6 +157,7 @@
 				0090F27E2977477D00CBDD2F /* ContentView.swift */,
 				0090F29129774F8F00CBDD2F /* HomeView.swift */,
 				0090F2AF2979DF0B00CBDD2F /* StoreView.swift */,
+				007011C52981CA8900185FC2 /* TabBar.swift */,
 				0090F2B12979DF1800CBDD2F /* BathroomView.swift */,
 				0090F29B29776B3A00CBDD2F /* PetView.swift */,
 				0090F29D29776B4E00CBDD2F /* NavigationBar.swift */,
@@ -169,7 +170,6 @@
 				00255CB0297F289D0035C37F /* GumballMachineView.swift */,
 				007011C12981CA4400185FC2 /* SoundManager.swift */,
 				007011C32981CA5600185FC2 /* GameScene.swift */,
-				007011C52981CA8900185FC2 /* TabBar.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";

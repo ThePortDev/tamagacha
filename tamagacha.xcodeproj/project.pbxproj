@@ -138,9 +138,9 @@
 			children = (
 				0090F29F29776B6A00CBDD2F /* PetViewModel.swift */,
 				0090F2A72978A68400CBDD2F /* statsViewModel.swift */,
-				00255CB6297F28D70035C37F /* StoreViewModel.swift */,
 				00255CBA297F28EF0035C37F /* DeveloperToolsViewModel.swift */,
 				00255CBC297F29850035C37F /* GumballMachineViewModel.swift */,
+				00255CB6297F28D70035C37F /* StoreViewModel.swift */,
 			);
 			path = "View Model";
 			sourceTree = "<group>";

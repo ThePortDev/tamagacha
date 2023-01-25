@@ -13,6 +13,8 @@ struct StoreView: View {
         
     @State var selectedTab = "house"
     
+    @EnvironmentObject var storeViewModel: StoreViewModel
+    
 
     var body: some View {
         GeometryReader { geometry in
@@ -73,6 +75,8 @@ struct StoreView: View {
 
 struct CustomTabBar: View {
     
+    @EnvironmentObject var storeViewModel: StoreViewModel
+    
     @Binding var selectedTab: String
     @Binding var navigateToSettings: Bool
         
@@ -108,6 +112,8 @@ struct CustomTabBar: View {
                     .padding(.horizontal)
                     .padding(.bottom)
                     .foregroundColor(.green)
+                Text("Food")
+                    .frame(width: .infinity,height: .infinity, alignment: .topTrailing)
             }
             else if selectedTab == "bookmark" {
                 ZStack(alignment: .center) {
@@ -116,10 +122,12 @@ struct CustomTabBar: View {
                         .padding(.horizontal)
                         .padding(.bottom)
                         .foregroundColor(.yellow)
-                    Button("Food") {
-                        //roomScene.addDogFood()
+                    Text("\(storeViewModel.store.money)")
+                        .padding(.bottom, 100)
+                    Button("Add Money") {
+                        storeViewModel.add(money: 1)
                     }
-                    .frame(width: 50, height: 50, alignment: .center)
+                    .frame(width: 100, height: 100, alignment: .center)
                 }
                 
             }

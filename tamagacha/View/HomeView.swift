@@ -23,6 +23,7 @@ struct HomeView: View {
     
 
     @StateObject var viewModel = PetViewModel()
+    @StateObject var storeViewModel = StoreViewModel()
 
     
     // swipe gesture
@@ -126,6 +127,7 @@ struct HomeView: View {
             }
             .navigate(to: SettingsView(), when: $navigateToSettings)
             .environmentObject(viewModel)
+            .environmentObject(storeViewModel)
         }
     }
     

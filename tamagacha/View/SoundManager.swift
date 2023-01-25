@@ -5,16 +5,33 @@
 //  Created by Porter Dover on 1/25/23.
 //
 
-import SwiftUI
+import Foundation
+import AVKit
 
-struct SoundManager: View {
-    var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+class SoundManager {
+        
+    static let soundInstance = SoundManager()
+    
+    var player: AVAudioPlayer?
+    
+    enum SoundOption: String {
+        case zoid = "Zoid"
     }
-}
-
-struct SoundManager_Previews: PreviewProvider {
-    static var previews: some View {
-        SoundManager()
+    
+    func playSound(sound: SoundOption) {
+        
+        guard let url = Bundle.main.url(forResource: sound.rawValue, withExtension: ".mp3") else { return }
+        
+        do {
+            player = try AVAudioPlayer(contentsOf: url)
+            player?.play()
+        } catch let error {
+            print("Error playing sound. \(error.localizedDescription)")
+        }
     }
+    
+    func stopSound() {
+            player?.stop()
+    }
+    
 }

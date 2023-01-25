@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct Store {
+struct Store: Codable {
     
     var products: [Item: Int] = [Item(name: "Dog Food"): 1, Item(name: "Milk"): 2, Item(name: "Tennis Ball"): 3, Item(name: "Beanie"): 4] // items available to purchase and their price as an int
     
@@ -44,9 +44,24 @@ struct Store {
     }
 }
 
-struct Item: Hashable {
+struct Item: Hashable, Codable {
     
     var name: String
+    
+    var improveStatsBy: CGFloat {
+        switch self.name {
+            case "Dog Food":
+                return 10
+            case "Milk":
+                return 5
+            case "Tennis Ball":
+                return 3
+            case "Beanie":
+                return 0
+            default:
+                return 0
+        }
+    }
     
     var type: types {
         switch self.name {
@@ -73,5 +88,35 @@ struct Item: Hashable {
     
     init(name: String) {
         self.name = name
+    }
+}
+
+class StoreUserDefaults {
+    
+    var storeKey = "STORE_KEY"
+    var store: Store
+    
+    init() {
+        if let data = UserDefaults.standard.data(forKey: storeKey) {
+            if let decoded = try? JSONDecoder().decode(Store.self, from: data) {
+                self.store = decoded
+                print("Store data")
+                return
+            }
+        }
+
+        self.store = Store()
+    }
+    
+    func loadData() -> Store {
+        return self.store
+    }
+    
+    func saveData(pet: Pet) {
+        if let encoded = try? JSONEncoder().encode(store) {
+            UserDefaults.standard.set(encoded, forKey: storeKey)
+            
+            print("Data saved at: \(Date().formatted(date: .omitted, time: .standard))")
+        }
     }
 }

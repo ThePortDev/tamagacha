@@ -12,12 +12,19 @@ import SpriteKit
 class PetViewModel: ObservableObject {
     
     @Published var pet: Pet
+    @Published var store: Store
+    
     private var userDefaultPet = PetUserDefaults()
+    private var userDefaultStore = StoreUserDefaults()
     private var timer: Timer?
+    
+    
     init() {
         pet = userDefaultPet.loadData()
+        store = userDefaultStore.loadData()
         timer = Timer.scheduledTimer(withTimeInterval: Pet.decreaseTime, repeats: true) { _ in
             self.pet.update()
+            self.store.add(money: 1)
         }
     }
     
@@ -75,6 +82,17 @@ class PetViewModel: ObservableObject {
                 pet.hygiene = pet.maxHygiene
             }
         }
+    }
+    
+    //MARK: Store Intents
+    func buy(item: String) {
+        store.buy(item: item)
+    }
+    func remove(item: String) {
+        store.remove(item: item)
+    }
+    func add(money: Int) {
+        store.add(money: money)
     }
     
     

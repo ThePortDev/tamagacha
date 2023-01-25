@@ -8,65 +8,99 @@
 import SwiftUI
 
 struct SettingsView: View {
-
-    @State private var volume: Double = 0
+    
+    @State private var volume: Double = 0.50
     @State private var hasChanged: Bool = false
     @State var enterCode = ""
     @State var navigateToDevTools = false
     
     private let devCode = "cheesepuffs"
-    private let range: ClosedRange<Double> = 0...100
-    private let step: Double = 1
+    private let range: ClosedRange<Double> = 0.00...1.00
+    private let step: Double = 0.01
     
     @Environment(\.presentationMode) var presentationMode: Binding<PresentationMode>
     
     var body: some View {
+        
         VStack {
-            Text("Settings")
-                .font(.largeTitle)
-                .padding(15)
             
-                Spacer()
-            HStack {
-                Text("UI Color:")
-                    .font(.headline)
-                Image(systemName: "paintpalette")
-            }
-            .padding(15)
-            
-            VStack {
-                Text("Volume | \(Int(volume))%")
-                HStack {
-                    decreaseButton
-                        .foregroundColor(.black)
-                    Slider(value: $volume, in: range, step: step) { hasChanged in
-                        self.hasChanged = hasChanged
-                    }
-                    increaseButton
-                        .foregroundColor(.black)
-                }
-            }
-            .padding(.horizontal, 25)
-            
-            TextField("Code", text: $enterCode)
-                .multilineTextAlignment(.center)
-                .autocorrectionDisabled()
-                .onSubmit {
-                    if enterCode.lowercased() == devCode {
-                        navigateToDevTools = true
-                    }
-                }
-                .padding(5)
+            settingsTitle
             
             Spacer()
             
-            Button("Back") {
-                presentationMode.wrappedValue.dismiss()
+            UIColorPicker
+            
+            volumeSlider
+            
+            devTools
+                .padding(15)
+            
+            Spacer()
+            
+            backBTN
+        }
+        
+        .navigate(to: DeveloperToolsView(), when: $navigateToDevTools)
+        
+    }
+    
+    var settingsTitle: some View {
+        Text("Settings")
+            .font(.largeTitle)
+            .padding(15)
+    }
+    
+    var UIColorPicker: some View {
+        
+        HStack {
+            Text("UI Color:")
+                .font(.headline)
+            Image(systemName: "paintpalette")
+        }
+        .padding(15)
+    }
+    
+    var volumeSlider: some View {
+        
+        VStack {
+            Text("Volume | \(Int(volume * 100))%")
+            HStack {
+                decreaseButton
+                    .foregroundColor(.black)
+                
+//                Slider(value: $volume)
+//                    .onChange(of: self.volume) { value in
+//                        SoundManager.soundInstance.player?.volume = Float(value)
+//                    }
+                
+                increaseButton
+                    .foregroundColor(.black)
             }
         }
-        .navigate(to: DeveloperToolsView(), when: $navigateToDevTools)
-
+        .padding(.horizontal, 25)
     }
+    
+    var devTools: some View {
+        
+        TextField("Code", text: $enterCode)
+            .multilineTextAlignment(.center)
+            .autocorrectionDisabled()
+            .onSubmit {
+                if enterCode.lowercased() == devCode {
+                    navigateToDevTools = true
+                }
+            }
+            .padding(5)
+    }
+    
+    var backBTN: some View {
+        
+        Button("Back") {
+            presentationMode.wrappedValue.dismiss()
+        }
+        
+    }
+    
 }
 
 private extension SettingsView {
@@ -86,7 +120,7 @@ private extension SettingsView {
     
     var increaseButton: some View {
         Button {
-                increase()
+            increase()
         } label: {
             Image(systemName: "plus")
         }
@@ -96,7 +130,7 @@ private extension SettingsView {
     
     var decreaseButton: some View {
         Button {
-                decrease()
+            decrease()
         } label: {
             Image(systemName: "minus")
         }
@@ -104,6 +138,7 @@ private extension SettingsView {
         .disabled(hasChanged)
     }
 }
+
 
 struct SettingsView_Preview: PreviewProvider {
     static var previews: some View {

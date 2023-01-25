@@ -8,8 +8,32 @@
 import SwiftUI
 
 struct GumballMachineView: View {
+    
+    @EnvironmentObject var viewModel: PetViewModel
+    @StateObject var gumballViewModel = GumballMachineViewModel()
+    
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+        VStack(spacing: 50) {
+            Text("Get a new pet!")
+                .bold()
+                .font(.largeTitle)
+            Spacer()
+            Image("gumball")
+                .resizable()
+                .scaledToFit()
+            Button("Roll Pet") {
+                viewModel.pet = gumballViewModel.getPet()
+                viewModel.saveData()
+                
+            }
+            .foregroundColor(.white)
+            .padding()
+            .background(
+                RoundedRectangle(cornerRadius: 15)
+            )
+            .padding()
+            Spacer()
+        }
     }
 }
 

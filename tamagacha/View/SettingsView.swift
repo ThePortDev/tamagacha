@@ -9,6 +9,8 @@ import SwiftUI
 
 struct SettingsView: View {
     
+    @EnvironmentObject var viewModel: PetViewModel
+    
     @State private var volume: Double = 0.50
     @State private var hasChanged: Bool = false
     @State var enterCode = ""
@@ -40,7 +42,7 @@ struct SettingsView: View {
             backBTN
         }
         
-        .navigate(to: DeveloperToolsView(), when: $navigateToDevTools)
+        .navigate(to: DeveloperToolsView().environmentObject(viewModel), when: $navigateToDevTools)
         
     }
     

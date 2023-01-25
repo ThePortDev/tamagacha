@@ -15,8 +15,7 @@ struct tamagachaApp: App {
     var body: some Scene {
         WindowGroup {
             NavigationStack {
-//                MenuView()
-                PopOverView()
+                MenuView()
                     .environmentObject(viewModel)
             }
         }

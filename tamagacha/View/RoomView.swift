@@ -33,7 +33,7 @@ struct RoomView: View {
             ZStack {
                 SpriteView(scene: scene)
                     .frame(width: 400, height: UIScreen.main.bounds.height - 100)
-                inventoryView
+                InventoryView(spriteScene: scene)
                     .zIndex(.infinity)
                     .frame(width: screenWidth, height: screenHeight + 800)
                     .padding(.leading, 600)
@@ -146,6 +146,45 @@ struct RoomView: View {
     }
     
     
+}
+
+struct InventoryView: View {
+    @EnvironmentObject var viewModel: PetViewModel
+    @State var spriteScene: SKScene
+    
+    
+    var body: some View {
+        GeometryReader { geometry in
+            ZStack() {
+                Rectangle()
+                    .foregroundColor(.orange)
+                    .cornerRadius(10, corners: [.topLeft, .bottomRight])
+                    .frame(width: 100, height: screenHeight)
+                VStack(spacing: 0) {
+                    Image(systemName: "chevron.up")
+                    Text("Inventory")
+                    VStack {
+                        ForEach(Array(viewModel.store.inventory.keys), id: \.self) { item in
+                            if viewModel.store.inventory[item]! > 0 {
+                                Button {
+                                    //spriteScene.add(item.name)
+                                } label: {
+                                    Text("\(item.name):\n \(viewModel.store.inventory[item]!)")
+                                        .multilineTextAlignment(.center)
+                                }
+
+                                
+                            }
+                        }
+                    }
+                    .padding(.top, 100)
+                    .padding(.trailing)
+                }
+                .padding(.bottom, 600)
+                .padding(.trailing, 5)
+            }
+        }
+    }
 }
 
 

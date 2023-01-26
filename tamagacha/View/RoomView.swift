@@ -11,29 +11,32 @@ import SpriteKit
 struct RoomView: View {
     //@State var activeView: currentView
     @State var isExpanded = false
+    
+    //@StateObject var sceneViewModel = GameSceneViewModel()
 
     @EnvironmentObject var viewModel: PetViewModel
+    
     
     // Inventory drag 
     @State private var startingOffsetY: CGFloat = screenHeight + 250
     @State private var currentDragOffsetY: CGFloat = 0
     @State private var endingOffsetY: CGFloat = 0
     
-    var scene: SKScene {
-        let scene = GameScene()
-        scene.setup(with: viewModel)
-        scene.size = CGSize(width: 400, height: 700)
-        scene.scaleMode = .fill
-        scene.anchorPoint = CGPoint(x: 0.5, y: 0.5)
-        return scene
-    }
+//    var scene: SKScene {
+//        let scene = GameScene()
+//        scene.setup(with: viewModel)
+//        scene.size = CGSize(width: 400, height: 700)
+//        scene.scaleMode = .fill
+//        scene.anchorPoint = CGPoint(x: 0.5, y: 0.5)
+//        return scene
+//    }
     
     var body: some View {
         GeometryReader { geometry in
             ZStack {
-                SpriteView(scene: scene)
+                SpriteView(scene: viewModel.gameScene)
                     .frame(width: 400, height: UIScreen.main.bounds.height - 100)
-                InventoryView(spriteScene: scene)
+                InventoryView()
                     .zIndex(.infinity)
                     .frame(width: screenWidth, height: screenHeight + 800)
                     .padding(.leading, 600)
@@ -150,7 +153,6 @@ struct RoomView: View {
 
 struct InventoryView: View {
     @EnvironmentObject var viewModel: PetViewModel
-    @State var spriteScene: SKScene
     
     
     var body: some View {
@@ -167,7 +169,8 @@ struct InventoryView: View {
                         ForEach(Array(viewModel.store.inventory.keys), id: \.self) { item in
                             if viewModel.store.inventory[item]! > 0 {
                                 Button {
-                                    //spriteScene.add(item.name)
+                                    viewModel.add(item: item.name)
+                                    viewModel.remove(item: item.name)
                                 } label: {
                                     Text("\(item.name):\n \(viewModel.store.inventory[item]!)")
                                         .multilineTextAlignment(.center)

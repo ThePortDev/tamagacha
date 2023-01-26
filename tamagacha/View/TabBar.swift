@@ -25,7 +25,7 @@ struct CustomTabBar: View {
                     HStack(spacing: 0) {
                         TabBarButton(image: "house", selectedTab: $selectedTab)
                         TabBarButton(image: "bookmark", selectedTab: $selectedTab)
-                        TabBarButton(image: "message", selectedTab: $selectedTab)
+                        //TabBarButton(image: "message", selectedTab: $selectedTab)
                         TabBarButton(image: "sportscourt", selectedTab: $selectedTab)
                         SettingsButton(image: "gearshape", navigateToSettings: $navigateToSettings)
                     }

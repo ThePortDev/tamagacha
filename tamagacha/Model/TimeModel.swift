@@ -22,7 +22,7 @@ class PetUserDefaults {
             }
         }
 
-        self.pet = Pet(name: "Steve", image: "TESTBIRD", petType: .dog, maxHunger: 100, maxThirst: 100, maxHygiene: 100, maxLove: 100, description: "This pet is quite rare. Only obtain in explicit and illegal ways. Due to the difficulties, only super rich people tend to take care of them. To be honest, its not a great pet. Super annoying.")
+        self.pet = Pet(name: "Steve", image: "TESTBIRD", petType: .dog, maxHunger: 100, hunger: 100, maxThirst: 100, thirst: 100, maxHygiene: 100, hygiene: 100, maxLove: 100, love: 100, description: "This pet is quite rare. Only obtain in explicit and illegal ways. Due to the difficulties, only super rich people tend to take care of them. To be honest, its not a great pet. Super annoying.")
         
 
     }
@@ -36,11 +36,10 @@ class PetUserDefaults {
     }
     
     func saveData(pet: Pet) {
-        if let encoded = try? JSONEncoder().encode(pet) {
-            UserDefaults.standard.set(encoded, forKey: PET_KEY)
-            
-            print("Data saved at: \(Date().formatted(date: .omitted, time: .standard))")
-        }
+        let data = try! JSONEncoder().encode(pet)
+        UserDefaults.standard.setValue(data, forKey: PET_KEY)
+        UserDefaults.standard.synchronize()
+        print("Data saved at: \(Date().formatted(date: .omitted, time: .standard))")
     }
 }
 

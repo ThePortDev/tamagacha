@@ -20,8 +20,6 @@ let screenHeight = screenSize.height
 
 
 struct HomeView: View {
-    
-
 
     @StateObject var viewModel = PetViewModel()
 

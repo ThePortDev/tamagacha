@@ -15,6 +15,12 @@ class PetViewModel: ObservableObject {
 
     @Published var store: Store
     
+    @Published var gameScene: GameScene
+    
+    func add(item: String) {
+        gameScene.add(item: item)
+    }
+        
     private(set) var userDefaultPet = PetUserDefaults()
     private var userDefaultStore = StoreUserDefaults()
 
@@ -24,10 +30,16 @@ class PetViewModel: ObservableObject {
     init() {
         pet = userDefaultPet.loadData()
         store = userDefaultStore.loadData()
+        gameScene = GameScene()
+        gameScene.setup(with: self)
+        gameScene.size = CGSize(width: 400, height: 700)
+        gameScene.scaleMode = .fill
+        gameScene.anchorPoint = CGPoint(x: 0.5, y: 0.5)
         timer = Timer.scheduledTimer(withTimeInterval: Pet.decreaseTime, repeats: true) { _ in
             self.pet.update()
             self.store.add(money: 1)
         }
+        
     }
     
     func getPetType() -> SKSpriteNode {

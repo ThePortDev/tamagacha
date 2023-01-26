@@ -56,6 +56,7 @@ struct Item: Hashable, Codable {
         case beverage  // thirst
         case toy       // love
         case accessory // cosmetic/nothing
+        case error
     }
 
     
@@ -71,7 +72,7 @@ struct Item: Hashable, Codable {
             case "Beanie":
                 self.type = .accessory; self.improveStatsBy = 0; self.price = 4
             default:
-                self.type = .food; self.improveStatsBy = 0; self.price = 0
+                self.type = .error; self.improveStatsBy = 0; self.price = 0
         }
     }
 }

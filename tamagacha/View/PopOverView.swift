@@ -28,7 +28,7 @@ struct PopOverView: View {
                 }
                 .environmentObject(viewModel)
                 .background(
-                    AngularGradient(colors: [.gray, .white], center: .topLeading))
+                    AngularGradient(colors: [.gray, .black], center: .topLeading))
                 
             }
         }
@@ -40,23 +40,24 @@ struct PopOverView: View {
         ZStack {
             RoundedRectangle(cornerSize: CGSize(width: 10, height: 100))
                 .fill(AngularGradient(colors: [.white, .black], center: .topLeading))
-                .frame(width: 170, height: 35)
+                .frame(width: 200, height: 35)
                 .shadow(
                     color: .black.opacity(0.3),
                     radius: 10,
                     x:0.0, y:10
                 )
-            Text("Its A \(PetViewModel().pet.name)!")
-                .font(.title)
+            Text("\(PetViewModel().pet.name)")
                 .bold()
+                .font(.title)
                 .foregroundColor(.black)
+                .scaledToFit()
         }
     }
     
     var petImageView: some View {
         Image("\(PetViewModel().pet.image)")
             .resizable()
-            .frame(width: 200, height: 200)
+            .scaledToFit()
             .background(
                 AngularGradient(colors: [.white, .black], center: .topLeading)
                     .cornerRadius(20)
@@ -67,25 +68,38 @@ struct PopOverView: View {
     }
     
     var stats: some View {
-
         VStack {
-            StatView()
+            statStop
         }
+        .foregroundColor(.black)
+        .bold()
         .environmentObject(viewModel)
         .frame(width: 350, height: 250)
         .background(
-            Color.gray
+            AngularGradient(colors: [.white, .black], center: .topLeading)
                 .cornerRadius(20)
                 .shadow(
                     color: .black.opacity(0.5),
                     radius: 10,
-                    x: 0.0, y: 10))
+                    x: 0.0, y: 5))
     }
+    
+    var statStop: some View {
+            VStack(spacing: 20) {
+                StatBar(name: "Thirst", value: 100, color: .blue)
+                StatBar(name: "Hunger", value: 100, color: .yellow)
+                StatBar(name: "Love", value: 100, color: .red)
+                StatBar(name: "Hygiene", value: 100, color: .green)
+            }
+            .frame(height: 150)
+            .padding()
+    }
+    
     
     var petDescription: some View {
         Text(viewModel.pet.description)
-            .frame(width: 320, height: 120)
-            .padding(10)
+            .foregroundColor(.black)
+            .padding(8)
             .multilineTextAlignment(.center)
             .background(
                 Color.white
@@ -103,6 +117,7 @@ struct PopOverView: View {
                 .foregroundColor(.white)
         }
     }
+    
 }
 
 

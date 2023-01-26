@@ -15,7 +15,8 @@ class SoundManager {
     var player: AVAudioPlayer?
     
     enum SoundOption: String {
-        case zoid = "Zoid"
+        case zoid = "retro-game"
+        case gloomy = "sad"
     }
     
     func playSound(sound: SoundOption) {

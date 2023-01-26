@@ -32,7 +32,29 @@ class PetUserDefaults {
     }
     
     func loadData() -> Pet {
-        return self.pet
+        var loadedPet = self.pet
+        let offlineDecrease = CGFloat(calculateTimeSince(data: loadedPet.lastUpdated)) / CGFloat(Pet.decreaseTime)
+        loadedPet.hunger -= CGFloat(offlineDecrease)
+        if loadedPet.hunger <= 0 {
+            loadedPet.isAlive = false
+            loadedPet.hunger = 0
+        }
+        loadedPet.thirst -= CGFloat(offlineDecrease)
+        if loadedPet.thirst <= 0 {
+            loadedPet.isAlive = false
+            loadedPet.thirst = 0
+        }
+        loadedPet.hygiene -= CGFloat(offlineDecrease)
+        if loadedPet.hygiene <= 0 {
+            loadedPet.isAlive = false
+            loadedPet.hygiene = 0
+        }
+        loadedPet.love -= CGFloat(offlineDecrease)
+        if loadedPet.love <= 0 {
+            loadedPet.isAlive = false
+            loadedPet.love = 0
+        }
+        return loadedPet
     }
     
     func saveData(pet: Pet) {

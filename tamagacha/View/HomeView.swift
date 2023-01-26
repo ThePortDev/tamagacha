@@ -126,9 +126,6 @@ struct HomeView: View {
             }
             .navigate(to: SettingsView().environmentObject(viewModel), when: $navigateToSettings)
             .environmentObject(viewModel)
-        }.onAppear {
-            SoundManager.soundInstance.stopSound()
-            SoundManager.soundInstance.playSound(sound: .zoid)
         }
     }
     

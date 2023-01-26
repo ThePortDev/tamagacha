@@ -18,6 +18,7 @@
 		007011C22981CA4400185FC2 /* SoundManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 007011C12981CA4400185FC2 /* SoundManager.swift */; };
 		007011C42981CA5600185FC2 /* GameScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 007011C32981CA5600185FC2 /* GameScene.swift */; };
 		007011C62981CA8900185FC2 /* TabBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 007011C52981CA8900185FC2 /* TabBar.swift */; };
+		008FE75B29833FE5007A1FC8 /* sad.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 008FE75A29833FE5007A1FC8 /* sad.mp3 */; };
 		0090F27D2977477D00CBDD2F /* tamagachaApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0090F27C2977477D00CBDD2F /* tamagachaApp.swift */; };
 		0090F27F2977477D00CBDD2F /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0090F27E2977477D00CBDD2F /* ContentView.swift */; };
 		0090F2812977477E00CBDD2F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0090F2802977477E00CBDD2F /* Assets.xcassets */; };
@@ -54,6 +55,7 @@
 		007011C12981CA4400185FC2 /* SoundManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SoundManager.swift; sourceTree = "<group>"; };
 		007011C32981CA5600185FC2 /* GameScene.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameScene.swift; sourceTree = "<group>"; };
 		007011C52981CA8900185FC2 /* TabBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBar.swift; sourceTree = "<group>"; };
+		008FE75A29833FE5007A1FC8 /* sad.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = sad.mp3; sourceTree = "<group>"; };
 		0090F2792977477D00CBDD2F /* tamagacha.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = tamagacha.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		0090F27C2977477D00CBDD2F /* tamagachaApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = tamagachaApp.swift; sourceTree = "<group>"; };
 		0090F27E2977477D00CBDD2F /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -189,6 +191,7 @@
 		ED7B3FDF2981D69500D7F01C /* Sounds */ = {
 			isa = PBXGroup;
 			children = (
+				008FE75A29833FE5007A1FC8 /* sad.mp3 */,
 				ED7B3FE02981E71F00D7F01C /* retro-game.mp3 */,
 			);
 			path = Sounds;
@@ -253,6 +256,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				0090F2842977477E00CBDD2F /* Preview Assets.xcassets in Resources */,
+				008FE75B29833FE5007A1FC8 /* sad.mp3 in Resources */,
 				0090F2812977477E00CBDD2F /* Assets.xcassets in Resources */,
 				ED7B3FE12981E71F00D7F01C /* retro-game.mp3 in Resources */,
 			);

@@ -22,6 +22,9 @@ struct DeathScreenPopOverView: View {
             returnToGumball
             
         
+        }.onAppear {
+            SoundManager.soundInstance.stopSound()
+            SoundManager.soundInstance.playSound(sound: .gloomy)
         }
     }
     

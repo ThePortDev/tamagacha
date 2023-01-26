@@ -19,13 +19,16 @@ struct MenuView: View {
         ZStack {
             Text("Tamagacha")
         }
+        .onAppear {
+            SoundManager.soundInstance.playSound(sound: .zoid)
+        }
         .background(
             Image("cheesepuffs")
                 .resizable()
                 .frame(width: screenWidth, height: screenHeight)
         )
         .onTapGesture {
-            if viewModel.userDefaultPet.petLoaded {
+            if viewModel.userDefaultPet.petLoaded && viewModel.pet.isAlive {
                 navigateToHomeView = true
             } else if !viewModel.pet.isAlive {
                 navigateToDeathView = true
@@ -38,6 +41,7 @@ struct MenuView: View {
         .navigate(to: HomeView().environmentObject(viewModel), when: $navigateToHomeView)
 
     }
+
 }
 
 struct MenuView_Previews: PreviewProvider {

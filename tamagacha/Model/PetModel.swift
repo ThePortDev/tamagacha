@@ -30,12 +30,10 @@ struct Pet: Codable {
         self.name = name
         self.image = image
         self.petType = petType
+        
         self.description = description
         
-        self.lastMeal = Date()
-        self.lastDrink = Date()
-        self.lastShower = Date()
-        self.lastShownAffection = Date()
+        self.lastUpdated = Date()
         
         self.hunger = hunger
         self.maxHunger = maxHunger
@@ -56,6 +54,7 @@ struct Pet: Codable {
             thirst -= Pet.decreaseRate
             hygiene -= Pet.decreaseRate
             love -= Pet.decreaseRate
+            lastUpdated = Date()
             if hunger <= 0 || thirst <= 0 || hygiene <= 0 || love <= 0 {
                 isAlive = false
             }
@@ -68,10 +67,8 @@ struct Pet: Codable {
         return timeSince
     }
     
-    var lastMeal: Date
-    var lastDrink: Date
-    var lastShower: Date
-    var lastShownAffection: Date
+    var lastUpdated: Date
+    
     var petType: PetType
     
    

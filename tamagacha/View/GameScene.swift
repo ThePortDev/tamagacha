@@ -18,13 +18,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     func setup(with viewModel: PetViewModel) {
         self.viewModel = viewModel
     }
-    
-//    override func sceneDidLoad() {
-//        let background = SKSpriteNode(imageNamed: "living")
-//        background.size = CGSize(width: 500, height: 701)
-//        background.position = CGPoint(x: frame.midX, y: frame.midY)
-//        addChild(background)
-//    }
+
         
     private var currentNode: SKNode?
     
@@ -88,10 +82,10 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     }
     
     func collisionBetween(ball: SKNode, object: SKNode) {
-        if object.name == "draggable" {
+        if ball.name == "food" && object.name == "draggable" {
             destroy(ball: ball)
             viewModel.feed(amount: 10)
-        } else if object.name == "draggable" {
+        } else if ball.name == "beverage" && object.name == "draggable" {
             destroy(ball: ball)
             viewModel.feed(amount: 10)
         }
@@ -102,26 +96,29 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     }
     
     func didBegin(_ contact: SKPhysicsContact) {
-        if contact.bodyA.node?.name == "dogFood" {
+        if contact.bodyA.node?.name == "food" {
             collisionBetween(ball: contact.bodyA.node!, object: contact.bodyB.node!)
-        } else if contact.bodyB.node?.name == "dogFood" {
+        } else if contact.bodyB.node?.name == "food" {
+            collisionBetween(ball: contact.bodyB.node!, object: contact.bodyA.node!)
+        } else if contact.bodyA.node?.name == "beverage" {
+            collisionBetween(ball: contact.bodyA.node!, object: contact.bodyB.node!)
+        } else if contact.bodyB.node?.name == "beverage" {
             collisionBetween(ball: contact.bodyB.node!, object: contact.bodyA.node!)
         }
     }
     
-    func add(item: String) {
-        let imageName = (item.prefix(1).lowercased() + item.replacingOccurrences(of: " ", with: "").dropFirst())
+    func add(item: Item) {
+        let imageName = (item.name.prefix(1).lowercased() + item.name.replacingOccurrences(of: " ", with: "").dropFirst())
         let itemSprite = SKSpriteNode(imageNamed: imageName)
         itemSprite.size = CGSize(width: 50, height: 100)
         itemSprite.position = CGPoint(x: 0.5, y: 0.5)
         itemSprite.physicsBody = SKPhysicsBody(rectangleOf: CGSize(width: 50, height: 100))
         itemSprite.physicsBody!.contactTestBitMask = itemSprite.physicsBody!.collisionBitMask
-        itemSprite.name = imageName
+        itemSprite.name = "\(item.type)"
+        print("\(itemSprite.name!)")
 
         addChild(itemSprite)
     }
-
-    
 }
 
 //class GameSceneViewModel: ObservableObject {

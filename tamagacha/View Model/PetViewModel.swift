@@ -17,7 +17,7 @@ class PetViewModel: ObservableObject {
     
     @Published var gameScene: GameScene
     
-    func add(item: String) {
+    func add(item: Item) {
         gameScene.add(item: item)
     }
         
@@ -103,7 +103,7 @@ class PetViewModel: ObservableObject {
     }
     
     //MARK: Store Intents
-    func buy(item: String) {
+    func buy(item: Item) {
         store.buy(item: item)
     }
     func remove(item: String) {

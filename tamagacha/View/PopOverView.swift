@@ -14,10 +14,6 @@ struct PopOverView: View {
     
     var body: some View {
         VStack {
-            Button("You Got A Pet!") {
-                showingPopover = true
-            }
-            .popover(isPresented: $showingPopover) {
                 VStack {
                     Spacer()
                     petNameView
@@ -38,7 +34,7 @@ struct PopOverView: View {
         }
         
 //        .environmentObject(statViewModel)
-    }
+
     
     var petNameView: some View {
         ZStack {
@@ -50,7 +46,7 @@ struct PopOverView: View {
                     radius: 10,
                     x:0.0, y:10
                 )
-                Text("Its A \(PetViewModel().pet.name)!")
+            Text("Its A \(PetViewModel().pet.name)!")
                 .font(.title)
                 .bold()
                 .foregroundColor(.black)
@@ -108,6 +104,7 @@ struct PopOverView: View {
         }
     }
 }
+
 
 struct PopOverView_Previews: PreviewProvider {
     static var previews: some View {

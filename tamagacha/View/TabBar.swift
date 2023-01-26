@@ -81,7 +81,7 @@ struct DisplayStoreProduct: View {
     
     var body: some View {
         HStack {
-            ForEach(Array(viewModel.store.products.keys), id: \.self) { item in
+            ForEach(viewModel.store.products, id: \.self) { item in
                 if productType == item.type {
                     SubView(withItem: item)
                 }
@@ -98,7 +98,7 @@ struct SubView: View {
     var body: some View {
         GeometryReader { geometry in
             Button {
-                viewModel.store.buy(item: withItem.name)
+                viewModel.store.buy(item: withItem)
                 print("You have bought \(withItem.name)!")
             } label: {
             
@@ -109,7 +109,7 @@ struct SubView: View {
                 VStack {
                     Text(withItem.name)
                     Text("+ \(Int(withItem.improveStatsBy))")
-                    Text("Price: $\(viewModel.store.products[withItem] ?? 0)")
+                    Text("Price: $\(withItem.price)")
                 }
             }
         }

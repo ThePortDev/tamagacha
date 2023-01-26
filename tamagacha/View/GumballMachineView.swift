@@ -13,6 +13,7 @@ struct GumballMachineView: View {
     @EnvironmentObject var viewModel: PetViewModel
     @StateObject var gumballViewModel = GumballMachineViewModel()
     
+    
     var body: some View {
         VStack(spacing: 50) {
             Text("Get a new pet!")
@@ -22,27 +23,40 @@ struct GumballMachineView: View {
             Image("gumball")
                 .resizable()
                 .scaledToFit()
-            Button("Roll Pet") {
+            Button {
                 viewModel.pet = gumballViewModel.getPet()
                 viewModel.saveData()
                 showingPopover = true
+            } label: {
+                ZStack {
+                    RoundedRectangle(cornerSize: CGSize(width: 100, height: 100))
+                        .fill(AngularGradient(colors: [.red, .white], center: .topLeading))
+                        .frame(width: 180, height: 35)
+                        .shadow(
+                            color: .black.opacity(0.5),
+                            radius: 10,
+                            x:0.0, y:10
+                        )
+                    Text("Roll Your Pet!")
+                        .foregroundColor(.black)
+                        .bold()
+                        .italic()
+                }
+                .navigate(to: PopOverView(), when: $showingPopover)
             }
-            .popover(isPresented: $showingPopover) {
-                PopOverView()
-            }
-            .foregroundColor(.white)
-            .padding()
-            .background(
-                RoundedRectangle(cornerRadius: 15)
-            )
-            .padding()
-            Spacer()
+            
         }
     }
+    
 }
+
 
 struct GumballMachineViewPreviews: PreviewProvider {
     static var previews: some View {
         GumballMachineView()
     }
 }
+
+//MARK: Get random pet and save data
+//viewModel.pet = gumballViewModel.getPet()
+//viewModel.saveData()

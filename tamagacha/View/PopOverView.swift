@@ -14,27 +14,29 @@ struct PopOverView: View {
     
     var body: some View {
         VStack {
-                VStack {
-                    Spacer()
-                    petNameView
-                    petImageView
-                    Spacer(minLength: 20)
-                    petDescription
-                    Spacer(minLength: 20)
-                    stats
-                    Spacer()
-                    swipeText
-                    
-                }
-                .environmentObject(viewModel)
-                .background(
-                    AngularGradient(colors: [.gray, .black], center: .topLeading))
+            VStack {
+                Spacer(minLength: 60)
+                petNameView
+                petImageView
+                Spacer(minLength: 20)
+                petDescription
+                Spacer(minLength: 20)
+                stats
+                Spacer()
+                goHome
+                Spacer(minLength: 20)
                 
             }
+            .environmentObject(viewModel)
+            .background(
+                AngularGradient(colors: [.white, .black], center: .topLeading))
+            .ignoresSafeArea()
+            
         }
-        
-//        .environmentObject(statViewModel)
-
+    }
+    
+    //        .environmentObject(statViewModel)
+    
     
     var petNameView: some View {
         ZStack {
@@ -85,14 +87,14 @@ struct PopOverView: View {
     }
     
     var statStop: some View {
-            VStack(spacing: 20) {
-                StatBar(name: "Thirst", value: 100, color: .blue)
-                StatBar(name: "Hunger", value: 100, color: .yellow)
-                StatBar(name: "Love", value: 100, color: .red)
-                StatBar(name: "Hygiene", value: 100, color: .green)
-            }
-            .frame(height: 150)
-            .padding()
+        VStack(spacing: 20) {
+            StatBar(name: "Thirst", value: 100, color: .blue)
+            StatBar(name: "Hunger", value: 100, color: .yellow)
+            StatBar(name: "Love", value: 100, color: .red)
+            StatBar(name: "Hygiene", value: 100, color: .green)
+        }
+        .frame(height: 150)
+        .padding()
     }
     
     
@@ -109,21 +111,36 @@ struct PopOverView: View {
                         radius: 10,
                         x: 0.0, y: 10))
     }
-    var swipeText: some View {
-        ZStack {
-            Text("Swipe Down")
-                .bold()
-                .italic()
-                .foregroundColor(.white)
+    
+    @State var goHomeBool = false
+    
+    var goHome: some View {
+        Button {
+            goHomeBool = true
+        } label: {
+            ZStack {
+                RoundedRectangle(cornerSize: CGSize(width: 100, height: 100))
+                    .fill(AngularGradient(colors: [.pink, .white], center: .topLeading))
+                    .frame(width: 180, height: 35)
+                    .shadow(
+                        color: .black.opacity(0.5),
+                        radius: 10,
+                        x:0.0, y:10
+                    )
+                Text("Lets Go Home!")
+                    .foregroundColor(.black)
+                    .bold()
+            }
+            .navigate(to: HomeView(), when: $goHomeBool)
         }
+        
     }
     
-}
-
-
-struct PopOverView_Previews: PreviewProvider {
-    static var previews: some View {
-        PopOverView()
-            .environmentObject(PetViewModel())
+    
+    struct PopOverView_Previews: PreviewProvider {
+        static var previews: some View {
+            PopOverView()
+                .environmentObject(PetViewModel())
+        }
     }
 }

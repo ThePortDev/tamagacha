@@ -82,12 +82,12 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     }
     
     func collisionBetween(ball: SKNode, object: SKNode) {
-        if ball.name == "food" && object.name == "draggable" {
+        if "\(Item(name: ball.name!).type)" == "food" && object.name == "draggable" {
             destroy(ball: ball)
-            viewModel.feed(amount: 10)
-        } else if ball.name == "beverage" && object.name == "draggable" {
+            viewModel.feed(amount: Item(name: ball.name!).improveStatsBy)
+        } else if "\(Item(name: ball.name!).type)" == "beverage" && object.name == "draggable" {
             destroy(ball: ball)
-            viewModel.feed(amount: 10)
+            viewModel.giveWater(amount: Item(name: ball.name!).improveStatsBy)
         }
     }
 
@@ -96,13 +96,13 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     }
     
     func didBegin(_ contact: SKPhysicsContact) {
-        if contact.bodyA.node?.name == "food" {
+        if "\(Item(name: (contact.bodyA.node?.name) ?? "").type)" == "food" {
             collisionBetween(ball: contact.bodyA.node!, object: contact.bodyB.node!)
-        } else if contact.bodyB.node?.name == "food" {
+        } else if "\(Item(name: (contact.bodyB.node?.name) ?? "").type)" == "food" {
             collisionBetween(ball: contact.bodyB.node!, object: contact.bodyA.node!)
-        } else if contact.bodyA.node?.name == "beverage" {
+        } else if "\(Item(name: (contact.bodyA.node?.name) ?? "").type)" == "beverage" {
             collisionBetween(ball: contact.bodyA.node!, object: contact.bodyB.node!)
-        } else if contact.bodyB.node?.name == "beverage" {
+        } else if "\(Item(name: (contact.bodyB.node?.name) ?? "").type)" == "beverage" {
             collisionBetween(ball: contact.bodyB.node!, object: contact.bodyA.node!)
         }
     }
@@ -114,7 +114,8 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         itemSprite.position = CGPoint(x: 0.5, y: 0.5)
         itemSprite.physicsBody = SKPhysicsBody(rectangleOf: CGSize(width: 50, height: 100))
         itemSprite.physicsBody!.contactTestBitMask = itemSprite.physicsBody!.collisionBitMask
-        itemSprite.name = "\(item.type)"
+        //itemSprite.name = "\(item.type)"
+        itemSprite.name = "\(item.name)"
         print("\(itemSprite.name!)")
 
         addChild(itemSprite)
@@ -123,7 +124,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
 
 //class GameSceneViewModel: ObservableObject {
 //    @Published var gameScene: GameScene
-//    
+//
 //    init() {
 //        self.gameScene = GameScene()
 //            //scene.setup(with: viewModel)
@@ -131,7 +132,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
 //        self.gameScene.scaleMode = .fill
 //        self.gameScene.anchorPoint = CGPoint(x: 0.5, y: 0.5)
 //    }
-//    
+//
 //    func add(item: String) {
 //        gameScene.add(item: item)
 //    }

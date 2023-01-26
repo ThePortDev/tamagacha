@@ -154,7 +154,6 @@ struct RoomView: View {
 struct InventoryView: View {
     @EnvironmentObject var viewModel: PetViewModel
     
-    
     var body: some View {
         GeometryReader { geometry in
             ZStack() {

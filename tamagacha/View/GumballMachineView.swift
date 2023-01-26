@@ -8,6 +8,7 @@
 import SwiftUI
 
 struct GumballMachineView: View {
+    @State private var showingPopover = false
     
     @EnvironmentObject var viewModel: PetViewModel
     @StateObject var gumballViewModel = GumballMachineViewModel()
@@ -24,7 +25,10 @@ struct GumballMachineView: View {
             Button("Roll Pet") {
                 viewModel.pet = gumballViewModel.getPet()
                 viewModel.saveData()
-                
+                showingPopover = true
+            }
+            .popover(isPresented: $showingPopover) {
+                PopOverView()
             }
             .foregroundColor(.white)
             .padding()

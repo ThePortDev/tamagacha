@@ -26,7 +26,7 @@ struct Pet: Codable {
     
     var description: String
     
-    init(name: String, image: String, petType: PetType, maxHunger: CGFloat, maxThirst: CGFloat, maxHygiene: CGFloat, maxLove: CGFloat, description: String) {
+    init(name: String, image: String, petType: PetType, maxHunger: CGFloat, hunger: CGFloat, maxThirst: CGFloat, thirst: CGFloat, maxHygiene: CGFloat, hygiene: CGFloat, maxLove: CGFloat, love: CGFloat, description: String) {
         self.name = name
         self.image = image
         self.petType = petType
@@ -37,16 +37,16 @@ struct Pet: Codable {
         self.lastShower = Date()
         self.lastShownAffection = Date()
         
-        self.hunger = maxHunger
+        self.hunger = hunger
         self.maxHunger = maxHunger
         
-        self.thirst = maxThirst
+        self.thirst = thirst
         self.maxThirst = maxThirst
         
-        self.hygiene = maxHygiene
+        self.hygiene = hygiene
         self.maxHygiene = maxHygiene
         
-        self.love = maxLove
+        self.love = love
         self.maxLove = maxLove
     }
     
@@ -97,5 +97,5 @@ struct Pet: Codable {
 
 extension Pet {
     static var decreaseRate: CGFloat = 1
-    static var decreaseTime: CGFloat = 1
+    static var decreaseTime: CGFloat = 2
 }

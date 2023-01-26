@@ -16,8 +16,8 @@ struct tamagachaApp: App {
         WindowGroup {
             NavigationStack {
                 MenuView()
-                    .environmentObject(viewModel)
             }
+            .environmentObject(viewModel)
         }
     }
 }

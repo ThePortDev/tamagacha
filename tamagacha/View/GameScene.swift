@@ -76,6 +76,11 @@ class GameScene: SKScene {
     override func touchesCancelled(_ touches: Set<UITouch>, with event: UIEvent?) {
         self.currentNode = nil
     }
+    
+    func add(item: String) {
+        var imageName = item.replacingOccurrences(of: " ", with: "").prefix(1).lowercased()
+        print(imageName)
+    }
 
     
 }

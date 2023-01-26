@@ -28,6 +28,7 @@ class PetViewModel: ObservableObject {
     
     
     init() {
+        print(userDefaultPet.loadData())
         pet = userDefaultPet.loadData()
         store = userDefaultStore.loadData()
         gameScene = GameScene()
@@ -38,6 +39,9 @@ class PetViewModel: ObservableObject {
         timer = Timer.scheduledTimer(withTimeInterval: Pet.decreaseTime, repeats: true) { _ in
             self.pet.update()
             self.store.add(money: 1)
+            DispatchQueue.main.async {
+                self.saveData()
+            }
         }
         
     }
@@ -109,6 +113,8 @@ class PetViewModel: ObservableObject {
         store.add(money: money)
     }
     
-    
+    deinit {
+        timer?.invalidate()
+    }
     
 }

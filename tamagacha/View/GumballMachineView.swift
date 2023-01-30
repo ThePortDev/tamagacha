@@ -24,8 +24,10 @@ struct GumballMachineView: View {
                 .resizable()
                 .scaledToFit()
             Button {
+                viewModel.pet.deadPets.append(viewModel.pet)
                 viewModel.pet = gumballViewModel.getPet()
                 viewModel.saveData()
+                print(viewModel.pet.deadPets)
                 showingPopover = true
             } label: {
                 ZStack {

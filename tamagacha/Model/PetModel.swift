@@ -7,11 +7,13 @@
 
 import Foundation
 
-struct Pet: Codable {
+struct Pet: Codable, Identifiable {
     var name: String
     var image: String
     var birthday = Date()
+    var id = UUID()
     var isAlive = true
+    var deadPets = [Pet]()
     
     var hunger: CGFloat
     var thirst: CGFloat
@@ -26,7 +28,7 @@ struct Pet: Codable {
     
     var description: String
     
-    init(name: String, image: String, petType: PetType, maxHunger: CGFloat, hunger: CGFloat, maxThirst: CGFloat, thirst: CGFloat, maxHygiene: CGFloat, hygiene: CGFloat, maxLove: CGFloat, love: CGFloat, description: String) {
+    init(name: String, image: String, petType: PetType, maxHunger: CGFloat, hunger: CGFloat, maxThirst: CGFloat, thirst: CGFloat, maxHygiene: CGFloat, hygiene: CGFloat, maxLove: CGFloat, love: CGFloat, description: String, deadPets: [Pet] = []) {
         self.name = name
         self.image = image
         self.petType = petType
@@ -43,6 +45,8 @@ struct Pet: Codable {
         
         self.hygiene = hygiene
         self.maxHygiene = maxHygiene
+        
+        self.deadPets = deadPets
         
         self.love = love
         self.maxLove = maxLove

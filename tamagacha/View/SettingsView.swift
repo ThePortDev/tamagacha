@@ -155,5 +155,6 @@ private extension SettingsView {
 struct SettingsView_Preview: PreviewProvider {
     static var previews: some View {
         SettingsView()
+            .environmentObject(PetViewModel())
     }
 }

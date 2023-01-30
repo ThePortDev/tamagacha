@@ -40,7 +40,7 @@ struct DeathScreenPopOverView: View {
                     x:0.0, y:10
                 )
             Text("\(PetViewModel().pet.name) is super dead.")
-                .font(.title)
+                .font(.custom("HangTheDJ", size: 20))
                 .bold()
                 .foregroundColor(.black)
         }
@@ -81,6 +81,7 @@ struct DeathScreenPopOverView: View {
                         x:0.0, y:10
                     )
                 Text("Replace \(PetViewModel().pet.name)?")
+                    .font(.custom("HangTheDJ", size: 16))
                     .foregroundColor(.black)
                     .bold()
             }

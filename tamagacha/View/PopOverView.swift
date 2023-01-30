@@ -50,7 +50,7 @@ struct PopOverView: View {
                 )
             Text("\(PetViewModel().pet.name)")
                 .bold()
-                .font(.title)
+                .font(.custom("HangTheDJ", size: 30))
                 .foregroundColor(.black)
                 .scaledToFit()
         }
@@ -128,6 +128,7 @@ struct PopOverView: View {
                         x:0.0, y:10
                     )
                 Text("Lets Go Home!")
+                    .font(.custom("HangTheDj", size: 20))
                     .foregroundColor(.black)
                     .bold()
             }

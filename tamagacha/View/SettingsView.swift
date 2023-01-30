@@ -20,7 +20,7 @@ struct SettingsView: View {
     private let range: ClosedRange<Double> = 0.00...1.00
     private let step: Double = 0.01
     
-    @Environment(\.presentationMode) var presentationMode: Binding<PresentationMode>
+    @Environment(\.dismiss) var dismiss
     
     var body: some View {
         
@@ -40,7 +40,9 @@ struct SettingsView: View {
             Spacer()
             
             backBTN
+            
         }
+        .background(Values.gameBackgroundColor)
         
         .navigate(to: DeveloperToolsView().environmentObject(viewModel), when: $navigateToDevTools)
         
@@ -57,10 +59,11 @@ struct SettingsView: View {
         HStack {
             Text("UI Color:")
                 .font(.headline)
+                .foregroundColor(Values.buttonsColor)
             
             Button(action: buttonPressed) {
                 Image(systemName: "paintpalette")
-                    .foregroundColor(.black)
+                    .foregroundColor(Values.buttonsColor)
             }
         }
         .padding(15)
@@ -70,9 +73,10 @@ struct SettingsView: View {
         
         VStack {
             Text("Volume | \(Int(volume * 100))%")
+                .foregroundColor(Values.buttonsColor)
             HStack {
                 decreaseButton
-                    .foregroundColor(.black)
+                    .foregroundColor(Values.buttonsColor)
                 
                 Slider(value: $volume)
                     .onChange(of: self.volume) { value in
@@ -80,7 +84,7 @@ struct SettingsView: View {
                     }
                 
                 increaseButton
-                    .foregroundColor(.black)
+                    .foregroundColor(Values.buttonsColor)
             }
         }
         .padding(.horizontal, 25)
@@ -102,8 +106,9 @@ struct SettingsView: View {
     var backBTN: some View {
         
         Button("Back") {
-            presentationMode.wrappedValue.dismiss()
+            dismiss()
         }
+        .foregroundColor(Values.buttonsColor)
         
     }
 }
@@ -151,9 +156,22 @@ private extension SettingsView {
     }
 }
 
+private extension SettingsView {
+    enum Values {
+        static let gameBackgroundColor = SnakeColors.gameBackground
+        static let buttonsColor = SnakeColors.buttonColors
+    }
+}
+
+enum SnakeColors {
+    static let gameBackground = Color("Background")
+    static let buttonColors = Color("PlusMinus")
+}
+
 
 struct SettingsView_Preview: PreviewProvider {
     static var previews: some View {
         SettingsView()
+            .environmentObject(PetViewModel())
     }
 }

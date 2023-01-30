@@ -33,7 +33,7 @@ class PetViewModel: ObservableObject {
         store = userDefaultStore.loadData()
         gameScene = GameScene()
         gameScene.setup(with: self)
-        gameScene.size = CGSize(width: 400, height: 700)
+        gameScene.size = CGSize(width: screenWidth, height: screenHeight)
         gameScene.scaleMode = .fill
         gameScene.anchorPoint = CGPoint(x: 0.5, y: 0.5)
         timer = Timer.scheduledTimer(withTimeInterval: Pet.decreaseTime, repeats: true) { _ in

@@ -20,17 +20,19 @@ let screenHeight = screenSize.height
 
 
 struct HomeView: View {
-
+    
     @StateObject var viewModel = PetViewModel()
-
-
+    
+    
     
     // swipe gesture
     @State var activeView = currentView.center
-//    @State var viewState = CGSize.zero
+    //    @State var viewState = CGSize.zero
     
     // settings
     @State var navigateToSettings: Bool = false
+    @State var navigateToDeath: Bool = false
+    @State var navigateToGraveyard: Bool = false
     
     // drag gesture X
     @State private var startingOffsetX: CGFloat = -UIScreen.main.bounds.width
@@ -51,15 +53,15 @@ struct HomeView: View {
         scene.anchorPoint = CGPoint(x: 0.5, y: 0.5)
         return scene
     }
-        
+    
     @State private var showWelcomeMessage = true
     
     var body: some View {
         VStack(spacing: 0) {
-//            Rectangle()
-//                .foregroundColor(.blue)
-//                .ignoresSafeArea()
-//                .frame(height: 10)
+            //            Rectangle()
+            //                .foregroundColor(.blue)
+            //                .ignoresSafeArea()
+            //                .frame(height: 10)
             ZStack {
                 RoomView()
                 StoreView(activeView: $activeView, navigateToSettings: $navigateToSettings)
@@ -92,6 +94,7 @@ struct HomeView: View {
                                 }
                             })
                     )
+                
                 BathroomView(activeView: $activeView)
                     .frame(width: 470, height: 800)
                     .offset(x: startingOffsetX)
@@ -115,7 +118,7 @@ struct HomeView: View {
                                         activeView = .left
                                         //changeScene = true
                                     }
-                                    else if endingOffsetX != 0 && currentDragOffsetX < -150{
+                                    else if endingOffsetX != 0 && currentDragOffsetX < -150 {
                                         endingOffsetX = 0
                                         activeView = .center
                                     }
@@ -125,12 +128,17 @@ struct HomeView: View {
                     )
             }
             .navigate(to: SettingsView().environmentObject(viewModel), when: $navigateToSettings)
+            .navigate(to: DeathScreenPopOverView().environmentObject(viewModel), when: $navigateToDeath)
+            .navigate(to: GraveyardView().environmentObject(viewModel), when: $navigateToGraveyard)
             .environmentObject(viewModel)
+            .onAppear {
+                navigateToDeath = !viewModel.pet.isAlive
+            }
         }
     }
     
     
-
+    
     var welcomeMessage: some View {
         Group {
             if showWelcomeMessage {
@@ -140,7 +148,7 @@ struct HomeView: View {
         }
     }
     
-
+    
 }
 
 
@@ -148,5 +156,32 @@ struct HomeView: View {
 struct HomeView_Previews: PreviewProvider {
     static var previews: some View {
         HomeView()
+    }
+}
+
+
+struct GraveyardView: View {
+    
+    @EnvironmentObject var viewModel: PetViewModel
+    
+    var body: some View {
+        ScrollView {
+            ForEach(viewModel.pet.deadPets) { pet in
+                VStack {
+                    Image("TOMBTEST")
+                        .resizable()
+                        .frame(width: 300, height: 300)
+                        .background(
+                            AngularGradient(colors: [.white, .black], center: .topLeading)
+                                .cornerRadius(20)
+                                .shadow(
+                                    color: .black.opacity(0.5),
+                                    radius: 10,
+                                    x: 0.0, y: 5))
+                    Image(pet.image)
+                    Text("Here lies: \(pet.name)")
+                }
+            }
+        }
     }
 }

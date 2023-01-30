@@ -49,6 +49,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         
         physicsWorld.contactDelegate = self
         
+
         box = SKSpriteNode(imageNamed: viewModel.pet.image)
         box!.size = CGSize(width: 200, height: 150)
         box!.position = CGPoint(x: 0.5, y: 0.5)
@@ -56,6 +57,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         box!.name = "draggable"
         box!.physicsBody?.categoryBitMask = 0b001
         addChild(box!)
+
         
         boxName = SKLabelNode(text: viewModel.pet.name)
         addChild(boxName!)

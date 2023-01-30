@@ -13,30 +13,37 @@ struct RoomView: View {
     @State var isExpanded = false
     
     //@StateObject var sceneViewModel = GameSceneViewModel()
-
+    
     @EnvironmentObject var viewModel: PetViewModel
     
     
-    // Inventory drag 
+    // Inventory drag
     @State private var startingOffsetY: CGFloat = screenHeight + 250
     @State private var currentDragOffsetY: CGFloat = 0
     @State private var endingOffsetY: CGFloat = 0
     
-//    var scene: SKScene {
-//        let scene = GameScene()
-//        scene.setup(with: viewModel)
-//        scene.size = CGSize(width: 400, height: 700)
-//        scene.scaleMode = .fill
-//        scene.anchorPoint = CGPoint(x: 0.5, y: 0.5)
-//        return scene
-//    }
+    //    var scene: SKScene {
+    //        let scene = GameScene()
+    //        scene.setup(with: viewModel)
+    //        scene.size = CGSize(width: 400, height: 700)
+    //        scene.scaleMode = .fill
+    //        scene.anchorPoint = CGPoint(x: 0.5, y: 0.5)
+    //        return scene
+    //    }
     
     var body: some View {
         GeometryReader { geometry in
             ZStack {
                 SpriteView(scene: viewModel.gameScene)
-                    .frame(width: screenWidth, height: screenHeight)
-                    .ignoresSafeArea()
+                    .frame(width: 400, height: UIScreen.main.bounds.height - 100)
+                NavigationLink {
+                    GraveyardView()
+                        .environmentObject(viewModel)
+                } label: {
+                    CoolRect(text: "Graveyard", gradientColors: [.blue, .black])
+                }
+                .frame(width: 0, height: UIScreen.main.bounds.height - 200)
+
                 InventoryView()
                     .zIndex(.infinity)
                     .frame(width: screenWidth, height: screenHeight + 800)
@@ -80,11 +87,11 @@ struct RoomView: View {
                     //.zIndex(.infinity)
 //                Text("starting: \(startingOffsetY) \n current: \(currentDragOffsetY) \n ending: \(endingOffsetY)")
                 
-//                Button("change scene") {
-//                    withAnimation {
-////                        changeScene.toggle()
-//                    }
-//                }
+                //                Button("change scene") {
+                //                    withAnimation {
+                ////                        changeScene.toggle()
+                //                    }
+                //                }
             }
             .frame(width: geometry.size.width, height: geometry.size.height - 100/*, alignment: .center*/)
         }
@@ -146,13 +153,13 @@ struct RoomView: View {
     
     var collapsedStatView: some View {
         ZStack {
-        Rectangle()
+            Rectangle()
             Text("Stats")
                 .foregroundColor(Color.red)
         }
         .cornerRadius(20, corners: [.topLeft, .bottomLeft])
         .frame(width: 50, height: 100)
-//        .background(Color.blue)
+        //        .background(Color.blue)
     }
     
     
@@ -168,6 +175,7 @@ struct InventoryView: View {
                     .foregroundColor(.orange)
                     .cornerRadius(10, corners: [.topLeft, .bottomRight])
                     .frame(width: 100, height: screenHeight)
+                
                 VStack(spacing: 0) {
                     Image(systemName: "chevron.up")
                     Text("Inventory")
@@ -181,7 +189,7 @@ struct InventoryView: View {
                                     Text("\(item.name):\n \(viewModel.store.inventory[item]!)")
                                         .multilineTextAlignment(.center)
                                 }
-
+                                
                                 
                             }
                         }

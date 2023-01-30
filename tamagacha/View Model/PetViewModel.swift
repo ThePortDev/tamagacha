@@ -28,7 +28,6 @@ class PetViewModel: ObservableObject {
     
     
     init() {
-        print(userDefaultPet.loadData())
         pet = userDefaultPet.loadData()
         store = userDefaultStore.loadData()
         gameScene = GameScene()
@@ -36,7 +35,7 @@ class PetViewModel: ObservableObject {
         gameScene.size = CGSize(width: screenWidth, height: screenHeight)
         gameScene.scaleMode = .fill
         gameScene.anchorPoint = CGPoint(x: 0.5, y: 0.5)
-        timer = Timer.scheduledTimer(withTimeInterval: Pet.decreaseTime, repeats: true) { _ in
+        timer = Timer.scheduledTimer(withTimeInterval: Pet.saveRate, repeats: true) { _ in
             self.pet.update()
             self.store.add(money: 1)
             DispatchQueue.main.async {
@@ -72,6 +71,7 @@ class PetViewModel: ObservableObject {
             if pet.hunger >= pet.maxHunger {
                 pet.hunger = pet.maxHunger
             }
+            saveData()
         }
     }
     
@@ -81,6 +81,7 @@ class PetViewModel: ObservableObject {
             if pet.thirst >= pet.maxThirst {
                 pet.thirst = pet.maxThirst
             }
+            saveData()
         }
     }
     
@@ -90,6 +91,7 @@ class PetViewModel: ObservableObject {
             if pet.love >= pet.maxLove {
                 pet.love = pet.maxLove
             }
+            saveData()
         }
     }
     
@@ -99,6 +101,7 @@ class PetViewModel: ObservableObject {
             if pet.hygiene >= pet.maxHygiene {
                 pet.hygiene = pet.maxHygiene
             }
+            saveData()
         }
     }
     

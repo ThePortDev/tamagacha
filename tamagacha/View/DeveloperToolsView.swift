@@ -21,12 +21,35 @@ struct DeveloperToolsView: View {
                 .font(.largeTitle)
                 .frame(alignment: .top)
             Spacer()
-            Button("Reset Game") {
-                confirmAlert.isShown = true
+            Button() {
+                viewModel.pet.name = "Pikachan"
+                viewModel.pet.image = "pikachan"
+                viewModel.saveData()
+            } label: {
+                CoolRect(text: "??", gradientColors: [.cyan, .blue])
             }
+            Button() {
+                viewModel.store.add(money: 999999)
+                viewModel.saveData()
+            } label: {
+                CoolRect(text: "Add Money", gradientColors: [.green, .yellow])
+            }
+            Button() {
+                viewModel.pet.isAlive = false
+                viewModel.saveData()
+            } label: {
+                CoolRect(text: "Kill Pet", gradientColors: [.gray, .white])
+            }
+//            Button() {
+//                confirmAlert.isShown = true
+//            } label: {
+//                CoolRect(text: "Delete All Data", gradientColors: [.red, .white])
+//            }
             Spacer()
-            Button("Back") {
+            Button() {
                 presentationMode.wrappedValue.dismiss()
+            } label: {
+                CoolRect(text: "Back", gradientColors: [.blue, .cyan])
             }
         }
         .alert(confirmAlert.title, isPresented: $confirmAlert.isShown) {

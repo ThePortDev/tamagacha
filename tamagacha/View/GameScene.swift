@@ -22,25 +22,59 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         
     private var currentNode: SKNode?
     
+    var cam: SKCameraNode!
+    var firstScene = true
+    
+    var box: SKSpriteNode?
+    var boxName: SKLabelNode?
+    var moveBox: SKSpriteNode?
+    
     override func didMove(to view: SKView) {
         let background = SKSpriteNode(imageNamed: "living")
-        background.size = CGSize(width: 500, height: 701)
-        background.position = CGPoint(x: frame.midX, y: frame.midY)
+        background.anchorPoint = CGPoint.zero
+        background.position = CGPoint(x: -screenWidth / 4, y: 0)
+        background.size = CGSize(width: screenWidth, height: screenHeight)
         background.zPosition = -1
         addChild(background)
         
-        physicsBody = SKPhysicsBody(edgeLoopFrom: frame)
+        let bathroomBackground = SKSpriteNode(imageNamed: "bathroom")
+        bathroomBackground.anchorPoint = CGPoint(x: 1, y: 0)
+        bathroomBackground.position = CGPoint(x: -100, y: 0)
+        bathroomBackground.size = CGSize(width: screenWidth, height: screenHeight)
+        background.zPosition = -1
+        addChild(bathroomBackground)
+        
+        //physicsBody = SKPhysicsBody(edgeLoopFrom: frame)
+        physicsBody = SKPhysicsBody(edgeLoopFrom: CGPath(rect: CGRect(x: -screenWidth - 100, y: 0, width: screenWidth * 2, height: screenHeight), transform: nil))
+        
         physicsWorld.contactDelegate = self
         
-        let box = SKSpriteNode(imageNamed: viewModel.pet.image)
-        box.size = CGSize(width: 200, height: 150)
-        box.position = CGPoint(x: 0.5, y: 0.5)
-        box.physicsBody = SKPhysicsBody(rectangleOf: CGSize(width: 200, height: 150))
-        box.name = "draggable"
-        box.physicsBody?.categoryBitMask = 0b001
-            
-        addChild(box)
+
+        box = SKSpriteNode(imageNamed: viewModel.pet.image)
+        box!.size = CGSize(width: 200, height: 150)
+        box!.position = CGPoint(x: 0.5, y: 0.5)
+        box!.physicsBody = SKPhysicsBody(rectangleOf: CGSize(width: 200, height: 150))
+        box!.name = "draggable"
+        box!.physicsBody?.categoryBitMask = 0b001
+        addChild(box!)
+
         
+        boxName = SKLabelNode(text: viewModel.pet.name)
+        addChild(boxName!)
+        
+        moveBox = SKSpriteNode(color: .red, size: CGSize(width: 5, height: 5))
+        moveBox!.size = CGSize(width: 5, height: 5)
+        moveBox!.position = CGPoint(x: 0.5, y: 0.5)
+        moveBox!.physicsBody = SKPhysicsBody(rectangleOf: CGSize(width: 5, height: 5))
+        addChild(moveBox!)
+                
+        cam = SKCameraNode()
+        cam.zPosition = 10
+        cam.position = CGPoint(x: size.width / 2, y: size.height / 2)
+        addChild(cam)
+        
+        camera = cam
+
         self.physicsWorld.gravity = CGVector(dx: 0, dy: -0.5)
     }
     
@@ -79,6 +113,11 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     
     override func touchesCancelled(_ touches: Set<UITouch>, with event: UIEvent?) {
         self.currentNode = nil
+    }
+    
+    override func update(_ currentTime: TimeInterval) {
+        cam.position.x = moveBox!.position.x
+        boxName!.position = CGPoint(x: box!.position.x, y: CGFloat((box?.position.y)!) + box!.size.height / 2)
     }
     
     func collisionBetween(ball: SKNode, object: SKNode) {
@@ -120,6 +159,21 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
 
         addChild(itemSprite)
     }
+    
+    func moveScene() {
+        if firstScene {
+            moveBox!.run(SKAction.moveTo(x: -screenWidth * 0.75, duration: 1))
+            box!.run(SKAction.moveTo(x: -screenWidth * 0.75, duration: 1))
+
+            firstScene = false
+        } else {
+            moveBox!.run(SKAction.moveTo(x: screenWidth * 0.25, duration: 1))
+            box!.run(SKAction.moveTo(x: screenWidth * 0.25, duration: 1))
+
+            firstScene = true
+        }
+        
+    }
 }
 
 //class GameSceneViewModel: ObservableObject {
@@ -137,3 +191,9 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
 //        gameScene.add(item: item)
 //    }
 //}
+
+struct GameScene_Previews: PreviewProvider {
+    static var previews: some View {
+        HomeView()
+    }
+}

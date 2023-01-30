@@ -43,6 +43,7 @@ struct RoomView: View {
                     CoolRect(text: "Graveyard", gradientColors: [.blue, .black])
                 }
                 .frame(width: 0, height: UIScreen.main.bounds.height - 200)
+
                 InventoryView()
                     .zIndex(.infinity)
                     .frame(width: screenWidth, height: screenHeight + 800)
@@ -77,8 +78,14 @@ struct RoomView: View {
                             })
                     )
                 expandedStatView
-                //.zIndex(.infinity)
-                //                Text("starting: \(startingOffsetY) \n current: \(currentDragOffsetY) \n ending: \(endingOffsetY)")
+                Button {
+                    viewModel.gameScene.moveScene()
+                } label: {
+                    Text("Scene Move")
+                }
+
+                    //.zIndex(.infinity)
+//                Text("starting: \(startingOffsetY) \n current: \(currentDragOffsetY) \n ending: \(endingOffsetY)")
                 
                 //                Button("change scene") {
                 //                    withAnimation {
@@ -86,7 +93,7 @@ struct RoomView: View {
                 //                    }
                 //                }
             }
-            .frame(width: geometry.size.width, height: geometry.size.height - 100, alignment: .center)
+            .frame(width: geometry.size.width, height: geometry.size.height - 100/*, alignment: .center*/)
         }
         //.animation(Animation.linear(duration: 1), value: isExpanded)
         //.background(Color.white)

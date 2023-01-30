@@ -31,6 +31,7 @@ struct HomeView: View {
     
     // settings
     @State var navigateToSettings: Bool = false
+    @State var navigateToDeath: Bool = false
     
     // drag gesture X
     @State private var startingOffsetX: CGFloat = -UIScreen.main.bounds.width
@@ -115,7 +116,7 @@ struct HomeView: View {
                                         activeView = .left
                                         //changeScene = true
                                     }
-                                    else if endingOffsetX != 0 && currentDragOffsetX < -150{
+                                    else if endingOffsetX != 0 && currentDragOffsetX < -150 {
                                         endingOffsetX = 0
                                         activeView = .center
                                     }
@@ -125,7 +126,11 @@ struct HomeView: View {
                     )
             }
             .navigate(to: SettingsView().environmentObject(viewModel), when: $navigateToSettings)
+            .navigate(to: DeathScreenPopOverView().environmentObject(viewModel), when: $navigateToDeath)
             .environmentObject(viewModel)
+            .onAppear {
+                navigateToDeath = !viewModel.pet.isAlive
+            }
         }
     }
     

@@ -94,5 +94,6 @@ struct Pet: Codable {
 
 extension Pet {
     static var decreaseRate: CGFloat = 1
-    static var decreaseTime: CGFloat = 2
+    static var decreaseTime: CGFloat = 300
+    static var saveRate: CGFloat = 15
 }

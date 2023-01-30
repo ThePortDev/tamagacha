@@ -32,7 +32,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         physicsBody = SKPhysicsBody(edgeLoopFrom: frame)
         physicsWorld.contactDelegate = self
         
-        let box = viewModel.getPetType()
+        let box = SKSpriteNode(imageNamed: viewModel.pet.image)
         box.size = CGSize(width: 200, height: 150)
         box.position = CGPoint(x: 0.5, y: 0.5)
         box.physicsBody = SKPhysicsBody(rectangleOf: CGSize(width: 200, height: 150))

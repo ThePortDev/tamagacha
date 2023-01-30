@@ -46,6 +46,10 @@ struct GumballMachineView: View {
             }
             
         }
+        .onAppear {
+            SoundManager.soundInstance.stopSound()
+            SoundManager.soundInstance.playSound(sound: .zoid)
+        }
     }
     
 }

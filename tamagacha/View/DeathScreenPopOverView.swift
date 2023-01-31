@@ -14,15 +14,22 @@ struct DeathScreenPopOverView: View {
     
     var body: some View {
         VStack {
+            deathWords
             Spacer()
             petDeadText
             tombStone
-            deathWords
-            Spacer(minLength: 200)
+            Spacer()
             returnToGumball
+            Spacer()
             
         
-        }.onAppear {
+        }
+        .background(
+            Image("cemetary")
+                .resizable()
+                .frame(width: 400,height: 880)
+        )
+        .onAppear {
             SoundManager.soundInstance.stopSound()
             SoundManager.soundInstance.playSound(sound: .gloomy)
         }
@@ -74,14 +81,14 @@ struct DeathScreenPopOverView: View {
             ZStack {
                 RoundedRectangle(cornerSize: CGSize(width: 100, height: 100))
                     .fill(AngularGradient(colors: [.yellow, .white], center: .topLeading))
-                    .frame(width: 180, height: 35)
+                    .frame(width: 280, height: 55)
                     .shadow(
                         color: .black.opacity(0.5),
                         radius: 10,
                         x:0.0, y:10
                     )
                 Text("Replace \(PetViewModel().pet.name)?")
-                    .font(.custom("HangTheDJ", size: 16))
+                    .font(.custom("HangTheDJ", size: 26))
                     .foregroundColor(.black)
                     .bold()
             }

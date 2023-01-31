@@ -15,10 +15,11 @@ struct GumballMachineView: View {
     
     
     var body: some View {
-        VStack(spacing: 50) {
-            Text("Get a new pet!")
+        VStack(spacing: 20) {
+            Text("Let's Adopt A Pet!")
                 .bold()
-                .font(.largeTitle)
+                .font(.custom("HangTheDJ", size: 34))
+                .foregroundColor(.blue)
             Spacer()
             GifView(name: "gumballGif.gif")
             Button {
@@ -30,7 +31,7 @@ struct GumballMachineView: View {
             } label: {
                 ZStack {
                     RoundedRectangle(cornerSize: CGSize(width: 100, height: 100))
-                        .fill(AngularGradient(colors: [.red, .white], center: .topLeading))
+                        .fill(AngularGradient(colors: [.blue, .white], center: .topLeading))
                         .frame(width: 180, height: 35)
                         .shadow(
                             color: .black.opacity(0.5),
@@ -38,6 +39,8 @@ struct GumballMachineView: View {
                             x:0.0, y:10
                         )
                     Text("Roll Your Pet!")
+                        .font(.custom("HangTheDJ", size: 18))
+                        .colorInvert()
                         .foregroundColor(.black)
                         .bold()
                         .italic()

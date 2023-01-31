@@ -120,7 +120,7 @@ struct PopOverView: View {
         } label: {
             ZStack {
                 RoundedRectangle(cornerSize: CGSize(width: 100, height: 100))
-                    .fill(AngularGradient(colors: [.pink, .white], center: .topLeading))
+                    .fill(AngularGradient(colors: [.blue, .white], center: .topLeading))
                     .frame(width: 180, height: 35)
                     .shadow(
                         color: .black.opacity(0.5),
@@ -129,6 +129,7 @@ struct PopOverView: View {
                     )
                 Text("Lets Go Home!")
                     .font(.custom("HangTheDj", size: 20))
+                    .colorInvert()
                     .foregroundColor(.black)
                     .bold()
             }

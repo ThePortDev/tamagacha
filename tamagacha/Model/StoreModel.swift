@@ -97,7 +97,7 @@ class StoreUserDefaults {
         return self.store
     }
     
-    func saveData(pet: Pet) {
+    func saveData(store: Store) {
         if let encoded = try? JSONEncoder().encode(store) {
             UserDefaults.standard.set(encoded, forKey: storeKey)
             

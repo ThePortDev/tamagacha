@@ -63,6 +63,7 @@ class PetViewModel: ObservableObject {
     func saveData() {
         objectWillChange.send()
         userDefaultPet.saveData(pet: pet)
+        userDefaultStore.saveData(store: self.store)
     }
     
     func feed(amount: CGFloat) {

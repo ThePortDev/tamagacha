@@ -15,11 +15,14 @@ struct StoreView: View {
     
     @EnvironmentObject var viewModel: PetViewModel
     
+    var buttons = ["house", "bookmark", "sportscourt", "gearshape"]
+    
 
     var body: some View {
         GeometryReader { geometry in
             VStack(spacing: 0) {
                 storeSwipeTab
+                //storeTapTab
                 CustomTabBar(selectedTab: $selectedTab, navigateToSettings: $navigateToSettings)
             }
             //.frame(width: geometry.size.width, height: geometry.size.height, alignment: .center)
@@ -41,6 +44,26 @@ struct StoreView: View {
         }
     }
 
+    var storeTapTab: some View {
+        ZStack {
+            Rectangle()
+                .cornerRadius(90, corners: [.topLeft, .topRight])
+                .frame(width: screenWidth, height: 100)
+                .foregroundColor(.white)
+            HStack {
+                ForEach(buttons, id: \.self) { button in
+                    Button {
+                        withAnimation(.linear(duration: 1)) {
+                            selectedTab = button
+                            activeView = .bottom
+                        }
+                    } label: {
+                        Image(systemName: button)
+                    }
+                }
+            }
+        }
+    }
 }
 
 

@@ -96,7 +96,7 @@ struct RoomView: View {
                 //                    }
                 //                }
             }
-            .frame(width: geometry.size.width, height: geometry.size.height - 100/*, alignment: .center*/)
+            .frame(width: geometry.size.width, height: geometry.size.height /*- 100*//*, alignment: .center*/)
         }
         //.animation(Animation.linear(duration: 1), value: isExpanded)
         //.background(Color.white)

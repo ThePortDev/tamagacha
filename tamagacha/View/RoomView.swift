@@ -35,7 +35,8 @@ struct RoomView: View {
         GeometryReader { geometry in
             ZStack {
                 SpriteView(scene: viewModel.gameScene)
-                    .frame(width: 400, height: UIScreen.main.bounds.height - 100)
+                    .frame(width: screenWidth, height: screenHeight)
+                    .ignoresSafeArea()
                 NavigationLink {
                     GraveyardView()
                         .environmentObject(viewModel)

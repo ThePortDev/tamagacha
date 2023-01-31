@@ -34,37 +34,36 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         background.anchorPoint = CGPoint.zero
         background.position = CGPoint(x: -screenWidth / 4, y: 0)
         background.size = CGSize(width: screenWidth, height: screenHeight)
-        background.zPosition = -1
+        //background.zPosition = -1
         addChild(background)
         
         let bathroomBackground = SKSpriteNode(imageNamed: "bathroom")
         bathroomBackground.anchorPoint = CGPoint(x: 1, y: 0)
         bathroomBackground.position = CGPoint(x: -100, y: 0)
         bathroomBackground.size = CGSize(width: screenWidth, height: screenHeight)
-        background.zPosition = -1
+        //background.zPosition = -1
         addChild(bathroomBackground)
         
         //physicsBody = SKPhysicsBody(edgeLoopFrom: frame)
-        physicsBody = SKPhysicsBody(edgeLoopFrom: CGPath(rect: CGRect(x: -screenWidth - 100, y: 0, width: screenWidth * 2, height: screenHeight), transform: nil))
         
-        physicsWorld.contactDelegate = self
         
 
         box = SKSpriteNode(imageNamed: viewModel.pet.image)
+        box!.position = CGPoint(x: screenWidth * 0.25, y: 0.5)
         box!.size = CGSize(width: 200, height: 150)
-        box!.position = CGPoint(x: 0.5, y: 0.5)
         box!.physicsBody = SKPhysicsBody(rectangleOf: CGSize(width: 200, height: 150))
         box!.name = "draggable"
         box!.physicsBody?.categoryBitMask = 0b001
         addChild(box!)
 
-        
         boxName = SKLabelNode(text: viewModel.pet.name)
+        boxName?.fontName = "body"
+        boxName?.fontColor = UIColor.black
         addChild(boxName!)
         
         moveBox = SKSpriteNode(color: .red, size: CGSize(width: 5, height: 5))
+        moveBox!.position = CGPoint(x: screenWidth * 0.25, y: 0.5)
         moveBox!.size = CGSize(width: 5, height: 5)
-        moveBox!.position = CGPoint(x: 0.5, y: 0.5)
         moveBox!.physicsBody = SKPhysicsBody(rectangleOf: CGSize(width: 5, height: 5))
         addChild(moveBox!)
                 
@@ -72,9 +71,13 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         cam.zPosition = 10
         cam.position = CGPoint(x: size.width / 2, y: size.height / 2)
         addChild(cam)
-        
         camera = cam
 
+//        physicsBody = SKPhysicsBody(edgeLoopFrom: CGPath(rect: CGRect(x: -screenWidth - 100, y: 0, width: screenWidth * 2, height: screenHeight), transform: nil))
+        physicsBody = SKPhysicsBody(edgeChainFrom: CGPath(rect: CGRect(x: -screenWidth - 100, y: 0, width: screenWidth * 2, height: screenHeight), transform: nil))
+        
+        physicsWorld.contactDelegate = self
+        
         self.physicsWorld.gravity = CGVector(dx: 0, dy: -0.5)
     }
     
@@ -150,7 +153,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         let imageName = (item.name.prefix(1).lowercased() + item.name.replacingOccurrences(of: " ", with: "").dropFirst())
         let itemSprite = SKSpriteNode(imageNamed: imageName)
         itemSprite.size = CGSize(width: 50, height: 100)
-        itemSprite.position = CGPoint(x: 0.5, y: 0.5)
+        itemSprite.position = CGPoint(x: 0.75, y: 0.5)
         itemSprite.physicsBody = SKPhysicsBody(rectangleOf: CGSize(width: 50, height: 100))
         itemSprite.physicsBody!.contactTestBitMask = itemSprite.physicsBody!.collisionBitMask
         //itemSprite.name = "\(item.type)"

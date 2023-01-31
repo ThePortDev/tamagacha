@@ -21,7 +21,7 @@ struct GumballMachineView: View {
                 .font(.custom("HangTheDJ", size: 34))
                 .foregroundColor(.blue)
             Spacer()
-            GifView(name: "gumballGif.gif")
+            GifView(name: "gumball2.gif")
             Button {
                 viewModel.pet.deadPets.append(viewModel.pet)
                 viewModel.pet = gumballViewModel.getPet()

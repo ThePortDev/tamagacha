@@ -4,6 +4,7 @@
 //
 //  Created by Porter Dover on 1/17/23.
 //
+// TODO: Reset Store when pet dies
 
 import SwiftUI
 import Foundation

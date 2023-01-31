@@ -37,6 +37,9 @@ struct RoomView: View {
                 SpriteView(scene: viewModel.gameScene)
                     .frame(width: screenWidth, height: screenHeight)
                     .ignoresSafeArea()
+                BathroomView2()
+                    .offset(x: 500)
+                    
                 NavigationLink {
                     GraveyardView()
                         .environmentObject(viewModel)
@@ -128,7 +131,6 @@ struct RoomView: View {
         }
     }
     
-    
     var statView: some View {
         Group {
             if isExpanded {
@@ -164,6 +166,14 @@ struct RoomView: View {
     }
     
     
+}
+
+struct BathroomView2: View {
+    @EnvironmentObject var viewModel: PetViewModel
+    
+    var body: some View {
+        Text("Bathroom")
+    }
 }
 
 struct InventoryView: View {

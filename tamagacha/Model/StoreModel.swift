@@ -16,10 +16,12 @@ struct Store: Codable {
     var money: Int = 10
 
     init() {
-        for product in products {
-            self.inventory[product] = 0
+        if self.inventory.isEmpty {
+            for product in products {
+                self.inventory[product] = 0
+            }
+            self.inventory[Item(name: "Dog Food")] = 1
         }
-        self.inventory[Item(name: "Dog Food")] = 1
     }
     
     mutating func buy(item: Item) {
@@ -97,7 +99,7 @@ class StoreUserDefaults {
         return self.store
     }
     
-    func saveData(pet: Pet) {
+    func saveData(store: Store) {
         if let encoded = try? JSONEncoder().encode(store) {
             UserDefaults.standard.set(encoded, forKey: storeKey)
             

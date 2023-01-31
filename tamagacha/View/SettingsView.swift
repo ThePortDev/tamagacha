@@ -30,7 +30,7 @@ struct SettingsView: View {
             
             Spacer()
             
-            UIColorPicker
+//            UIColorPicker
             
             volumeSlider
             
@@ -54,20 +54,20 @@ struct SettingsView: View {
             .padding(15)
     }
     
-    var UIColorPicker: some View {
-        
-        HStack {
-            Text("UI Color:")
-                .font(.headline)
-                .foregroundColor(Values.buttonsColor)
-            
-            Button(action: buttonPressed) {
-                Image(systemName: "paintpalette")
-                    .foregroundColor(Values.buttonsColor)
-            }
-        }
-        .padding(15)
-    }
+//    var UIColorPicker: some View {
+//        
+//        HStack {
+//            Text("UI Color:")
+//                .font(.headline)
+//                .foregroundColor(Values.buttonsColor)
+//            
+//            Button(action: buttonPressed) {
+//                Image(systemName: "paintpalette")
+//                    .foregroundColor(Values.buttonsColor)
+//            }
+//        }
+//        .padding(15)
+//    }
     
     var volumeSlider: some View {
         

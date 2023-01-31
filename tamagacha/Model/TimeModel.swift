@@ -61,7 +61,7 @@ class PetUserDefaults {
         let data = try! JSONEncoder().encode(pet)
         UserDefaults.standard.setValue(data, forKey: PET_KEY)
         UserDefaults.standard.synchronize()
-        print("Data saved at: \(Date().formatted(date: .omitted, time: .standard))")
+        print("Pet Data saved at: \(Date().formatted(date: .omitted, time: .standard))")
     }
 }
 

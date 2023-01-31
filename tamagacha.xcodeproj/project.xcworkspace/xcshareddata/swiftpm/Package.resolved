@@ -1,0 +1,14 @@
+{
+  "pins" : [
+    {
+      "identity" : "swiftygif",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/kirualex/SwiftyGif.git",
+      "state" : {
+        "branch" : "master",
+        "revision" : "cb230449bc6ac0ba66f2b34430a7e618ad0ebeb4"
+      }
+    }
+  ],
+  "version" : 2
+}

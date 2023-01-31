@@ -20,9 +20,7 @@ struct GumballMachineView: View {
                 .bold()
                 .font(.largeTitle)
             Spacer()
-            Image("gumball")
-                .resizable()
-                .scaledToFit()
+            GifView(name: "gumballGif.gif")
             Button {
                 viewModel.pet.deadPets.append(viewModel.pet)
                 viewModel.pet = gumballViewModel.getPet()

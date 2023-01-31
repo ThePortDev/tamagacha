@@ -13,34 +13,55 @@ struct BathroomView: View {
     @State var trailingPadding = 0
     
     var body: some View {
+        ZStack {
+            Button {
+                viewModel.shower(amount: 10)
+            } label: {
+                ZStack {
+                    RoundedRectangle(cornerRadius: 15)
+                        .frame(width: 100, height: 50)
+                    Text("Shower")
+                        .foregroundColor(.white)
+                }
+            }
 
-            GeometryReader { geometry in
-                HStack(spacing: 0) {
-                    ZStack {
-                        Image("bathroom")
-                            .resizable()
-                            .scaledToFit()
-                            .ignoresSafeArea()
-                        Button("Shower") {
-                            viewModel.shower(amount: 10)
-                        }
-                        .padding()
-                        .background(
-                            RoundedRectangle(cornerRadius: 15)
-                        )
+
+            .padding(.bottom, 100)
+            Button {
+                switch activeView {
+                    case .center:
+                    withAnimation(.linear(duration: 1)) {
+                        activeView = .left
                     }
-                    //.background(Color.purple)
-                    .edgesIgnoringSafeArea(.all)
-                    if activeView != .bottom {
-                        ZStack {
-                            Rectangle().cornerRadius(20, corners: [.topRight, .bottomRight])
-                                .frame(width: 40, height: 80)
-                            Text("🛀")
-                        }
+                    case .left:
+                    withAnimation(.linear(duration: 1)) {
+                        activeView = .center
+                    }
+                    default:
+                    withAnimation(.linear(duration: 1)) {
+                        activeView = .center
                     }
                 }
-                .padding(.trailing, activeView != .bottom ? 0 : 40)
+                viewModel.gameScene.moveScene()
+            } label: {
+                HStack(spacing: 0) {
+                    ZStack {
+                        Rectangle().cornerRadius(20, corners: [.topLeft, .bottomLeft])
+                        Text("Back")
+                            .foregroundColor(.black)
+                            .rotationEffect(Angle(degrees: 90))
+                    }
+                    ZStack {
+                        Rectangle().cornerRadius(20, corners: [.topRight, .bottomRight])
+                        Text("🛀")
+                    }
+                }
+                .frame(width: 80, height: 80)
+                .padding(.leading, screenWidth)
             }
+
+            
+        }
         
     }
 }

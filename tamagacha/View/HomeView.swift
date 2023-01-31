@@ -8,16 +8,17 @@
 import SwiftUI
 import SpriteKit
 
-enum currentView {
-    case center
-    case bottom
-    case left
-}
-
 let screenSize = UIScreen.main.bounds
 let screenWidth = screenSize.width
 let screenHeight = screenSize.height
 
+enum currentView {
+    case center
+    case bottom
+    case top
+    case left
+    case right
+}
 
 struct HomeView: View {
     
@@ -63,9 +64,10 @@ struct HomeView: View {
             //                .ignoresSafeArea()
             //                .frame(height: 10)
             ZStack {
-                RoomView()
-                StoreView(activeView: $activeView, navigateToSettings: $navigateToSettings)
+                RoomView(activeView: $activeView)
+                    StoreView(activeView: $activeView, navigateToSettings: $navigateToSettings)
                     .frame(width: screenWidth, height: 960)
+                    .offset(x: (activeView == .center ? 0 : screenWidth))
                     .offset(y: startingOffsetY)
                     .offset(y: currentDragOffsetY)
                     .offset(y: endingOffsetY)
@@ -94,38 +96,39 @@ struct HomeView: View {
                                 }
                             })
                     )
+                    .zIndex(.infinity)
                 
-                BathroomView(activeView: $activeView)
-                    .frame(width: 470, height: 800)
-                    .offset(x: startingOffsetX)
-                    .offset(x: currentDragOffsetX)
-                    .offset(x: endingOffsetX)
-                    .gesture (
-                        DragGesture()
-                            .onChanged { value in
-                                withAnimation(.spring()) {
-                                    if activeView == .left && value.translation.width > 0 {
-                                        return
-                                    } else {
-                                        currentDragOffsetX = value.translation.width
-                                    }
-                                }
-                            }
-                            .onEnded({ value in
-                                withAnimation(.spring()) {
-                                    if currentDragOffsetX > 100 {
-                                        endingOffsetX = -startingOffsetX + 20
-                                        activeView = .left
-                                        //changeScene = true
-                                    }
-                                    else if endingOffsetX != 0 && currentDragOffsetX < -150 {
-                                        endingOffsetX = 0
-                                        activeView = .center
-                                    }
-                                    currentDragOffsetX = 0
-                                }
-                            })
-                    )
+//                BathroomView(activeView: $activeView)
+//                    .frame(width: 470, height: 800)
+//                    .offset(x: startingOffsetX)
+//                    .offset(x: currentDragOffsetX)
+//                    .offset(x: endingOffsetX)
+//                    .gesture (
+//                        DragGesture()
+//                            .onChanged { value in
+//                                withAnimation(.spring()) {
+//                                    if activeView == .left && value.translation.width > 0 {
+//                                        return
+//                                    } else {
+//                                        currentDragOffsetX = value.translation.width
+//                                    }
+//                                }
+//                            }
+//                            .onEnded({ value in
+//                                withAnimation(.spring()) {
+//                                    if currentDragOffsetX > 100 {
+//                                        endingOffsetX = -startingOffsetX + 20
+//                                        activeView = .left
+//                                        //changeScene = true
+//                                    }
+//                                    else if endingOffsetX != 0 && currentDragOffsetX < -150 {
+//                                        endingOffsetX = 0
+//                                        activeView = .center
+//                                    }
+//                                    currentDragOffsetX = 0
+//                                }
+//                            })
+//                    )
             }
             .navigate(to: SettingsView().environmentObject(viewModel), when: $navigateToSettings)
             .navigate(to: DeathScreenPopOverView().environmentObject(viewModel), when: $navigateToDeath)

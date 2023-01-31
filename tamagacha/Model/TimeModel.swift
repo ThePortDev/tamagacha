@@ -69,3 +69,25 @@ func calculateTimeSince(data: Date) -> Int {
     let seconds = Int(-data.timeIntervalSinceNow)
     return seconds
 }
+
+//class SettingsUserDefaults {
+//    private var SETTINGS_KEY = "SETTINGS_KEY"
+//    private var setting: SettingsUserDefaults
+//    var settingsLoaded = false
+//
+//    init() {
+//        if let data = UserDefaults.standard.data(forKey: SETTINGS_KEY) {
+//            if let decoded = try? JSONDecoder().decode(SettingsView.self, from: data) {
+//                self.setting = decoded
+//                print("Pet data successfully retrieved!")
+//                self.settingsLoaded = true
+//                return
+//            }
+//        }
+//
+//        self.setting
+//
+//
+//    }
+//
+//}

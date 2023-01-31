@@ -67,7 +67,7 @@ struct HomeView: View {
                 RoomView(activeView: $activeView)
                     StoreView(activeView: $activeView, navigateToSettings: $navigateToSettings)
                     .frame(width: screenWidth, height: 960)
-                    .offset(x: (activeView == .center ? 0 : screenWidth))
+                    .offset(x: (activeView == .left ? screenWidth : 0))
                     .offset(y: startingOffsetY)
                     .offset(y: currentDragOffsetY)
                     .offset(y: endingOffsetY)

@@ -39,6 +39,9 @@
 		0090F2B22979DF1800CBDD2F /* BathroomView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0090F2B12979DF1800CBDD2F /* BathroomView.swift */; };
 		0090F2B42979DF2500CBDD2F /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0090F2B32979DF2500CBDD2F /* SettingsView.swift */; };
 		0090F2B62979DF4F00CBDD2F /* DeveloperToolsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0090F2B52979DF4F00CBDD2F /* DeveloperToolsView.swift */; };
+		4EC8295B2989BD31005713CA /* SwiftyGif-Dynamic in Frameworks */ = {isa = PBXBuildFile; productRef = 4EC8295A2989BD31005713CA /* SwiftyGif-Dynamic */; };
+		4EC8295D2989BD99005713CA /* GifView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EC8295C2989BD99005713CA /* GifView.swift */; };
+		4EC829602989BFD4005713CA /* gumballGif.gif in Resources */ = {isa = PBXBuildFile; fileRef = 4EC8295F2989BFD4005713CA /* gumballGif.gif */; };
 		4EFCD168298868E3006A3BF1 /* Fonts.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EFCD167298868E3006A3BF1 /* Fonts.swift */; };
 		4EFCD16A29886A5E006A3BF1 /* HangTheDJ.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 4EFCD16929886A5E006A3BF1 /* HangTheDJ.ttf */; };
 		4EFCD17029886BC5006A3BF1 /* OldSchoolAdventures.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 4EFCD16F29886BC5006A3BF1 /* OldSchoolAdventures.ttf */; };
@@ -80,6 +83,8 @@
 		0090F2B12979DF1800CBDD2F /* BathroomView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BathroomView.swift; sourceTree = "<group>"; };
 		0090F2B32979DF2500CBDD2F /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
 		0090F2B52979DF4F00CBDD2F /* DeveloperToolsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeveloperToolsView.swift; sourceTree = "<group>"; };
+		4EC8295C2989BD99005713CA /* GifView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GifView.swift; sourceTree = "<group>"; };
+		4EC8295F2989BFD4005713CA /* gumballGif.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = gumballGif.gif; sourceTree = "<group>"; };
 		4EFCD167298868E3006A3BF1 /* Fonts.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Fonts.swift; sourceTree = "<group>"; };
 		4EFCD16929886A5E006A3BF1 /* HangTheDJ.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = HangTheDJ.ttf; sourceTree = "<group>"; };
 		4EFCD16C29886AB5006A3BF1 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
@@ -93,6 +98,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4EC8295B2989BD31005713CA /* SwiftyGif-Dynamic in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -118,6 +124,7 @@
 		0090F27B2977477D00CBDD2F /* tamagacha */ = {
 			isa = PBXGroup;
 			children = (
+				4EC8295E2989BFB9005713CA /* Gifs */,
 				4EFCD16C29886AB5006A3BF1 /* Info.plist */,
 				4EFCD16B29886A68006A3BF1 /* Fonts */,
 				ED7B3FDF2981D69500D7F01C /* Sounds */,
@@ -184,6 +191,7 @@
 				00255CB0297F289D0035C37F /* GumballMachineView.swift */,
 				007011C12981CA4400185FC2 /* SoundManager.swift */,
 				007011C32981CA5600185FC2 /* GameScene.swift */,
+				4EC8295C2989BD99005713CA /* GifView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -195,6 +203,14 @@
 				0090F2AB2979DEF000CBDD2F /* NavigateIfTrue.swift */,
 			);
 			path = Extentions;
+			sourceTree = "<group>";
+		};
+		4EC8295E2989BFB9005713CA /* Gifs */ = {
+			isa = PBXGroup;
+			children = (
+				4EC8295F2989BFD4005713CA /* gumballGif.gif */,
+			);
+			path = Gifs;
 			sourceTree = "<group>";
 		};
 		4EFCD16B29886A68006A3BF1 /* Fonts */ = {
@@ -232,6 +248,9 @@
 			dependencies = (
 			);
 			name = tamagacha;
+			packageProductDependencies = (
+				4EC8295A2989BD31005713CA /* SwiftyGif-Dynamic */,
+			);
 			productName = tamagacha;
 			productReference = 0090F2792977477D00CBDD2F /* tamagacha.app */;
 			productType = "com.apple.product-type.application";
@@ -260,6 +279,9 @@
 				Base,
 			);
 			mainGroup = 0090F2702977477D00CBDD2F;
+			packageReferences = (
+				4EC829592989BD31005713CA /* XCRemoteSwiftPackageReference "SwiftyGif" */,
+			);
 			productRefGroup = 0090F27A2977477D00CBDD2F /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -276,6 +298,7 @@
 			files = (
 				0090F2842977477E00CBDD2F /* Preview Assets.xcassets in Resources */,
 				4EFCD17029886BC5006A3BF1 /* OldSchoolAdventures.ttf in Resources */,
+				4EC829602989BFD4005713CA /* gumballGif.gif in Resources */,
 				008FE75B29833FE5007A1FC8 /* sad.mp3 in Resources */,
 				0090F2812977477E00CBDD2F /* Assets.xcassets in Resources */,
 				ED7B3FE12981E71F00D7F01C /* retro-game.mp3 in Resources */,
@@ -315,6 +338,7 @@
 				00255CAD297F287C0035C37F /* PopOverView.swift in Sources */,
 				0090F29A29776B2A00CBDD2F /* PetStats.swift in Sources */,
 				4EFCD168298868E3006A3BF1 /* Fonts.swift in Sources */,
+				4EC8295D2989BD99005713CA /* GifView.swift in Sources */,
 				0090F2AC2979DEF000CBDD2F /* NavigateIfTrue.swift in Sources */,
 				0090F2AE2979DEFF00CBDD2F /* RoomView.swift in Sources */,
 				0090F29829776B0E00CBDD2F /* TimeModel.swift in Sources */,
@@ -525,6 +549,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		4EC829592989BD31005713CA /* XCRemoteSwiftPackageReference "SwiftyGif" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/kirualex/SwiftyGif.git";
+			requirement = {
+				branch = master;
+				kind = branch;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		4EC8295A2989BD31005713CA /* SwiftyGif-Dynamic */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 4EC829592989BD31005713CA /* XCRemoteSwiftPackageReference "SwiftyGif" */;
+			productName = "SwiftyGif-Dynamic";
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 0090F2712977477D00CBDD2F /* Project object */;
 }

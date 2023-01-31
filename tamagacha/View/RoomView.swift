@@ -75,16 +75,16 @@ struct RoomView: View {
                             })
                     )
                 
-                Group {
-                    NavigationLink {
-                        GraveyardView()
-                            .environmentObject(viewModel)
-                    } label: {
-                        CoolRect(text: "Graveyard", gradientColors: [.blue, .black])
-                    }
-                }
-                .offset(x: (activeView == .center ? 0 : screenWidth))
-                    .frame(width: 100, height: 100)
+//                Group {
+//                    NavigationLink {
+//                        GraveyardView()
+//                            .environmentObject(viewModel)
+//                    } label: {
+//                        CoolRect(text: "Graveyard", gradientColors: [.blue, .black])
+//                    }
+//                }
+//                .offset(x: (activeView == .center ? 0 : screenWidth))
+//                    .frame(width: 100, height: 100)
                     expandedStatView
 
                     //.zIndex(.infinity)

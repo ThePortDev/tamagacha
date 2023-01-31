@@ -87,7 +87,7 @@ class StoreUserDefaults {
         if let data = UserDefaults.standard.data(forKey: storeKey) {
             if let decoded = try? JSONDecoder().decode(Store.self, from: data) {
                 self.store = decoded
-                print("Store data")
+                print("Store data successfully retrieved!")
                 return
             }
         }

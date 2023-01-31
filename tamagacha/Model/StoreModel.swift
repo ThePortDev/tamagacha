@@ -103,7 +103,7 @@ class StoreUserDefaults {
         if let encoded = try? JSONEncoder().encode(store) {
             UserDefaults.standard.set(encoded, forKey: storeKey)
             
-            print("Data saved at: \(Date().formatted(date: .omitted, time: .standard))")
+            print("Store Data saved at: \(Date().formatted(date: .omitted, time: .standard))")
         }
     }
 }

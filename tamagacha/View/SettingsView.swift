@@ -16,7 +16,7 @@ struct SettingsView: View {
     @State var enterCode = ""
     @State var navigateToDevTools = false
     
-    private let devCode = "cheesepuffs"
+    private let devCode = "code"
     private let range: ClosedRange<Double> = 0.00...1.00
     private let step: Double = 0.01
     

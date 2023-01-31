@@ -54,8 +54,7 @@ struct DeathScreenPopOverView: View {
     }
     
     var tombStone: some View {
-        Image("TOMBTEST")
-            .resizable()
+        GifView(name: "ghost3")
             .frame(width: 300, height: 300)
             .background(
                 AngularGradient(colors: [.white, .black], center: .topLeading)

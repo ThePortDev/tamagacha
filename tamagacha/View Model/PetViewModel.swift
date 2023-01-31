@@ -13,20 +13,13 @@ import SpriteKit
 class PetViewModel: ObservableObject {
     
     @Published var pet: Pet
-
     @Published var store: Store
-    
     @Published var gameScene: GameScene
     
-    func add(item: Item) {
-        gameScene.add(item: item)
-    }
-        
     private(set) var userDefaultPet = PetUserDefaults()
     private var userDefaultStore = StoreUserDefaults()
 
     private var timer: Timer?
-    
     
     init() {
         pet = userDefaultPet.loadData()
@@ -44,6 +37,10 @@ class PetViewModel: ObservableObject {
             }
         }
         
+    }
+    
+    func add(item: Item) {
+        gameScene.add(item: item)
     }
     
     func getPetType() -> SKSpriteNode {

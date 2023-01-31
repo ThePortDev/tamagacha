@@ -9,7 +9,8 @@ import SwiftUI
 import SpriteKit
 
 struct RoomView: View {
-    //@State var activeView: currentView
+    
+    @Binding var activeView: currentView
     @State var isExpanded = false
     
     //@StateObject var sceneViewModel = GameSceneViewModel()
@@ -37,18 +38,10 @@ struct RoomView: View {
                 SpriteView(scene: viewModel.gameScene)
                     .frame(width: screenWidth, height: screenHeight)
                     .ignoresSafeArea()
-                BathroomView2()
-                    .offset(x: 500)
-                    
-                NavigationLink {
-                    GraveyardView()
-                        .environmentObject(viewModel)
-                } label: {
-                    CoolRect(text: "Graveyard", gradientColors: [.blue, .black])
-                }
-                .frame(width: 0, height: UIScreen.main.bounds.height - 200)
-
+                BathroomView(activeView: $activeView)
+                    .offset(x: (activeView == .center ? -screenWidth : 0))
                 InventoryView()
+                    .offset(x: (activeView == .center ? 0 : screenWidth))
                     .zIndex(.infinity)
                     .frame(width: screenWidth, height: screenHeight + 800)
                     .padding(.leading, 600)
@@ -81,12 +74,18 @@ struct RoomView: View {
                                 }
                             })
                     )
-                expandedStatView
-                Button {
-                    viewModel.gameScene.moveScene()
-                } label: {
-                    Text("Scene Move")
+                
+                Group {
+                    NavigationLink {
+                        GraveyardView()
+                            .environmentObject(viewModel)
+                    } label: {
+                        CoolRect(text: "Graveyard", gradientColors: [.blue, .black])
+                    }
                 }
+                .offset(x: (activeView == .center ? 0 : screenWidth))
+                    .frame(width: 100, height: 100)
+                    expandedStatView
 
                     //.zIndex(.infinity)
 //                Text("starting: \(startingOffsetY) \n current: \(currentDragOffsetY) \n ending: \(endingOffsetY)")
@@ -155,13 +154,19 @@ struct RoomView: View {
     }
     
     var collapsedStatView: some View {
-        ZStack {
-            Rectangle()
-            Text("Stats")
-                .foregroundColor(Color.red)
-        }
-        .cornerRadius(20, corners: [.topLeft, .bottomLeft])
-        .frame(width: 50, height: 100)
+            StatView()
+            .frame(width: screenWidth / 2, height: 200)
+            .padding(.top, 100)
+            .padding(.bottom, 500)
+            .padding(.trailing, 200)
+        
+//        ZStack {
+//            Rectangle()
+//            Text("Stats")
+//                .foregroundColor(Color.red)
+//        }
+//        .cornerRadius(20, corners: [.topLeft, .bottomLeft])
+//        .frame(width: 50, height: 100)
         //        .background(Color.blue)
     }
     

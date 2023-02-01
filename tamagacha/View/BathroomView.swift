@@ -11,11 +11,18 @@ struct BathroomView: View {
     @Binding var activeView: currentView
     @EnvironmentObject var viewModel: PetViewModel
     @State var trailingPadding = 0
+    @State var showerButtonShowing = true
+    
     
     var body: some View {
         ZStack {
             Button {
+                SoundManager.soundInstance.playSound(sound: .shower)
                 viewModel.shower(amount: 10)
+                showerButtonShowing = false
+                DispatchQueue.main.asyncAfter(deadline: .now() + 12) {
+                    showerButtonShowing = true
+                }
             } label: {
                 ZStack {
                     RoundedRectangle(cornerRadius: 15)
@@ -23,7 +30,7 @@ struct BathroomView: View {
                     Text("Shower")
                         .foregroundColor(.white)
                 }
-            }
+            }.disabled(!showerButtonShowing)
 
 
             .padding(.bottom, 100)
@@ -42,6 +49,7 @@ struct BathroomView: View {
                         activeView = .center
                     }
                 }
+                SoundManager.soundInstance.playSound(sound: .click)
                 viewModel.gameScene.moveScene()
             } label: {
                 HStack(spacing: 0) {

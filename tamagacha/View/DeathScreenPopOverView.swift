@@ -30,8 +30,8 @@ struct DeathScreenPopOverView: View {
                 .frame(width: 400,height: 880)
         )
         .onAppear {
-            SoundManager.soundInstance.stopSound()
-            SoundManager.soundInstance.playSound(sound: .gloomy)
+            SoundManager.soundInstance.stopMusic()
+            SoundManager.soundInstance.playMusic(sound: .gloomy)
         }
     }
     
@@ -91,6 +91,8 @@ struct DeathScreenPopOverView: View {
                     .foregroundColor(.black)
                     .bold()
             }
+        }.onTapGesture {
+            SoundManager.soundInstance.playSound(sound: .click)
         }
 
     }

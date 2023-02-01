@@ -98,6 +98,7 @@ struct SubView: View {
     var body: some View {
         GeometryReader { geometry in
             Button {
+                SoundManager.soundInstance.playSound(sound: .click)
                 viewModel.store.buy(item: withItem)
                 print("You have bought \(withItem.name)!")
             } label: {
@@ -124,6 +125,7 @@ struct TabBarButton: View {
     var body: some View {
         GeometryReader { geometry in
             Button(action: {
+                SoundManager.soundInstance.playSound(sound: .click)
                 withAnimation {
                     selectedTab = image
                 }
@@ -145,6 +147,7 @@ struct SettingsButton: View {
     var body: some View {
         GeometryReader { geometry in
             Button(action: {
+                SoundManager.soundInstance.playSound(sound: .click)
                 navigateToSettings = true
             }) {
                 Image(systemName: "\(image)")

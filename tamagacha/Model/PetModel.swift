@@ -14,6 +14,21 @@ struct Pet: Codable, Identifiable {
     var id = UUID()
     var isAlive = true
     var deadPets = [Pet]()
+    var petStatus: String {
+        if self.hunger > 75 && self.thirst > 75 && self.hygiene > 75 && self.love > 75 {
+            return "Your pet is well taken care of right now!"
+        }
+        if self.hunger > 50 && self.thirst > 50 && self.hygiene > 50 && self.love > 50 {
+            return "Your pet could use some care right about now."
+        }
+        if self.hunger > 25 && self.thirst > 25 && self.hygiene > 25 && self.love > 25 {
+            return "Your pet is going to die if you don't help it soon. You monster."
+        }
+        if self.hunger > 10 && self.thirst > 10 && self.hygiene > 10 && self.love > 10 {
+            return "\"Some People\" shouldn't be allowed to own pets..."
+        }
+        return "Your pet could use some help in some places."
+    }
     
     var hunger: CGFloat
     var thirst: CGFloat

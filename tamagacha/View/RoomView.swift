@@ -51,6 +51,7 @@ struct RoomView: View {
                     .gesture (
                         DragGesture()
                             .onChanged { value in
+                                SoundManager.soundInstance.playSound(sound: .swoosh)
                                 withAnimation(.spring()) {
                                     if  value.translation.height > 200 {
                                         return

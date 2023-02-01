@@ -30,11 +30,13 @@ class PetViewModel: ObservableObject {
         gameScene.scaleMode = .fill
         gameScene.anchorPoint = CGPoint(x: 0.5, y: 0.5)
         timer = Timer.scheduledTimer(withTimeInterval: Pet.saveRate, repeats: true) { _ in
-            self.pet.update()
-            self.store.add(money: 1)
             DispatchQueue.main.async {
                 self.saveData()
             }
+        }
+        timer = Timer.scheduledTimer(withTimeInterval: Pet.decreaseTime, repeats: true) { _ in
+            self.pet.update()
+            self.store.add(money: 1)
         }
         
     }

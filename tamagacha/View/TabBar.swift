@@ -13,6 +13,7 @@ struct CustomTabBar: View {
     
     @Binding var selectedTab: String
     @Binding var navigateToSettings: Bool
+    @Binding var navigateToMiniGame: Bool
         
     var body: some View {
         ZStack(alignment: .top) {
@@ -28,6 +29,7 @@ struct CustomTabBar: View {
                         //TabBarButton(image: "message", selectedTab: $selectedTab)
                         TabBarButton(image: "sportscourt", selectedTab: $selectedTab)
                         SettingsButton(image: "gearshape", navigateToSettings: $navigateToSettings)
+                        MiniGameButton(image: "1.circle", navigateToMiniGame: $navigateToMiniGame)
                     }
                     .padding()
                     .background(Color.white)
@@ -99,6 +101,7 @@ struct SubView: View {
         GeometryReader { geometry in
             Button {
                 viewModel.store.buy(item: withItem)
+                viewModel.saveData()
                 print("You have bought \(withItem.name)!")
             } label: {
             
@@ -118,6 +121,7 @@ struct SubView: View {
 }
 
 struct TabBarButton: View {
+    
     var image: String
     @Binding var selectedTab: String
     
@@ -127,6 +131,7 @@ struct TabBarButton: View {
                 withAnimation {
                     selectedTab = image
                 }
+                
             }) {
                 Image(systemName: "\(image)\(selectedTab == image ? ".fill" : "")")
                     .font(.system(size: 25, weight: .semibold))
@@ -156,8 +161,113 @@ struct SettingsButton: View {
     }
 }
 
+struct MiniGameButton: View {
+    var image: String
+    @Binding var navigateToMiniGame: Bool
+    
+    var body: some View {
+        GeometryReader { geometry in
+            Button(action: {
+                navigateToMiniGame = true
+            }) {
+                Image(systemName: "\(image)")
+                    .font(.system(size: 25, weight: .semibold))
+            }
+            .frame(maxWidth: .infinity, maxHeight: .infinity)
+        }
+        .frame(height: 50)
+    }
+}
+
 struct HomeView4_Previews: PreviewProvider {
     static var previews: some View {
         HomeView()
+    }
+}
+
+
+struct MiniGameView: View {
+    
+    @EnvironmentObject var viewModel: PetViewModel
+    
+    @Environment(\.dismiss) var dismiss
+    
+    var body: some View {
+        ZStack {
+            Button {
+                dismiss()
+            } label: {
+                Text("Back")
+            }
+            
+//            SpriteView(scene: viewModel.catchMiniGameScene)
+//                .frame(width: screenWidth, height: screenHeight)
+//                .ignoresSafeArea()
+            
+        }
+    }
+}
+
+import SpriteKit
+
+class CatchMiniGameScene: SKScene {
+    
+    var viewModel: PetViewModel!
+    
+    func setup(with viewModel: PetViewModel) {
+        self.viewModel = viewModel
+    }
+    
+    private var currentNode: SKNode?
+    
+    var draggablePet: SKSpriteNode?
+    
+    override func didMove(to view: SKView) {
+        let background = SKSpriteNode(imageNamed: "tennisBall")
+        background.anchorPoint = CGPoint.zero
+        //background.position = CGPoint.zero
+        addChild(background)
+        
+        draggablePet = SKSpriteNode(imageNamed: viewModel.pet.image)
+        draggablePet!.position = CGPoint(x: size.width / 2, y: size.height / 2)
+        draggablePet!.size = CGSize(width: 50, height: 50)
+        draggablePet!.physicsBody = SKPhysicsBody(rectangleOf: CGSize(width: 50, height: 50))
+        draggablePet!.name = "draggable"
+        draggablePet!.physicsBody?.categoryBitMask = 0b001
+        addChild(draggablePet!)
+        
+        physicsBody = SKPhysicsBody(edgeLoopFrom: frame)
+        
+        self.physicsWorld.gravity = CGVector(dx: 0, dy: -0.5)
+    }
+    
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        if let touch = touches.first {
+
+            let location = touch.location(in: self)
+            let touchedNodes = self.nodes(at: location)
+            for node in touchedNodes.reversed() {
+                if node.name == "draggable" {
+                    self.currentNode = node
+                }
+            }
+        }
+    }
+    
+    override func touchesMoved(_ touches: Set<UITouch>, with event: UIEvent?) {
+        if let touch = touches.first, let node = self.currentNode {
+            let touchLocation = touch.location(in: self)
+                //self.sceneSize = CGSize(width: 700, height: 400)
+                node.position = touchLocation
+                //print("\(touchLocation)")
+        }
+    }
+    
+    override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
+        self.currentNode = nil
+    }
+    
+    override func touchesCancelled(_ touches: Set<UITouch>, with event: UIEvent?) {
+        self.currentNode = nil
     }
 }

@@ -11,7 +11,8 @@ struct SettingsView: View {
     
     @EnvironmentObject var viewModel: PetViewModel
     
-    @State private var volume: Double = 0.50
+    @StateObject var settingsVM = SettingsVM()
+    
     @State private var hasChanged: Bool = false
     @State var enterCode = ""
     @State var navigateToDevTools = false
@@ -72,14 +73,14 @@ struct SettingsView: View {
     var volumeSlider: some View {
         
         VStack {
-            Text("Volume | \(Int(volume * 100))%")
+            Text("Volume | \(Int(settingsVM.volume * 100))%")
                 .foregroundColor(Values.buttonsColor)
             HStack {
                 decreaseButton
                     .foregroundColor(Values.buttonsColor)
                 
-                Slider(value: $volume)
-                    .onChange(of: self.volume) { value in
+                Slider(value: $settingsVM.volume)
+                    .onChange(of: self.settingsVM.volume) { value in
                         SoundManager.soundInstance.playSound(sound: .swoosh)
                         SoundManager.soundInstance.player?.volume = Float(value)
                     }
@@ -118,6 +119,7 @@ struct SettingsView: View {
     }
 }
 
+
 private extension SettingsView {
     
     func buttonPressed() {
@@ -128,13 +130,13 @@ private extension SettingsView {
 private extension SettingsView {
     
     func increase() {
-        guard volume < range.upperBound else { return }
-        volume += step
+        guard settingsVM.volume < range.upperBound else { return }
+        settingsVM.volume += step
     }
     
     func decrease() {
-        guard volume > range.lowerBound else { return }
-        volume -= step
+        guard settingsVM.volume > range.lowerBound else { return }
+        settingsVM.volume -= step
     }
 }
 

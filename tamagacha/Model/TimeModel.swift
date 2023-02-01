@@ -70,24 +70,45 @@ func calculateTimeSince(data: Date) -> Int {
     return seconds
 }
 
-//class SettingsUserDefaults {
-//    private var SETTINGS_KEY = "SETTINGS_KEY"
-//    private var setting: SettingsUserDefaults
-//    var settingsLoaded = false
-//
-//    init() {
-//        if let data = UserDefaults.standard.data(forKey: SETTINGS_KEY) {
-//            if let decoded = try? JSONDecoder().decode(SettingsView.self, from: data) {
-//                self.setting = decoded
-//                print("Pet data successfully retrieved!")
-//                self.settingsLoaded = true
-//                return
-//            }
-//        }
-//
-//        self.setting
-//
-//
-//    }
-//
-//}
+class SettingsUserDefaults {
+    private static var SETTINGS_KEY = "SETTINGS_KEY"
+    static var VOLUME_KEY: String { "\(SETTINGS_KEY)_VOLUME" }
+    
+    static let instance = SettingsUserDefaults()
+    
+    var volume: Double = 0.5
+    
+    init() {
+        self.volume = UserDefaults.standard.double(forKey: SettingsUserDefaults.VOLUME_KEY)
+    }
+    
+    func saveVolume(_ volume: Double) {
+        self.volume = volume
+        UserDefaults.standard.setValue(volume, forKey: SettingsUserDefaults.VOLUME_KEY)
+    }
+    
+    func retrieveVolume() -> Double {
+        UserDefaults.standard.double(forKey: SettingsUserDefaults.VOLUME_KEY)
+    }
+    
+}
+
+class SettingsVM: ObservableObject {
+    
+    @Published var volume = 0.5 {
+        didSet { saveVolume() }
+    }
+    
+    init() {
+        getSettingsInfoFromUserDefaults()
+    }
+    
+    func saveVolume() {
+        SettingsUserDefaults.instance.saveVolume(volume)
+    }
+    
+    func getSettingsInfoFromUserDefaults() {
+        // Do what the function title says
+        volume = SettingsUserDefaults.instance.volume
+    }
+}

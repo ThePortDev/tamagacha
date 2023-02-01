@@ -34,11 +34,11 @@ struct Store: Codable {
     }
     
     mutating func remove(item: String) {
-        for (key, _) in inventory {
-            if key.name == item {
-                inventory[key]! -= 1
+            for (key, _) in inventory {
+                if key.name == item {
+                    inventory[key]! -= 1
+                }
             }
-        }
     }
     
     mutating func add(money: Int) {

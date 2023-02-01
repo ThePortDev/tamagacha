@@ -28,7 +28,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     var box: SKSpriteNode?
     var boxName: SKLabelNode?
     var moveBox: SKNode?
-    
+        
     override func didMove(to view: SKView) {
         let background = SKSpriteNode(imageNamed: "living")
         background.anchorPoint = CGPoint.zero
@@ -150,17 +150,18 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     }
     
     func add(item: Item) {
-        let imageName = (item.name.prefix(1).lowercased() + item.name.replacingOccurrences(of: " ", with: "").dropFirst())
-        let itemSprite = SKSpriteNode(imageNamed: imageName)
-        itemSprite.size = CGSize(width: 50, height: 100)
-        itemSprite.position = CGPoint(x: screenWidth * 0.25, y: screenHeight * 0.5)
-        itemSprite.physicsBody = SKPhysicsBody(rectangleOf: CGSize(width: 50, height: 100))
-        itemSprite.physicsBody!.contactTestBitMask = itemSprite.physicsBody!.collisionBitMask
-        //itemSprite.name = "\(item.type)"
-        itemSprite.name = "\(item.name)"
-        print("\(itemSprite.name!)")
-
-        addChild(itemSprite)
+            let imageName = (item.name.prefix(1).lowercased() + item.name.replacingOccurrences(of: " ", with: "").dropFirst())
+            let itemSprite = SKSpriteNode(imageNamed: imageName)
+            itemSprite.size = CGSize(width: 50, height: 100)
+            itemSprite.position = CGPoint(x: screenWidth * 0.25, y: screenHeight * 0.5)
+            itemSprite.physicsBody = SKPhysicsBody(rectangleOf: CGSize(width: 50, height: 100))
+            itemSprite.physicsBody!.contactTestBitMask = itemSprite.physicsBody!.collisionBitMask
+            //itemSprite.name = "\(item.type)"
+            itemSprite.name = "\(item.name)"
+            print("\(itemSprite.name!)")
+            
+            addChild(itemSprite)
+            
     }
     
     func moveScene() {

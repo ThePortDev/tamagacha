@@ -81,6 +81,7 @@ struct SettingsView: View {
                 
                 Slider(value: $settingsVM.volume)
                     .onChange(of: self.settingsVM.volume) { value in
+                        SoundManager.soundInstance.playSound(sound: .swoosh)
                         SoundManager.soundInstance.player?.volume = Float(value)
                     }
                 
@@ -96,6 +97,9 @@ struct SettingsView: View {
         TextField("Code", text: $enterCode)
             .multilineTextAlignment(.center)
             .autocorrectionDisabled()
+            .onChange(of: enterCode, perform: { _ in
+                SoundManager.soundInstance.playSound(sound: .type)
+            })
             .onSubmit {
                 if enterCode.lowercased() == devCode {
                     navigateToDevTools = true
@@ -107,6 +111,7 @@ struct SettingsView: View {
     var backBTN: some View {
         
         Button("Back") {
+            SoundManager.soundInstance.playSound(sound: .click)
             dismiss()
         }
         .foregroundColor(Values.buttonsColor)
@@ -139,6 +144,7 @@ private extension SettingsView {
     
     var increaseButton: some View {
         Button {
+            SoundManager.soundInstance.playSound(sound: .click)
             increase()
         } label: {
             Image(systemName: "plus")
@@ -149,6 +155,7 @@ private extension SettingsView {
     
     var decreaseButton: some View {
         Button {
+            SoundManager.soundInstance.playSound(sound: .click)
             decrease()
         } label: {
             Image(systemName: "minus")

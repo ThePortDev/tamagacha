@@ -28,18 +28,21 @@ struct CoolRect: View {
     let text: String
     let gradientColors: [Color]
     var body: some View {
-        ZStack {
-            RoundedRectangle(cornerSize: CGSize(width: 100, height: 100))
-                .fill(AngularGradient(colors: gradientColors, center: .topLeading))
-                .frame(width: 180, height: 35)
-                .shadow(
-                    color: .black.opacity(0.5),
-                    radius: 10,
-                    x:0.0, y:10
-                )
+            
             Text(text)
+            .padding()
+            .font(.custom("HangTheDJ", size: 26))
                 .foregroundColor(.black)
                 .bold()
-        }
+                .background(
+                    RoundedRectangle(cornerSize: CGSize(width: 100, height: 100))
+                        .fill(AngularGradient(colors: gradientColors, center: .topLeading))
+                        .shadow(
+                            color: .black.opacity(0.5),
+                            radius: 10,
+                            x:0.0, y:10
+                        )
+                )
+        
     }
 }

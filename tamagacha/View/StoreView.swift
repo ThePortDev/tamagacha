@@ -10,6 +10,7 @@ import SwiftUI
 struct StoreView: View {
     @Binding var activeView: currentView
     @Binding var navigateToSettings: Bool
+    @Binding var navigateToMiniGame: Bool
         
     @State var selectedTab = "house"
     
@@ -23,7 +24,7 @@ struct StoreView: View {
             VStack(spacing: 0) {
                 storeSwipeTab
                 //storeTapTab
-                CustomTabBar(selectedTab: $selectedTab, navigateToSettings: $navigateToSettings)
+                CustomTabBar(selectedTab: $selectedTab, navigateToSettings: $navigateToSettings, navigateToMiniGame: $navigateToMiniGame)
             }
             //.frame(width: geometry.size.width, height: geometry.size.height, alignment: .center)
         }

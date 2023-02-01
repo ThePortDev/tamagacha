@@ -24,7 +24,7 @@ struct HomeView: View {
     
     @StateObject var viewModel = PetViewModel()
     
-    
+    @State private var welcomeAlert = (title: "Welcome Back!", message: "", isShown: false)
     
     // swipe gesture
     @State var activeView = currentView.center
@@ -34,6 +34,7 @@ struct HomeView: View {
     @State var navigateToSettings: Bool = false
     @State var navigateToDeath: Bool = false
     @State var navigateToGraveyard: Bool = false
+    @State var navigateToMiniGame: Bool = false
     
     // drag gesture X
     @State private var startingOffsetX: CGFloat = -UIScreen.main.bounds.width
@@ -55,8 +56,6 @@ struct HomeView: View {
         return scene
     }
     
-    @State private var showWelcomeMessage = true
-    
     var body: some View {
         VStack(spacing: 0) {
             //            Rectangle()
@@ -65,16 +64,18 @@ struct HomeView: View {
             //                .frame(height: 10)
             ZStack {
                 RoomView(activeView: $activeView)
-                    StoreView(activeView: $activeView, navigateToSettings: $navigateToSettings)
+
+                StoreView(activeView: $activeView, navigateToSettings: $navigateToSettings, navigateToMiniGame: $navigateToMiniGame)
                     .frame(width: screenWidth, height: 960)
                     .offset(x: (activeView == .left ? screenWidth : 0))
-//                    .offset(y: (activeView == .bottom ? 0 : startingOffsetY))
+                //                    .offset(y: (activeView == .bottom ? 0 : startingOffsetY))
                     .offset(y: startingOffsetY)
                     .offset(y: currentDragOffsetY)
                     .offset(y: endingOffsetY)
                     .gesture (
                         DragGesture()
                             .onChanged { value in
+                                SoundManager.soundInstance.playSound(sound: .swoosh)
                                 withAnimation(.spring()) {
                                     if activeView == .bottom && value.translation.height < 0 {
                                         return
@@ -98,61 +99,31 @@ struct HomeView: View {
                             })
                     )
                     .zIndex(.infinity)
-                
-//                BathroomView(activeView: $activeView)
-//                    .frame(width: 470, height: 800)
-//                    .offset(x: startingOffsetX)
-//                    .offset(x: currentDragOffsetX)
-//                    .offset(x: endingOffsetX)
-//                    .gesture (
-//                        DragGesture()
-//                            .onChanged { value in
-//                                withAnimation(.spring()) {
-//                                    if activeView == .left && value.translation.width > 0 {
-//                                        return
-//                                    } else {
-//                                        currentDragOffsetX = value.translation.width
-//                                    }
-//                                }
-//                            }
-//                            .onEnded({ value in
-//                                withAnimation(.spring()) {
-//                                    if currentDragOffsetX > 100 {
-//                                        endingOffsetX = -startingOffsetX + 20
-//                                        activeView = .left
-//                                        //changeScene = true
-//                                    }
-//                                    else if endingOffsetX != 0 && currentDragOffsetX < -150 {
-//                                        endingOffsetX = 0
-//                                        activeView = .center
-//                                    }
-//                                    currentDragOffsetX = 0
-//                                }
-//                            })
-//                    )
             }
             .navigate(to: SettingsView().environmentObject(viewModel), when: $navigateToSettings)
             .navigate(to: DeathScreenPopOverView().environmentObject(viewModel), when: $navigateToDeath)
             .navigate(to: GraveyardView().environmentObject(viewModel), when: $navigateToGraveyard)
+            .navigate(to: MiniGameView(), when: $navigateToMiniGame)
             .environmentObject(viewModel)
             .onAppear {
+                welcomeAlert.message = viewModel.pet.petStatus
+                welcomeAlert.isShown = true
+                SoundManager.soundInstance.playSound(sound: .hooray)
                 navigateToDeath = !viewModel.pet.isAlive
             }
-        }
-    }
-    
-    
-    
-    var welcomeMessage: some View {
-        Group {
-            if showWelcomeMessage {
-                Text("Welcome Home!")
-                    .font(.title)
+            .alert(welcomeAlert.title, isPresented: $welcomeAlert.isShown) {
+                Button("Cool!") {
+                    SoundManager.soundInstance.playSound(sound: .click)
+                    welcomeAlert.isShown = false
+                }
+            } message: {
+                Text(welcomeAlert.message)
+            }
+            .onAppear {
+                SoundManager.soundInstance.playSound(sound: .hooray)
             }
         }
     }
-    
-    
 }
 
 

@@ -16,6 +16,8 @@ class PetViewModel: ObservableObject {
     @Published var store: Store
     @Published var gameScene: GameScene
     
+    @Published var catchMiniGameScene: CatchMiniGameScene
+    
     private(set) var userDefaultPet = PetUserDefaults()
     private var userDefaultStore = StoreUserDefaults()
 
@@ -24,17 +26,32 @@ class PetViewModel: ObservableObject {
     init() {
         pet = userDefaultPet.loadData()
         store = userDefaultStore.loadData()
+        
+        // RoomView
         gameScene = GameScene()
+        catchMiniGameScene = CatchMiniGameScene()
         gameScene.setup(with: self)
+        
+        catchMiniGameScene.setup(with: self)
+        
         gameScene.size = CGSize(width: screenWidth, height: screenHeight)
         gameScene.scaleMode = .fill
         gameScene.anchorPoint = CGPoint(x: 0.5, y: 0.5)
+        
+        // CatchMiniGame
+        
+        catchMiniGameScene.size = CGSize(width: screenWidth, height: screenHeight)
+        catchMiniGameScene.scaleMode = .fill
+        catchMiniGameScene.anchorPoint = CGPoint(x: 0.5, y: 0.5)
+        
         timer = Timer.scheduledTimer(withTimeInterval: Pet.saveRate, repeats: true) { _ in
-            self.pet.update()
-            self.store.add(money: 1)
             DispatchQueue.main.async {
                 self.saveData()
             }
+        }
+        timer = Timer.scheduledTimer(withTimeInterval: Pet.decreaseTime, repeats: true) { _ in
+            self.pet.update()
+            self.store.add(money: 1)
         }
         
     }

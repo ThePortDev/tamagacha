@@ -31,9 +31,10 @@ struct MenuView: View {
         }
         .background(.gray)
         .onAppear {
-            SoundManager.soundInstance.playSound(sound: .zoid)
+            SoundManager.soundInstance.playMusic(sound: .zoid)
         }
         .onTapGesture {
+            SoundManager.soundInstance.playSound(sound: .click)
             if viewModel.userDefaultPet.petLoaded && viewModel.pet.isAlive {
                 navigateToHomeView = true
             } else if !viewModel.pet.isAlive {
@@ -66,7 +67,7 @@ struct MenuView: View {
     }
     
     var petPick: some View {
-        Image("TESTDOG")
+        Image(viewModel.pet.image)
             .resizable()
             .frame(width: 180, height: 160)
             .position(x:190, y:190)

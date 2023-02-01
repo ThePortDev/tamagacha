@@ -17,6 +17,7 @@ struct DeathScreenPopOverView: View {
             deathWords
             Spacer()
             petDeadText
+            Spacer()
             tombStone
             Spacer()
             returnToGumball
@@ -30,27 +31,28 @@ struct DeathScreenPopOverView: View {
                 .frame(width: 400,height: 880)
         )
         .onAppear {
-            SoundManager.soundInstance.stopSound()
-            SoundManager.soundInstance.playSound(sound: .gloomy)
+            SoundManager.soundInstance.stopMusic()
+            SoundManager.soundInstance.playMusic(sound: .gloomy)
         }
     }
     
     
     var petDeadText: some View {
-        ZStack {
-            RoundedRectangle(cornerSize: CGSize(width: 100, height: 200))
-                .fill(AngularGradient(colors: [.white, .black], center: .topLeading))
-                .frame(width: 300, height: 35)
-                .shadow(
-                    color: .black.opacity(0.5),
-                    radius: 10,
-                    x:0.0, y:10
-                )
             Text("\(PetViewModel().pet.name) is super dead.")
                 .font(.custom("HangTheDJ", size: 20))
                 .bold()
                 .foregroundColor(.black)
-        }
+                .padding()
+                .background(
+                    RoundedRectangle(cornerSize: CGSize(width: 100, height: 200))
+                        .fill(AngularGradient(colors: [.white, .black], center: .topLeading))
+                        .shadow(
+                            color: .black.opacity(0.5),
+                            radius: 10,
+                            x:0.0, y:10
+                        )
+                )
+        
     }
     
     var tombStone: some View {
@@ -73,28 +75,33 @@ struct DeathScreenPopOverView: View {
             .foregroundColor(.gray)
     }
     
+    @State var goToGumball = false 
+    
     var returnToGumball: some View {
-        NavigationLink {
-            GumballMachineView()
+        Button {
+            goToGumball = true
         } label: {
-            ZStack {
-                RoundedRectangle(cornerSize: CGSize(width: 100, height: 100))
-                    .fill(AngularGradient(colors: [.yellow, .white], center: .topLeading))
-                    .frame(width: 280, height: 55)
-                    .shadow(
-                        color: .black.opacity(0.5),
-                        radius: 10,
-                        x:0.0, y:10
-                    )
-                Text("Replace \(PetViewModel().pet.name)?")
+            Text("Replace \(viewModel.pet.name)?")
                     .font(.custom("HangTheDJ", size: 26))
                     .foregroundColor(.black)
                     .bold()
+                    .padding()
+                    .background(
+                        RoundedRectangle(cornerSize: CGSize(width: 100, height: 100))
+                            .fill(AngularGradient(colors: [.yellow, .white], center: .topLeading))
+                                .shadow(
+                                color: .black.opacity(0.5),
+                                radius: 10,
+                                x:0.0, y:10)
+                    )
             }
+        }.onTapGesture {
+            SoundManager.soundInstance.playSound(sound: .click)
+          .navigate(to: GumballMachineView(), when: $goToGumball)
         }
 
     }
-}
+
 
 struct DeathScreenPopOverView_Previews: PreviewProvider {
     static var previews: some View {

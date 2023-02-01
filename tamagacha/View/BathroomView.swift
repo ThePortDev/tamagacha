@@ -64,9 +64,10 @@ struct BathroomView: View {
                         Text("🛀")
                     }
                 }
-                .frame(width: 80, height: 80)
-                .padding(.leading, screenWidth)
             }
+            .frame(width: 80, height: 80)
+            .padding(.leading, screenWidth)
+
 
             
         }
@@ -74,8 +75,8 @@ struct BathroomView: View {
     }
 }
 
-//struct HomeView3_Previews: PreviewProvider {
-//    static var previews: some View {
-//        HomeView()
-//    }
-//}
+struct HomeView3_Previews: PreviewProvider {
+    static var previews: some View {
+        HomeView()
+    }
+}

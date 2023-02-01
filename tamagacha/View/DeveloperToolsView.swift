@@ -16,7 +16,7 @@ struct DeveloperToolsView: View {
         VStack {
             Text("Developer Tools")
                 .bold()
-                .font(.largeTitle)
+                .font(.custom("HangTheDJ", size: 35))
                 .frame(alignment: .top)
             Spacer()
             Button() {

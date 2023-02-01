@@ -34,6 +34,7 @@ struct HomeView: View {
     @State var navigateToSettings: Bool = false
     @State var navigateToDeath: Bool = false
     @State var navigateToGraveyard: Bool = false
+    @State var navigateToMiniGame: Bool = false
     
     // drag gesture X
     @State private var startingOffsetX: CGFloat = -UIScreen.main.bounds.width
@@ -63,7 +64,8 @@ struct HomeView: View {
             //                .frame(height: 10)
             ZStack {
                 RoomView(activeView: $activeView)
-                StoreView(activeView: $activeView, navigateToSettings: $navigateToSettings)
+
+                StoreView(activeView: $activeView, navigateToSettings: $navigateToSettings, navigateToMiniGame: $navigateToMiniGame)
                     .frame(width: screenWidth, height: 960)
                     .offset(x: (activeView == .left ? screenWidth : 0))
                 //                    .offset(y: (activeView == .bottom ? 0 : startingOffsetY))
@@ -101,6 +103,7 @@ struct HomeView: View {
             .navigate(to: SettingsView().environmentObject(viewModel), when: $navigateToSettings)
             .navigate(to: DeathScreenPopOverView().environmentObject(viewModel), when: $navigateToDeath)
             .navigate(to: GraveyardView().environmentObject(viewModel), when: $navigateToGraveyard)
+            .navigate(to: MiniGameView(), when: $navigateToMiniGame)
             .environmentObject(viewModel)
             .onAppear {
                 welcomeAlert.message = viewModel.pet.petStatus

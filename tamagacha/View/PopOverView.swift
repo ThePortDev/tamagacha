@@ -27,6 +27,9 @@ struct PopOverView: View {
                 Spacer(minLength: 20)
                 
             }
+            .onAppear {
+                SoundManager.soundInstance.playSound(sound: .hooray)
+            }
             .environmentObject(viewModel)
             .background(
                 AngularGradient(colors: [.white, .black], center: .topLeading))
@@ -116,6 +119,7 @@ struct PopOverView: View {
     
     var goHome: some View {
         Button {
+            SoundManager.soundInstance.playSound(sound: .click)
             goHomeBool = true
         } label: {
             ZStack {

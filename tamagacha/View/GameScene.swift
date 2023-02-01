@@ -56,9 +56,10 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         box!.physicsBody?.categoryBitMask = 0b001
         addChild(box!)
 
-        boxName = SKLabelNode(text: viewModel.pet.name)
+        boxName = SKLabelNode(text: "\(viewModel.pet.name) - \(viewModel.pet.age)")
         boxName?.fontName = "body"
-        boxName?.fontColor = UIColor.black
+        boxName?.fontSize = 20
+        boxName?.fontColor = .white
         addChild(boxName!)
         
         moveBox = SKNode()//SKSpriteNode(color: .red, size: CGSize(width: 5, height: 5))
@@ -82,6 +83,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     }
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        SoundManager.soundInstance.playSound(sound: .boing)
         if let touch = touches.first {
 
             let location = touch.location(in: self)
@@ -121,6 +123,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     override func update(_ currentTime: TimeInterval) {
         cam.position.x = moveBox!.position.x
         boxName!.position = CGPoint(x: box!.position.x, y: CGFloat((box?.position.y)!) + box!.size.height / 2)
+        boxName?.text = "\(viewModel.pet.name) - \(viewModel.pet.age / 86400) Days"
     }
     
     func collisionBetween(ball: SKNode, object: SKNode) {

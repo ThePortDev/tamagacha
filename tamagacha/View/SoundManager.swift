@@ -9,17 +9,29 @@ import Foundation
 import AVKit
 
 class SoundManager {
-        
+    
     static let soundInstance = SoundManager()
     
     var player: AVAudioPlayer?
+    var soundPlayer: AVAudioPlayer?
     
-    enum SoundOption: String {
+    enum MusicOption: String {
         case zoid = "retro-game"
         case gloomy = "sad"
     }
     
-    func playSound(sound: SoundOption) {
+    enum SoundOption: String {
+        case hooray = "hooray"
+        case click = "click"
+        case plop = "plop"
+        case recieved = "recieved"
+        case swoosh = "swoosh"
+        case shower = "shower"
+        case type = "type"
+        case boing = "boing"
+    }
+    
+    func playMusic(sound: MusicOption) {
         
         guard let url = Bundle.main.url(forResource: sound.rawValue, withExtension: ".mp3") else { return }
         
@@ -27,13 +39,30 @@ class SoundManager {
             player = try AVAudioPlayer(contentsOf: url)
             player?.prepareToPlay()
             player?.play()
+            player?.numberOfLoops = -1
+        } catch let error {
+            print("Error playing music. \(error.localizedDescription)")
+        }
+    }
+    
+    func playSound(sound: SoundOption) {
+        guard let url = Bundle.main.url(forResource: sound.rawValue, withExtension: ".mp3") else { return }
+        
+        do {
+            soundPlayer = try AVAudioPlayer(contentsOf: url)
+            soundPlayer?.prepareToPlay()
+            soundPlayer?.play()
         } catch let error {
             print("Error playing sound. \(error.localizedDescription)")
         }
     }
     
     func stopSound() {
-            player?.stop()
+        soundPlayer?.stop()
+    }
+    
+    func stopMusic() {
+        player?.stop()
     }
     
 }

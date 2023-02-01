@@ -23,6 +23,7 @@ struct GumballMachineView: View {
             Spacer()
             GifView(name: "gumball2.gif")
             Button {
+                SoundManager.soundInstance.playSound(sound: .click)
                 viewModel.pet.deadPets.append(viewModel.pet)
                 viewModel.pet = gumballViewModel.getPet()
                 viewModel.saveData()
@@ -50,8 +51,8 @@ struct GumballMachineView: View {
             
         }
         .onAppear {
-            SoundManager.soundInstance.stopSound()
-            SoundManager.soundInstance.playSound(sound: .zoid)
+            SoundManager.soundInstance.stopMusic()
+            SoundManager.soundInstance.playMusic(sound: .zoid)
         }
     }
     

@@ -26,6 +26,7 @@ struct StoreView: View {
                 storeSwipeTab
                 //storeTapTab
                 CustomTabBar(selectedTab: $selectedTab, navigateToSettings: $navigateToSettings, navigateToMiniGame: $navigateToMiniGame, navigateToGraveyard: $navigateToGraveyard)
+
             }
             //.frame(width: geometry.size.width, height: geometry.size.height, alignment: .center)
         }

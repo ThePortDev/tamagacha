@@ -11,6 +11,8 @@ struct CustomTabBar: View {
     
     @EnvironmentObject var viewModel: PetViewModel
     
+    @Binding var activeView: currentView
+    
     @Binding var selectedTab: String
     @Binding var navigateToSettings: Bool
     @Binding var navigateToMiniGame: Bool
@@ -25,13 +27,14 @@ struct CustomTabBar: View {
             VStack(spacing: 0) {
                 HStack(spacing: 0) {
                     HStack(spacing: 0) {
-                        TabBarButton(image: "house", selectedTab: $selectedTab)
-                        TabBarButton(image: "bookmark", selectedTab: $selectedTab)
+                        TabBarButton(activeView: $activeView, image: "house", selectedTab: $selectedTab)
+                        TabBarButton(activeView: $activeView, image: "bookmark", selectedTab: $selectedTab)
                         //TabBarButton(image: "message", selectedTab: $selectedTab)
                         TabBarButton(image: "sportscourt", selectedTab: $selectedTab)
                         SettingsButton(image: "gearshape", navigateToSettings: $navigateToSettings)
                         MiniGameButton(image: "1.circle", navigateToMiniGame: $navigateToMiniGame)
                         GraveyardButton(image: "🪦", navigateToGraveyard: $navigateToGraveyard)
+
                     }
                     .padding()
                     .background(Color.white)
@@ -125,6 +128,8 @@ struct SubView: View {
 
 struct TabBarButton: View {
     
+    @Binding var activeView: currentView
+    
     var image: String
     @Binding var selectedTab: String
     
@@ -148,6 +153,9 @@ struct TabBarButton: View {
 }
 
 struct SettingsButton: View {
+    
+    @Binding var activeView: currentView
+
     var image: String
     @Binding var navigateToSettings: Bool
     
@@ -167,6 +175,9 @@ struct SettingsButton: View {
 }
 
 struct MiniGameButton: View {
+    
+    @Binding var activeView: currentView
+
     var image: String
     @Binding var navigateToMiniGame: Bool
     

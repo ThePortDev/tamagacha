@@ -22,6 +22,7 @@ struct DeathScreenPopOverView: View {
             Spacer()
             returnToGumball
             Spacer()
+            writeOdeToPet
             
             
         }
@@ -99,6 +100,29 @@ struct DeathScreenPopOverView: View {
             SoundManager.soundInstance.playSound(sound: .click)
         }
         .navigate(to: GumballMachineView(), when: $goToGumball)
+    }
+    
+    @State var goToOde = false
+    
+    var writeOdeToPet: some View {
+        Button {
+            goToOde = true
+        } label: {
+            Text("Bury \(viewModel.pet.name)? 💲50")
+                .font(.custom("HangTheDJ", size: 26))
+                .foregroundColor(.black)
+                .bold()
+                .padding()
+                .background(
+                    RoundedRectangle(cornerSize: CGSize(width: 100, height: 100))
+                        .fill(AngularGradient(colors: [.red, .white], center: .topLeading))
+                        .shadow(
+                            color: .black.opacity(0.5),
+                            radius: 10,
+                            x:0.0, y:10)
+                )
+        }
+        .navigate(to: ObituaryView(), when: $goToOde)
     }
     
 }

@@ -55,6 +55,7 @@
 		4EC829672989DD84005713CA /* gumball2.gif in Resources */ = {isa = PBXBuildFile; fileRef = 4EC829662989DD84005713CA /* gumball2.gif */; };
 		4EC829692989DE47005713CA /* ghost2.gif in Resources */ = {isa = PBXBuildFile; fileRef = 4EC829682989DE47005713CA /* ghost2.gif */; };
 		4EC8296B2989DFAF005713CA /* ghost3.gif in Resources */ = {isa = PBXBuildFile; fileRef = 4EC8296A2989DFAF005713CA /* ghost3.gif */; };
+		4EC8296D298C52F6005713CA /* ObituaryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EC8296C298C52F6005713CA /* ObituaryView.swift */; };
 		4EFCD168298868E3006A3BF1 /* Fonts.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EFCD167298868E3006A3BF1 /* Fonts.swift */; };
 		4EFCD16A29886A5E006A3BF1 /* HangTheDJ.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 4EFCD16929886A5E006A3BF1 /* HangTheDJ.ttf */; };
 		4EFCD17029886BC5006A3BF1 /* OldSchoolAdventures.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 4EFCD16F29886BC5006A3BF1 /* OldSchoolAdventures.ttf */; };
@@ -111,6 +112,7 @@
 		4EC829662989DD84005713CA /* gumball2.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = gumball2.gif; sourceTree = "<group>"; };
 		4EC829682989DE47005713CA /* ghost2.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = ghost2.gif; sourceTree = "<group>"; };
 		4EC8296A2989DFAF005713CA /* ghost3.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = ghost3.gif; sourceTree = "<group>"; };
+		4EC8296C298C52F6005713CA /* ObituaryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ObituaryView.swift; sourceTree = "<group>"; };
 		4EFCD167298868E3006A3BF1 /* Fonts.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Fonts.swift; sourceTree = "<group>"; };
 		4EFCD16929886A5E006A3BF1 /* HangTheDJ.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = HangTheDJ.ttf; sourceTree = "<group>"; };
 		4EFCD16C29886AB5006A3BF1 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
@@ -218,6 +220,7 @@
 				007011C12981CA4400185FC2 /* SoundManager.swift */,
 				007011C32981CA5600185FC2 /* GameScene.swift */,
 				4EC8295C2989BD99005713CA /* GifView.swift */,
+				4EC8296C298C52F6005713CA /* ObituaryView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -378,6 +381,7 @@
 				0090F27F2977477D00CBDD2F /* ContentView.swift in Sources */,
 				00255CB7297F28D70035C37F /* StoreViewModel.swift in Sources */,
 				00255CAF297F288B0035C37F /* DeathScreenPopOverView.swift in Sources */,
+				4EC8296D298C52F6005713CA /* ObituaryView.swift in Sources */,
 				00255CBB297F28EF0035C37F /* DeveloperToolsViewModel.swift in Sources */,
 				0090F29629776AF500CBDD2F /* PetModel.swift in Sources */,
 				0090F29C29776B3A00CBDD2F /* PetView.swift in Sources */,

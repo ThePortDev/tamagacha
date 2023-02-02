@@ -73,13 +73,17 @@ func calculateTimeSince(data: Date) -> Int {
 class SettingsUserDefaults {
     private static var SETTINGS_KEY = "SETTINGS_KEY"
     static var VOLUME_KEY: String { "\(SETTINGS_KEY)_VOLUME" }
+    private static var SFX_KEY = "SFX_KEY"
+    static var SFXVOLUME_KEY: String { "\(SFX_KEY)_VOLUME" }
     
     static let instance = SettingsUserDefaults()
     
     var volume: Double = 0.5
+    var sfxVolume: Double = 0.5
     
     init() {
         self.volume = UserDefaults.standard.double(forKey: SettingsUserDefaults.VOLUME_KEY)
+        self.sfxVolume = UserDefaults.standard.double(forKey: SettingsUserDefaults.SFXVOLUME_KEY)
     }
     
     func saveVolume(_ volume: Double) {
@@ -87,16 +91,28 @@ class SettingsUserDefaults {
         UserDefaults.standard.setValue(volume, forKey: SettingsUserDefaults.VOLUME_KEY)
     }
     
+    func saveSFXVolume(_ volume: Double) {
+        self.sfxVolume = volume
+        UserDefaults.standard.setValue(volume, forKey: SettingsUserDefaults.SFXVOLUME_KEY)
+    }
+    
     func retrieveVolume() -> Double {
         UserDefaults.standard.double(forKey: SettingsUserDefaults.VOLUME_KEY)
     }
     
+    func retrieveSFXVolume() -> Double {
+        UserDefaults.standard.double(forKey: SettingsUserDefaults.SFXVOLUME_KEY)
+    }
 }
 
 class SettingsVM: ObservableObject {
     
     @Published var volume = 0.5 {
         didSet { saveVolume() }
+    }
+    
+    @Published var SFXVolume = 0.5 {
+        didSet { saveSFXVolume() }
     }
     
     init() {
@@ -107,8 +123,13 @@ class SettingsVM: ObservableObject {
         SettingsUserDefaults.instance.saveVolume(volume)
     }
     
+    func saveSFXVolume() {
+        SettingsUserDefaults.instance.saveSFXVolume(SFXVolume)
+    }
+    
     func getSettingsInfoFromUserDefaults() {
         // Do what the function title says
         volume = SettingsUserDefaults.instance.volume
+        SFXVolume = SettingsUserDefaults.instance.sfxVolume
     }
 }

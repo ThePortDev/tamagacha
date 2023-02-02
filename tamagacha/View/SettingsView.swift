@@ -17,6 +17,7 @@ struct SettingsView: View {
     @State var enterCode = ""
     @State var navigateToDevTools = false
     
+    private let devGunCode = "GunsRToysRight?"
     private let devCode = "code"
     private let range: ClosedRange<Double> = 0.00...1.00
     private let step: Double = 0.01
@@ -45,7 +46,7 @@ struct SettingsView: View {
             backBTN
             
         }
-        .background(Values.gameBackgroundColor)
+        .background(Values.primary)
         
         .navigate(to: DeveloperToolsView().environmentObject(viewModel), when: $navigateToDevTools)
         
@@ -76,20 +77,21 @@ struct SettingsView: View {
         
         VStack {
             Text("Volume | \(Int(settingsVM.volume * 100))%")
-                .foregroundColor(Values.buttonsColor)
+                .foregroundColor(Values.secondary)
             
             HStack {
                 decreaseButton
-                    .foregroundColor(Values.buttonsColor)
+                    .foregroundColor(Values.secondary)
                 
                 Slider(value: $settingsVM.volume)
+                    .tint(Values.secondary)
                     .onChange(of: self.settingsVM.volume) { value in
                         SoundManager.soundInstance.playSound(sound: .swoosh)
                         SoundManager.soundInstance.player?.volume = Float(value)
                     }
                 
                 increaseButton
-                    .foregroundColor(Values.buttonsColor)
+                    .foregroundColor(Values.secondary)
             }
         }
         .padding(.horizontal, 25)
@@ -98,20 +100,21 @@ struct SettingsView: View {
     var soundFXSlider: some View {
         VStack {
             Text("SFX Volume | \(Int(settingsVM.SFXVolume * 100))%")
-                .foregroundColor(Values.buttonsColor)
+                .foregroundColor(Values.secondary)
             
             HStack {
                 decreaseButton
-                    .foregroundColor(Values.buttonsColor)
+                    .foregroundColor(Values.secondary)
                 
                 Slider(value: $settingsVM.SFXVolume)
+                    .tint(Values.secondary)
                     .onChange(of: self.settingsVM.SFXVolume) { value in
                         SoundManager.soundInstance.playSound(sound: .swoosh)
                         SoundManager.soundInstance.soundPlayer?.volume = Float(value)
                     }
                 
                 increaseButton
-                    .foregroundColor(Values.buttonsColor)
+                    .foregroundColor(Values.secondary)
             }
         }
         .padding(.horizontal, 25)
@@ -122,12 +125,11 @@ struct SettingsView: View {
         TextField("Code", text: $enterCode)
             .multilineTextAlignment(.center)
             .autocorrectionDisabled()
-            .onChange(of: enterCode, perform: { _ in
-                SoundManager.soundInstance.playSound(sound: .type)
-            })
             .onSubmit {
                 if enterCode.lowercased() == devCode {
                     navigateToDevTools = true
+                } else if enterCode == devGunCode {
+                    print("That's the code!")
                 }
             }
             .padding(5)
@@ -139,7 +141,7 @@ struct SettingsView: View {
             SoundManager.soundInstance.playSound(sound: .click)
             dismiss()
         }
-        .foregroundColor(Values.buttonsColor)
+        .foregroundColor(Values.secondary)
         
     }
 }
@@ -224,14 +226,14 @@ private extension SettingsView {
 
 private extension SettingsView {
     enum Values {
-        static let gameBackgroundColor = SnakeColors.gameBackground
-        static let buttonsColor = SnakeColors.buttonColors
+        static let primary = SnakeColors.primary
+        static let secondary = SnakeColors.secondary
     }
 }
 
 enum SnakeColors {
-    static let gameBackground = Color("Background")
-    static let buttonColors = Color("PlusMinus")
+    static let primary = Color("Primary")
+    static let secondary = Color("Secondary")
 }
 
 

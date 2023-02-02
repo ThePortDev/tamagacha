@@ -37,6 +37,7 @@ class SoundManager {
         
         do {
             player = try AVAudioPlayer(contentsOf: url)
+            player?.volume = Float(SettingsUserDefaults.instance.retrieveVolume())
             player?.prepareToPlay()
             player?.play()
             player?.numberOfLoops = -1
@@ -50,6 +51,7 @@ class SoundManager {
         
         do {
             soundPlayer = try AVAudioPlayer(contentsOf: url)
+            soundPlayer?.volume = Float(SettingsUserDefaults.instance.retrieveVolume())
             soundPlayer?.prepareToPlay()
             soundPlayer?.play()
         } catch let error {

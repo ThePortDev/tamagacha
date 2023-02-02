@@ -35,6 +35,8 @@ struct SettingsView: View {
             
             volumeSlider
             
+            soundFXSlider
+            
             devTools
                 .padding(15)
             
@@ -75,6 +77,7 @@ struct SettingsView: View {
         VStack {
             Text("Volume | \(Int(settingsVM.volume * 100))%")
                 .foregroundColor(Values.buttonsColor)
+            
             HStack {
                 decreaseButton
                     .foregroundColor(Values.buttonsColor)
@@ -83,6 +86,28 @@ struct SettingsView: View {
                     .onChange(of: self.settingsVM.volume) { value in
                         SoundManager.soundInstance.playSound(sound: .swoosh)
                         SoundManager.soundInstance.player?.volume = Float(value)
+                    }
+                
+                increaseButton
+                    .foregroundColor(Values.buttonsColor)
+            }
+        }
+        .padding(.horizontal, 25)
+    }
+    
+    var soundFXSlider: some View {
+        VStack {
+            Text("SFX Volume | \(Int(settingsVM.SFXVolume * 100))%")
+                .foregroundColor(Values.buttonsColor)
+            
+            HStack {
+                decreaseButton
+                    .foregroundColor(Values.buttonsColor)
+                
+                Slider(value: $settingsVM.SFXVolume)
+                    .onChange(of: self.settingsVM.SFXVolume) { value in
+                        SoundManager.soundInstance.playSound(sound: .swoosh)
+                        SoundManager.soundInstance.soundPlayer?.volume = Float(value)
                     }
                 
                 increaseButton
@@ -138,6 +163,16 @@ private extension SettingsView {
         guard settingsVM.volume > range.lowerBound else { return }
         settingsVM.volume -= step
     }
+    
+    func increaseSFX() {
+        guard settingsVM.SFXVolume < range.upperBound else { return }
+        settingsVM.SFXVolume += step
+    }
+    
+    func decreaseSFX() {
+        guard settingsVM.SFXVolume > range.lowerBound else { return }
+        settingsVM.SFXVolume -= step
+    }
 }
 
 private extension SettingsView {
@@ -157,6 +192,28 @@ private extension SettingsView {
         Button {
             SoundManager.soundInstance.playSound(sound: .click)
             decrease()
+        } label: {
+            Image(systemName: "minus")
+        }
+        .opacity(hasChanged ? 0.5 : 1)
+        .disabled(hasChanged)
+    }
+    
+    var increaseButtonSFX: some View {
+        Button {
+            SoundManager.soundInstance.playSound(sound: .click)
+            increaseSFX()
+        } label: {
+            Image(systemName: "plus")
+        }
+        .opacity(hasChanged ? 0.5 : 1)
+        .disabled(hasChanged)
+    }
+    
+    var decreaseButtonSFX: some View {
+        Button {
+            SoundManager.soundInstance.playSound(sound: .click)
+            decreaseSFX()
         } label: {
             Image(systemName: "minus")
         }

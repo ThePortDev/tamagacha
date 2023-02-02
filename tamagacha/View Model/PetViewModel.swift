@@ -51,7 +51,8 @@ class PetViewModel: ObservableObject {
         }
         timer = Timer.scheduledTimer(withTimeInterval: Pet.decreaseTime, repeats: true) { _ in
             self.pet.update()
-            self.store.add(money: 1)
+//            SoundManager.soundInstance.playSound(sound: .chaching)
+            self.store.add(money: 10)
         }
         
     }

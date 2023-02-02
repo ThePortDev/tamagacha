@@ -38,6 +38,7 @@ struct DeveloperToolsView: View {
                 SoundManager.soundInstance.playSound(sound: .click)
                 viewModel.pet.isAlive = false
                 viewModel.saveData()
+                print(viewModel.pet.isAlive)
             } label: {
                 CoolRect(text: "Kill Pet", gradientColors: [.gray, .white])
             }

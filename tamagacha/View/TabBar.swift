@@ -16,6 +16,7 @@ struct CustomTabBar: View {
     @Binding var selectedTab: String
     @Binding var navigateToSettings: Bool
     @Binding var navigateToMiniGame: Bool
+    @Binding var navigateToGraveyard: Bool
         
     var body: some View {
         ZStack(alignment: .top) {
@@ -29,9 +30,11 @@ struct CustomTabBar: View {
                         TabBarButton(activeView: $activeView, image: "house", selectedTab: $selectedTab)
                         TabBarButton(activeView: $activeView, image: "bookmark", selectedTab: $selectedTab)
                         //TabBarButton(image: "message", selectedTab: $selectedTab)
-                        TabBarButton(activeView: $activeView, image: "sportscourt", selectedTab: $selectedTab)
-                        SettingsButton(activeView: $activeView, image: "gearshape", navigateToSettings: $navigateToSettings)
-                        MiniGameButton(activeView: $activeView, image: "1.circle", navigateToMiniGame: $navigateToMiniGame)
+                        TabBarButton(image: "sportscourt", selectedTab: $selectedTab)
+                        SettingsButton(image: "gearshape", navigateToSettings: $navigateToSettings)
+                        MiniGameButton(image: "1.circle", navigateToMiniGame: $navigateToMiniGame)
+                        GraveyardButton(image: "🪦", navigateToGraveyard: $navigateToGraveyard)
+
                     }
                     .padding()
                     .background(Color.white)
@@ -191,6 +194,26 @@ struct MiniGameButton: View {
         .frame(height: 50)
     }
 }
+
+struct GraveyardButton: View {
+    var image: String
+    @Binding var navigateToGraveyard: Bool
+    
+    var body: some View {
+        GeometryReader { geometry in
+            Button(action: {
+                SoundManager.soundInstance.playSound(sound: .click)
+                navigateToGraveyard = true
+            }) {
+                Text(image)
+                    .font(.system(size: 25, weight: .semibold))
+            }
+            .frame(maxWidth: .infinity, maxHeight: .infinity)
+        }
+        .frame(height: 50)
+    }
+}
+
 
 struct HomeView4_Previews: PreviewProvider {
     static var previews: some View {

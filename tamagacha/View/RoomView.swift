@@ -200,10 +200,9 @@ struct InventoryView: View {
                         ForEach(Array(viewModel.store.inventory.keys), id: \.self) { item in
                             if viewModel.store.inventory[item]! > 0 {
                                 Button {
+                                    SoundManager.soundInstance.playSound(sound: .plop)
                                     viewModel.add(item: item)
                                     viewModel.remove(item: item.name)
-                                    
-            
                                 } label: {
                                     Text("\(item.name):\n \(viewModel.store.inventory[item]!)")
                                         .multilineTextAlignment(.center)

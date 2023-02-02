@@ -47,6 +47,7 @@
 		00AD683F298B20B100651C1E /* shower.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 00AD683E298B20B100651C1E /* shower.mp3 */; };
 		00AD6841298B2D0A00651C1E /* type.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 00AD6840298B2D0A00651C1E /* type.mp3 */; };
 		00AD6843298B310A00651C1E /* boing.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 00AD6842298B310A00651C1E /* boing.mp3 */; };
+		00AD6845298C574A00651C1E /* chaching.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 00AD6844298C574A00651C1E /* chaching.mp3 */; };
 		4EC8295D2989BD99005713CA /* GifView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EC8295C2989BD99005713CA /* GifView.swift */; };
 		4EC829602989BFD4005713CA /* gumballGif.gif in Resources */ = {isa = PBXBuildFile; fileRef = 4EC8295F2989BFD4005713CA /* gumballGif.gif */; };
 		4EC829632989CA6F005713CA /* SwiftyGif in Frameworks */ = {isa = PBXBuildFile; productRef = 4EC829622989CA6F005713CA /* SwiftyGif */; };
@@ -103,6 +104,7 @@
 		00AD683E298B20B100651C1E /* shower.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = shower.mp3; sourceTree = "<group>"; };
 		00AD6840298B2D0A00651C1E /* type.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = type.mp3; sourceTree = "<group>"; };
 		00AD6842298B310A00651C1E /* boing.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = boing.mp3; sourceTree = "<group>"; };
+		00AD6844298C574A00651C1E /* chaching.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = chaching.mp3; sourceTree = "<group>"; };
 		4EC8295C2989BD99005713CA /* GifView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GifView.swift; sourceTree = "<group>"; };
 		4EC8295F2989BFD4005713CA /* gumballGif.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = gumballGif.gif; sourceTree = "<group>"; };
 		4EC829642989D8C4005713CA /* ghost.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = ghost.gif; sourceTree = "<group>"; };
@@ -258,6 +260,7 @@
 				ED7B3FE02981E71F00D7F01C /* retro-game.mp3 */,
 				00AD683E298B20B100651C1E /* shower.mp3 */,
 				00AD683A298B048800651C1E /* recieved.mp3 */,
+				00AD6844298C574A00651C1E /* chaching.mp3 */,
 				00AD6838298B045B00651C1E /* plop.mp3 */,
 				00AD6834298B03A100651C1E /* click.mp3 */,
 				00AD6840298B2D0A00651C1E /* type.mp3 */,
@@ -343,6 +346,7 @@
 				4EC829602989BFD4005713CA /* gumballGif.gif in Resources */,
 				4EC8296B2989DFAF005713CA /* ghost3.gif in Resources */,
 				008FE75B29833FE5007A1FC8 /* sad.mp3 in Resources */,
+				00AD6845298C574A00651C1E /* chaching.mp3 in Resources */,
 				00AD683F298B20B100651C1E /* shower.mp3 in Resources */,
 				00AD6839298B045B00651C1E /* plop.mp3 in Resources */,
 				00AD6843298B310A00651C1E /* boing.mp3 in Resources */,

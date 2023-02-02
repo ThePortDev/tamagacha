@@ -83,9 +83,8 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     }
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
-        SoundManager.soundInstance.playSound(sound: .boing)
+        
         if let touch = touches.first {
-
             let location = touch.location(in: self)
             let touchedNodes = self.nodes(at: location)
             for node in touchedNodes.reversed() {
@@ -113,6 +112,14 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     }
     
     override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
+        SoundManager.soundInstance.playSound(sound: .boing)
+        if !(box!.hasActions()) {
+            let flip = SKAction.scaleX(to: box!.xScale * -1, duration: 1)
+            let flip2 = SKAction.scaleX(to: box!.xScale, duration: 1)
+            let action = SKAction.sequence([flip, flip2])
+            action.timingMode = .easeOut
+            box?.run(action)
+        }
         self.currentNode = nil
     }
     
@@ -123,7 +130,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     override func update(_ currentTime: TimeInterval) {
         cam.position.x = moveBox!.position.x
         boxName!.position = CGPoint(x: box!.position.x, y: CGFloat((box?.position.y)!) + box!.size.height / 2)
-        boxName?.text = "\(viewModel.pet.name) - \(viewModel.pet.age / 86400) Days"
+        boxName?.text = "\(viewModel.pet.name) - \(viewModel.pet.age / 86400) Day\(((viewModel.pet.age / 86400) > 1) ? "" : "s")"
     }
     
     func collisionBetween(ball: SKNode, object: SKNode) {

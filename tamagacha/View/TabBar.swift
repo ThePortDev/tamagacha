@@ -14,6 +14,7 @@ struct CustomTabBar: View {
     @Binding var selectedTab: String
     @Binding var navigateToSettings: Bool
     @Binding var navigateToMiniGame: Bool
+    @Binding var navigateToGraveyard: Bool
         
     var body: some View {
         ZStack(alignment: .top) {
@@ -30,6 +31,7 @@ struct CustomTabBar: View {
                         TabBarButton(image: "sportscourt", selectedTab: $selectedTab)
                         SettingsButton(image: "gearshape", navigateToSettings: $navigateToSettings)
                         MiniGameButton(image: "1.circle", navigateToMiniGame: $navigateToMiniGame)
+                        GraveyardButton(image: "🪦", navigateToGraveyard: $navigateToGraveyard)
                     }
                     .padding()
                     .background(Color.white)
@@ -181,6 +183,26 @@ struct MiniGameButton: View {
         .frame(height: 50)
     }
 }
+
+struct GraveyardButton: View {
+    var image: String
+    @Binding var navigateToGraveyard: Bool
+    
+    var body: some View {
+        GeometryReader { geometry in
+            Button(action: {
+                SoundManager.soundInstance.playSound(sound: .click)
+                navigateToGraveyard = true
+            }) {
+                Text(image)
+                    .font(.system(size: 25, weight: .semibold))
+            }
+            .frame(maxWidth: .infinity, maxHeight: .infinity)
+        }
+        .frame(height: 50)
+    }
+}
+
 
 struct HomeView4_Previews: PreviewProvider {
     static var previews: some View {

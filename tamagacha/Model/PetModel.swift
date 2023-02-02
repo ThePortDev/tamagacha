@@ -12,7 +12,7 @@ struct Pet: Codable, Identifiable {
     var image: String
     var birthday = Date()
     var id = UUID()
-    var isAlive = true
+    var isAlive: Bool
     var deadPets = [Pet]()
     var petStatus: String {
         if self.hunger > 75 && self.thirst > 75 && self.hygiene > 75 && self.love > 75 {
@@ -43,7 +43,7 @@ struct Pet: Codable, Identifiable {
     
     var description: String
     
-    init(name: String, image: String, petType: PetType, maxHunger: CGFloat, hunger: CGFloat, maxThirst: CGFloat, thirst: CGFloat, maxHygiene: CGFloat, hygiene: CGFloat, maxLove: CGFloat, love: CGFloat, description: String, deadPets: [Pet] = []) {
+    init(name: String, image: String, petType: PetType, maxHunger: CGFloat, hunger: CGFloat, maxThirst: CGFloat, thirst: CGFloat, maxHygiene: CGFloat, hygiene: CGFloat, maxLove: CGFloat, love: CGFloat, description: String, deadPets: [Pet] = [], isAlive: Bool =  true) {
         self.name = name
         self.image = image
         self.petType = petType
@@ -65,6 +65,8 @@ struct Pet: Codable, Identifiable {
         
         self.love = love
         self.maxLove = maxLove
+        
+        self.isAlive = isAlive
     }
     
     mutating func update() {

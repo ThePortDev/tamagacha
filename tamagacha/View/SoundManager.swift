@@ -24,6 +24,7 @@ class SoundManager {
         case hooray = "hooray"
         case click = "click"
         case plop = "plop"
+        case chaching = "chaching"
         case recieved = "recieved"
         case swoosh = "swoosh"
         case shower = "shower"

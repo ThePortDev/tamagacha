@@ -11,7 +11,8 @@ struct StoreView: View {
     @Binding var activeView: currentView
     @Binding var navigateToSettings: Bool
     @Binding var navigateToMiniGame: Bool
-        
+    @Binding var navigateToGraveyard: Bool
+    
     @State var selectedTab = "house"
     
     @EnvironmentObject var viewModel: PetViewModel
@@ -24,7 +25,7 @@ struct StoreView: View {
             VStack(spacing: 0) {
                 storeSwipeTab
                 //storeTapTab
-                CustomTabBar(selectedTab: $selectedTab, navigateToSettings: $navigateToSettings, navigateToMiniGame: $navigateToMiniGame)
+                CustomTabBar(selectedTab: $selectedTab, navigateToSettings: $navigateToSettings, navigateToMiniGame: $navigateToMiniGame, navigateToGraveyard: $navigateToGraveyard)
             }
             //.frame(width: geometry.size.width, height: geometry.size.height, alignment: .center)
         }

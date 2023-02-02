@@ -26,6 +26,8 @@ struct HomeView: View {
     
     @State private var welcomeAlert = (title: "Welcome Back!", message: "", isShown: false)
     
+    @State var alertToShow: Bool = true
+    
     // swipe gesture
     @State var activeView = currentView.center
     //    @State var viewState = CGSize.zero
@@ -33,8 +35,8 @@ struct HomeView: View {
     // settings
     @State var navigateToSettings: Bool = false
     @State var navigateToDeath: Bool = false
-    @State var navigateToGraveyard: Bool = false
     @State var navigateToMiniGame: Bool = false
+    @State var navigateToGraveyard: Bool = false
     
     // drag gesture X
     @State private var startingOffsetX: CGFloat = -UIScreen.main.bounds.width
@@ -65,7 +67,7 @@ struct HomeView: View {
             ZStack {
                 RoomView(activeView: $activeView)
 
-                StoreView(activeView: $activeView, navigateToSettings: $navigateToSettings, navigateToMiniGame: $navigateToMiniGame)
+                StoreView(activeView: $activeView, navigateToSettings: $navigateToSettings, navigateToMiniGame: $navigateToMiniGame, navigateToGraveyard: $navigateToGraveyard)
                     .frame(width: screenWidth, height: 960)
                     .offset(x: (activeView == .left ? screenWidth : 0))
                 //                    .offset(y: (activeView == .bottom ? 0 : startingOffsetY))
@@ -106,9 +108,12 @@ struct HomeView: View {
             .navigate(to: MiniGameView(), when: $navigateToMiniGame)
             .environmentObject(viewModel)
             .onAppear {
-                welcomeAlert.message = viewModel.pet.petStatus
-                welcomeAlert.isShown = true
-                SoundManager.soundInstance.playSound(sound: .hooray)
+                if alertToShow == true {
+                    welcomeAlert.message = viewModel.pet.petStatus
+                    welcomeAlert.isShown = true
+                    SoundManager.soundInstance.playSound(sound: .hooray)
+                    alertToShow = false
+                }
                 navigateToDeath = !viewModel.pet.isAlive
             }
             .alert(welcomeAlert.title, isPresented: $welcomeAlert.isShown) {
@@ -118,9 +123,6 @@ struct HomeView: View {
                 }
             } message: {
                 Text(welcomeAlert.message)
-            }
-            .onAppear {
-                SoundManager.soundInstance.playSound(sound: .hooray)
             }
         }
     }
@@ -138,24 +140,33 @@ struct HomeView_Previews: PreviewProvider {
 struct GraveyardView: View {
     
     @EnvironmentObject var viewModel: PetViewModel
+    @Environment(\.dismiss) var dismiss
     
     var body: some View {
-        ScrollView {
-            ForEach(viewModel.pet.deadPets) { pet in
-                VStack {
-                    Image("TOMBTEST")
-                        .resizable()
-                        .frame(width: 300, height: 300)
-                        .background(
-                            AngularGradient(colors: [.white, .black], center: .topLeading)
-                                .cornerRadius(20)
-                                .shadow(
-                                    color: .black.opacity(0.5),
-                                    radius: 10,
-                                    x: 0.0, y: 5))
-                    Image(pet.image)
-                    Text("Here lies: \(pet.name)")
+        VStack {
+            ScrollView {
+                ForEach(viewModel.pet.deadPets) { pet in
+                    VStack {
+                        Image("TOMBTEST")
+                            .resizable()
+                            .frame(width: 300, height: 300)
+                            .background(
+                                AngularGradient(colors: [.white, .black], center: .topLeading)
+                                    .cornerRadius(20)
+                                    .shadow(
+                                        color: .black.opacity(0.5),
+                                        radius: 10,
+                                        x: 0.0, y: 5))
+                        Image(pet.image)
+                        Text("Here lies: \(pet.name)")
+                    }
                 }
+            }
+            Button() {
+                SoundManager.soundInstance.playSound(sound: .click)
+                dismiss()
+            } label: {
+                CoolRect(text: "Go back home", gradientColors: [.blue, .cyan])
             }
         }
     }

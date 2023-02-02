@@ -28,7 +28,7 @@ struct PopOverView: View {
                 
             }
             .onAppear {
-                SoundManager.soundInstance.playSound(sound: .hooray)
+                SoundManager.soundInstance.playSound(sound: .recieved)
             }
             .environmentObject(viewModel)
             .background(

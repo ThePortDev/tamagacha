@@ -30,9 +30,9 @@ struct CustomTabBar: View {
                         TabBarButton(activeView: $activeView, image: "house", selectedTab: $selectedTab)
                         TabBarButton(activeView: $activeView, image: "bookmark", selectedTab: $selectedTab)
                         //TabBarButton(image: "message", selectedTab: $selectedTab)
-                        TabBarButton(image: "sportscourt", selectedTab: $selectedTab)
-                        SettingsButton(image: "gearshape", navigateToSettings: $navigateToSettings)
-                        MiniGameButton(image: "1.circle", navigateToMiniGame: $navigateToMiniGame)
+                        TabBarButton(activeView: $activeView,image: "sportscourt", selectedTab: $selectedTab)
+                        SettingsButton(activeView: $activeView, image: "gearshape", navigateToSettings: $navigateToSettings)
+                        MiniGameButton(activeView: $activeView, image: "1.circle", navigateToMiniGame: $navigateToMiniGame)
                         GraveyardButton(image: "🪦", navigateToGraveyard: $navigateToGraveyard)
 
                     }

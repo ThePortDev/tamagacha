@@ -14,7 +14,7 @@ struct StatBar: View {
                     .frame(width: geometry.size.width)
                 RoundedRectangle(cornerRadius: 15)
                     .foregroundColor(color)
-                    .frame(width: geometry.size.width * (value / 100))
+                    .frame(width: abs(geometry.size.width * (value / 100)))
                 Text("\(name): \(Int(value))")
                     .padding(.leading, 10)
                     .padding(5)

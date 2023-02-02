@@ -24,7 +24,7 @@ struct StoreView: View {
             VStack(spacing: 0) {
                 storeSwipeTab
                 //storeTapTab
-                CustomTabBar(selectedTab: $selectedTab, navigateToSettings: $navigateToSettings, navigateToMiniGame: $navigateToMiniGame)
+                CustomTabBar(activeView: $activeView, selectedTab: $selectedTab, navigateToSettings: $navigateToSettings, navigateToMiniGame: $navigateToMiniGame)
             }
             //.frame(width: geometry.size.width, height: geometry.size.height, alignment: .center)
         }

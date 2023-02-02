@@ -13,3 +13,7 @@ extension Font {
         custom("HangTheDJ", size: size, relativeTo: style)
     }
 }
+
+enum TamagachaFont {
+    static let title = Font.hangTheDj(size: 30, relativeTo: .title)
+}

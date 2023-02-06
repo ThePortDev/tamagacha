@@ -146,7 +146,7 @@ class DeadPetUserDefaults: ObservableObject {
         UserDefaults.standard.set(try? JSONEncoder().encode(dead), forKey: DeadPetUserDefaults.DEAD_KEY)
     }
     
-    func load() -> [Any] {
-        UserDefaults.standard.array(forKey: DeadPetUserDefaults.DEAD_KEY) ?? [Pet]()
+    func load() -> [Pet] {
+        UserDefaults.standard.array(forKey: DeadPetUserDefaults.DEAD_KEY) as? [Pet] ?? [Pet]()
     }
 }

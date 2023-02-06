@@ -20,6 +20,7 @@
 		0034B57C2991A1F900CD1A0D /* chirp.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 0034B5792991A1F900CD1A0D /* chirp.mp3 */; };
 		0034B57D2991A1F900CD1A0D /* jiggle.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 0034B57A2991A1F900CD1A0D /* jiggle.mp3 */; };
 		0034B57E2991A1F900CD1A0D /* meow.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 0034B57B2991A1F900CD1A0D /* meow.mp3 */; };
+		0034B5802991C64B00CD1A0D /* notif.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 0034B57F2991C64B00CD1A0D /* notif.mp3 */; };
 		007011C22981CA4400185FC2 /* SoundManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 007011C12981CA4400185FC2 /* SoundManager.swift */; };
 		007011C42981CA5600185FC2 /* GameScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 007011C32981CA5600185FC2 /* GameScene.swift */; };
 		007011C62981CA8900185FC2 /* TabBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 007011C52981CA8900185FC2 /* TabBar.swift */; };
@@ -45,7 +46,6 @@
 		0090F2B42979DF2500CBDD2F /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0090F2B32979DF2500CBDD2F /* SettingsView.swift */; };
 		0090F2B62979DF4F00CBDD2F /* DeveloperToolsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0090F2B52979DF4F00CBDD2F /* DeveloperToolsView.swift */; };
 		00AD6835298B03A100651C1E /* click.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 00AD6834298B03A100651C1E /* click.mp3 */; };
-		00AD6837298B043000651C1E /* hooray.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 00AD6836298B043000651C1E /* hooray.mp3 */; };
 		00AD6839298B045B00651C1E /* plop.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 00AD6838298B045B00651C1E /* plop.mp3 */; };
 		00AD683B298B048800651C1E /* recieved.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 00AD683A298B048800651C1E /* recieved.mp3 */; };
 		00AD683D298B1FDE00651C1E /* swoosh.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 00AD683C298B1FDE00651C1E /* swoosh.mp3 */; };
@@ -83,6 +83,7 @@
 		0034B5792991A1F900CD1A0D /* chirp.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = chirp.mp3; sourceTree = "<group>"; };
 		0034B57A2991A1F900CD1A0D /* jiggle.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = jiggle.mp3; sourceTree = "<group>"; };
 		0034B57B2991A1F900CD1A0D /* meow.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = meow.mp3; sourceTree = "<group>"; };
+		0034B57F2991C64B00CD1A0D /* notif.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = notif.mp3; sourceTree = "<group>"; };
 		007011C12981CA4400185FC2 /* SoundManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SoundManager.swift; sourceTree = "<group>"; };
 		007011C32981CA5600185FC2 /* GameScene.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameScene.swift; sourceTree = "<group>"; };
 		007011C52981CA8900185FC2 /* TabBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBar.swift; sourceTree = "<group>"; };
@@ -109,7 +110,6 @@
 		0090F2B32979DF2500CBDD2F /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
 		0090F2B52979DF4F00CBDD2F /* DeveloperToolsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeveloperToolsView.swift; sourceTree = "<group>"; };
 		00AD6834298B03A100651C1E /* click.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = click.mp3; sourceTree = "<group>"; };
-		00AD6836298B043000651C1E /* hooray.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = hooray.mp3; sourceTree = "<group>"; };
 		00AD6838298B045B00651C1E /* plop.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = plop.mp3; sourceTree = "<group>"; };
 		00AD683A298B048800651C1E /* recieved.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = recieved.mp3; sourceTree = "<group>"; };
 		00AD683C298B1FDE00651C1E /* swoosh.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = swoosh.mp3; sourceTree = "<group>"; };
@@ -274,6 +274,7 @@
 			isa = PBXGroup;
 			children = (
 				008FE75A29833FE5007A1FC8 /* sad.mp3 */,
+				0034B57F2991C64B00CD1A0D /* notif.mp3 */,
 				0034B5792991A1F900CD1A0D /* chirp.mp3 */,
 				0034B57A2991A1F900CD1A0D /* jiggle.mp3 */,
 				0034B57B2991A1F900CD1A0D /* meow.mp3 */,
@@ -287,7 +288,6 @@
 				00AD6834298B03A100651C1E /* click.mp3 */,
 				00AD6840298B2D0A00651C1E /* type.mp3 */,
 				00AD683C298B1FDE00651C1E /* swoosh.mp3 */,
-				00AD6836298B043000651C1E /* hooray.mp3 */,
 			);
 			path = Sounds;
 			sourceTree = "<group>";
@@ -362,7 +362,6 @@
 				ED2A1D502991BD680068150B /* yoster.ttf in Resources */,
 				00AD683B298B048800651C1E /* recieved.mp3 in Resources */,
 				00AD6841298B2D0A00651C1E /* type.mp3 in Resources */,
-				00AD6837298B043000651C1E /* hooray.mp3 in Resources */,
 				0034B57C2991A1F900CD1A0D /* chirp.mp3 in Resources */,
 				4EFCD17029886BC5006A3BF1 /* OldSchoolAdventures.ttf in Resources */,
 				4EC829672989DD84005713CA /* gumball2.gif in Resources */,
@@ -371,6 +370,7 @@
 				4EC829602989BFD4005713CA /* gumballGif.gif in Resources */,
 				4EC8296B2989DFAF005713CA /* ghost3.gif in Resources */,
 				008FE75B29833FE5007A1FC8 /* sad.mp3 in Resources */,
+				0034B5802991C64B00CD1A0D /* notif.mp3 in Resources */,
 				0034B57E2991A1F900CD1A0D /* meow.mp3 in Resources */,
 				00AD6845298C574A00651C1E /* chaching.mp3 in Resources */,
 				00AD683F298B20B100651C1E /* shower.mp3 in Resources */,

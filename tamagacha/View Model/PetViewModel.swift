@@ -18,6 +18,8 @@ class PetViewModel: ObservableObject {
     
     //@Published var catchMiniGameScene: CatchMiniGameScene
     
+    var onDeath: () -> Void = { }
+    
     private(set) var userDefaultPet = PetUserDefaults()
     private var userDefaultStore = StoreUserDefaults()
 
@@ -52,10 +54,12 @@ class PetViewModel: ObservableObject {
         }
         timer = Timer.scheduledTimer(withTimeInterval: Pet.decreaseTime, repeats: true) { _ in
             self.pet.update()
-//            SoundManager.soundInstance.playSound(sound: .chaching)
             
+            if !self.pet.isAlive {
+                self.onDeath()
+            }
+//            SoundManager.soundInstance.playSound(sound: .chaching)
         }
-        
     }
     
     func add(item: Item) {
@@ -137,5 +141,7 @@ class PetViewModel: ObservableObject {
     deinit {
         timer?.invalidate()
     }
+    
+    
     
 }

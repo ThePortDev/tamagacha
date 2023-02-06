@@ -23,10 +23,9 @@ struct StoreView: View {
     var body: some View {
         GeometryReader { geometry in
             VStack(spacing: 0) {
-                storeSwipeTab
+                //storeSwipeTab
                 //storeTapTab
                 CustomTabBar(activeView: $activeView, selectedTab: $selectedTab, navigateToSettings: $navigateToSettings, navigateToMiniGame: $navigateToMiniGame, navigateToGraveyard: $navigateToGraveyard)
-
             }
             //.frame(width: geometry.size.width, height: geometry.size.height, alignment: .center)
         }

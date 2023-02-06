@@ -70,39 +70,7 @@ struct HomeView: View {
                 RoomView(activeView: $activeView)
 
                 StoreView(activeView: $activeView, navigateToSettings: $navigateToSettings, navigateToMiniGame: $navigateToMiniGame, navigateToGraveyard: $navigateToGraveyard)
-                    .frame(width: screenWidth, height: 960)
-                    .offset(x: (activeView == .left ? screenWidth : 0))
-                //                    .offset(y: (activeView == .bottom ? 0 : startingOffsetY))
-                    .offset(y: startingOffsetY)
-                    .offset(y: currentDragOffsetY)
-                    .offset(y: endingOffsetY)
-                    .gesture (
-                        DragGesture()
-                            .onChanged { value in
-                                SoundManager.soundInstance.playSound(sound: .swoosh)
-                                withAnimation(.spring()) {
-                                    if activeView == .bottom && value.translation.height < 0 {
-                                        return
-                                    } else {
-                                        currentDragOffsetY = value.translation.height
-                                    }
-                                }
-                            }
-                            .onEnded({ value in
-                                withAnimation(.spring()) {
-                                    if currentDragOffsetY < -100 {
-                                        endingOffsetY = -startingOffsetY - 100
-                                        activeView = .bottom
-                                    }
-                                    else if endingOffsetY != 0 && currentDragOffsetY > 150{
-                                        endingOffsetY = 0
-                                        activeView = .center
-                                    }
-                                    currentDragOffsetY = 0
-                                }
-                            })
-                    )
-                    .zIndex(.infinity)
+                    .offset(y: (activeView != .bottom ? screenHeight - 150 : -screenHeight / 4))
             }
             .navigate(to: SettingsView().environmentObject(viewModel), when: $navigateToSettings)
             .navigate(to: DeathScreenPopOverView(DeadPetsVM: DeadPetsVM).environmentObject(viewModel), when: $navigateToDeath)

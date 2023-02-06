@@ -22,6 +22,8 @@ enum currentView {
 
 struct HomeView: View {
     
+    @StateObject var DeadPetsVM: DeadPetUserDefaults
+    
     @StateObject var viewModel = PetViewModel()
     
     @State private var welcomeAlert = (title: "Welcome Back!", message: "", isShown: false)
@@ -103,8 +105,8 @@ struct HomeView: View {
                     .zIndex(.infinity)
             }
             .navigate(to: SettingsView().environmentObject(viewModel), when: $navigateToSettings)
-            .navigate(to: DeathScreenPopOverView().environmentObject(viewModel), when: $navigateToDeath)
-            .navigate(to: GraveyardView().environmentObject(viewModel), when: $navigateToGraveyard)
+            .navigate(to: DeathScreenPopOverView(DeadPetsVM: DeadPetsVM).environmentObject(viewModel), when: $navigateToDeath)
+            .navigate(to: GraveyardView(DeadPetsVM: DeadPetsVM).environmentObject(viewModel), when: $navigateToGraveyard)
             .navigate(to: MiniGameView(), when: $navigateToMiniGame)
             .environmentObject(viewModel)
             .onAppear {
@@ -132,9 +134,47 @@ struct HomeView: View {
 
 struct HomeView_Previews: PreviewProvider {
     static var previews: some View {
-        HomeView()
+        HomeView(DeadPetsVM: DeadPetUserDefaults())
     }
 }
 
 
+
+struct GraveyardView: View {
+    
+    @EnvironmentObject var viewModel: PetViewModel
+    
+    @Environment(\.dismiss) var dismiss
+    
+    @StateObject var DeadPetsVM: DeadPetUserDefaults
+    
+    var body: some View {
+        VStack {
+            ScrollView {
+                ForEach(DeadPetsVM.deadPets) { pet in
+                    VStack {
+                        Image("TOMBTEST")
+                            .resizable()
+                            .frame(width: 300, height: 300)
+                            .background(
+                                AngularGradient(colors: [.white, .black], center: .topLeading)
+                                    .cornerRadius(20)
+                                    .shadow(
+                                        color: .black.opacity(0.5),
+                                        radius: 10,
+                                        x: 0.0, y: 5))
+                        Image(pet.image)
+                        Text("Here lies: \(pet.name)")
+                    }
+                }
+            }
+            Button() {
+                SoundManager.soundInstance.playSound(sound: .click)
+                dismiss()
+            } label: {
+                CoolRect(text: "Go back home", gradientColors: [.blue, .cyan])
+            }
+        }
+    }
+}
 

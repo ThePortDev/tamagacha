@@ -9,6 +9,8 @@ import SwiftUI
 
 struct ObituaryView: View {
     
+    @StateObject var DeadPetsVM: DeadPetUserDefaults
+    
     @EnvironmentObject var viewModel: PetViewModel
     
     @State var petLT = ""
@@ -83,7 +85,7 @@ Age: \(viewModel.pet.age / 86400)
     var submitButton: some View {
         Button {
             viewModel.pet.description = petLT
-            viewModel.pet.deadPets.append(viewModel.pet)
+            DeadPetsVM.deadPets.append(viewModel.pet)
             viewModel.saveData()
             goGumballBool = true
         } label: {
@@ -103,13 +105,13 @@ Age: \(viewModel.pet.age / 86400)
                     .bold()
                     .italic()
             }
-            .navigate(to: GumballMachineView(), when: $goGumballBool)
+            .navigate(to: GumballMachineView(DeadPetsVM: DeadPetsVM), when: $goGumballBool)
         }
     }
     
     struct ObituaryView_Previews: PreviewProvider {
         static var previews: some View {
-            ObituaryView()
+            ObituaryView(DeadPetsVM: DeadPetUserDefaults())
                 .environmentObject(PetViewModel())
         }
     }

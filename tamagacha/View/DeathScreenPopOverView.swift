@@ -8,6 +8,7 @@
 import SwiftUI
 
 struct DeathScreenPopOverView: View {
+    @StateObject var DeadPetsVM: DeadPetUserDefaults
     @State private var showingPopover = false
     
     @StateObject var viewModel = PetViewModel()
@@ -99,7 +100,7 @@ struct DeathScreenPopOverView: View {
         .onTapGesture {
             SoundManager.soundInstance.playSound(sound: .click)
         }
-        .navigate(to: GumballMachineView(), when: $goToGumball)
+        .navigate(to: GumballMachineView(DeadPetsVM: DeadPetsVM), when: $goToGumball)
     }
     
     @State var goToOde = false
@@ -122,7 +123,7 @@ struct DeathScreenPopOverView: View {
                             x:0.0, y:10)
                 )
         }
-        .navigate(to: ObituaryView(), when: $goToOde)
+        .navigate(to: ObituaryView(DeadPetsVM: DeadPetsVM), when: $goToOde)
     }
     
 }
@@ -130,6 +131,6 @@ struct DeathScreenPopOverView: View {
 
 struct DeathScreenPopOverView_Previews: PreviewProvider {
     static var previews: some View {
-        DeathScreenPopOverView()
+        DeathScreenPopOverView(DeadPetsVM: DeadPetUserDefaults())
     }
 }

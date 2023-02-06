@@ -8,6 +8,9 @@
 import SwiftUI
 
 struct PopOverView: View {
+    
+    @StateObject var DeadPetsVM: DeadPetUserDefaults
+    
     @State private var showingPopover = false
     
     @EnvironmentObject var viewModel: PetViewModel
@@ -137,7 +140,7 @@ struct PopOverView: View {
                     .foregroundColor(.black)
                     .bold()
             }
-            .navigate(to: HomeView(), when: $goHomeBool)
+            .navigate(to: HomeView(DeadPetsVM: DeadPetsVM), when: $goHomeBool)
         }
         
     }
@@ -145,7 +148,7 @@ struct PopOverView: View {
     
     struct PopOverView_Previews: PreviewProvider {
         static var previews: some View {
-            PopOverView()
+            PopOverView(DeadPetsVM: DeadPetUserDefaults())
                 .environmentObject(PetViewModel())
         }
     }

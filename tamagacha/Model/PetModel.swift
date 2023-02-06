@@ -13,7 +13,6 @@ struct Pet: Codable, Identifiable {
     var birthday = Date()
     var id = UUID()
     var isAlive: Bool
-    var deadPets = [Pet]()
     var petStatus: String {
         if self.hunger > 75 && self.thirst > 75 && self.hygiene > 75 && self.love > 75 {
             return "Your pet is well taken care of right now!"
@@ -60,8 +59,6 @@ struct Pet: Codable, Identifiable {
         
         self.hygiene = hygiene
         self.maxHygiene = maxHygiene
-        
-        self.deadPets = deadPets
         
         self.love = love
         self.maxLove = maxLove

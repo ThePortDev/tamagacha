@@ -8,6 +8,7 @@
 import SwiftUI
 
 struct GumballMachineView: View {
+    @StateObject var DeadPetsVM: DeadPetUserDefaults
     @State private var showingPopover = false
     
     @EnvironmentObject var viewModel: PetViewModel
@@ -24,10 +25,8 @@ struct GumballMachineView: View {
             GifView(name: "gumball2.gif")
             Button {
                 SoundManager.soundInstance.playSound(sound: .click)
-                viewModel.pet.deadPets.append(viewModel.pet)
                 viewModel.pet = gumballViewModel.getPet()
                 viewModel.saveData()
-                print(viewModel.pet.deadPets)
                 showingPopover = true
             } label: {
                 ZStack {
@@ -46,7 +45,7 @@ struct GumballMachineView: View {
                         .bold()
                         .italic()
                 }
-                .navigate(to: PopOverView(), when: $showingPopover)
+                .navigate(to: PopOverView(DeadPetsVM: DeadPetsVM), when: $showingPopover)
             }
             
         }
@@ -61,7 +60,7 @@ struct GumballMachineView: View {
 
 struct GumballMachineViewPreviews: PreviewProvider {
     static var previews: some View {
-        GumballMachineView()
+        GumballMachineView(DeadPetsVM: DeadPetUserDefaults())
     }
 }
 

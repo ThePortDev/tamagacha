@@ -16,7 +16,7 @@ struct PetView: View {
     var body: some View {
         VStack {
             Text("\(viewModel.pet.name) - \(viewModel.pet.age)")
-                .font(.custom("HangTheDJ", size: 20))
+                .font(.custom("Yoster Island", size: 20))
                 .bold()
         }
     }

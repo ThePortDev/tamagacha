@@ -143,7 +143,7 @@ struct SubView: View {
                     Text("+ \(Int(withItem.improveStatsBy))")
                     Text("Price: 💲\(withItem.price)")
                 }
-                .font(.custom("HangTheDJ", size: 15))
+                .font(.custom("Yoster Island", size: 15))
             }
         }
             .disabled(viewModel.store.money < withItem.price)

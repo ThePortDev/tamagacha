@@ -59,9 +59,9 @@ struct MenuView: View {
                     color: .black.opacity(0.5),
                     radius: 10,
                     x:0.0, y:10)
-            Text("Tamagacha")
+            Text("TAMAGACHA")
                 .foregroundColor(.black)
-                .font(.custom("HangTheDJ", size: 40))
+                .font(.custom("Yoster Island", size: 40))
                 .bold()
                 .colorInvert()
         }
@@ -97,7 +97,7 @@ struct MenuView: View {
                     x:0.0, y:10)
             Text("Tap To Start")
                 .foregroundColor(.black)
-                .font(.custom("HangTheDJ", size: 30))
+                .font(.custom("Yoster Island", size: 30))
                 .bold()
                 .colorInvert()
                 .onAppear() {

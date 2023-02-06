@@ -29,7 +29,7 @@ struct ObituaryView: View {
     
     var obTitle: some View {
         Text("An Ode To Your Dead Pet:")
-            .font(.custom("HangTheDJ", size: 25))
+            .font(.custom("Yoster Island", size: 25))
     }
     
     var lifeStat: some View {
@@ -43,7 +43,7 @@ Age: \(viewModel.pet.age / 86400)
 
 """)
         }
-        .font(.custom("HangTheDJ", size: 30))
+        .font(.custom("Yoster Island", size: 30))
         .multilineTextAlignment(.leading)
         .frame(width: 350)
         .background(
@@ -63,7 +63,7 @@ Age: \(viewModel.pet.age / 86400)
                     .frame(width: 200, height: 200)
                 TextField("Write about your pet here", text: $petLT, axis: .vertical)
                     .multilineTextAlignment(.center)
-                    .font(.custom("HangTheDJ", size: 20))
+                    .font(.custom("Yoster Island", size: 20))
                     .padding()
                     .frame(width: 350)
                 
@@ -99,7 +99,7 @@ Age: \(viewModel.pet.age / 86400)
                         x:0.0, y:10
                     )
                 Text("Submit Ode?")
-                    .font(.custom("HangTheDJ", size: 35))
+                    .font(.custom("Yoster Island", size: 35))
                     .colorInvert()
                     .foregroundColor(.black)
                     .bold()

@@ -57,7 +57,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         addChild(box!)
 
         boxName = SKLabelNode(text: "\(viewModel.pet.name) - \(viewModel.pet.age)")
-        boxName?.fontName = "body"
+        boxName?.fontName = "Yoster Island"
         boxName?.fontSize = 20
         boxName?.fontColor = .white
         addChild(boxName!)

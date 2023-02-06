@@ -19,7 +19,7 @@ struct GumballMachineView: View {
         VStack(spacing: 20) {
             Text("Let's Adopt A Pet!")
                 .bold()
-                .font(.custom("HangTheDJ", size: 34))
+                .font(.custom("Yoster Island", size: 34))
                 .foregroundColor(.blue)
             Spacer()
             GifView(name: "gumball2.gif")
@@ -39,7 +39,7 @@ struct GumballMachineView: View {
                             x:0.0, y:10
                         )
                     Text("Roll Your Pet!")
-                        .font(.custom("HangTheDJ", size: 18))
+                        .font(.custom("Yoster Island", size: 18))
                         .colorInvert()
                         .foregroundColor(.black)
                         .bold()

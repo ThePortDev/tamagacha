@@ -71,14 +71,14 @@ struct MenuView: View {
         Image(viewModel.pet.image)
             .resizable()
             .frame(width: 180, height: 160)
-            .position(x:190, y:190)
+            .position(x:200, y:185)
             
     }
     
     var background: some View {
         Image("GamePad")
             .resizable()
-            .frame(width: 300, height: 500)
+            .frame(width: 360, height: 570)
             .shadow(
                 color: .black.opacity(0.7),
                 radius: 15,

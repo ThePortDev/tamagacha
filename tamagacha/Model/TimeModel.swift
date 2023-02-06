@@ -22,7 +22,9 @@ class PetUserDefaults {
             }
         }
 
-        self.pet = Pet(name: "Steve", image: "bird", petType: .dog, maxHunger: 100, hunger: 100, maxThirst: 100, thirst: 100, maxHygiene: 100, hygiene: 100, maxLove: 100, love: 100, description: "This pet is quite rare. Only obtain in explicit and illegal ways. Due to the difficulties, only super rich people tend to take care of them. To be honest, its not a great pet. Super annoying.")
+
+        self.pet = Pet(name: "Steve", image: "dog", petType: .dog, maxHunger: 100, hunger: 100, maxThirst: 100, thirst: 100, maxHygiene: 100, hygiene: 100, maxLove: 100, love: 100, description: "This pet is quite rare. Only obtain in explicit and illegal ways. Due to the difficulties, only super rich people tend to take care of them. To be honest, its not a great pet. Super annoying.")
+
         
 
     }

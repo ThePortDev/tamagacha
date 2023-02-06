@@ -88,9 +88,11 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             let location = touch.location(in: self)
             let touchedNodes = self.nodes(at: location)
             
-            box!.run(SKAction.moveTo(x: location.x, duration: 1))
-            box!.run(SKAction.moveTo(y: location.y, duration: 1))
+            // Pet moves to your tap
+//            box!.run(SKAction.moveTo(x: location.x, duration: 1))
+//            box!.run(SKAction.moveTo(y: location.y, duration: 1))
             
+            // Drag Pet
             for node in touchedNodes.reversed() {
                 if node.name == "draggable" {
                     if viewModel.pet.isAlive {
@@ -176,7 +178,8 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     }
     
     func add(item: Item) {
-            let imageName = (item.name.prefix(1).lowercased() + item.name.replacingOccurrences(of: " ", with: "").dropFirst())
+//            let imageName = (item.name.prefix(1).lowercased() + item.name.replacingOccurrences(of: " ", with: "").dropFirst())
+            let imageName = (item.name.replacingOccurrences(of: " ", with: "")).lowercased()
             let itemSprite = SKSpriteNode(imageNamed: imageName)
             itemSprite.size = CGSize(width: 50, height: 100)
             itemSprite.position = CGPoint(x: screenWidth * 0.25, y: screenHeight * 0.5)

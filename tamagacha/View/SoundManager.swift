@@ -24,12 +24,16 @@ class SoundManager {
         case hooray = "hooray"
         case click = "click"
         case plop = "plop"
+        case blub = "blub"
+        case chirp = "chirp"
+        case jiggle = "jiggle"
+        case meow = "meow"
         case chaching = "chaching"
         case recieved = "recieved"
         case swoosh = "swoosh"
         case shower = "shower"
         case type = "type"
-        case boing = "boing"
+        case woof = "woof"
     }
     
     func playMusic(sound: MusicOption) {

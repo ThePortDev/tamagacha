@@ -15,6 +15,11 @@
 		00255CB9297F28E10035C37F /* StoreModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00255CB8297F28E10035C37F /* StoreModel.swift */; };
 		00255CBB297F28EF0035C37F /* DeveloperToolsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00255CBA297F28EF0035C37F /* DeveloperToolsViewModel.swift */; };
 		00255CBD297F29850035C37F /* GumballMachineViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00255CBC297F29850035C37F /* GumballMachineViewModel.swift */; };
+		0034B5762991A03700CD1A0D /* woof.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 0034B5752991A03700CD1A0D /* woof.mp3 */; };
+		0034B5782991A1F200CD1A0D /* blub.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 0034B5772991A1F200CD1A0D /* blub.mp3 */; };
+		0034B57C2991A1F900CD1A0D /* chirp.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 0034B5792991A1F900CD1A0D /* chirp.mp3 */; };
+		0034B57D2991A1F900CD1A0D /* jiggle.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 0034B57A2991A1F900CD1A0D /* jiggle.mp3 */; };
+		0034B57E2991A1F900CD1A0D /* meow.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 0034B57B2991A1F900CD1A0D /* meow.mp3 */; };
 		007011C22981CA4400185FC2 /* SoundManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 007011C12981CA4400185FC2 /* SoundManager.swift */; };
 		007011C42981CA5600185FC2 /* GameScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 007011C32981CA5600185FC2 /* GameScene.swift */; };
 		007011C62981CA8900185FC2 /* TabBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 007011C52981CA8900185FC2 /* TabBar.swift */; };
@@ -46,7 +51,6 @@
 		00AD683D298B1FDE00651C1E /* swoosh.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 00AD683C298B1FDE00651C1E /* swoosh.mp3 */; };
 		00AD683F298B20B100651C1E /* shower.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 00AD683E298B20B100651C1E /* shower.mp3 */; };
 		00AD6841298B2D0A00651C1E /* type.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 00AD6840298B2D0A00651C1E /* type.mp3 */; };
-		00AD6843298B310A00651C1E /* boing.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 00AD6842298B310A00651C1E /* boing.mp3 */; };
 		00AD6845298C574A00651C1E /* chaching.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 00AD6844298C574A00651C1E /* chaching.mp3 */; };
 		4EC8295D2989BD99005713CA /* GifView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EC8295C2989BD99005713CA /* GifView.swift */; };
 		4EC829602989BFD4005713CA /* gumballGif.gif in Resources */ = {isa = PBXBuildFile; fileRef = 4EC8295F2989BFD4005713CA /* gumballGif.gif */; };
@@ -73,6 +77,11 @@
 		00255CB8297F28E10035C37F /* StoreModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoreModel.swift; sourceTree = "<group>"; };
 		00255CBA297F28EF0035C37F /* DeveloperToolsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeveloperToolsViewModel.swift; sourceTree = "<group>"; };
 		00255CBC297F29850035C37F /* GumballMachineViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GumballMachineViewModel.swift; sourceTree = "<group>"; };
+		0034B5752991A03700CD1A0D /* woof.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = woof.mp3; sourceTree = "<group>"; };
+		0034B5772991A1F200CD1A0D /* blub.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = blub.mp3; sourceTree = "<group>"; };
+		0034B5792991A1F900CD1A0D /* chirp.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = chirp.mp3; sourceTree = "<group>"; };
+		0034B57A2991A1F900CD1A0D /* jiggle.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = jiggle.mp3; sourceTree = "<group>"; };
+		0034B57B2991A1F900CD1A0D /* meow.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = meow.mp3; sourceTree = "<group>"; };
 		007011C12981CA4400185FC2 /* SoundManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SoundManager.swift; sourceTree = "<group>"; };
 		007011C32981CA5600185FC2 /* GameScene.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameScene.swift; sourceTree = "<group>"; };
 		007011C52981CA8900185FC2 /* TabBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBar.swift; sourceTree = "<group>"; };
@@ -105,7 +114,6 @@
 		00AD683C298B1FDE00651C1E /* swoosh.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = swoosh.mp3; sourceTree = "<group>"; };
 		00AD683E298B20B100651C1E /* shower.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = shower.mp3; sourceTree = "<group>"; };
 		00AD6840298B2D0A00651C1E /* type.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = type.mp3; sourceTree = "<group>"; };
-		00AD6842298B310A00651C1E /* boing.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = boing.mp3; sourceTree = "<group>"; };
 		00AD6844298C574A00651C1E /* chaching.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = chaching.mp3; sourceTree = "<group>"; };
 		4EC8295C2989BD99005713CA /* GifView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GifView.swift; sourceTree = "<group>"; };
 		4EC8295F2989BFD4005713CA /* gumballGif.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = gumballGif.gif; sourceTree = "<group>"; };
@@ -263,6 +271,11 @@
 			isa = PBXGroup;
 			children = (
 				008FE75A29833FE5007A1FC8 /* sad.mp3 */,
+				0034B5792991A1F900CD1A0D /* chirp.mp3 */,
+				0034B57A2991A1F900CD1A0D /* jiggle.mp3 */,
+				0034B57B2991A1F900CD1A0D /* meow.mp3 */,
+				0034B5772991A1F200CD1A0D /* blub.mp3 */,
+				0034B5752991A03700CD1A0D /* woof.mp3 */,
 				ED7B3FE02981E71F00D7F01C /* retro-game.mp3 */,
 				00AD683E298B20B100651C1E /* shower.mp3 */,
 				00AD683A298B048800651C1E /* recieved.mp3 */,
@@ -270,7 +283,6 @@
 				00AD6838298B045B00651C1E /* plop.mp3 */,
 				00AD6834298B03A100651C1E /* click.mp3 */,
 				00AD6840298B2D0A00651C1E /* type.mp3 */,
-				00AD6842298B310A00651C1E /* boing.mp3 */,
 				00AD683C298B1FDE00651C1E /* swoosh.mp3 */,
 				00AD6836298B043000651C1E /* hooray.mp3 */,
 			);
@@ -342,9 +354,12 @@
 			buildActionMask = 2147483647;
 			files = (
 				0090F2842977477E00CBDD2F /* Preview Assets.xcassets in Resources */,
+				0034B5762991A03700CD1A0D /* woof.mp3 in Resources */,
+				0034B57D2991A1F900CD1A0D /* jiggle.mp3 in Resources */,
 				00AD683B298B048800651C1E /* recieved.mp3 in Resources */,
 				00AD6841298B2D0A00651C1E /* type.mp3 in Resources */,
 				00AD6837298B043000651C1E /* hooray.mp3 in Resources */,
+				0034B57C2991A1F900CD1A0D /* chirp.mp3 in Resources */,
 				4EFCD17029886BC5006A3BF1 /* OldSchoolAdventures.ttf in Resources */,
 				4EC829672989DD84005713CA /* gumball2.gif in Resources */,
 				4EC829692989DE47005713CA /* ghost2.gif in Resources */,
@@ -352,12 +367,13 @@
 				4EC829602989BFD4005713CA /* gumballGif.gif in Resources */,
 				4EC8296B2989DFAF005713CA /* ghost3.gif in Resources */,
 				008FE75B29833FE5007A1FC8 /* sad.mp3 in Resources */,
+				0034B57E2991A1F900CD1A0D /* meow.mp3 in Resources */,
 				00AD6845298C574A00651C1E /* chaching.mp3 in Resources */,
 				00AD683F298B20B100651C1E /* shower.mp3 in Resources */,
 				00AD6839298B045B00651C1E /* plop.mp3 in Resources */,
-				00AD6843298B310A00651C1E /* boing.mp3 in Resources */,
 				00AD683D298B1FDE00651C1E /* swoosh.mp3 in Resources */,
 				0090F2812977477E00CBDD2F /* Assets.xcassets in Resources */,
+				0034B5782991A1F200CD1A0D /* blub.mp3 in Resources */,
 				00AD6835298B03A100651C1E /* click.mp3 in Resources */,
 				ED7B3FE12981E71F00D7F01C /* retro-game.mp3 in Resources */,
 				4EFCD16A29886A5E006A3BF1 /* HangTheDJ.ttf in Resources */,

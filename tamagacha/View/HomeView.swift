@@ -26,7 +26,7 @@ struct HomeView: View {
     
     @StateObject var viewModel = PetViewModel()
     
-    @State private var welcomeAlert = (title: "Welcome Back!", message: "", isShown: false)
+//    @State private var welcomeAlert = (title: "Welcome Back!", message: "", isShown: false)
     
     @State var alertToShow: Bool = true
     
@@ -77,23 +77,23 @@ struct HomeView: View {
             .navigate(to: GraveyardView(DeadPetsVM: DeadPetsVM).environmentObject(viewModel), when: $navigateToGraveyard)
             .navigate(to: MiniGameView(), when: $navigateToMiniGame)
             .environmentObject(viewModel)
-            .onAppear {
-                if alertToShow == true {
-                    welcomeAlert.message = viewModel.pet.petStatus
-                    welcomeAlert.isShown = true
-                    SoundManager.soundInstance.playSound(sound: .hooray)
-                    alertToShow = false
-                }
-                navigateToDeath = !viewModel.pet.isAlive
-            }
-            .alert(welcomeAlert.title, isPresented: $welcomeAlert.isShown) {
-                Button("Cool!") {
-                    SoundManager.soundInstance.playSound(sound: .click)
-                    welcomeAlert.isShown = false
-                }
-            } message: {
-                Text(welcomeAlert.message)
-            }
+//            .onAppear {
+//                if alertToShow == true {
+//                    welcomeAlert.message = viewModel.pet.petStatus
+//                    welcomeAlert.isShown = true
+//                    SoundManager.soundInstance.playSound(sound: .hooray)
+//                    alertToShow = false
+//                }
+//                navigateToDeath = !viewModel.pet.isAlive
+//            }
+//            .alert(welcomeAlert.title, isPresented: $welcomeAlert.isShown) {
+//                Button("Cool!") {
+//                    SoundManager.soundInstance.playSound(sound: .click)
+//                    welcomeAlert.isShown = false
+//                }
+//            } message: {
+//                Text(welcomeAlert.message)
+//            }
         }
     }
 }

@@ -42,6 +42,7 @@ struct StoreView: View {
             VStack {
                 Image(systemName: "chevron.up")
                 Text("Store")
+                    .font(.custom("HangTheDJ", size: 10))
             }
         }
     }

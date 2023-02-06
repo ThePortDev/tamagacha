@@ -54,7 +54,7 @@ struct CustomTabBar: View {
     var testView: some View {
         ZStack {
             VStack {
-                Text("Money: $\(viewModel.store.money)")
+                Text("Money: 💲\(viewModel.store.money)")
                 Button {
                     withAnimation {
                         activeView = .center
@@ -65,6 +65,7 @@ struct CustomTabBar: View {
                         .foregroundColor(.white)
                 }
             }
+            .font(.custom("HangTheDj", size: 20))
 
             if selectedTab == "house" {
                 VStack {
@@ -136,8 +137,9 @@ struct SubView: View {
                 VStack {
                     Text(withItem.name)
                     Text("+ \(Int(withItem.improveStatsBy))")
-                    Text("Price: $\(withItem.price)")
+                    Text("Price: 💲\(withItem.price)")
                 }
+                .font(.custom("HangTheDJ", size: 15))
             }
         }
             .disabled(viewModel.store.money < withItem.price)

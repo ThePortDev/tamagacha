@@ -29,6 +29,7 @@ struct BathroomView: View {
                         .frame(width: 100, height: 50)
                     Text("Shower")
                         .foregroundColor(.white)
+                        .font(.custom("HangTheDJ", size: 18))
                 }
             }.disabled(!showerButtonShowing)
 
@@ -56,7 +57,8 @@ struct BathroomView: View {
                     ZStack {
                         Rectangle().cornerRadius(20, corners: [.topLeft, .bottomLeft])
                         Text("Back")
-                            .foregroundColor(.black)
+                            .foregroundColor(.white)
+                            .font(.custom("HangTheDj", size: 14))
                             .rotationEffect(Angle(degrees: 90))
                     }
                     ZStack {

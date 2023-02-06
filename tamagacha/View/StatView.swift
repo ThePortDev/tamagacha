@@ -39,6 +39,7 @@ struct StatView: View {
             }
             .frame(height: 150)
             .padding()
+            .font(.custom("HangTheDJ", size: 15))
     }
     
 

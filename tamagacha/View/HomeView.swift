@@ -108,3 +108,6 @@ struct HomeView_Previews: PreviewProvider {
 
 
 
+enum Defaults {
+    static var textColor = Color.black
+}

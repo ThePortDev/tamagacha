@@ -112,7 +112,19 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     }
     
     override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
-        SoundManager.soundInstance.playSound(sound: .boing)
+        
+        switch viewModel.pet.petType {
+            case .bird :
+                SoundManager.soundInstance.playSound(sound: .chirp)
+            case .dog :
+                SoundManager.soundInstance.playSound(sound: .woof)
+            case .fish :
+                SoundManager.soundInstance.playSound(sound: .blub)
+            case .cat :
+                SoundManager.soundInstance.playSound(sound: .meow)
+            case .slime :
+                SoundManager.soundInstance.playSound(sound: .jiggle)
+        }
         if !(box!.hasActions()) {
             let flip = SKAction.scaleX(to: box!.xScale * -1, duration: 1)
             let flip2 = SKAction.scaleX(to: box!.xScale, duration: 1)

@@ -21,7 +21,7 @@ class SoundManager {
     }
     
     enum SoundOption: String {
-        case hooray = "hooray"
+        case notif = "notif"
         case click = "click"
         case plop = "plop"
         case blub = "blub"

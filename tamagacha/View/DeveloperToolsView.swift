@@ -53,7 +53,7 @@ struct DeveloperToolsView: View {
                 .padding()
             Button() {
                 SoundManager.soundInstance.playSound(sound: .click)
-                viewModel.pet.isAlive = false
+                viewModel.pet.love = 1
                 viewModel.saveData()
                 print(viewModel.pet.isAlive)
             } label: {

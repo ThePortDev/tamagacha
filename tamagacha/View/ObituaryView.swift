@@ -86,6 +86,7 @@ Age: \(viewModel.pet.age / 86400)
         Button {
             viewModel.pet.description = petLT
             DeadPetsVM.deadPets.append(viewModel.pet)
+            DeadPetsVM.saveDeadPets(dead: DeadPetsVM.deadPets)
             viewModel.saveData()
             goGumballBool = true
         } label: {

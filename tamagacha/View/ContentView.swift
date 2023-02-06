@@ -33,6 +33,7 @@ struct MenuView: View {
         .background(.gray)
         .onAppear {
             SoundManager.soundInstance.playMusic(sound: .zoid)
+            DeadPetsVM.deadPets = DeadPetsVM.load()
         }
         .onTapGesture {
             SoundManager.soundInstance.playSound(sound: .click)

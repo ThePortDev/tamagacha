@@ -36,12 +36,15 @@ struct CustomTabBar: View {
                         GraveyardButton(image: "🪦", navigateToGraveyard: $navigateToGraveyard)
 
                     }
-                    //.padding()
                     .background(Color.white)
+//                    .frame(height: (activeView != .bottom ? 100 : 100))
+//                    .padding(.bottom, (activeView != .bottom ? 0 : 100))
+                    
                     .cornerRadius(30, corners: [.topRight, .topLeft])
                     //.padding(.horizontal)
                     //.padding(.top, 100)
                 }
+                //.frame(height: (activeView != .bottom ? 100 : 500))
                 .offset(y: (activeView != .bottom ? 0 : 200))
                 testView
             }
@@ -55,6 +58,7 @@ struct CustomTabBar: View {
                 Button {
                     withAnimation {
                         activeView = .center
+                        selectedTab = ""
                     }
                 } label: {
                     Text("Back to home")

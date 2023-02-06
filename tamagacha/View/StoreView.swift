@@ -13,7 +13,7 @@ struct StoreView: View {
     @Binding var navigateToMiniGame: Bool
     @Binding var navigateToGraveyard: Bool
     
-    @State var selectedTab = "house"
+    @State var selectedTab = ""
     
     @EnvironmentObject var viewModel: PetViewModel
     

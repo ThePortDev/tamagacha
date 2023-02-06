@@ -87,12 +87,16 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         if let touch = touches.first {
             let location = touch.location(in: self)
             let touchedNodes = self.nodes(at: location)
+            
+            box!.run(SKAction.moveTo(x: location.x, duration: 1))
+            box!.run(SKAction.moveTo(y: location.y, duration: 1))
+            
             for node in touchedNodes.reversed() {
                 if node.name == "draggable" {
                     if viewModel.pet.isAlive {
                         viewModel.petPet(amount: 10)
                     }
-                    self.currentNode = node
+                        self.currentNode = node
                 }
             }
         }

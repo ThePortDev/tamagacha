@@ -11,6 +11,8 @@ import SpriteKit
 struct RoomView: View {
     
     @Binding var activeView: currentView
+    @Binding var wentToStoreFromBathroom: Bool
+    
     @State var isExpanded = false
     @State var expandInventory = false
     
@@ -28,7 +30,8 @@ struct RoomView: View {
                     .offset(x: (activeView == .left ? 0 : -screenWidth))
                 InventoryView(expandInventory: $expandInventory)
                     .offset(y: (!expandInventory ? -screenHeight + 100 : -50))
-                    .offset(x: screenWidth - 50)
+                    .offset(x: activeView == .center || activeView == .bottom ? screenWidth - 50 : screenWidth * 2)
+                    .zIndex(100)
                 
 //                Group {
 //                    NavigationLink {
@@ -41,7 +44,7 @@ struct RoomView: View {
 //                .offset(x: (activeView == .center ? 0 : screenWidth))
 //                    .frame(width: 100, height: 100)
                     expandedStatView
-
+                    .offset(x: activeView != .left ? 0 : screenWidth)
                     //.zIndex(.infinity)
 //                Text("starting: \(startingOffsetY) \n current: \(currentDragOffsetY) \n ending: \(endingOffsetY)")
                 
@@ -56,33 +59,6 @@ struct RoomView: View {
         //.animation(Animation.linear(duration: 1), value: isExpanded)
         //.background(Color.white)
         //.edgesIgnoringSafeArea(.all)
-    }
-    
-    var inventoryView: some View {
-        GeometryReader { geometry in
-            ZStack() {
-                Rectangle()
-                    .foregroundColor(.orange)
-                    .cornerRadius(10, corners: [.topLeft, .bottomRight])
-                    .frame(width: 100, height: screenHeight)
-                VStack(spacing: 0) {
-                    Text("Inventory")
-                    Image(systemName: "chevron.down")
-                    VStack {
-                        ForEach(Array(viewModel.store.inventory.keys), id: \.self) { item in
-                            if viewModel.store.inventory[item]! > 0 {
-                                Text("\(item.name):\n \(viewModel.store.inventory[item]!)")
-                                    .multilineTextAlignment(.center)
-                            }
-                        }
-                    }
-                    .padding(.top, 100)
-                    .padding(.trailing)
-                }
-                .padding(.bottom, 600)
-                .padding(.trailing, 5)
-            }
-        }
     }
     
     var statView: some View {
@@ -174,16 +150,18 @@ struct InventoryView: View {
                 .padding(.bottom, 600)
                 .padding(.trailing, 5)
                 
-                Button {
-                    withAnimation {
-                        expandInventory = false
+                if expandInventory {
+                    Button {
+                        withAnimation {
+                            expandInventory = false
+                        }
+                    } label: {
+                        VStack {
+                            Image(systemName: "chevron.up")
+                        }
                     }
-                } label: {
-                    VStack {
-                        Image(systemName: "chevron.up")
-                    }
+                    .padding(.top, screenHeight - 200)
                 }
-                .padding(.top, screenHeight - 300)
                 
                 Button {
                     withAnimation {

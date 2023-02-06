@@ -9,6 +9,8 @@ import SwiftUI
 
 struct StoreView: View {
     @Binding var activeView: currentView
+    @Binding var wentToStoreFromBathroom: Bool
+    
     @Binding var navigateToSettings: Bool
     @Binding var navigateToMiniGame: Bool
     @Binding var navigateToGraveyard: Bool
@@ -25,47 +27,14 @@ struct StoreView: View {
             VStack(spacing: 0) {
                 //storeSwipeTab
                 //storeTapTab
-                CustomTabBar(activeView: $activeView, selectedTab: $selectedTab, navigateToSettings: $navigateToSettings, navigateToMiniGame: $navigateToMiniGame, navigateToGraveyard: $navigateToGraveyard)
+                CustomTabBar(activeView: $activeView, wentToStoreFromBathroom: $wentToStoreFromBathroom, selectedTab: $selectedTab, navigateToSettings: $navigateToSettings, navigateToMiniGame: $navigateToMiniGame, navigateToGraveyard: $navigateToGraveyard)
             }
             //.frame(width: geometry.size.width, height: geometry.size.height, alignment: .center)
         }
 //        .edgesIgnoringSafeArea(.all)
         
     }
-    
-    var storeSwipeTab: some View {
-        ZStack {
-            Rectangle()
-                .cornerRadius(90, corners: [.topLeft, .topRight])
-                .frame(width: screenWidth, height: 100)
-                .foregroundColor(.blue)
-            VStack {
-                Image(systemName: "chevron.up")
-                Text("Store")
-            }
-        }
-    }
 
-    var storeTapTab: some View {
-        ZStack {
-            Rectangle()
-                .cornerRadius(90, corners: [.topLeft, .topRight])
-                .frame(width: screenWidth, height: 100)
-                .foregroundColor(.white)
-            HStack {
-                ForEach(buttons, id: \.self) { button in
-                    Button {
-                        withAnimation(.linear(duration: 1)) {
-                            selectedTab = button
-                            activeView = .bottom
-                        }
-                    } label: {
-                        Image(systemName: button)
-                    }
-                }
-            }
-        }
-    }
 }
 
 

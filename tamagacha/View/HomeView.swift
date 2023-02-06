@@ -32,6 +32,7 @@ struct HomeView: View {
     
     // swipe gesture
     @State var activeView = currentView.center
+    @State var wentToStoreFromBathroom = false
     //    @State var viewState = CGSize.zero
     
     // settings
@@ -40,15 +41,6 @@ struct HomeView: View {
     @State var navigateToMiniGame: Bool = false
     @State var navigateToGraveyard: Bool = false
     
-    // drag gesture X
-    @State private var startingOffsetX: CGFloat = -UIScreen.main.bounds.width
-    @State private var currentDragOffsetX: CGFloat = 0
-    @State private var endingOffsetX: CGFloat = 0
-    
-    //drag gesture Y
-    @State private var startingOffsetY: CGFloat = UIScreen.main.bounds.height - 46
-    @State private var currentDragOffsetY: CGFloat = 0
-    @State private var endingOffsetY: CGFloat = 0
     
     //@State var scene: GameScene = GameScene()
     var scene: GameScene {
@@ -67,9 +59,9 @@ struct HomeView: View {
             //                .ignoresSafeArea()
             //                .frame(height: 10)
             ZStack {
-                RoomView(activeView: $activeView)
+                RoomView(activeView: $activeView, wentToStoreFromBathroom: $wentToStoreFromBathroom)
 
-                StoreView(activeView: $activeView, navigateToSettings: $navigateToSettings, navigateToMiniGame: $navigateToMiniGame, navigateToGraveyard: $navigateToGraveyard)
+                StoreView(activeView: $activeView, wentToStoreFromBathroom: $wentToStoreFromBathroom, navigateToSettings: $navigateToSettings, navigateToMiniGame: $navigateToMiniGame, navigateToGraveyard: $navigateToGraveyard)
                     .offset(y: (activeView != .bottom ? screenHeight - 150 : -screenHeight / 4))
             }
             .navigate(to: SettingsView().environmentObject(viewModel), when: $navigateToSettings)

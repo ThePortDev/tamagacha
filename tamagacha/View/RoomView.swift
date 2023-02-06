@@ -175,6 +175,7 @@ struct InventoryView: View {
                         Image(systemName: "chevron.down")
                     }
                 }
+                .padding(.trailing, 10)
                 .padding(.top, screenHeight - 50)
 
                 

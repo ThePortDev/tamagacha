@@ -75,7 +75,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         camera = cam
 
 //        physicsBody = SKPhysicsBody(edgeLoopFrom: CGPath(rect: CGRect(x: -screenWidth - 100, y: 100, width: screenWidth * 2, height: screenHeight-100), transform: nil))
-        physicsBody = SKPhysicsBody(edgeChainFrom: CGPath(rect: CGRect(x: -screenWidth/* - 100*/, y: 70, width: screenWidth * 2, height: screenHeight), transform: nil))
+        physicsBody = SKPhysicsBody(edgeChainFrom: CGPath(rect: CGRect(x: -screenWidth/* - 100*/, y: 90, width: screenWidth * 2, height: screenHeight), transform: nil))
         
         physicsWorld.contactDelegate = self
         
@@ -107,11 +107,23 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     override func touchesMoved(_ touches: Set<UITouch>, with event: UIEvent?) {
         if let touch = touches.first, let node = self.currentNode {
             let touchLocation = touch.location(in: self)
-            if touchLocation.y < 70 {
+            if touchLocation.y < 90 || touchLocation.y > screenHeight - 100 {
                 return
             } else {
                 //self.sceneSize = CGSize(width: 700, height: 400)
-                node.position = touchLocation
+//                if  firstScene && touchLocation.x > screenWidth {
+//                    return
+//                } else if !firstScene && touchLocation.x < -screenWidth || touchLocation.x > 0 {
+//                    return
+//                } else {
+                if  firstScene && touchLocation.x > screenWidth - 150 || firstScene && touchLocation.x < -50{
+                    return
+                } else if !firstScene && touchLocation.x > -150 || !firstScene && touchLocation.x < -screenWidth - 50 {
+                    return
+                } else {
+                    node.position = touchLocation
+                }
+                //}
                 //print("\(touchLocation)")
             }
         }

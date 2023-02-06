@@ -21,7 +21,7 @@ struct CustomTabBar: View {
     var body: some View {
         ZStack(alignment: .top) {
             Rectangle()
-                .frame(width: screenWidth, height: 900)
+                .frame(width: screenWidth, height: 1100)
                 .foregroundColor(.blue)
             
             VStack(spacing: 0) {
@@ -32,17 +32,17 @@ struct CustomTabBar: View {
                         //TabBarButton(image: "message", selectedTab: $selectedTab)
                         TabBarButton(activeView: $activeView,image: "sportscourt", selectedTab: $selectedTab)
                         SettingsButton(activeView: $activeView, image: "gearshape", navigateToSettings: $navigateToSettings)
-                        MiniGameButton(activeView: $activeView, image: "1.circle", navigateToMiniGame: $navigateToMiniGame)
+                        //MiniGameButton(activeView: $activeView, image: "1.circle", navigateToMiniGame: $navigateToMiniGame)
                         GraveyardButton(image: "🪦", navigateToGraveyard: $navigateToGraveyard)
 
                     }
-                    .padding()
+                    //.padding()
                     .background(Color.white)
                     .cornerRadius(30, corners: [.topRight, .topLeft])
-                    .padding(.horizontal)
-                    .padding(.top, 100)
+                    //.padding(.horizontal)
+                    //.padding(.top, 100)
                 }
-                Text("Money: $\(viewModel.store.money)")
+                .offset(y: (activeView != .bottom ? 0 : 200))
                 testView
             }
         }
@@ -50,6 +50,18 @@ struct CustomTabBar: View {
     
     var testView: some View {
         ZStack {
+            VStack {
+                Text("Money: $\(viewModel.store.money)")
+                Button {
+                    withAnimation {
+                        activeView = .center
+                    }
+                } label: {
+                    Text("Back to home")
+                        .foregroundColor(.white)
+                }
+            }
+
             if selectedTab == "house" {
                 VStack {
                     Text("Food")
@@ -94,6 +106,8 @@ struct DisplayStoreProduct: View {
                 }
             }
         }
+        .padding(.top, 200)
+        .padding(.leading, 10)
     }
 }
 
@@ -122,6 +136,7 @@ struct SubView: View {
                 }
             }
         }
+            .disabled(viewModel.store.money < withItem.price)
         }
     }
 }
@@ -138,6 +153,9 @@ struct TabBarButton: View {
             Button(action: {
                 SoundManager.soundInstance.playSound(sound: .click)
                 withAnimation {
+                    if activeView != .bottom {
+                        activeView = .bottom
+                    }
                     selectedTab = image
                 }
                 
@@ -148,7 +166,7 @@ struct TabBarButton: View {
             }
             .frame(maxWidth: .infinity, maxHeight: .infinity)
         }
-        .frame(height: 50)
+        .frame(height: 100)
     }
 }
 

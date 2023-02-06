@@ -12,6 +12,14 @@ extension Font {
     static func hangTheDj(size: CGFloat, relativeTo style: TextStyle = .body) -> Font {
         custom("HangTheDJ", size: size, relativeTo: style)
     }
+    
+    static func oldSchoolAdventures(size: CGFloat, relativeTo style: TextStyle = .body) -> Font {
+        custom("Old School Adventures", size: size, relativeTo: style)
+    }
+    
+    static func yoster(size: CGFloat, relativeTo style: TextStyle = .body) -> Font {
+        custom("Yoster Island", size: size, relativeTo: style)
+    }
 }
 
 enum TamagachaFont {

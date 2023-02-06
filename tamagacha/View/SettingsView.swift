@@ -54,8 +54,8 @@ struct SettingsView: View {
     
     var settingsTitle: some View {
         Text("Settings")
-            .font(.largeTitle)
-            .padding(15)
+            .font(.custom("Yoster Island", size: 40))
+            .padding(.top, 15)
     }
     
 //    var UIColorPicker: some View {
@@ -76,7 +76,8 @@ struct SettingsView: View {
     var volumeSlider: some View {
         
         VStack {
-            Text("Volume | \(Int(settingsVM.volume * 100))%")
+            Text("Volume \(Int(settingsVM.volume * 100))%")
+                .font(.custom("Yoster Island", size: 18))
                 .foregroundColor(Values.secondary)
             
             HStack {
@@ -99,7 +100,8 @@ struct SettingsView: View {
     
     var soundFXSlider: some View {
         VStack {
-            Text("SFX Volume | \(Int(settingsVM.SFXVolume * 100))%")
+            Text("SFX Volume \(Int(settingsVM.SFXVolume * 100))%")
+                .font(.custom("Yoster Island", size: 18))
                 .foregroundColor(Values.secondary)
             
             HStack {

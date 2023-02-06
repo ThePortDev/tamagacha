@@ -41,7 +41,7 @@ struct DeathScreenPopOverView: View {
     
     var petDeadText: some View {
         Text("\(PetViewModel().pet.name) is super dead.")
-            .font(.custom("HangTheDJ", size: 20))
+            .font(.custom("Yoster Island", size: 20))
             .bold()
             .foregroundColor(.black)
             .padding()
@@ -71,7 +71,7 @@ struct DeathScreenPopOverView: View {
     
     var deathWords: some View {
         Text("- Memento Mori")
-            .font(.title)
+            .font(.custom("Yoster Island", size: 20))
             .bold()
             .italic()
             .foregroundColor(.gray)
@@ -84,7 +84,7 @@ struct DeathScreenPopOverView: View {
             goToGumball = true
         } label: {
             Text("Replace \(viewModel.pet.name)?")
-                .font(.custom("HangTheDJ", size: 26))
+                .font(.custom("Yoster Island", size: 26))
                 .foregroundColor(.black)
                 .bold()
                 .padding()
@@ -110,7 +110,7 @@ struct DeathScreenPopOverView: View {
             goToOde = true
         } label: {
             Text("Bury \(viewModel.pet.name)? 💲50")
-                .font(.custom("HangTheDJ", size: 26))
+                .font(.custom("Yoster Island", size: 26))
                 .foregroundColor(.black)
                 .bold()
                 .padding()

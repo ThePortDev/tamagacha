@@ -39,7 +39,7 @@ struct GraveyardView: View {
     
     var graveTitle: some View {
         Text("GraveYard")
-            .font(.custom("HangTheDJ", size: 40))
+            .font(.custom("Yoster Island", size: 40))
     }
     
     var deadButton: some View {
@@ -48,7 +48,7 @@ struct GraveyardView: View {
             dismiss()
         } label: {
                 Text("Go Back Home?")
-                    .font(.custom("HangTheDJ", size: 35))
+                    .font(.custom("Yoster Island", size: 35))
                     .colorInvert()
                     .foregroundColor(.black)
                     .bold()
@@ -73,7 +73,7 @@ struct GraveyardView: View {
                     HStack {
                         VStack {
                             Text(pet.name)
-                                .font(.custom("HangTheDJ", size: 15))
+                                .font(.custom("Yoster Island", size: 15))
                             Image(pet.image)
                                 .resizable()
                                 .frame(width: 100, height: 100)
@@ -86,7 +86,7 @@ struct GraveyardView: View {
                                             x: 0.0, y: 5))
                         }
                         Text(pet.description)
-                            .font(.custom("HangTheDJ", size: 15))
+                            .font(.custom("Yoster Island", size: 15))
                             .foregroundColor(.black)
                             .frame(width: 270, height: 140)
                             .background(

@@ -170,7 +170,7 @@ struct InventoryView: View {
                 } label: {
                     VStack {
                         Text("Inventory")
-                            .font(.custom("HangTheDJ", size: 14))
+                            .font(.custom("Yoster Island", size: 14))
                             .foregroundColor(.black)
                         Image(systemName: "chevron.down")
                     }

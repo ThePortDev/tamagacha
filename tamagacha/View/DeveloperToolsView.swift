@@ -20,7 +20,7 @@ struct DeveloperToolsView: View {
                 Text("Developer Tools")
                     .foregroundColor(Defaults.textColor)
                     .bold()
-                    .font(.custom("HangTheDJ", size: 35))
+                    .font(.custom("Yoster Island", size: 35))
                     .frame(alignment: .top)
                     .padding()
                 changePetButtons
@@ -48,7 +48,7 @@ struct DeveloperToolsView: View {
             Text("Miscallaneous:")
                 .foregroundColor(Defaults.textColor)
                 .bold()
-                .font(.custom("HangTheDJ", size: 25))
+                .font(.custom("Yoster Island", size: 25))
                 .frame(alignment: .top)
                 .padding()
             Button() {
@@ -76,7 +76,7 @@ struct DeveloperToolsView: View {
             Text("Add Money:")
                 .foregroundColor(Defaults.textColor)
                 .bold()
-                .font(.custom("HangTheDJ", size: 25))
+                .font(.custom("Yoster Island", size: 25))
                 .frame(alignment: .top)
                 .padding()
             HStack {
@@ -119,7 +119,7 @@ struct DeveloperToolsView: View {
             Text("Change Pet Type:")
                 .foregroundColor(Defaults.textColor)
                 .bold()
-                .font(.custom("HangTheDJ", size: 25))
+                .font(.custom("Yoster Island", size: 25))
                 .frame(alignment: .top)
                 .padding()
             HStack {

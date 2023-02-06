@@ -39,7 +39,7 @@ struct StatView: View {
             }
             .frame(height: 150)
             .padding()
-            .font(.custom("HangTheDJ", size: 15))
+            .font(.custom("Yoster Island", size: 15))
     }
     
 

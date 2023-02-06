@@ -56,7 +56,7 @@ struct PopOverView: View {
                 )
             Text("\(PetViewModel().pet.name)")
                 .bold()
-                .font(.custom("HangTheDJ", size: 30))
+                .font(.custom("Yoster Island", size: 30))
                 .foregroundColor(.black)
                 .scaledToFit()
         }
@@ -99,6 +99,7 @@ struct PopOverView: View {
             StatBar(name: "Love", value: 100, color: .red)
             StatBar(name: "Hygiene", value: 100, color: .green)
         }
+        .font(.custom("Yoster Island", size: 20))
         .frame(height: 150)
         .padding()
     }
@@ -107,6 +108,7 @@ struct PopOverView: View {
     var petDescription: some View {
         Text(viewModel.pet.description)
             .foregroundColor(.black)
+            .font(.custom("Yoster Island", size: 15))
             .padding(8)
             .multilineTextAlignment(.center)
             .background(
@@ -135,7 +137,7 @@ struct PopOverView: View {
                         x:0.0, y:10
                     )
                 Text("Lets Go Home!")
-                    .font(.custom("HangTheDj", size: 20))
+                    .font(.custom("Yoster Island", size: 20))
                     .colorInvert()
                     .foregroundColor(.black)
                     .bold()

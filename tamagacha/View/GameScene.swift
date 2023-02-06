@@ -50,8 +50,8 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
 
         box = SKSpriteNode(imageNamed: viewModel.pet.image)
         box!.position = CGPoint(x: screenWidth * 0.25, y: screenHeight / 2)
-        box!.size = CGSize(width: 200, height: 150)
-        box!.physicsBody = SKPhysicsBody(rectangleOf: CGSize(width: 200, height: 150))
+        box!.size = CGSize(width: 200, height: 200)
+        box!.physicsBody = SKPhysicsBody(rectangleOf: CGSize(width: 200, height: 200))
         box!.name = "draggable"
         box!.physicsBody?.categoryBitMask = 0b001
         addChild(box!)

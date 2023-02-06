@@ -12,6 +12,7 @@ struct MenuView: View {
     @State private var fadeInOut = false
     
     @EnvironmentObject var viewModel: PetViewModel
+    @StateObject var DeadPetsVM = DeadPetUserDefaults()
     
     @State var navigateToHomeView = false
     @State var navigateToGumballView = false
@@ -43,9 +44,9 @@ struct MenuView: View {
                 navigateToGumballView = true
             }
         }
-        .navigate(to: DeathScreenPopOverView().environmentObject(viewModel), when: $navigateToDeathView)
-        .navigate(to: GumballMachineView().environmentObject(viewModel), when: $navigateToGumballView)
-        .navigate(to: HomeView().environmentObject(viewModel), when: $navigateToHomeView)
+        .navigate(to: DeathScreenPopOverView(DeadPetsVM: DeadPetsVM).environmentObject(viewModel), when: $navigateToDeathView)
+        .navigate(to: GumballMachineView(DeadPetsVM: DeadPetsVM).environmentObject(viewModel), when: $navigateToGumballView)
+        .navigate(to: HomeView(DeadPetsVM: DeadPetsVM).environmentObject(viewModel), when: $navigateToHomeView)
 
     }
     
@@ -112,7 +113,7 @@ struct MenuView: View {
 
 struct MenuView_Previews: PreviewProvider {
     static var previews: some View {
-        MenuView()
+        MenuView(DeadPetsVM: DeadPetUserDefaults())
             .environmentObject(PetViewModel())
     }
 }

@@ -77,6 +77,6 @@ struct BathroomView: View {
 
 struct HomeView3_Previews: PreviewProvider {
     static var previews: some View {
-        HomeView()
+        HomeView(DeadPetsVM: DeadPetUserDefaults())
     }
 }

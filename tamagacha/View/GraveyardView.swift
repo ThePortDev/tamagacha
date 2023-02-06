@@ -71,16 +71,20 @@ struct GraveyardView: View {
             ForEach(DeadPetsVM.deadPets) { pet in
                 ZStack {
                     HStack {
-                        Image(pet.image)
-                            .resizable()
-                            .frame(width: 100, height: 100)
-                            .background(
-                                AngularGradient(colors: [.white, .black], center: .topLeading)
-                                    .cornerRadius(20)
-                                    .shadow(
-                                        color: .black.opacity(0.5),
-                                        radius: 10,
-                                        x: 0.0, y: 5))
+                        VStack {
+                            Text(pet.name)
+                                .font(.custom("HangTheDJ", size: 15))
+                            Image(pet.image)
+                                .resizable()
+                                .frame(width: 100, height: 100)
+                                .background(
+                                    AngularGradient(colors: [.white, .black], center: .topLeading)
+                                        .cornerRadius(20)
+                                        .shadow(
+                                            color: .black.opacity(0.5),
+                                            radius: 10,
+                                            x: 0.0, y: 5))
+                        }
                         Text(pet.description)
                             .font(.custom("HangTheDJ", size: 15))
                             .foregroundColor(.black)

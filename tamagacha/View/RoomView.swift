@@ -12,25 +12,11 @@ struct RoomView: View {
     
     @Binding var activeView: currentView
     @State var isExpanded = false
+    @State var expandInventory = false
     
     //@StateObject var sceneViewModel = GameSceneViewModel()
     
     @EnvironmentObject var viewModel: PetViewModel
-    
-    
-    // Inventory drag
-    @State private var startingOffsetY: CGFloat = screenHeight + 250
-    @State private var currentDragOffsetY: CGFloat = 0
-    @State private var endingOffsetY: CGFloat = 0
-    
-    //    var scene: SKScene {
-    //        let scene = GameScene()
-    //        scene.setup(with: viewModel)
-    //        scene.size = CGSize(width: 400, height: 700)
-    //        scene.scaleMode = .fill
-    //        scene.anchorPoint = CGPoint(x: 0.5, y: 0.5)
-    //        return scene
-    //    }
     
     var body: some View {
         GeometryReader { geometry in
@@ -40,41 +26,9 @@ struct RoomView: View {
                     .ignoresSafeArea()
                 BathroomView(activeView: $activeView)
                     .offset(x: (activeView == .left ? 0 : -screenWidth))
-                InventoryView()
-                    .offset(x: (activeView == .left ? screenWidth : 0))
-                    .zIndex(.infinity)
-                    .frame(width: screenWidth, height: screenHeight + 800)
-                    .padding(.leading, 600)
-                    .offset(y: startingOffsetY)
-                    .offset(y: currentDragOffsetY)
-                    .offset(y: endingOffsetY)
-                    .gesture (
-                        DragGesture()
-                            .onChanged { value in
-                                SoundManager.soundInstance.playSound(sound: .swoosh)
-                                withAnimation(.spring()) {
-                                    if  value.translation.height > 200 {
-                                        return
-                                    } else {
-                                        currentDragOffsetY = value.translation.height
-                                    }
-                                }
-                            }
-                            .onEnded({ value in
-                                withAnimation(.spring()) {
-                                    if currentDragOffsetY < -100 {
-                                        endingOffsetY = -startingOffsetY + 400
-                                        
-                                    }
-                                    else if endingOffsetY != 0 && currentDragOffsetY > 50{
-                                        endingOffsetY = 0
-                                        isExpanded = true
-                                        print(isExpanded)
-                                    }
-                                    currentDragOffsetY = 0
-                                }
-                            })
-                    )
+                InventoryView(expandInventory: $expandInventory)
+                    .offset(y: (!expandInventory ? -screenHeight + 100 : -50))
+                    .offset(x: screenWidth - 50)
                 
 //                Group {
 //                    NavigationLink {
@@ -112,8 +66,8 @@ struct RoomView: View {
                     .cornerRadius(10, corners: [.topLeft, .bottomRight])
                     .frame(width: 100, height: screenHeight)
                 VStack(spacing: 0) {
-                    Image(systemName: "chevron.up")
                     Text("Inventory")
+                    Image(systemName: "chevron.down")
                     VStack {
                         ForEach(Array(viewModel.store.inventory.keys), id: \.self) { item in
                             if viewModel.store.inventory[item]! > 0 {
@@ -185,17 +139,18 @@ struct BathroomView2: View {
 struct InventoryView: View {
     @EnvironmentObject var viewModel: PetViewModel
     
+    @Binding var expandInventory: Bool
+    
     var body: some View {
         GeometryReader { geometry in
             ZStack() {
                 Rectangle()
                     .foregroundColor(.orange)
-                    .cornerRadius(10, corners: [.topLeft, .bottomRight])
+                    .cornerRadius(10, corners: [.bottomLeft])
                     .frame(width: 100, height: screenHeight)
                 
                 VStack(spacing: 0) {
-                    Image(systemName: "chevron.up")
-                    Text("Inventory")
+                    
                     VStack {
                         ForEach(Array(viewModel.store.inventory.keys), id: \.self) { item in
                             if viewModel.store.inventory[item]! > 0 {
@@ -214,9 +169,35 @@ struct InventoryView: View {
                     }
                     .padding(.top, 100)
                     .padding(.trailing)
+                    
                 }
                 .padding(.bottom, 600)
                 .padding(.trailing, 5)
+                
+                Button {
+                    withAnimation {
+                        expandInventory = false
+                    }
+                } label: {
+                    VStack {
+                        Image(systemName: "chevron.up")
+                    }
+                }
+                .padding(.top, screenHeight - 300)
+                
+                Button {
+                    withAnimation {
+                        expandInventory = true
+                    }
+                } label: {
+                    VStack {
+                        Text("Inventory")
+                        Image(systemName: "chevron.down")
+                    }
+                }
+                .padding(.top, screenHeight - 50)
+
+                
             }
         }
     }

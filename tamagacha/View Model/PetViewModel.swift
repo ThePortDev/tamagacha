@@ -64,15 +64,15 @@ class PetViewModel: ObservableObject {
     func getPetType() -> SKSpriteNode {
         switch pet.petType {
             case .dog:
-                return SKSpriteNode(imageNamed: "TESTDOG")
+                return SKSpriteNode(imageNamed: "dog")
             case .fish:
-                return SKSpriteNode(imageNamed: "TESTFISH")
+                return SKSpriteNode(imageNamed: "fish")
             case .cat:
-                return SKSpriteNode(imageNamed: "TESTCAT")
+                return SKSpriteNode(imageNamed: "cat")
             case .bird:
-                return SKSpriteNode(imageNamed: "TESTBIRD")
+                return SKSpriteNode(imageNamed: "bird")
             case .slime:
-                return SKSpriteNode(imageNamed: "TESTSLIME")
+                return SKSpriteNode(imageNamed: "slime")
         }
     }
     

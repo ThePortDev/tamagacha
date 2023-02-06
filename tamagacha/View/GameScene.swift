@@ -208,6 +208,6 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
 
 struct GameScene_Previews: PreviewProvider {
     static var previews: some View {
-        HomeView()
+        HomeView(DeadPetsVM: DeadPetUserDefaults())
     }
 }

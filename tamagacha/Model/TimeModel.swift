@@ -133,3 +133,18 @@ class SettingsVM: ObservableObject {
         SFXVolume = SettingsUserDefaults.instance.sfxVolume
     }
 }
+
+class DeadPetUserDefaults: ObservableObject {
+    private static var DEAD_KEY = "DEAD_KEY"
+    
+    static let instance =  DeadPetUserDefaults()
+    var deadPets = [Pet]()
+    
+    func saveDeadPets(dead: [Pet]) {
+        UserDefaults.standard.set(try? JSONEncoder().encode(dead), forKey: DeadPetUserDefaults.DEAD_KEY)
+    }
+    
+    func load() -> [Any] {
+        UserDefaults.standard.array(forKey: DeadPetUserDefaults.DEAD_KEY) ?? [Pet]()
+    }
+}

@@ -73,6 +73,6 @@ struct StoreView: View {
 
 struct HomeView2_Previews: PreviewProvider {
     static var previews: some View {
-        HomeView()
+        HomeView(DeadPetsVM: DeadPetUserDefaults())
     }
 }

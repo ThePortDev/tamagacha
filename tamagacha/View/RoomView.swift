@@ -225,6 +225,6 @@ struct InventoryView: View {
 
 struct HomeView_Previews3: PreviewProvider {
     static var previews: some View {
-        HomeView()
+        HomeView(DeadPetsVM: DeadPetUserDefaults())
     }
 }

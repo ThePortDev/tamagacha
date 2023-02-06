@@ -52,7 +52,7 @@ class SoundManager {
         
         do {
             soundPlayer = try AVAudioPlayer(contentsOf: url)
-            soundPlayer?.volume = Float(SettingsUserDefaults.instance.retrieveVolume())
+            soundPlayer?.volume = Float(SettingsUserDefaults.instance.retrieveSFXVolume())
             soundPlayer?.prepareToPlay()
             soundPlayer?.play()
         } catch let error {

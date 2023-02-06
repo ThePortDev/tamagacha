@@ -12,12 +12,15 @@ import SwiftUI
 struct GraveyardView: View {
     
     @EnvironmentObject var viewModel: PetViewModel
+    
     @Environment(\.dismiss) var dismiss
+    
+    @StateObject var DeadPetsVM: DeadPetUserDefaults
     
     var body: some View {
         VStack {
             ScrollView {
-                ForEach(viewModel.pet.deadPets) { pet in
+                ForEach(DeadPetsVM.deadPets) { pet in
                     VStack {
                         Image("TOMBTEST")
                             .resizable()
@@ -38,20 +41,15 @@ struct GraveyardView: View {
                 SoundManager.soundInstance.playSound(sound: .click)
                 dismiss()
             } label: {
-                CoolRect(text: "Go back home", gradientColors: [.blue, .white])
+                CoolRect(text: "Go back home", gradientColors: [.blue, .cyan])
             }
         }
-        .background(
-            Image("cemetary")
-                .resizable()
-                .frame(width: 400,height: 880)
-        )
     }
         
     
     struct GraveyardView_Previews: PreviewProvider {
         static var previews: some View {
-            GraveyardView()
+            GraveyardView(DeadPetsVM: DeadPetUserDefaults())
                 .environmentObject(PetViewModel())
         }
     }

@@ -56,6 +56,7 @@
 		4EC829692989DE47005713CA /* ghost2.gif in Resources */ = {isa = PBXBuildFile; fileRef = 4EC829682989DE47005713CA /* ghost2.gif */; };
 		4EC8296B2989DFAF005713CA /* ghost3.gif in Resources */ = {isa = PBXBuildFile; fileRef = 4EC8296A2989DFAF005713CA /* ghost3.gif */; };
 		4EC8296D298C52F6005713CA /* ObituaryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EC8296C298C52F6005713CA /* ObituaryView.swift */; };
+		4EDF81B6299195FD005F8853 /* GraveyardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EDF81B5299195FD005F8853 /* GraveyardView.swift */; };
 		4EFCD168298868E3006A3BF1 /* Fonts.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EFCD167298868E3006A3BF1 /* Fonts.swift */; };
 		4EFCD16A29886A5E006A3BF1 /* HangTheDJ.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 4EFCD16929886A5E006A3BF1 /* HangTheDJ.ttf */; };
 		4EFCD17029886BC5006A3BF1 /* OldSchoolAdventures.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 4EFCD16F29886BC5006A3BF1 /* OldSchoolAdventures.ttf */; };
@@ -113,6 +114,7 @@
 		4EC829682989DE47005713CA /* ghost2.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = ghost2.gif; sourceTree = "<group>"; };
 		4EC8296A2989DFAF005713CA /* ghost3.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = ghost3.gif; sourceTree = "<group>"; };
 		4EC8296C298C52F6005713CA /* ObituaryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ObituaryView.swift; sourceTree = "<group>"; };
+		4EDF81B5299195FD005F8853 /* GraveyardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GraveyardView.swift; sourceTree = "<group>"; };
 		4EFCD167298868E3006A3BF1 /* Fonts.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Fonts.swift; sourceTree = "<group>"; };
 		4EFCD16929886A5E006A3BF1 /* HangTheDJ.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = HangTheDJ.ttf; sourceTree = "<group>"; };
 		4EFCD16C29886AB5006A3BF1 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
@@ -221,6 +223,7 @@
 				007011C32981CA5600185FC2 /* GameScene.swift */,
 				4EC8295C2989BD99005713CA /* GifView.swift */,
 				4EC8296C298C52F6005713CA /* ObituaryView.swift */,
+				4EDF81B5299195FD005F8853 /* GraveyardView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -370,6 +373,7 @@
 			files = (
 				0090F2A62978A65600CBDD2F /* StatView.swift in Sources */,
 				B4D9769A297752D0001E9016 /* User.swift in Sources */,
+				4EDF81B6299195FD005F8853 /* GraveyardView.swift in Sources */,
 				0090F2B02979DF0B00CBDD2F /* StoreView.swift in Sources */,
 				007011C42981CA5600185FC2 /* GameScene.swift in Sources */,
 				0090F2B42979DF2500CBDD2F /* SettingsView.swift in Sources */,

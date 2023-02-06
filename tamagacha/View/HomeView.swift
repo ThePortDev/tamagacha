@@ -139,6 +139,7 @@ struct HomeView_Previews: PreviewProvider {
 }
 
 
+
 struct GraveyardView: View {
     
     @EnvironmentObject var viewModel: PetViewModel
@@ -176,3 +177,4 @@ struct GraveyardView: View {
         }
     }
 }
+

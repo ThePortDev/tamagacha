@@ -28,9 +28,9 @@ struct DeathScreenPopOverView: View {
             
         }
         .background(
-            Image("cemetary")
+            Image("cemetery")
                 .resizable()
-                .frame(width: 400,height: 880)
+                .frame(width: 450,height: 980)
         )
         .onAppear {
             SoundManager.soundInstance.stopMusic()

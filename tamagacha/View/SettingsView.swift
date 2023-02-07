@@ -47,7 +47,6 @@ struct SettingsView: View {
             
         }
         .background(Values.primary)
-        
         .navigate(to: DeveloperToolsView().environmentObject(viewModel), when: $navigateToDevTools)
         
     }
@@ -145,6 +144,7 @@ struct SettingsView: View {
         Button("Back") {
             SoundManager.soundInstance.playSound(sound: .click)
             dismiss()
+//            presentationMode.wrappedValue.dismiss()
         }
         .foregroundColor(Values.secondary)
         

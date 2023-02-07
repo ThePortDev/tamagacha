@@ -43,16 +43,18 @@ struct RoomView: View {
 //                }
 //                .offset(x: (activeView == .center ? 0 : screenWidth))
 //                    .frame(width: 100, height: 100)
+                VStack {
                     expandedStatView
-                    .offset(x: activeView != .left ? 0 : screenWidth)
+                        .offset(x: activeView != .left ? -50 : screenWidth)
+                        .offset(y: -100)
                     //.zIndex(.infinity)
-//                Text("starting: \(startingOffsetY) \n current: \(currentDragOffsetY) \n ending: \(endingOffsetY)")
-                
-                //                Button("change scene") {
-                //                    withAnimation {
-                ////                        changeScene.toggle()
-                //                    }
-                //                }
+                    //                Text("starting: \(startingOffsetY) \n current: \(currentDragOffsetY) \n ending: \(endingOffsetY)")
+                    
+                    //                Button("change scene") {
+                    //                    withAnimation {
+                    ////                        changeScene.toggle()
+                    //                    }
+                }   //                }
             }
             .frame(width: geometry.size.width, height: geometry.size.height /*- 100*//*, alignment: .center*/)
         }
@@ -79,7 +81,7 @@ struct RoomView: View {
     
     var expandedStatView: some View {
         StatView()
-            .frame(width: screenWidth, height: 230)
+            .frame(width: 300, height: 230)
             .padding(.top, 100)
             .padding(.bottom, 500)
     }
@@ -169,9 +171,10 @@ struct InventoryView: View {
                     }
                 } label: {
                     VStack {
-                        Text("Inventory")
-                            .font(.custom("Yoster Island", size: 14))
+                        Text("🎒")
+                            .font(.custom("Yoster Island", size: 34))
                             .foregroundColor(.black)
+                        Spacer()
                         Image(systemName: "chevron.down")
                     }
                 }

@@ -25,3 +25,11 @@ extension Font {
 enum TamagachaFont {
     static let title = Font.hangTheDj(size: 30, relativeTo: .title)
 }
+
+enum ThemeColors {
+    static let primary = Color("primary")
+    static let accent = Color("accent")
+    static let accentVariant = Color("accentVariant")
+    static let primaryText = Color("primaryText")
+    static let accentText = Color("accentText")
+}

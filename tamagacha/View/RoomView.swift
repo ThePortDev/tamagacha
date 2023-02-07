@@ -92,12 +92,12 @@ struct RoomView: View {
     }
     
 
-    var expandedStatView: some View {
-        StatView()
-            .frame(width: 300, height: 230)
-            .padding(.top, 100)
-            .padding(.bottom, 500)
-    }
+//    var expandedStatView: some View {
+//        StatView()
+//            .frame(width: 300, height: 230)
+//            .padding(.top, 100)
+//            .padding(.bottom, 500)
+//    }
     
     var collapsedStatView: some View {
             StatView()

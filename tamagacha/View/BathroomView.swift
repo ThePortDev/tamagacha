@@ -27,7 +27,7 @@ struct BathroomView: View {
                 ZStack {
                     RoundedRectangle(cornerRadius: 15)
                         .frame(width: 100, height: 50)
-                    Text("Shower")
+                    Text("SHOWER")
                         .foregroundColor(.white)
                         .font(.custom("Yoster Island", size: 18))
                 }
@@ -56,18 +56,27 @@ struct BathroomView: View {
                 HStack(spacing: 0) {
                     ZStack {
                         Rectangle().cornerRadius(20, corners: [.topLeft, .bottomLeft])
-                        Text("Back")
+                        Text("BACK")
                             .foregroundColor(.white)
                             .font(.custom("Yoster Island", size: 14))
                             .rotationEffect(Angle(degrees: 90))
                     }
                     ZStack {
-                        Rectangle().cornerRadius(20, corners: [.topRight, .bottomRight])
-                        Text("🛀")
+                        Text("SHOWER")
+                            .scaledToFill()
+                            .lineLimit(1)
+                            .foregroundColor(.white)
+                            .font(.custom("Yoster Island", size: 15))
+                            .rotationEffect(Angle(degrees: 90))
+                            .background(
+                                Rectangle().cornerRadius(20, corners: [.topRight, .bottomRight])
+                                    .frame(width: 50, height: 100)
+                                    
+                            )
                     }
                 }
             }
-            .frame(width: 80, height: 80)
+            .frame(width: 97, height: 100)
             .padding(.leading, screenWidth)
 
 

@@ -31,15 +31,16 @@ struct GraveyardView: View {
             Spacer()
         }
         .background(
-            Image("cemetary")
+            Image("cemetery")
                 .resizable()
-                .frame(width: 400,height: 880)
+                .frame(width: 450,height: 980)
         )
     }
     
     var graveTitle: some View {
         Text("GraveYard")
             .font(.custom("Yoster Island", size: 40))
+            .foregroundColor(.white)
     }
     
     var deadButton: some View {

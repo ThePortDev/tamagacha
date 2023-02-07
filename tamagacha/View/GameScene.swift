@@ -30,7 +30,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     var moveBox: SKNode?
         
     override func didMove(to view: SKView) {
-        let background = SKSpriteNode(imageNamed: "living")
+        let background = SKSpriteNode(imageNamed: "livingroom")
         background.anchorPoint = CGPoint.zero
         background.position = CGPoint(x: -screenWidth / 4, y: 0)
         background.size = CGSize(width: screenWidth, height: screenHeight)

@@ -7,6 +7,8 @@
 
 import SwiftUI
 
+
+
 struct BathroomView: View {
     @Binding var activeView: currentView
     @EnvironmentObject var viewModel: PetViewModel
@@ -19,17 +21,18 @@ struct BathroomView: View {
             Button {
                 SoundManager.soundInstance.playSound(sound: .shower)
                 viewModel.shower(amount: 10)
+                viewModel.goToShower()
                 showerButtonShowing = false
                 DispatchQueue.main.asyncAfter(deadline: .now() + 12) {
                     showerButtonShowing = true
                 }
             } label: {
                 ZStack {
-                    RoundedRectangle(cornerRadius: 15)
-                        .frame(width: 100, height: 50)
+                    RoundedRectangle(cornerRadius: Constants.showerButtonCornerRadius)
+                        .frame(width: Constants.showerButtonFrameWidth, height: Constants.showerButtonFrameHeight)
                     Text("Shower")
-                        .foregroundColor(.white)
-                        .font(.custom("Yoster Island", size: 18))
+                        .foregroundColor(Constants.showerButtonFontColor)
+                        .font(Constants.showerButtonFont)
                 }
             }.disabled(!showerButtonShowing)
 
@@ -55,19 +58,19 @@ struct BathroomView: View {
             } label: {
                 HStack(spacing: 0) {
                     ZStack {
-                        Rectangle().cornerRadius(20, corners: [.topLeft, .bottomLeft])
+                        Rectangle().cornerRadius(Constants.bathroomButtonCornerRadius, corners: [.topLeft, .bottomLeft])
                         Text("Back")
-                            .foregroundColor(.white)
-                            .font(.custom("Yoster Island", size: 14))
+                            .foregroundColor(Constants.bathroomBackButtonForegroundColor)
+                            .font(Constants.bathroomBackButtonFont)
                             .rotationEffect(Angle(degrees: 90))
                     }
                     ZStack {
-                        Rectangle().cornerRadius(20, corners: [.topRight, .bottomRight])
+                        Rectangle().cornerRadius(Constants.bathroomButtonCornerRadius, corners: [.topRight, .bottomRight])
                         Text("🛀")
                     }
                 }
             }
-            .frame(width: 80, height: 80)
+            .frame(width: Constants.bathroomButtonFrameWidth, height: Constants.bathroomButtonFrameHeight)
             .padding(.leading, screenWidth)
 
 

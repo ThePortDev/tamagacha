@@ -66,6 +66,10 @@ class PetViewModel: ObservableObject {
         gameScene.add(item: item)
     }
     
+    func goToShower() {
+        gameScene.shower()
+    }
+    
     func getPetType() -> SKSpriteNode {
         switch pet.petType {
             case .dog:

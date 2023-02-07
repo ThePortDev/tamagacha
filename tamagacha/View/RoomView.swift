@@ -27,10 +27,12 @@ struct RoomView: View {
                     .frame(width: screenWidth, height: screenHeight)
                     .ignoresSafeArea()
                 BathroomView(activeView: $activeView)
-                    .offset(x: (activeView == .left ? 0 : -screenWidth))
+                    .offset(x: !wentToStoreFromBathroom && activeView == .bottom || activeView == .center ? -screenWidth : 0)
+
                 InventoryView(expandInventory: $expandInventory)
-                    .offset(y: (!expandInventory ? -screenHeight + 100 : -50))
-                    .offset(x: activeView == .center || activeView == .bottom ? screenWidth - 50 : screenWidth * 2)
+                    .offset(y: (!expandInventory ? Constants.collapsedInventoryYOffset : Constants.expandedInventoryYOffset))
+                    .offset(x: !wentToStoreFromBathroom && activeView == .bottom || activeView == .center ? screenWidth - 50 : screenWidth * 2)
+
                     .zIndex(100)
                 
 //                Group {
@@ -44,7 +46,8 @@ struct RoomView: View {
 //                .offset(x: (activeView == .center ? 0 : screenWidth))
 //                    .frame(width: 100, height: 100)
                     expandedStatView
-                    .offset(x: activeView != .left ? 0 : screenWidth)
+                    .offset(x: !wentToStoreFromBathroom && activeView == .bottom || activeView == .center ? 0 : screenWidth)
+
                     //.zIndex(.infinity)
 //                Text("starting: \(startingOffsetY) \n current: \(currentDragOffsetY) \n ending: \(endingOffsetY)")
                 
@@ -61,6 +64,13 @@ struct RoomView: View {
         //.edgesIgnoringSafeArea(.all)
     }
     
+    var expandedStatView: some View {
+        StatView()
+            .frame(width: Constants.statsFrameWidth, height: Constants.statsFrameHeight)
+            .padding(.top, 100)
+            .padding(.bottom, 500)
+    }
+    
     var statView: some View {
         Group {
             if isExpanded {
@@ -75,13 +85,6 @@ struct RoomView: View {
                 isExpanded.toggle()
             }
         }
-    }
-    
-    var expandedStatView: some View {
-        StatView()
-            .frame(width: screenWidth, height: 230)
-            .padding(.top, 100)
-            .padding(.bottom, 500)
     }
     
     var collapsedStatView: some View {
@@ -104,14 +107,6 @@ struct RoomView: View {
     
 }
 
-struct BathroomView2: View {
-    @EnvironmentObject var viewModel: PetViewModel
-    
-    var body: some View {
-        Text("Bathroom")
-    }
-}
-
 struct InventoryView: View {
     @EnvironmentObject var viewModel: PetViewModel
     
@@ -121,9 +116,9 @@ struct InventoryView: View {
         GeometryReader { geometry in
             ZStack() {
                 Rectangle()
-                    .foregroundColor(.orange)
-                    .cornerRadius(10, corners: [.bottomLeft])
-                    .frame(width: 100, height: screenHeight)
+                    .foregroundColor(Constants.inventoryForegroundColor)
+                    .cornerRadius(Constants.inventoryCornerRadius, corners: [.bottomLeft])
+                    .frame(width: Constants.inventoryFrameWidth, height: Constants.inventoryFrameHeight)
                 
                 VStack(spacing: 0) {
                     

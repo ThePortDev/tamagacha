@@ -7,6 +7,8 @@
 
 import SwiftUI
 
+
+
 struct BathroomView: View {
     @Binding var activeView: currentView
     @EnvironmentObject var viewModel: PetViewModel
@@ -19,12 +21,14 @@ struct BathroomView: View {
             Button {
                 SoundManager.soundInstance.playSound(sound: .shower)
                 viewModel.shower(amount: 10)
+                viewModel.goToShower()
                 showerButtonShowing = false
                 DispatchQueue.main.asyncAfter(deadline: .now() + 12) {
                     showerButtonShowing = true
                 }
             } label: {
                 ZStack {
+
                     RoundedRectangle(cornerRadius: 15)
                         .frame(width: 100, height: 50)
                     Text("SHOWER")

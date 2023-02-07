@@ -18,12 +18,16 @@ struct CustomTabBar: View {
     @Binding var navigateToSettings: Bool
     @Binding var navigateToMiniGame: Bool
     @Binding var navigateToGraveyard: Bool
+    
+    @Namespace var storeItemsNameSpace
         
     var body: some View {
         ZStack(alignment: .top) {
             Rectangle()
-                .frame(width: screenWidth, height: 1100)
+                //.ignoresSafeArea()
+                .frame(width: screenWidth, height: screenHeight)
                 .foregroundColor(.blue)
+                .offset(y: 154)
             
             VStack(spacing: 0) {
                 HStack(spacing: 0) {
@@ -39,15 +43,16 @@ struct CustomTabBar: View {
                     }
                     .background(Image("testback"))
                     .background(.white)
+
 //                    .frame(height: (activeView != .bottom ? 100 : 100))
 //                    .padding(.bottom, (activeView != .bottom ? 0 : 100))
                     
-                    .cornerRadius(30, corners: [.topRight, .topLeft])
+                    .cornerRadius(Constants.tabsCornerRadius, corners: [.topRight, .topLeft])
                     //.padding(.horizontal)
                     //.padding(.top, 100)
                 }
                 //.frame(height: (activeView != .bottom ? 100 : 500))
-                .offset(y: (activeView != .bottom ? 0 : 200))
+                .offset(y: (activeView != .bottom ? Constants.collapsedTabsYOffset : Constants.expandedTabsYOffset))
                 testView
             }
         }
@@ -71,31 +76,31 @@ struct CustomTabBar: View {
                         .foregroundColor(.white)
                 }
             }
-            .font(.custom("HangTheDj", size: 20))
+            .font(Constants.storeMoneyFont)
 
             if selectedTab == "burger" {
                 VStack {
                     Text("Food")
-                    DisplayStoreProduct(productType: .food)
+                    DisplayStoreProduct(storeItemsNameSpace: _storeItemsNameSpace, productType: .food)
                 }
             }
             else if selectedTab == "drink" {
                 VStack {
                     Text("Beverages")
-                    DisplayStoreProduct(productType: .beverage)
+                    DisplayStoreProduct(storeItemsNameSpace: _storeItemsNameSpace, productType: .beverage)
                 }
                 
             }
             else if selectedTab == "tennis" {
                 VStack {
                     Text("Accessories")
-                    DisplayStoreProduct(productType: .accessory)
+                    DisplayStoreProduct(storeItemsNameSpace: _storeItemsNameSpace, productType: .accessory)
                 }
             }
             else if selectedTab == "tennis" {
                     VStack {
                         Text("Toys")
-                        DisplayStoreProduct(productType: .toy)
+                        DisplayStoreProduct(storeItemsNameSpace: _storeItemsNameSpace, productType: .toy)
                     }
             }
         }
@@ -104,51 +109,55 @@ struct CustomTabBar: View {
 
 struct DisplayStoreProduct: View {
     
+    @Namespace var storeItemsNameSpace
+    
     @EnvironmentObject var viewModel: PetViewModel
     
     @State var productType: Item.types
     
     var body: some View {
         HStack {
-            ForEach(viewModel.store.products, id: \.self) { item in
-                if productType == item.type {
-                    SubView(withItem: item)
+            AspectVGrid(items: viewModel.store.products, aspectRatio: 2/3, content: { item in
+                if item.type == productType {
+                    StoreItem(withItem: item)
+                        .matchedGeometryEffect(id: item.id, in: storeItemsNameSpace)
+                        .padding(.horizontal)
                 }
-            }
+            })
+            .padding(.horizontal)
         }
         .padding(.top, 200)
         .padding(.leading, 10)
     }
 }
 
-struct SubView: View {
+struct StoreItem: View {
     @EnvironmentObject var viewModel: PetViewModel
-
+    
     var withItem: Item
     
     var body: some View {
-        GeometryReader { geometry in
-            Button {
-                SoundManager.soundInstance.playSound(sound: .click)
-                viewModel.store.buy(item: withItem)
-                viewModel.saveData()
-                print("You have bought \(withItem.name)!")
-            } label: {
-            
+        Button {
+            SoundManager.soundInstance.playSound(sound: .click)
+            viewModel.store.buy(item: withItem)
+            viewModel.saveData()
+            print("You have bought \(withItem.name)!")
+        } label: {
             ZStack {
                 RoundedRectangle(cornerRadius: 10)
                     .foregroundColor(.red)
-                    .frame(width: 100, height: 100)
+                    .frame(width: Constants.storeItemsFrameWidth, height: Constants.storeItemsFrameHeight)
                 VStack {
                     Text(withItem.name)
                     Text("+ \(Int(withItem.improveStatsBy))")
                     Text("Price: 💲\(withItem.price)")
                 }
-                .font(.custom("Yoster Island", size: 15))
+                .font(Constants.storeItemsFont)
+                
             }
         }
-            .disabled(viewModel.store.money < withItem.price)
-        }
+        .disabled(viewModel.store.money < withItem.price)
+
     }
 }
 
@@ -205,7 +214,7 @@ struct SettingsButton: View {
             }
             .frame(maxWidth: .infinity, maxHeight: .infinity)
         }
-        .frame(height: 50)
+        .frame(height: Constants.tabButtonsFrameHeight)
     }
 }
 
@@ -226,7 +235,7 @@ struct MiniGameButton: View {
             }
             .frame(maxWidth: .infinity, maxHeight: .infinity)
         }
-        .frame(height: 50)
+        .frame(height: Constants.tabButtonsFrameHeight)
     }
 }
 
@@ -245,7 +254,7 @@ struct GraveyardButton: View {
             }
             .frame(maxWidth: .infinity, maxHeight: .infinity)
         }
-        .frame(height: 50)
+        .frame(height: Constants.tabButtonsFrameHeight)
     }
 }
 
@@ -270,4 +279,57 @@ struct MiniGameView: View {
 
     }
 }
+
+
     
+
+struct AspectVGrid<Item, ItemView>: View where ItemView: View, Item: Identifiable {
+    var items: [Item]
+    var aspectRatio: CGFloat
+    var content: (Item) -> ItemView
+    
+    init(items: [Item], aspectRatio: CGFloat, @ViewBuilder content: @escaping (Item) -> ItemView) {
+        self.items = items
+        self.aspectRatio = aspectRatio
+        self.content = content
+    }
+    
+    var body: some View {
+        GeometryReader { geometry in
+            VStack {
+                let width: CGFloat = widthThatFits(itemCount: items.count, in: geometry.size, itemAspetRatio: aspectRatio)
+                LazyVGrid(columns: [adaptiveGridItem(width: width)]) {
+                    ForEach(items) { item in
+                        content(item).aspectRatio(aspectRatio, contentMode: .fit)
+                        
+                    }
+                }
+                Spacer(minLength: 0)
+            }
+        }
+    }
+    
+    private func adaptiveGridItem(width: CGFloat) -> GridItem {
+        var gridItem = GridItem(.adaptive(minimum: width))
+        gridItem.spacing = 0
+        return gridItem
+    }
+    
+    private func widthThatFits(itemCount: Int, in size: CGSize, itemAspetRatio: CGFloat) -> CGFloat {
+            var columnCount = 1
+            var rowCount = itemCount
+            repeat {
+                let itemWidth = size.width / CGFloat(columnCount)
+                let itemHeight = itemWidth / itemAspetRatio
+                if CGFloat(rowCount) * itemHeight < size.height {
+                    break
+                }
+                columnCount += 1
+                rowCount = (itemCount + (columnCount - 1)) / columnCount
+            } while columnCount < itemCount
+            if columnCount > itemCount {
+                columnCount = itemCount
+            }
+            return floor(size.width / CGFloat(columnCount))
+        }
+}

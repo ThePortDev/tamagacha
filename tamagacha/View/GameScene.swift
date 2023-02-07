@@ -49,17 +49,17 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         
 
         box = SKSpriteNode(imageNamed: viewModel.pet.image)
-        box!.position = CGPoint(x: screenWidth * 0.25, y: screenHeight / 2)
-        box!.size = CGSize(width: 200, height: 200)
-        box!.physicsBody = SKPhysicsBody(rectangleOf: CGSize(width: 200, height: 200))
+        box!.position = Constants.centerOfFirstScene
+        box!.size = Constants.petSpriteSize
+        box!.physicsBody = SKPhysicsBody(rectangleOf: Constants.petSpriteSize)
         box!.name = "draggable"
         box!.physicsBody?.categoryBitMask = 0b001
         addChild(box!)
 
         boxName = SKLabelNode(text: "\(viewModel.pet.name) - \(viewModel.pet.age)")
-        boxName?.fontName = "Yoster Island"
-        boxName?.fontSize = 20
-        boxName?.fontColor = .white
+        boxName?.fontName = Constants.petNameFontName
+        boxName?.fontSize = Constants.petNameFontSize
+        boxName?.fontColor = Constants.petNameFontColor
         addChild(boxName!)
         
         moveBox = SKNode()//SKSpriteNode(color: .red, size: CGSize(width: 5, height: 5))
@@ -75,11 +75,11 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         camera = cam
 
 //        physicsBody = SKPhysicsBody(edgeLoopFrom: CGPath(rect: CGRect(x: -screenWidth - 100, y: 100, width: screenWidth * 2, height: screenHeight-100), transform: nil))
-        physicsBody = SKPhysicsBody(edgeChainFrom: CGPath(rect: CGRect(x: -screenWidth/* - 100*/, y: 90, width: screenWidth * 2, height: screenHeight), transform: nil))
+        physicsBody = SKPhysicsBody(edgeChainFrom: Constants.scenePhysicsBody)
         
         physicsWorld.contactDelegate = self
         
-        self.physicsWorld.gravity = CGVector(dx: 0, dy: -0.3)
+        self.physicsWorld.gravity = Constants.sceneGravity
     }
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
@@ -107,16 +107,10 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     override func touchesMoved(_ touches: Set<UITouch>, with event: UIEvent?) {
         if let touch = touches.first, let node = self.currentNode {
             let touchLocation = touch.location(in: self)
-            if touchLocation.y < 90 || touchLocation.y > screenHeight - 100 {
+            if touchLocation.y < Constants.scenePhysicsBody.boundingBox.minY || touchLocation.y > Constants.scenePhysicsBody.boundingBox.height - Constants.petSpriteSize.height {
                 return
             } else {
-                //self.sceneSize = CGSize(width: 700, height: 400)
-//                if  firstScene && touchLocation.x > screenWidth {
-//                    return
-//                } else if !firstScene && touchLocation.x < -screenWidth || touchLocation.x > 0 {
-//                    return
-//                } else {
-                if  firstScene && touchLocation.x > screenWidth - 150 || firstScene && touchLocation.x < -50{
+                if  firstScene && touchLocation.x > screenWidth - Constants.petSpriteSize.width * 0.75 || firstScene && touchLocation.x < -Constants.petSpriteSize.width * 0.75{
                     return
                 } else if !firstScene && touchLocation.x > -150 || !firstScene && touchLocation.x < -screenWidth - 50 {
                     return
@@ -193,9 +187,9 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
 //            let imageName = (item.name.prefix(1).lowercased() + item.name.replacingOccurrences(of: " ", with: "").dropFirst())
             let imageName = (item.name.replacingOccurrences(of: " ", with: "")).lowercased()
             let itemSprite = SKSpriteNode(imageNamed: imageName)
-            itemSprite.size = CGSize(width: 50, height: 100)
-            itemSprite.position = CGPoint(x: screenWidth * 0.25, y: screenHeight * 0.5)
-            itemSprite.physicsBody = SKPhysicsBody(rectangleOf: CGSize(width: 50, height: 100))
+            itemSprite.size = Constants.itemSpriteSize
+            itemSprite.position = CGPoint(x: Constants.centerOfFirstSceneX, y: screenHeight / 2)
+            itemSprite.physicsBody = SKPhysicsBody(rectangleOf: Constants.itemSpriteSize)
             itemSprite.physicsBody!.contactTestBitMask = itemSprite.physicsBody!.collisionBitMask
             //itemSprite.name = "\(item.type)"
             itemSprite.name = "\(item.name)"
@@ -207,17 +201,27 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     
     func moveScene() {
         if firstScene {
-            moveBox!.run(SKAction.moveTo(x: -screenWidth * 0.75, duration: 1))
-            box!.run(SKAction.moveTo(x: -screenWidth * 0.75, duration: 1))
+            moveBox!.run(SKAction.moveTo(x: Constants.centerOfSecondSceneX, duration: 1))
+            box!.run(SKAction.moveTo(x: Constants.centerOfSecondSceneX, duration: 1))
 
             firstScene = false
         } else {
-            moveBox!.run(SKAction.moveTo(x: screenWidth * 0.25, duration: 1))
-            box!.run(SKAction.moveTo(x: screenWidth * 0.25, duration: 1))
+            moveBox!.run(SKAction.moveTo(x: Constants.centerOfFirstSceneX, duration: 1))
+            box!.run(SKAction.moveTo(x: Constants.centerOfFirstSceneX, duration: 1))
 
             firstScene = true
         }
         
+    }
+    
+    func shower() {
+        box!.run(SKAction.moveTo(x: -screenWidth / 2, duration: 1))
+        box!.run(SKAction.moveTo(y: 525, duration: 1))
+        SKAction.wait(forDuration: 1)
+        box!.run(SKAction.moveTo(x: -screenWidth / 2, duration: 2))
+        box!.run(SKAction.moveTo(y: 525, duration: 2))
+        SKAction.wait(forDuration: 2)
+//        box!.run(SKAction.moveTo(x: Constants.centerOfSecondSceneX, duration: 1))
     }
 }
 

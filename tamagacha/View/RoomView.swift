@@ -45,17 +45,21 @@ struct RoomView: View {
 //                }
 //                .offset(x: (activeView == .center ? 0 : screenWidth))
 //                    .frame(width: 100, height: 100)
+                VStack {
                     expandedStatView
+
                     .offset(x: !wentToStoreFromBathroom && activeView == .bottom || activeView == .center ? 0 : screenWidth)
 
+                        .offset(y: -100)
+
                     //.zIndex(.infinity)
-//                Text("starting: \(startingOffsetY) \n current: \(currentDragOffsetY) \n ending: \(endingOffsetY)")
-                
-                //                Button("change scene") {
-                //                    withAnimation {
-                ////                        changeScene.toggle()
-                //                    }
-                //                }
+                    //                Text("starting: \(startingOffsetY) \n current: \(currentDragOffsetY) \n ending: \(endingOffsetY)")
+                    
+                    //                Button("change scene") {
+                    //                    withAnimation {
+                    ////                        changeScene.toggle()
+                    //                    }
+                }   //                }
             }
             .frame(width: geometry.size.width, height: geometry.size.height /*- 100*//*, alignment: .center*/)
         }
@@ -85,6 +89,14 @@ struct RoomView: View {
                 isExpanded.toggle()
             }
         }
+    }
+    
+
+    var expandedStatView: some View {
+        StatView()
+            .frame(width: 300, height: 230)
+            .padding(.top, 100)
+            .padding(.bottom, 500)
     }
     
     var collapsedStatView: some View {
@@ -164,9 +176,10 @@ struct InventoryView: View {
                     }
                 } label: {
                     VStack {
-                        Text("Inventory")
-                            .font(.custom("Yoster Island", size: 14))
+                        Text("🎒")
+                            .font(.custom("Yoster Island", size: 34))
                             .foregroundColor(.black)
+                        Spacer()
                         Image(systemName: "chevron.down")
                     }
                 }

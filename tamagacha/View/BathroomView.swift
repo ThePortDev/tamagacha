@@ -28,11 +28,12 @@ struct BathroomView: View {
                 }
             } label: {
                 ZStack {
-                    RoundedRectangle(cornerRadius: Constants.showerButtonCornerRadius)
-                        .frame(width: Constants.showerButtonFrameWidth, height: Constants.showerButtonFrameHeight)
-                    Text("Shower")
-                        .foregroundColor(Constants.showerButtonFontColor)
-                        .font(Constants.showerButtonFont)
+
+                    RoundedRectangle(cornerRadius: 15)
+                        .frame(width: 100, height: 50)
+                    Text("SHOWER")
+                        .foregroundColor(.white)
+                        .font(.custom("Yoster Island", size: 18))
                 }
             }.disabled(!showerButtonShowing)
 
@@ -58,19 +59,28 @@ struct BathroomView: View {
             } label: {
                 HStack(spacing: 0) {
                     ZStack {
-                        Rectangle().cornerRadius(Constants.bathroomButtonCornerRadius, corners: [.topLeft, .bottomLeft])
-                        Text("Back")
-                            .foregroundColor(Constants.bathroomBackButtonForegroundColor)
-                            .font(Constants.bathroomBackButtonFont)
+                        Rectangle().cornerRadius(20, corners: [.topLeft, .bottomLeft])
+                        Text("BACK")
+                            .foregroundColor(.white)
+                            .font(.custom("Yoster Island", size: 14))
                             .rotationEffect(Angle(degrees: 90))
                     }
                     ZStack {
-                        Rectangle().cornerRadius(Constants.bathroomButtonCornerRadius, corners: [.topRight, .bottomRight])
-                        Text("🛀")
+                        Text("SHOWER")
+                            .scaledToFill()
+                            .lineLimit(1)
+                            .foregroundColor(.white)
+                            .font(.custom("Yoster Island", size: 15))
+                            .rotationEffect(Angle(degrees: 90))
+                            .background(
+                                Rectangle().cornerRadius(20, corners: [.topRight, .bottomRight])
+                                    .frame(width: 50, height: 100)
+                                    
+                            )
                     }
                 }
             }
-            .frame(width: Constants.bathroomButtonFrameWidth, height: Constants.bathroomButtonFrameHeight)
+            .frame(width: 97, height: 100)
             .padding(.leading, screenWidth)
 
 

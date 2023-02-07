@@ -32,16 +32,18 @@ struct CustomTabBar: View {
             VStack(spacing: 0) {
                 HStack(spacing: 0) {
                     HStack(spacing: 0) {
-                        TabBarButton(activeView: $activeView, wentToStoreFromBathroom: $wentToStoreFromBathroom, image: "house", selectedTab: $selectedTab)
-                        TabBarButton(activeView: $activeView, wentToStoreFromBathroom: $wentToStoreFromBathroom, image: "bookmark", selectedTab: $selectedTab)
+                        TabBarButton(activeView: $activeView, wentToStoreFromBathroom: $wentToStoreFromBathroom, image: "burger", selectedTab: $selectedTab)
+                        TabBarButton(activeView: $activeView, wentToStoreFromBathroom: $wentToStoreFromBathroom, image: "drink", selectedTab: $selectedTab)
                         //TabBarButton(image: "message", selectedTab: $selectedTab)
-                        TabBarButton(activeView: $activeView, wentToStoreFromBathroom: $wentToStoreFromBathroom,image: "sportscourt", selectedTab: $selectedTab)
-                        SettingsButton(activeView: $activeView, image: "gearshape", navigateToSettings: $navigateToSettings)
+                        TabBarButton(activeView: $activeView, wentToStoreFromBathroom: $wentToStoreFromBathroom,image: "tennis", selectedTab: $selectedTab)
+                        SettingsButton(activeView: $activeView, image: "gearkog", navigateToSettings: $navigateToSettings)
                         //MiniGameButton(activeView: $activeView, image: "1.circle", navigateToMiniGame: $navigateToMiniGame)
-                        GraveyardButton(image: "🪦", navigateToGraveyard: $navigateToGraveyard)
+                        GraveyardButton(image: "tombstone", navigateToGraveyard: $navigateToGraveyard)
 
                     }
-                    .background(Constants.tabsBackgroundColor)
+                    .background(Image("testback"))
+                    .background(.white)
+
 //                    .frame(height: (activeView != .bottom ? 100 : 100))
 //                    .padding(.bottom, (activeView != .bottom ? 0 : 100))
                     
@@ -76,26 +78,26 @@ struct CustomTabBar: View {
             }
             .font(Constants.storeMoneyFont)
 
-            if selectedTab == "house" {
+            if selectedTab == "burger" {
                 VStack {
                     Text("Food")
                     DisplayStoreProduct(storeItemsNameSpace: _storeItemsNameSpace, productType: .food)
                 }
             }
-            else if selectedTab == "bookmark" {
+            else if selectedTab == "drink" {
                 VStack {
                     Text("Beverages")
                     DisplayStoreProduct(storeItemsNameSpace: _storeItemsNameSpace, productType: .beverage)
                 }
                 
             }
-            else if selectedTab == "message" {
+            else if selectedTab == "tennis" {
                 VStack {
                     Text("Accessories")
                     DisplayStoreProduct(storeItemsNameSpace: _storeItemsNameSpace, productType: .accessory)
                 }
             }
-            else if selectedTab == "sportscourt" {
+            else if selectedTab == "tennis" {
                     VStack {
                         Text("Toys")
                         DisplayStoreProduct(storeItemsNameSpace: _storeItemsNameSpace, productType: .toy)
@@ -184,7 +186,7 @@ struct TabBarButton: View {
                 }
                 
             }) {
-                Image(systemName: "\(image)\(selectedTab == image ? ".fill" : "")")
+                Image("\(image)\(selectedTab == image ? "_dark" : "")")
                     .font(.system(size: 25, weight: .semibold))
                     .offset(y: selectedTab == image ? -10 : 0)
             }
@@ -207,7 +209,7 @@ struct SettingsButton: View {
                 SoundManager.soundInstance.playSound(sound: .click)
                 navigateToSettings = true
             }) {
-                Image(systemName: "\(image)")
+                Image("\(image)")
                     .font(.system(size: 25, weight: .semibold))
             }
             .frame(maxWidth: .infinity, maxHeight: .infinity)
@@ -247,7 +249,7 @@ struct GraveyardButton: View {
                 SoundManager.soundInstance.playSound(sound: .click)
                 navigateToGraveyard = true
             }) {
-                Text(image)
+                Image("\(image)")
                     .font(.system(size: 25, weight: .semibold))
             }
             .frame(maxWidth: .infinity, maxHeight: .infinity)
@@ -280,6 +282,7 @@ struct MiniGameView: View {
 
 
     
+
 struct AspectVGrid<Item, ItemView>: View where ItemView: View, Item: Identifiable {
     var items: [Item]
     var aspectRatio: CGFloat

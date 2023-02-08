@@ -25,6 +25,8 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     var cam: SKCameraNode!
     var firstScene = true
     
+    var isShowering = false
+    
     var box: SKSpriteNode?
     var boxName: SKLabelNode?
     var moveBox: SKNode?
@@ -155,6 +157,23 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         cam.position.x = moveBox!.position.x
         boxName!.position = CGPoint(x: box!.position.x, y: CGFloat((box?.position.y)!) + box!.size.height / 2)
         boxName?.text = "\(viewModel.pet.name) - \(viewModel.pet.age / 86400) Day\(((viewModel.pet.age / 86400) > 1) ? "" : "s")"
+        
+        if isShowering {
+            
+            
+            let activeObjects = children.compactMap { $0 as? WaterDrop}
+            if activeObjects.count < 500 {
+                addChild(WaterDrop(startPosition: CGPoint(x: CGFloat.random(in: (-screenWidth / 2 - 20)...(-screenWidth / 2 + 20)), y: 700)))
+            }
+        }
+        for child in children {
+            if child.name == "waterDrop" {
+                if child.frame.maxY < 500 {
+                    child.removeFromParent()
+                }
+            }
+        }
+        
     }
     
     func collisionBetween(ball: SKNode, object: SKNode) {
@@ -215,9 +234,15 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     }
     
     func shower() {
+            
+        
         let delay = SKAction.wait(forDuration: 1)
-        let stationary = SKAction.moveTo(y: 525, duration: 5)
-        let sequence = SKAction.sequence([delay, stationary])
+        let stationary = SKAction.moveTo(y: 525, duration: 9)
+        let turnOffShower = SKAction.run {
+            self.isShowering = false
+        }
+        let sequence = SKAction.sequence([delay, stationary, turnOffShower])
+        
         box!.run(SKAction.moveTo(x: -screenWidth / 2, duration: 1))
         box!.run(SKAction.moveTo(y: 525, duration: 1))
 //        let moveToShowerX = SKAction.moveTo(x: -screenWidth / 2, duration: 1)
@@ -226,27 +251,18 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
 //        let moveToShowerX2 = SKAction.moveTo(x: -screenWidth / 2 - 1, duration: 5)
 //
 //        let sequence = SKAction.sequence([moveToShowerY, wait, moveToShowerX, moveToShowerX2])
+        isShowering = true
         
         box!.run(sequence)
-        
+
+    
 //        let waterDrop = SKSpriteNode(color: .systemBlue, size: CGSize(width: 5, height: 10))
 //        waterDrop.position = CGPoint(x: CGFloat.random(in: (-screenWidth / 2 - 20)...(-screenWidth / 2 + 20)), y: 700)
 //        waterDrop.physicsBody = SKPhysicsBody(rectangleOf: CGSize(width: 5, height: 10))
 //        waterDrop.name = "waterDrop"
         //waterDrop.physicsBody?.categoryBitMask = 0b001
         
-        for child in children {
-            if child.name == "waterDrop" {
-                if child.frame.maxY < 400 {
-                    child.removeFromParent()
-                }
-            }
-        }
         
-        let activeObjects = children.compactMap { $0 as? WaterDrop}
-        if activeObjects.count < 8 {
-            addChild(WaterDrop(startPosition: CGPoint(x: CGFloat.random(in: (-screenWidth / 2 - 20)...(-screenWidth / 2 + 20)), y: 700)))
-        }
         
         
     }
@@ -259,6 +275,7 @@ class WaterDrop: SKSpriteNode {
         let texture = SKTexture(imageNamed: "drink")
         super.init(texture: texture, color: .systemBlue, size: CGSize(width: 5, height: 10))
         
+        self.name = "waterDrop"
         physicsBody = SKPhysicsBody(rectangleOf: CGSize(width: 5, height: 10))
         position = CGPoint(x: startPosition.x, y: startPosition.y)
     }

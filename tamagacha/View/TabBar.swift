@@ -28,7 +28,7 @@ struct CustomTabBar: View {
             Rectangle()
                 //.ignoresSafeArea()
                 .frame(width: screenWidth, height: screenHeight)
-                .foregroundColor(.blue)
+                .foregroundColor(ThemeColors.backgroundGumball)
                 .offset(y: 154)
             
             VStack(spacing: 0) {
@@ -100,7 +100,8 @@ struct CustomTabBar: View {
             .padding(.top, 50)
             
             VStack {
-                Text("Money: 💲\(viewModel.store.money)")
+                Text("Money: $\(viewModel.store.money)")
+                    .foregroundColor(.white)
                 Button {
                     withAnimation {
                         if !wentToStoreFromBathroom {
@@ -163,7 +164,7 @@ struct StoreItem: View {
         } label: {
             ZStack {
                 RoundedRectangle(cornerRadius: 10)
-                    .foregroundColor(.red)
+                    .foregroundColor(ThemeColors.accentButton)
                     .frame(width: Constants.storeItemsFrameWidth, height: Constants.storeItemsFrameHeight)
                 HStack(spacing: 100) {
                     

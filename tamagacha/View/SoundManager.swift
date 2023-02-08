@@ -32,8 +32,8 @@ class SoundManager {
         case recieved = "recieved"
         case swoosh = "swoosh"
         case shower = "shower"
-        case type = "type"
         case woof = "woof"
+        case typing = "typing"
     }
     
     func playMusic(sound: MusicOption) {

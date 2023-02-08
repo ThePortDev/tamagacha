@@ -28,14 +28,14 @@ struct AspectVGrid<Item, ItemView>: View where ItemView: View, Item: Identifiabl
                         
                     }
                 }
-                Spacer(minLength: 50)
+                Spacer(minLength: 0)
             }
         }
     }
     
     private func adaptiveGridItem(width: CGFloat) -> GridItem {
         var gridItem = GridItem(.adaptive(minimum: width))
-        gridItem.spacing = 0
+        gridItem.spacing = 300
         return gridItem
     }
     

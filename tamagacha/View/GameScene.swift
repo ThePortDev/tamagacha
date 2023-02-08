@@ -94,7 +94,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             
             // Drag Pet
             for node in touchedNodes.reversed() {
-                if node.name == "draggable" {
+                if node.name == "draggable" /*|| Item(name: node.name!).type == .toy*/ {
                     if viewModel.pet.isAlive {
                         viewModel.petPet(amount: 10)
                     }
@@ -185,7 +185,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     
     func add(item: Item) {
 //            let imageName = (item.name.prefix(1).lowercased() + item.name.replacingOccurrences(of: " ", with: "").dropFirst())
-            let imageName = (item.name.replacingOccurrences(of: " ", with: "")).lowercased()
+            let imageName = item.imageName
             let itemSprite = SKSpriteNode(imageNamed: imageName)
             itemSprite.size = Constants.itemSpriteSize
             itemSprite.position = CGPoint(x: Constants.centerOfFirstSceneX, y: screenHeight / 2)
@@ -224,6 +224,12 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
 //        box!.run(SKAction.moveTo(x: Constants.centerOfSecondSceneX, duration: 1))
     }
 }
+
+//class ItemSprite: SKSpriteNode {
+//    var type: Item.types
+//    var name: String
+//
+//}
 
 //class GameSceneViewModel: ObservableObject {
 //    @Published var gameScene: GameScene

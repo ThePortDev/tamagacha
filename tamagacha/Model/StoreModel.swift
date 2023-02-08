@@ -51,6 +51,7 @@ struct Item: Hashable, Codable, Identifiable {
     
     
     var name: String
+    var imageName: String
     var improveStatsBy: CGFloat
     var price: Int
     var type: types
@@ -66,6 +67,7 @@ struct Item: Hashable, Codable, Identifiable {
     
     init(name: String) {
         self.name = name
+        self.imageName = name.replacingOccurrences(of: " ", with: "").lowercased()
         switch self.name {
             case "Not Dog Food":
                 self.type = .food; self.improveStatsBy = 10; self.price = 5; self.id = 0

@@ -30,6 +30,9 @@ struct CustomTabBar: View {
                 .offset(y: 154)
             
             VStack(spacing: 0) {
+//                if activeView == .bottom {
+//                    backButton
+//                }
                 HStack(spacing: 0) {
                     HStack(spacing: 0) {
                         TabBarButton(activeView: $activeView, wentToStoreFromBathroom: $wentToStoreFromBathroom, image: "burger", selectedTab: $selectedTab)
@@ -47,7 +50,7 @@ struct CustomTabBar: View {
 //                    .frame(height: (activeView != .bottom ? 100 : 100))
 //                    .padding(.bottom, (activeView != .bottom ? 0 : 100))
                     
-                    .cornerRadius(Constants.tabsCornerRadius, corners: [.topRight, .topLeft])
+                    .cornerRadius(Constants.tabsCornerRadius, corners: [.topRight])
                     //.padding(.horizontal)
                     //.padding(.top, 100)
                 }
@@ -58,8 +61,42 @@ struct CustomTabBar: View {
         }
     }
     
+    var backButton: some View {
+        ZStack {
+            RoundedRectangle(cornerRadius: 10)
+                .foregroundColor(.red)
+                .frame(width: 100, height: 100)
+        }
+        .padding(.top, 100)
+    }
+    
     var testView: some View {
         ZStack {
+            
+            
+            Group {
+                if selectedTab == "burger" {
+                    VStack {
+                        //Text("Food")
+                        DisplayStoreProduct(storeItemsNameSpace: _storeItemsNameSpace, productType: .food)
+                    }
+                }
+                else if selectedTab == "drink" {
+                    VStack {
+                        //Text("Beverages")
+                        DisplayStoreProduct(storeItemsNameSpace: _storeItemsNameSpace, productType: .beverage)
+                    }
+                    
+                }
+                else if selectedTab == "tennis" {
+                    VStack {
+                        //Text("Toys")
+                        DisplayStoreProduct(storeItemsNameSpace: _storeItemsNameSpace, productType: .toy)
+                    }
+                }
+            }
+            .padding(.top, 50)
+            
             VStack {
                 Text("Money: 💲\(viewModel.store.money)")
                 Button {
@@ -77,26 +114,7 @@ struct CustomTabBar: View {
                 }
             }
             .font(Constants.storeMoneyFont)
-
-            if selectedTab == "burger" {
-                VStack {
-                    Text("Food")
-                    DisplayStoreProduct(storeItemsNameSpace: _storeItemsNameSpace, productType: .food)
-                }
-            }
-            else if selectedTab == "drink" {
-                VStack {
-                    Text("Beverages")
-                    DisplayStoreProduct(storeItemsNameSpace: _storeItemsNameSpace, productType: .beverage)
-                }
-                
-            }
-            else if selectedTab == "tennis" {
-                    VStack {
-                        Text("Toys")
-                        DisplayStoreProduct(storeItemsNameSpace: _storeItemsNameSpace, productType: .toy)
-                    }
-            }
+            .padding(.bottom, 300)
         }
     }
 }
@@ -115,13 +133,11 @@ struct DisplayStoreProduct: View {
                 if item.type == productType {
                     StoreItem(withItem: item)
                         .matchedGeometryEffect(id: item.id, in: storeItemsNameSpace)
-                        .padding(.horizontal)
                 }
             })
-            .padding(.horizontal)
         }
         .padding(.top, 200)
-        .padding(.leading, 10)
+        //.padding(.leading, 10)
     }
 }
 
@@ -141,12 +157,18 @@ struct StoreItem: View {
                 RoundedRectangle(cornerRadius: 10)
                     .foregroundColor(.red)
                     .frame(width: Constants.storeItemsFrameWidth, height: Constants.storeItemsFrameHeight)
-                VStack {
-                    Text(withItem.name)
-                    Text("+ \(Int(withItem.improveStatsBy))")
-                    Text("Price: 💲\(withItem.price)")
+                HStack(spacing: 100) {
+                    
+                    VStack(spacing: 5) {
+                        Text(withItem.name)
+                        Text("+ \(Int(withItem.improveStatsBy))")
+                        Text("Price: 💲\(withItem.price)")
+                    }
+                    .foregroundColor(.black)
+                    .font(Constants.storeItemsFont)
+                    Image(withItem.imageName)
                 }
-                .font(Constants.storeItemsFont)
+                
                 
             }
         }

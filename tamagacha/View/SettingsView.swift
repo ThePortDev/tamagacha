@@ -46,7 +46,7 @@ struct SettingsView: View {
             backBTN
             
         }
-        .background(Values.primary)
+        .background(ThemeColors.primary)
         .navigate(to: DeveloperToolsView().environmentObject(viewModel), when: $navigateToDevTools)
         
     }
@@ -77,21 +77,21 @@ struct SettingsView: View {
         VStack {
             Text("Volume \(Int(settingsVM.volume * 100))%")
                 .font(.custom("Yoster Island", size: 18))
-                .foregroundColor(Values.secondary)
+                .foregroundColor(ThemeColors.accent)
             
             HStack {
                 decreaseButton
-                    .foregroundColor(Values.secondary)
+                    .foregroundColor(ThemeColors.accent)
                 
                 Slider(value: $settingsVM.volume)
-                    .tint(Values.secondary)
+                    .tint(ThemeColors.accent)
                     .onChange(of: self.settingsVM.volume) { value in
                         SoundManager.soundInstance.playSound(sound: .swoosh)
                         SoundManager.soundInstance.player?.volume = Float(value)
                     }
                 
                 increaseButton
-                    .foregroundColor(Values.secondary)
+                    .foregroundColor(ThemeColors.accent)
             }
         }
         .padding(.horizontal, 25)
@@ -101,21 +101,21 @@ struct SettingsView: View {
         VStack {
             Text("SFX Volume \(Int(settingsVM.SFXVolume * 100))%")
                 .font(.custom("Yoster Island", size: 18))
-                .foregroundColor(Values.secondary)
+                .foregroundColor(ThemeColors.accent)
             
             HStack {
                 decreaseButton
-                    .foregroundColor(Values.secondary)
+                    .foregroundColor(ThemeColors.accent)
                 
                 Slider(value: $settingsVM.SFXVolume)
-                    .tint(Values.secondary)
+                    .tint(ThemeColors.accent)
                     .onChange(of: self.settingsVM.SFXVolume) { value in
                         SoundManager.soundInstance.playSound(sound: .swoosh)
                         SoundManager.soundInstance.soundPlayer?.volume = Float(value)
                     }
                 
                 increaseButton
-                    .foregroundColor(Values.secondary)
+                    .foregroundColor(ThemeColors.accent)
             }
         }
         .padding(.horizontal, 25)
@@ -141,12 +141,25 @@ struct SettingsView: View {
     
     var backBTN: some View {
         
-        Button("Back") {
+        Button {
             SoundManager.soundInstance.playSound(sound: .click)
             dismiss()
-//            presentationMode.wrappedValue.dismiss()
+        } label: {
+            Text("Back")
+                .font(.custom("Yoster Island", size: 26))
+                .foregroundColor(ThemeColors.primary)
+                .bold()
+                .padding()
+                .background(
+                    RoundedRectangle(cornerSize: CGSize(width: 100, height: 100))
+                        .foregroundColor(ThemeColors.accent)
+                        .shadow(
+                            color: .black.opacity(0.5),
+                            radius: 10,
+                            x:0.0, y:10)
+                )
         }
-        .foregroundColor(Values.secondary)
+        .foregroundColor(ThemeColors.accent)
         
     }
 }

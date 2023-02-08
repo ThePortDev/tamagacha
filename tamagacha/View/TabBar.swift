@@ -99,25 +99,26 @@ struct CustomTabBar: View {
             }
             .padding(.top, 50)
             
-            VStack {
-                Text("Money: 💲\(viewModel.store.money)")
-                Button {
-                    withAnimation {
-                        if !wentToStoreFromBathroom {
-                            activeView = .center
-                        } else {
-                            activeView = .left
-                        }
-                        selectedTab = ""
-                        background = "tabbar"
+            Text("Money: 💲\(viewModel.store.money)")
+                .font(Constants.storeMoneyFont)
+                .padding(.bottom, 400)
+            
+            Button {
+                withAnimation {
+                    if !wentToStoreFromBathroom {
+                        activeView = .center
+                    } else {
+                        activeView = .left
                     }
-                } label: {
-                    Text("Back to home")
-                        .foregroundColor(.white)
+                    selectedTab = ""
+                    background = "tabbar"
                 }
+            } label: {
+                Text("Back")
+                    .foregroundColor(.white)
             }
-            .font(Constants.storeMoneyFont)
-            .padding(.bottom, 300)
+            .font(Constants.storeBackButtonFont)
+            .padding(.top, 800)
         }
     }
     

@@ -39,6 +39,7 @@ struct BathroomView: View {
 
 
             .padding(.bottom, 100)
+            .padding(.trailing, 200)
             Button {
                 switch activeView {
                     case .center:
@@ -60,23 +61,27 @@ struct BathroomView: View {
                 HStack(spacing: 0) {
                     ZStack {
                         Rectangle().cornerRadius(20, corners: [.topLeft, .bottomLeft])
+                            .frame(width: 60, height: 100)
                         Text("BACK")
+                            .scaledToFill()
                             .foregroundColor(.white)
-                            .font(.custom("Yoster Island", size: 14))
+                            .font(.custom("Yoster Island", size: 15))
                             .rotationEffect(Angle(degrees: 90))
                     }
                     ZStack {
+                        Rectangle().cornerRadius(20, corners: [.topRight, .bottomRight])
+                            .frame(width: 60, height: 100)
                         Text("SHOWER")
                             .scaledToFill()
                             .lineLimit(1)
                             .foregroundColor(.white)
                             .font(.custom("Yoster Island", size: 15))
                             .rotationEffect(Angle(degrees: 90))
-                            .background(
-                                Rectangle().cornerRadius(20, corners: [.topRight, .bottomRight])
-                                    .frame(width: 50, height: 100)
-                                    
-                            )
+//                            .background(
+//                                Rectangle().cornerRadius(20, corners: [.topRight, .bottomRight])
+//                                    .frame(width: 50, height: 100)
+//
+//                            )
                     }
                 }
             }

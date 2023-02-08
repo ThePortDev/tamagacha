@@ -52,7 +52,7 @@ struct CustomTabBar: View {
 //                    .frame(height: (activeView != .bottom ? 100 : 100))
 //                    .padding(.bottom, (activeView != .bottom ? 0 : 100))
                     
-                    .cornerRadius(Constants.tabsCornerRadius, corners: [.topRight])
+                    .cornerRadius(Constants.tabsCornerRadius, corners: [.topRight, .topLeft])
                     //.padding(.horizontal)
                     //.padding(.top, 100)
                 }
@@ -140,7 +140,7 @@ struct DisplayStoreProduct: View {
             AspectVGrid(items: viewModel.store.products, aspectRatio: 2/3, content: { item in
                 if item.type == productType {
                     StoreItem(withItem: item)
-                        .matchedGeometryEffect(id: item.id, in: storeItemsNameSpace)
+                        //.matchedGeometryEffect(id: item.id, in: storeItemsNameSpace)
                 }
             })
         }

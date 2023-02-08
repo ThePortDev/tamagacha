@@ -92,7 +92,7 @@ Age: \(viewModel.pet.age / 86400)
         } label: {
             ZStack {
                 RoundedRectangle(cornerSize: CGSize(width: 100, height: 100))
-                    .fill(AngularGradient(colors: [.blue, .white], center: .topLeading))
+                    .fill(AngularGradient(colors: [ThemeColors.accent, .white], center: .topLeading))
                     .frame(width: 280, height: 45)
                     .shadow(
                         color: .black.opacity(0.5),

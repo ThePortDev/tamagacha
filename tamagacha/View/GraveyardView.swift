@@ -56,7 +56,7 @@ struct GraveyardView: View {
                     .italic()
                     .background(
                         RoundedRectangle(cornerSize: CGSize(width: 100, height: 100))
-                            .fill(AngularGradient(colors: [.blue, .white], center: .topLeading))
+                            .fill(AngularGradient(colors: [ThemeColors.accent, .white], center: .topLeading))
                             .frame(width: 325, height: 55)
                             .shadow(
                                 color: .black.opacity(0.5),

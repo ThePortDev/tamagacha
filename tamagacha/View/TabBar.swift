@@ -92,12 +92,6 @@ struct CustomTabBar: View {
                 
             }
             else if selectedTab == "tennis" {
-                VStack {
-                    Text("Accessories")
-                    DisplayStoreProduct(storeItemsNameSpace: _storeItemsNameSpace, productType: .accessory)
-                }
-            }
-            else if selectedTab == "tennis" {
                     VStack {
                         Text("Toys")
                         DisplayStoreProduct(storeItemsNameSpace: _storeItemsNameSpace, productType: .toy)

@@ -28,7 +28,7 @@ struct AspectVGrid<Item, ItemView>: View where ItemView: View, Item: Identifiabl
                         
                     }
                 }
-                Spacer(minLength: 0)
+                Spacer(minLength: 50)
             }
         }
     }

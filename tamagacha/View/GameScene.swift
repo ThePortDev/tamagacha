@@ -229,10 +229,10 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         
         box!.run(sequence)
         
-        let waterDrop = SKSpriteNode(color: .systemBlue, size: CGSize(width: 5, height: 10))
-        waterDrop.position = CGPoint(x: CGFloat.random(in: (-screenWidth / 2 - 20)...(-screenWidth / 2 + 20)), y: 700)
-        waterDrop.physicsBody = SKPhysicsBody(rectangleOf: CGSize(width: 5, height: 10))
-        waterDrop.name = "waterDrop"
+//        let waterDrop = SKSpriteNode(color: .systemBlue, size: CGSize(width: 5, height: 10))
+//        waterDrop.position = CGPoint(x: CGFloat.random(in: (-screenWidth / 2 - 20)...(-screenWidth / 2 + 20)), y: 700)
+//        waterDrop.physicsBody = SKPhysicsBody(rectangleOf: CGSize(width: 5, height: 10))
+//        waterDrop.name = "waterDrop"
         //waterDrop.physicsBody?.categoryBitMask = 0b001
         
         for child in children {
@@ -243,7 +243,28 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             }
         }
         
+        let activeObjects = children.compactMap { $0 as? WaterDrop}
+        if activeObjects.count < 8 {
+            addChild(WaterDrop(startPosition: CGPoint(x: CGFloat.random(in: (-screenWidth / 2 - 20)...(-screenWidth / 2 + 20)), y: 700)))
+        }
         
+        
+    }
+}
+
+class WaterDrop: SKSpriteNode {
+    
+    init(startPosition: CGPoint) {
+        
+        let texture = SKTexture(imageNamed: "drink")
+        super.init(texture: texture, color: .systemBlue, size: CGSize(width: 5, height: 10))
+        
+        physicsBody = SKPhysicsBody(rectangleOf: CGSize(width: 5, height: 10))
+        position = CGPoint(x: startPosition.x, y: startPosition.y)
+    }
+    
+    required init?(coder aDecoder: NSCoder) {
+        fatalError("error")
     }
 }
 

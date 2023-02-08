@@ -32,4 +32,10 @@ enum ThemeColors {
     static let accentVariant = Color("accentVariant")
     static let primaryText = Color("primaryText")
     static let accentText = Color("accentText")
+    static let primaryButton = Color("primaryButton")
+    static let accentButton = Color("accentButton")
+    static let backgroundGumball = Color("backgroundGumball")
+    static let gumballButton = Color("gumballButton")
+    static let bathroomButton = Color("bathroomButton")
+    static let inventoryButton = Color("inventory")
 }

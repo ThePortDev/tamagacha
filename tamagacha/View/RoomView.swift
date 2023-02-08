@@ -128,7 +128,7 @@ struct InventoryView: View {
         GeometryReader { geometry in
             ZStack() {
                 Rectangle()
-                    .foregroundColor(Constants.inventoryForegroundColor)
+                    .foregroundColor(ThemeColors.inventoryButton)
                     .cornerRadius(Constants.inventoryCornerRadius, corners: [.bottomLeft])
                     .frame(width: Constants.inventoryFrameWidth, height: Constants.inventoryFrameHeight)
                 
@@ -165,6 +165,7 @@ struct InventoryView: View {
                     } label: {
                         VStack {
                             Image(systemName: "chevron.up")
+                                .foregroundColor(.black)
                         }
                     }
                     .padding(.top, screenHeight - 200)
@@ -176,11 +177,12 @@ struct InventoryView: View {
                     }
                 } label: {
                     VStack {
-                        Text("🎒")
+                        Image("inventoryBackpack")
                             .font(.custom("Yoster Island", size: 34))
                             .foregroundColor(.black)
                         Spacer()
                         Image(systemName: "chevron.down")
+                            .foregroundColor(.black)
                     }
                 }
                 .padding(.trailing, 10)

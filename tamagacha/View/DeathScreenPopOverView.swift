@@ -90,7 +90,7 @@ struct DeathScreenPopOverView: View {
                 .padding()
                 .background(
                     RoundedRectangle(cornerSize: CGSize(width: 100, height: 100))
-                        .fill(AngularGradient(colors: [.yellow, .white], center: .topLeading))
+                        .fill(AngularGradient(colors: [ThemeColors.accentButton, .black], center: .topLeading))
                         .shadow(
                             color: .black.opacity(0.5),
                             radius: 10,
@@ -116,7 +116,7 @@ struct DeathScreenPopOverView: View {
                 .padding()
                 .background(
                     RoundedRectangle(cornerSize: CGSize(width: 100, height: 100))
-                        .fill(AngularGradient(colors: [.red, .white], center: .topLeading))
+                        .fill(AngularGradient(colors: [ThemeColors.accentButton, .black], center: .topLeading))
                         .shadow(
                             color: .black.opacity(0.5),
                             radius: 10,

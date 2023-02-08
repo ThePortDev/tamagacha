@@ -20,7 +20,7 @@ struct GumballMachineView: View {
             Text("Let's Adopt A Pet!")
                 .bold()
                 .font(.custom("Yoster Island", size: 34))
-                .foregroundColor(.blue)
+                .foregroundColor(ThemeColors.gumballButton)
             Spacer()
             GifView(name: "gumball2.gif")
             Button {
@@ -31,7 +31,7 @@ struct GumballMachineView: View {
             } label: {
                 ZStack {
                     RoundedRectangle(cornerSize: CGSize(width: 100, height: 100))
-                        .fill(AngularGradient(colors: [.blue, .white], center: .topLeading))
+                        .fill(AngularGradient(colors: [ThemeColors.gumballButton, .black], center: .topLeading))
                         .frame(width: 180, height: 35)
                         .shadow(
                             color: .black.opacity(0.5),
@@ -53,6 +53,7 @@ struct GumballMachineView: View {
             SoundManager.soundInstance.stopMusic()
             SoundManager.soundInstance.playMusic(sound: .zoid)
         }
+        .background(ThemeColors.backgroundGumball)
     }
     
 }

@@ -134,7 +134,7 @@ struct SettingsView: View {
                 }
             }
             .onChange(of: enterCode, perform: { _ in
-                SoundManager.soundInstance.playSound(sound: .type)
+                SoundManager.soundInstance.playSound(sound: .typing)
             })
             .padding(5)
     }

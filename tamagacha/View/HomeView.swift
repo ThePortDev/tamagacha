@@ -43,8 +43,10 @@ struct Constants {
     static let expandedStoreYOffset: CGFloat = -screenHeight / 4
     
     // store font
-    static let storeMoneyFont: Font = .custom("HangTheDj", size: 20)
+
     static let storeBackButtonFont: Font = .custom("HangTheDj", size: 50)
+    static let storeMoneyFont: Font = .custom("Yoster Island", size: 20)
+
     
     // store Items/products
     static let storeItemsFrameWidth: CGFloat = screenWidth - 50

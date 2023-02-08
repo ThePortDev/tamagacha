@@ -38,7 +38,7 @@ struct CustomTabBar: View {
                 HStack(spacing: 0) {
                     HStack(spacing: 0) {
                         TabBarButton(activeView: $activeView, wentToStoreFromBathroom: $wentToStoreFromBathroom, background: $background, image: "burger", selectedTab: $selectedTab)
-                        TabBarButton(activeView: $activeView, wentToStoreFromBathroom: $wentToStoreFromBathroom, background: $background, image: "sodacan", selectedTab: $selectedTab)
+                        TabBarButton(activeView: $activeView, wentToStoreFromBathroom: $wentToStoreFromBathroom, background: $background, image: "drink", selectedTab: $selectedTab)
                         //TabBarButton(image: "message", selectedTab: $selectedTab)
                         TabBarButton(activeView: $activeView, wentToStoreFromBathroom: $wentToStoreFromBathroom, background: $background,image: "tennis", selectedTab: $selectedTab)
                         SettingsButton(activeView: $activeView, image: "gearkog", navigateToSettings: $navigateToSettings)

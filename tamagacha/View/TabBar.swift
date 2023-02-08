@@ -20,6 +20,8 @@ struct CustomTabBar: View {
     @Binding var navigateToGraveyard: Bool
     
     @Namespace var storeItemsNameSpace
+    
+    @State var background = "tabbar"
         
     var body: some View {
         ZStack(alignment: .top) {
@@ -35,16 +37,16 @@ struct CustomTabBar: View {
 //                }
                 HStack(spacing: 0) {
                     HStack(spacing: 0) {
-                        TabBarButton(activeView: $activeView, wentToStoreFromBathroom: $wentToStoreFromBathroom, image: "burger", selectedTab: $selectedTab)
-                        TabBarButton(activeView: $activeView, wentToStoreFromBathroom: $wentToStoreFromBathroom, image: "drink", selectedTab: $selectedTab)
+                        TabBarButton(activeView: $activeView, wentToStoreFromBathroom: $wentToStoreFromBathroom, background: $background, image: "burger", selectedTab: $selectedTab)
+                        TabBarButton(activeView: $activeView, wentToStoreFromBathroom: $wentToStoreFromBathroom, background: $background, image: "sodacan", selectedTab: $selectedTab)
                         //TabBarButton(image: "message", selectedTab: $selectedTab)
-                        TabBarButton(activeView: $activeView, wentToStoreFromBathroom: $wentToStoreFromBathroom,image: "tennis", selectedTab: $selectedTab)
+                        TabBarButton(activeView: $activeView, wentToStoreFromBathroom: $wentToStoreFromBathroom, background: $background,image: "tennis", selectedTab: $selectedTab)
                         SettingsButton(activeView: $activeView, image: "gearkog", navigateToSettings: $navigateToSettings)
                         //MiniGameButton(activeView: $activeView, image: "1.circle", navigateToMiniGame: $navigateToMiniGame)
                         GraveyardButton(image: "tombstone", navigateToGraveyard: $navigateToGraveyard)
 
                     }
-                    .background(Image("testback"))
+                    .background(Image("\(background)"))
                     .background(.white)
 
 //                    .frame(height: (activeView != .bottom ? 100 : 100))
@@ -107,6 +109,7 @@ struct CustomTabBar: View {
                             activeView = .left
                         }
                         selectedTab = ""
+                        background = "tabbar"
                     }
                 } label: {
                     Text("Back to home")
@@ -117,6 +120,11 @@ struct CustomTabBar: View {
             .padding(.bottom, 300)
         }
     }
+    
+//        switch selectedTab {
+//            case "burger":
+//                self.background = "tabbarfood_dark"
+//        }
 }
 
 struct DisplayStoreProduct: View {
@@ -181,6 +189,7 @@ struct TabBarButton: View {
     
     @Binding var activeView: currentView
     @Binding var wentToStoreFromBathroom: Bool
+    @Binding var background: String
     
     var image: String
     @Binding var selectedTab: String
@@ -199,6 +208,16 @@ struct TabBarButton: View {
                         activeView = .bottom
                     }
                     selectedTab = image
+                    switch selectedTab {
+                        case "burger":
+                            background = "tabbarfood_dark"
+                        case "drink":
+                            background = "tabbardrink_dark"
+                        case "tennis":
+                            background = "tabbartoy_dark"
+                        default:
+                            background = "tabbar"
+                    }
                 }
                 
             }) {
@@ -273,6 +292,8 @@ struct GraveyardButton: View {
         .frame(height: Constants.tabButtonsFrameHeight)
     }
 }
+
+
 
 
 struct HomeView4_Previews: PreviewProvider {

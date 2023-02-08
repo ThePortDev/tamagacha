@@ -129,7 +129,7 @@ struct PopOverView: View {
         } label: {
             ZStack {
                 RoundedRectangle(cornerSize: CGSize(width: 100, height: 100))
-                    .fill(AngularGradient(colors: [.blue, .white], center: .topLeading))
+                    .fill(AngularGradient(colors: [ThemeColors.primaryButton, .black], center: .topLeading))
                     .frame(width: 180, height: 35)
                     .shadow(
                         color: .black.opacity(0.5),

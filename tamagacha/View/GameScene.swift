@@ -215,13 +215,35 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     }
     
     func shower() {
+        let delay = SKAction.wait(forDuration: 1)
+        let stationary = SKAction.moveTo(y: 525, duration: 5)
+        let sequence = SKAction.sequence([delay, stationary])
         box!.run(SKAction.moveTo(x: -screenWidth / 2, duration: 1))
         box!.run(SKAction.moveTo(y: 525, duration: 1))
-        SKAction.wait(forDuration: 1)
-        box!.run(SKAction.moveTo(x: -screenWidth / 2, duration: 2))
-        box!.run(SKAction.moveTo(y: 525, duration: 2))
-        SKAction.wait(forDuration: 2)
-//        box!.run(SKAction.moveTo(x: Constants.centerOfSecondSceneX, duration: 1))
+//        let moveToShowerX = SKAction.moveTo(x: -screenWidth / 2, duration: 1)
+//        let moveToShowerY = SKAction.moveTo(y: 525, duration: 1)
+//        let wait = SKAction.wait(forDuration: 3)
+//        let moveToShowerX2 = SKAction.moveTo(x: -screenWidth / 2 - 1, duration: 5)
+//
+//        let sequence = SKAction.sequence([moveToShowerY, wait, moveToShowerX, moveToShowerX2])
+        
+        box!.run(sequence)
+        
+        let waterDrop = SKSpriteNode(color: .systemBlue, size: CGSize(width: 5, height: 10))
+        waterDrop.position = CGPoint(x: CGFloat.random(in: (-screenWidth / 2 - 20)...(-screenWidth / 2 + 20)), y: 700)
+        waterDrop.physicsBody = SKPhysicsBody(rectangleOf: CGSize(width: 5, height: 10))
+        waterDrop.name = "waterDrop"
+        //waterDrop.physicsBody?.categoryBitMask = 0b001
+        
+        for child in children {
+            if child.name == "waterDrop" {
+                if child.frame.maxY < 400 {
+                    child.removeFromParent()
+                }
+            }
+        }
+        
+        
     }
 }
 

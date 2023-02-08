@@ -107,17 +107,6 @@ struct HomeView: View {
     @State var navigateToGraveyard: Bool = false
     
     
-    
-    //@State var scene: GameScene = GameScene()
-    var scene: GameScene {
-        let scene = GameScene()
-        scene.setup(with: viewModel)
-        scene.size = CGSize(width: screenWidth, height: screenHeight)
-        scene.scaleMode = .fill
-        scene.anchorPoint = CGPoint(x: 0.5, y: 0.5)
-        return scene
-    }
-    
     var body: some View {
         VStack(spacing: 0) {
             //            Rectangle()

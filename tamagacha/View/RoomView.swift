@@ -48,7 +48,7 @@ struct RoomView: View {
                 VStack {
                     expandedStatView
 
-                    .offset(x: !wentToStoreFromBathroom && activeView == .bottom || activeView == .center ? 0 : screenWidth)
+                    .offset(x: !wentToStoreFromBathroom && activeView == .bottom || activeView == .center ? -50 : screenWidth)
 
                         .offset(y: -100)
 
@@ -70,7 +70,7 @@ struct RoomView: View {
     
     var expandedStatView: some View {
         StatView()
-            .frame(width: Constants.statsFrameWidth, height: Constants.statsFrameHeight)
+            .frame(width: 300, height: 230)
             .padding(.top, 100)
             .padding(.bottom, 500)
     }

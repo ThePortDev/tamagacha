@@ -132,41 +132,41 @@ struct InventoryView: View {
                     .frame(width: Constants.inventoryFrameWidth, height: Constants.inventoryFrameHeight)
                 
                 VStack(spacing: 0) {
-                        ScrollView {
-                            ForEach(Array(viewModel.store.inventory.keys), id: \.self) { item in
-                                if viewModel.store.inventory[item]! > 0 {
-                                    Button {
-                                        SoundManager.soundInstance.playSound(sound: .plop)
-                                        if item.type != .toy {
-                                            viewModel.add(item: item)
-                                            viewModel.remove(item: item.name)
+                    ScrollView {
+                        ForEach(Array(viewModel.store.inventory.keys), id: \.self) { item in
+                            if viewModel.store.inventory[item]! > 0 {
+                                Button {
+                                    SoundManager.soundInstance.playSound(sound: .plop)
+                                    if item.type != .toy {
+                                        viewModel.add(item: item)
+                                        viewModel.remove(item: item.name)
+                                    } else {
+                                        if item.name == "Tennis Ball" {
+                                            viewModel.tennisBallInteraction(toy: item)
+                                        } else if item.name == "Rope" {
+                                            viewModel.ropeInteraction(toy: item)
+                                        } else if item.name == "Stuffed Toy" {
+                                            viewModel.stuffedToyInteraction(toy: item)
                                         } else {
-                                            if item.name == "Tennis Ball" {
-                                                viewModel.tennisBallInteraction(toy: item)
-                                            } else if item.name == "Rope" {
-                                                viewModel.ropeInteraction(toy: item)
-                                            } else if item.name == "Stuffed Toy" {
-                                                viewModel.stuffedToyInteraction(toy: item)
-                                            } else {
-                                                viewModel.tireInteraction(toy: item)
-                                            }
-                                        }
-                                    } label: {
-                                        HStack {
-                                            if item.type != .toy {
-                                                Text("\(viewModel.store.inventory[item]!)")
-                                                    .foregroundColor(ThemeColors.accent)
-                                            }
-                                            Image(item.imageName)
-                                                .multilineTextAlignment(.center)
+                                            viewModel.tireInteraction(toy: item)
                                         }
                                     }
-                                    .disabled(viewModel.gameScene.isPlayingWithToy)
+                                } label: {
+                                    HStack {
+                                        if item.type != .toy {
+                                            Text("\(viewModel.store.inventory[item]!)")
+                                                .foregroundColor(ThemeColors.accent)
+                                        }
+                                        Image(item.imageName)
+                                            .multilineTextAlignment(.center)
+                                    }
                                 }
+                                .disabled(viewModel.gameScene.isPlayingWithToy)
                             }
                         }
+                    }
                     .padding(.top, 100)
-                    .padding(.trailing)
+                    .padding(.trailing, 5)
                     
                 }
                 .padding(.trailing, 5)
@@ -201,17 +201,19 @@ struct InventoryView: View {
                         Image(systemName: "chevron.down")
                             .foregroundColor(ThemeColors.primaryText)
                     }
+                }
                     .padding(.trailing, 10)
                     .padding(.top, (expandInventory ? screenHeight - 30 : screenHeight - 60))
-                
+                    
+                }
             }
         }
     }
-}
-
-
-struct HomeView_Previews3: PreviewProvider {
-    static var previews: some View {
-        HomeView(DeadPetsVM: DeadPetUserDefaults())
+    
+    
+    struct HomeView_Previews3: PreviewProvider {
+        static var previews: some View {
+            HomeView(DeadPetsVM: DeadPetUserDefaults())
+        }
     }
-}
+

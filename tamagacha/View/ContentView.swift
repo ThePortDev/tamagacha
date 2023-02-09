@@ -30,6 +30,7 @@ struct MenuView: View {
             tapToGo
             Spacer()
         }
+        .frame(maxWidth: .infinity)
         .background(.gray)
         .onAppear {
             SoundManager.soundInstance.playMusic(sound: .zoid)
@@ -72,13 +73,13 @@ struct MenuView: View {
         Image(viewModel.pet.image)
             .resizable()
             .frame(width: 180, height: 160)
-            .position(x:200, y:185)
-            
+            .offset(x: 0.0, y: -115)
     }
     
     var background: some View {
         Image("GamePad")
             .resizable()
+            .aspectRatio(contentMode: .fill)
             .frame(width: 360, height: 570)
             .shadow(
                 color: .black.opacity(0.7),

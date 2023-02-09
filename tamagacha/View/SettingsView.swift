@@ -75,7 +75,7 @@ struct SettingsView: View {
     var volumeSlider: some View {
         
         VStack {
-            Text("Volume \(Int(settingsVM.volume * 100))%")
+            Text("Music Volume \(Int(settingsVM.volume * 100))%")
                 .font(.custom("Yoster Island", size: 18))
                 .foregroundColor(ThemeColors.accent)
             

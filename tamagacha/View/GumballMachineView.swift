@@ -41,7 +41,7 @@ struct GumballMachineView: View {
                     Text("Roll Your Pet!")
                         .font(.custom("Yoster Island", size: 18))
                         .colorInvert()
-                        .foregroundColor(.black)
+                        .foregroundColor(ThemeColors.primaryText)
                         .bold()
                         .italic()
                 }

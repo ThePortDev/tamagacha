@@ -75,7 +75,7 @@ struct SettingsView: View {
     var volumeSlider: some View {
         
         VStack {
-            Text("Volume \(Int(settingsVM.volume * 100))%")
+            Text("Music Volume \(Int(settingsVM.volume * 100))%")
                 .font(.custom("Yoster Island", size: 18))
                 .foregroundColor(ThemeColors.accent)
             
@@ -104,7 +104,7 @@ struct SettingsView: View {
                 .foregroundColor(ThemeColors.accent)
             
             HStack {
-                decreaseButton
+                decreaseButtonSFX
                     .foregroundColor(ThemeColors.accent)
                 
                 Slider(value: $settingsVM.SFXVolume)
@@ -114,7 +114,7 @@ struct SettingsView: View {
                         SoundManager.soundInstance.soundPlayer?.volume = Float(value)
                     }
                 
-                increaseButton
+                increaseButtonSFX
                     .foregroundColor(ThemeColors.accent)
             }
         }

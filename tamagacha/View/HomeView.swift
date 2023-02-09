@@ -44,7 +44,7 @@ struct Constants {
     
     // store font
 
-    static let storeBackButtonFont: Font = .custom("HangTheDj", size: 50)
+    static let storeBackButtonFont: Font = .custom("Yoster Island", size: 50)
     static let storeMoneyFont: Font = .custom("Yoster Island", size: 20)
 
     

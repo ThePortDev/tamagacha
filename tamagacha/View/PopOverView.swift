@@ -57,7 +57,7 @@ struct PopOverView: View {
             Text("\(PetViewModel().pet.name)")
                 .bold()
                 .font(.custom("Yoster Island", size: 30))
-                .foregroundColor(.black)
+                .foregroundColor(ThemeColors.primaryText)
                 .scaledToFit()
         }
     }
@@ -79,7 +79,7 @@ struct PopOverView: View {
         VStack {
             statStop
         }
-        .foregroundColor(.black)
+        .foregroundColor(ThemeColors.primaryText)
         .bold()
         .environmentObject(viewModel)
         .frame(width: 350, height: 250)
@@ -107,7 +107,7 @@ struct PopOverView: View {
     
     var petDescription: some View {
         Text(viewModel.pet.description)
-            .foregroundColor(.black)
+            .foregroundColor(ThemeColors.primaryText)
             .font(.custom("Yoster Island", size: 15))
             .padding(8)
             .multilineTextAlignment(.center)
@@ -139,7 +139,7 @@ struct PopOverView: View {
                 Text("Lets Go Home!")
                     .font(.custom("Yoster Island", size: 20))
                     .colorInvert()
-                    .foregroundColor(.black)
+                    .foregroundColor(ThemeColors.primaryText)
                     .bold()
             }
             .navigate(to: HomeView(DeadPetsVM: DeadPetsVM), when: $goHomeBool)

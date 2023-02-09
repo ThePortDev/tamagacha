@@ -22,19 +22,19 @@ struct CustomTabBar: View {
     @Namespace var storeItemsNameSpace
     
     @State var background = "tabbar"
-        
+    
     var body: some View {
         ZStack(alignment: .top) {
             Rectangle()
-                //.ignoresSafeArea()
+            //.ignoresSafeArea()
                 .frame(width: screenWidth, height: screenHeight)
                 .foregroundColor(ThemeColors.backgroundGumball)
                 .offset(y: 154)
             
             VStack(spacing: 0) {
-//                if activeView == .bottom {
-//                    backButton
-//                }
+                //                if activeView == .bottom {
+                //                    backButton
+                //                }
                 HStack(spacing: 0) {
                     HStack(spacing: 0) {
                         TabBarButton(activeView: $activeView, wentToStoreFromBathroom: $wentToStoreFromBathroom, background: $background, image: "burger", selectedTab: $selectedTab)
@@ -44,13 +44,13 @@ struct CustomTabBar: View {
                         SettingsButton(activeView: $activeView, image: "gearkog", navigateToSettings: $navigateToSettings)
                         //MiniGameButton(activeView: $activeView, image: "1.circle", navigateToMiniGame: $navigateToMiniGame)
                         GraveyardButton(image: "tombstone", navigateToGraveyard: $navigateToGraveyard)
-
+                        
                     }
                     .background(Image("\(background)"))
                     .background(.white)
-
-//                    .frame(height: (activeView != .bottom ? 100 : 100))
-//                    .padding(.bottom, (activeView != .bottom ? 0 : 100))
+                    
+                    //                    .frame(height: (activeView != .bottom ? 100 : 100))
+                    //                    .padding(.bottom, (activeView != .bottom ? 0 : 100))
                     
                     .cornerRadius(Constants.tabsCornerRadius, corners: [.topRight, .topLeft])
                     //.padding(.horizontal)
@@ -99,21 +99,20 @@ struct CustomTabBar: View {
             }
             .padding(.top, 50)
             
-
+            
             VStack {
                 Text("Money: $\(viewModel.store.money)")
                     .foregroundColor(.white)
                     .font(Constants.storeMoneyFont)
                     .padding(.bottom, 400)
-                Button {
-                    withAnimation {
-                        if !wentToStoreFromBathroom {
-                            activeView = .center
-                        } else {
-                            activeView = .left
-                        }
-                        selectedTab = ""
-                        background = "tabbar"
+                
+            }
+            Button {
+                withAnimation {
+                    if !wentToStoreFromBathroom {
+                        activeView = .center
+                    } else {
+                        activeView = .left
                     }
                     selectedTab = ""
                     background = "tabbar"
@@ -126,12 +125,13 @@ struct CustomTabBar: View {
             .padding(.top, 800)
         }
     }
+}
+        
     
 //        switch selectedTab {
 //            case "burger":
 //                self.background = "tabbarfood_dark"
 //        }
-}
 
 struct DisplayStoreProduct: View {
     

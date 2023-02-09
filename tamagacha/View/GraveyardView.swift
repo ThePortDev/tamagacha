@@ -29,6 +29,8 @@ struct GraveyardView: View {
             scrollDeadPets
             deadButton
             Spacer()
+        } .onAppear {
+            DeadPetsVM.load()
         }
         .background(
             Image("cemetery")

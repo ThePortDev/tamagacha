@@ -12,7 +12,7 @@ struct MenuView: View {
     @State private var fadeInOut = false
     
     @EnvironmentObject var viewModel: PetViewModel
-    @StateObject var DeadPetsVM = DeadPetUserDefaults()
+    @StateObject var deadPetsVM = DeadPetUserDefaults()
     
     @State var navigateToHomeView = false
     @State var navigateToGumballView = false
@@ -33,7 +33,7 @@ struct MenuView: View {
         .background(.gray)
         .onAppear {
             SoundManager.soundInstance.playMusic(sound: .zoid)
-            DeadPetsVM.deadPets = DeadPetsVM.load()
+            deadPetsVM.load()
         }
         .onTapGesture {
             SoundManager.soundInstance.playSound(sound: .click)
@@ -45,9 +45,9 @@ struct MenuView: View {
                 navigateToGumballView = true
             }
         }
-        .navigate(to: DeathScreenPopOverView(DeadPetsVM: DeadPetsVM).environmentObject(viewModel), when: $navigateToDeathView)
-        .navigate(to: GumballMachineView(DeadPetsVM: DeadPetsVM).environmentObject(viewModel), when: $navigateToGumballView)
-        .navigate(to: HomeView(DeadPetsVM: DeadPetsVM).environmentObject(viewModel), when: $navigateToHomeView)
+        .navigate(to: DeathScreenPopOverView(DeadPetsVM: deadPetsVM).environmentObject(viewModel), when: $navigateToDeathView)
+        .navigate(to: GumballMachineView(DeadPetsVM: deadPetsVM).environmentObject(viewModel), when: $navigateToGumballView)
+        .navigate(to: HomeView(DeadPetsVM: deadPetsVM).environmentObject(viewModel), when: $navigateToHomeView)
 
     }
     
@@ -114,7 +114,7 @@ struct MenuView: View {
 
 struct MenuView_Previews: PreviewProvider {
     static var previews: some View {
-        MenuView(DeadPetsVM: DeadPetUserDefaults())
+        MenuView(deadPetsVM: DeadPetUserDefaults())
             .environmentObject(PetViewModel())
     }
 }

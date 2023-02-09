@@ -133,8 +133,6 @@ struct InventoryView: View {
                     .frame(width: Constants.inventoryFrameWidth, height: Constants.inventoryFrameHeight)
                 
                 VStack(spacing: 0) {
-                    
-                    VStack {
                         ScrollView {
                             ForEach(Array(viewModel.store.inventory.keys), id: \.self) { item in
                                 if viewModel.store.inventory[item]! > 0 {
@@ -155,12 +153,10 @@ struct InventoryView: View {
                                 }
                             }
                         }
-                    }
                     .padding(.top, 100)
                     .padding(.trailing)
                     
                 }
-                .padding(.bottom, 600)
                 .padding(.trailing, 5)
                 
                 if expandInventory {
@@ -183,6 +179,9 @@ struct InventoryView: View {
                     }
                 } label: {
                     VStack {
+                        Text("Inventory")
+                            .font(.custom("Yoster Island", size: 15))
+                            .foregroundColor(ThemeColors.primaryText)
                         Image("inventoryBackpack")
                             .font(.custom("Yoster Island", size: 34))
                             .foregroundColor(.black)

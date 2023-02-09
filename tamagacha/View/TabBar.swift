@@ -121,7 +121,7 @@ struct CustomTabBar: View {
                 Text("Back")
                     .foregroundColor(.white)
             }
-            .font(Constants.storeBackButtonFont)
+            .font(.custom("Yoster Island", fixedSize: 30))
             .padding(.top, 800)
         }
     }

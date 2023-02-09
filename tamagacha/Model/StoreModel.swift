@@ -111,7 +111,7 @@ class StoreUserDefaults {
         if let data = UserDefaults.standard.data(forKey: storeKey) {
             if let decoded = try? JSONDecoder().decode(Store.self, from: data) {
                 self.store = decoded
-                print("Store data successfully retrieved!")
+//                print("Store data successfully retrieved!")
                 return
             }
         }
@@ -127,7 +127,7 @@ class StoreUserDefaults {
         if let encoded = try? JSONEncoder().encode(store) {
             UserDefaults.standard.set(encoded, forKey: storeKey)
             
-            print("Store Data saved at: \(Date().formatted(date: .omitted, time: .standard))")
+//            print("Store Data saved at: \(Date().formatted(date: .omitted, time: .standard))")
         }
     }
 }

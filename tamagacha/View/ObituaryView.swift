@@ -102,7 +102,7 @@ Age: \(viewModel.pet.age / 86400)
                 Text("Submit Ode?")
                     .font(.custom("Yoster Island", size: 35))
                     .colorInvert()
-                    .foregroundColor(.black)
+                    .foregroundColor(ThemeColors.primaryText)
                     .bold()
                     .italic()
             }

@@ -10,7 +10,7 @@ struct StatBar: View {
         GeometryReader { geometry in
             ZStack(alignment: .leading) {
                 RoundedRectangle(cornerRadius: 15)
-                    .foregroundColor(.white)
+                    .foregroundColor(ThemeColors.accentText)
                     .frame(width: geometry.size.width)
                 RoundedRectangle(cornerRadius: 15)
                     .foregroundColor(color)

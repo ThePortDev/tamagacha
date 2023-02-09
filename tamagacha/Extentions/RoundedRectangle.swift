@@ -32,7 +32,7 @@ struct CoolRect: View {
             Text(text)
             .padding()
             .font(.custom("HangTheDJ", size: 26))
-                .foregroundColor(.black)
+            .foregroundColor(ThemeColors.primaryText)
                 .bold()
                 .background(
                     RoundedRectangle(cornerSize: CGSize(width: 100, height: 100))

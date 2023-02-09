@@ -61,7 +61,7 @@ struct MenuView: View {
                     radius: 10,
                     x:0.0, y:10)
             Text("TAMAGACHA")
-                .foregroundColor(.black)
+                .foregroundColor(ThemeColors.primaryText)
                 .font(.custom("Yoster Island", size: 40))
                 .bold()
                 .colorInvert()
@@ -97,7 +97,7 @@ struct MenuView: View {
                     radius: 10,
                     x:0.0, y:10)
             Text("Tap To Start")
-                .foregroundColor(.black)
+                .foregroundColor(ThemeColors.primaryText)
                 .font(.custom("Yoster Island", size: 30))
                 .bold()
                 .colorInvert()

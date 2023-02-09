@@ -40,7 +40,7 @@ struct GraveyardView: View {
     var graveTitle: some View {
         Text("GraveYard")
             .font(.custom("Yoster Island", size: 40))
-            .foregroundColor(.white)
+            .foregroundColor(ThemeColors.accentText)
     }
     
     var deadButton: some View {
@@ -51,7 +51,7 @@ struct GraveyardView: View {
                 Text("Go Back Home?")
                     .font(.custom("Yoster Island", size: 35))
                     .colorInvert()
-                    .foregroundColor(.black)
+                    .foregroundColor(ThemeColors.primaryText)
                     .bold()
                     .italic()
                     .background(
@@ -88,7 +88,7 @@ struct GraveyardView: View {
                         }
                         Text(pet.description)
                             .font(.custom("Yoster Island", size: 15))
-                            .foregroundColor(.black)
+                            .foregroundColor(ThemeColors.primaryText)
                             .frame(width: 270, height: 140)
                             .background(
                                 AngularGradient(colors: [.yellow, .black], center: .topLeading)

@@ -171,7 +171,7 @@ struct InventoryView: View {
                     } label: {
                         VStack {
                             Image(systemName: "chevron.up")
-                                .foregroundColor(.black)
+                                .foregroundColor(ThemeColors.primaryText)
                         }
                     }
                     .padding(.top, screenHeight - 200)
@@ -185,10 +185,10 @@ struct InventoryView: View {
                     VStack {
                         Image("inventoryBackpack")
                             .font(.custom("Yoster Island", size: 34))
-                            .foregroundColor(.black)
+                            .foregroundColor(ThemeColors.primaryText)
                         Spacer()
                         Image(systemName: "chevron.down")
-                            .foregroundColor(.black)
+                            .foregroundColor(ThemeColors.primaryText)
                     }
                 }
                 .padding(.trailing, 10)

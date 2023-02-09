@@ -47,8 +47,7 @@ struct RoomView: View {
 //                    .frame(width: 100, height: 100)
                 VStack {
                     expandedStatView
-
-                    .offset(x: !wentToStoreFromBathroom && activeView == .bottom || activeView == .center ? -50 : screenWidth)
+                    .offset(x: !wentToStoreFromBathroom && activeView == .bottom || activeView == .center ? -50 : screenWidth - 50)
 
                         .offset(y: -100)
 
@@ -140,18 +139,31 @@ struct InventoryView: View {
                                 if viewModel.store.inventory[item]! > 0 {
                                     Button {
                                         SoundManager.soundInstance.playSound(sound: .plop)
-                                        viewModel.add(item: item)
-                                        viewModel.remove(item: item.name)
+                                        if item.type != .toy {
+                                            viewModel.add(item: item)
+                                            viewModel.remove(item: item.name)
+                                        } else {
+                                            if item.name == "Tennis Ball" {
+                                                viewModel.tennisBallInteraction(toy: item)
+                                            } else if item.name == "Rope" {
+                                                viewModel.ropeInteraction(toy: item)
+                                            } else if item.name == "Stuffed Toy" {
+                                                viewModel.stuffedToyInteraction(toy: item)
+                                            } else {
+                                                viewModel.tireInteraction(toy: item)
+                                            }
+                                        }
                                     } label: {
                                         HStack {
-                                            Text("\(viewModel.store.inventory[item]!)")
-                                                .foregroundColor(ThemeColors.accent)
+                                            if item.type != .toy {
+                                                Text("\(viewModel.store.inventory[item]!)")
+                                                    .foregroundColor(ThemeColors.accent)
+                                            }
                                             Image(item.imageName)
                                                 .multilineTextAlignment(.center)
                                         }
                                     }
-                                    
-                                    
+                                    .disabled(viewModel.gameScene.isPlayingWithToy)
                                 }
                             }
                         }
@@ -177,23 +189,22 @@ struct InventoryView: View {
                     .padding(.top, screenHeight - 200)
                 }
                 
-                Button {
-                    withAnimation {
-                        expandInventory = true
+                    Button {
+                        withAnimation {
+                            expandInventory = true
+                        }
+                    } label: {
+                        VStack {
+                            Image("inventoryBackpack")
+                                .font(.custom("Yoster Island", size: 34))
+                                .foregroundColor(.black)
+                            Spacer()
+                            Image(systemName: "chevron.down")
+                                .foregroundColor(.black)
+                        }
                     }
-                } label: {
-                    VStack {
-                        Image("inventoryBackpack")
-                            .font(.custom("Yoster Island", size: 34))
-                            .foregroundColor(.black)
-                        Spacer()
-                        Image(systemName: "chevron.down")
-                            .foregroundColor(.black)
-                    }
-                }
-                .padding(.trailing, 10)
-                .padding(.top, screenHeight - 50)
-
+                    .padding(.trailing, 10)
+                    .padding(.top, (expandInventory ? screenHeight - 30 : screenHeight - 60))
                 
             }
         }

@@ -70,6 +70,11 @@ class PetViewModel: ObservableObject {
         gameScene.shower()
     }
     
+    func tennisBallInteraction(toy: Item) { gameScene.tennisBallInteraction(toy: toy) }
+    func ropeInteraction(toy: Item) { gameScene.ropeInteraction(toy: toy) }
+    func stuffedToyInteraction(toy: Item) { gameScene.stuffedToyInteraction(toy: toy) }
+    func tireInteraction(toy: Item) { gameScene.tireInteraction(toy: toy) }
+    
     func getPetType() -> SKSpriteNode {
         switch pet.petType {
             case .dog:

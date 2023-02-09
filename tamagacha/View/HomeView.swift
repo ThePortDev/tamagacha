@@ -35,7 +35,7 @@ struct Constants {
     static let centerOfFirstSceneX: CGFloat = screenWidth * 0.25
     static let centerOfSecondSceneX: CGFloat = -screenWidth * 0.75
     static let centerOfFirstScene: CGPoint = CGPoint(x: centerOfFirstSceneX, y: screenHeight / 2)
-    static let scenePhysicsBody: CGPath = CGPath(rect: CGRect(x: -screenWidth, y: 90, width: screenWidth * 2, height: screenHeight), transform: nil)
+    static let scenePhysicsBody: CGPath = CGPath(rect: CGRect(x: -screenWidth * 1.2, y: 90, width: screenWidth * 2, height: screenHeight), transform: nil)
     static let sceneGravity: CGVector = CGVector(dx: 0, dy: -0.3)
     
     // Store

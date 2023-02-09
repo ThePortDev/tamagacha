@@ -9,7 +9,7 @@ import Foundation
 
 struct Store: Codable {
     
-    var products: [Item] = [Item(name: "Not Dog Food"), Item(name: "Lettuce"), Item(name: "Pizza"), Item(name: "Sandwich"), Item(name: "Milk"), Item(name: "Water"), Item(name: "Soda Can"), Item(name: "Margarita"), Item(name: "Tennis Ball"), Item(name: "Rope"), Item(name: "Stuffed Toy"), Item(name: "Tire"), Item(name: "Gun"), Item(name: "Beanie")] // items available to purchase and their price as an int
+    var products: [Item] = [Item(name: "Not Dog Food"), Item(name: "Lettuce"), Item(name: "Pizza"), Item(name: "Sandwich"), Item(name: "Milk"), Item(name: "Water"), Item(name: "Soda Can"), Item(name: "Margarita"), Item(name: "Tennis Ball"), Item(name: "Rope"), Item(name: "Stuffed Toy"), Item(name: "Tire"),/* Item(name: "Gun"), */Item(name: "Beanie")] // items available to purchase and their price as an int
     
     var inventory = [Item: Int]() // items the user owns/has bought and the amount of that item they have
     
@@ -86,13 +86,13 @@ struct Item: Hashable, Codable, Identifiable {
             case "Margarita":
                 self.type = .beverage; self.improveStatsBy = 40; self.price = 20; self.id = 7
             case "Tennis Ball":
-                self.type = .toy; self.improveStatsBy = 5; self.price = 3; self.id = 8
+                self.type = .toy; self.improveStatsBy = 15; self.price = 200; self.id = 8
             case "Rope":
-                self.type = .toy; self.improveStatsBy = 10; self.price = 5; self.id = 9
+                self.type = .toy; self.improveStatsBy = 25; self.price = 1000; self.id = 9
             case "Stuffed Toy":
-                self.type = .toy; self.improveStatsBy = 20; self.price = 10; self.id = 10
+                self.type = .toy; self.improveStatsBy = 100; self.price = 5000; self.id = 10
             case "Tire":
-                self.type = .toy; self.improveStatsBy = 30; self.price = 15; self.id = 11
+                self.type = .toy; self.improveStatsBy = 30; self.price = 3000; self.id = 11
             case "Gun":
                 self.type = .toy; self.improveStatsBy = 40; self.price = 20; self.id = 12
             case "Beanie":

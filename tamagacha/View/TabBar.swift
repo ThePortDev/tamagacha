@@ -158,6 +158,7 @@ struct DisplayStoreProduct: View {
 struct StoreItem: View {
     @EnvironmentObject var viewModel: PetViewModel
     
+    
     var withItem: Item
     
     var body: some View {
@@ -182,11 +183,14 @@ struct StoreItem: View {
                     .font(Constants.storeItemsFont)
                     Image(withItem.imageName)
                 }
-                
+                RoundedRectangle(cornerRadius: 10)
+                    .foregroundColor(.black)
+                    .frame(width: Constants.storeItemsFrameWidth, height: Constants.storeItemsFrameHeight)
+                    .opacity(viewModel.store.money < withItem.price || withItem.type == .toy && viewModel.store.inventory[withItem]! > 0 ? 0.5 : 0)
                 
             }
         }
-        .disabled(viewModel.store.money < withItem.price)
+        .disabled(viewModel.store.money < withItem.price || withItem.type == .toy && viewModel.store.inventory[withItem]! > 0)
 
     }
 }

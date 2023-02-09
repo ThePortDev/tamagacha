@@ -20,7 +20,7 @@ struct BathroomView: View {
         ZStack {
             Button {
                 SoundManager.soundInstance.playSound(sound: .shower)
-                viewModel.shower(amount: 10)
+                viewModel.shower(amount: 100)
                 viewModel.goToShower()
                 showerButtonShowing = false
                 DispatchQueue.main.asyncAfter(deadline: .now() + 12) {
@@ -86,7 +86,7 @@ struct BathroomView: View {
             }
             .frame(width: 97, height: 100)
             .padding(.leading, screenWidth)
-
+            .disabled(viewModel.gameScene.isShowering || viewModel.gameScene.isPlayingWithToy)
 
             
         }

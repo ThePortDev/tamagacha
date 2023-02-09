@@ -30,10 +30,10 @@ struct BathroomView: View {
                 ZStack {
 
                     RoundedRectangle(cornerRadius: 15)
-                        .foregroundColor(ThemeColors.bathroomButton)
+                        .foregroundColor(ThemeColors.primaryButton)
                         .frame(width: 100, height: 50)
                     Text("SHOWER")
-                        .foregroundColor(.white)
+                        .foregroundColor(ThemeColors.accentText)
                         .font(.custom("Yoster Island", size: 18))
                 }
             }.disabled(!showerButtonShowing)
@@ -63,21 +63,21 @@ struct BathroomView: View {
                     ZStack {
                         Rectangle().cornerRadius(20, corners: [.topLeft, .bottomLeft])
                             .frame(width: 60, height: 100)
-                            .foregroundColor(ThemeColors.bathroomButton)
+                            .foregroundColor(ThemeColors.primaryButton)
                         Text("BACK")
                             .scaledToFill()
-                            .foregroundColor(.white)
+                            .foregroundColor(ThemeColors.accentText)
                             .font(.custom("Yoster Island", size: 15))
                             .rotationEffect(Angle(degrees: 90))
                     }
                     ZStack {
                         Rectangle().cornerRadius(20, corners: [.topRight, .bottomRight])
-                            .foregroundColor(ThemeColors.accentVariant)
+                            .foregroundColor(ThemeColors.accentButton)
                             .frame(width: 60, height: 100)
                         Text("SHOWER")
                             .scaledToFill()
                             .lineLimit(1)
-                            .foregroundColor(.white)
+                            .foregroundColor(ThemeColors.accentText)
                             .font(.custom("Yoster Island", size: 15))
                             .rotationEffect(Angle(degrees: 90))
 

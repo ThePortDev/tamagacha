@@ -63,7 +63,7 @@ class PetUserDefaults {
         let data = try! JSONEncoder().encode(pet)
         UserDefaults.standard.setValue(data, forKey: PET_KEY)
         UserDefaults.standard.synchronize()
-        print("Pet Data saved at: \(Date().formatted(date: .omitted, time: .standard))")
+//        print("Pet Data saved at: \(Date().formatted(date: .omitted, time: .standard))")
     }
 }
 
@@ -142,11 +142,21 @@ class DeadPetUserDefaults: ObservableObject {
     static let instance =  DeadPetUserDefaults()
     var deadPets = [Pet]()
     
-    func saveDeadPets(dead: [Pet]) {
-        UserDefaults.standard.set(try? JSONEncoder().encode(dead), forKey: DeadPetUserDefaults.DEAD_KEY)
+    
+    func saveDeadPet(_ pet: Pet) {
+        deadPets.append(pet)
+        guard let data = try? JSONEncoder().encode(deadPets) else { return }
+        UserDefaults.standard.set(data, forKey: DeadPetUserDefaults.DEAD_KEY)
     }
     
-    func load() -> [Pet] {
-        UserDefaults.standard.array(forKey: DeadPetUserDefaults.DEAD_KEY) as? [Pet] ?? [Pet]()
+    func load() {
+        do {
+            if let data = UserDefaults.standard.data(forKey: DeadPetUserDefaults.DEAD_KEY) {
+                let pets = try JSONDecoder().decode([Pet].self, from: data)
+                self.deadPets = pets
+            }
+        } catch {
+            print("Error Saving: \(error.localizedDescription)")
+        }
     }
 }

@@ -102,7 +102,7 @@ struct CustomTabBar: View {
             
             VStack {
                 Text("Money: $\(viewModel.store.money)")
-                    .foregroundColor(.white)
+                    .foregroundColor(ThemeColors.accentText)
                     .font(Constants.storeMoneyFont)
                     .padding(.bottom, 400)
                 
@@ -119,9 +119,9 @@ struct CustomTabBar: View {
                 }
             } label: {
                 Text("Back")
-                    .foregroundColor(.white)
+                    .foregroundColor(ThemeColors.accentText)
             }
-            .font(Constants.storeBackButtonFont)
+            .font(.custom("Yoster Island", fixedSize: 30))
             .padding(.top, 800)
         }
     }
@@ -179,7 +179,7 @@ struct StoreItem: View {
                         Text("+ \(Int(withItem.improveStatsBy))")
                         Text("Price: 💲\(withItem.price)")
                     }
-                    .foregroundColor(.black)
+                    .foregroundColor(ThemeColors.primaryText)
                     .font(Constants.storeItemsFont)
                     Image(withItem.imageName)
                 }

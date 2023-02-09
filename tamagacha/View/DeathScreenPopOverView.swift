@@ -43,7 +43,7 @@ struct DeathScreenPopOverView: View {
         Text("\(PetViewModel().pet.name) is super dead.")
             .font(.custom("Yoster Island", size: 20))
             .bold()
-            .foregroundColor(.black)
+            .foregroundColor(ThemeColors.primaryText)
             .padding()
             .background(
                 RoundedRectangle(cornerSize: CGSize(width: 100, height: 200))
@@ -70,11 +70,11 @@ struct DeathScreenPopOverView: View {
     }
     
     var deathWords: some View {
-        Text("- Memento Mori")
+        Text("- Memento Mori -")
             .font(.custom("Yoster Island", size: 20))
             .bold()
             .italic()
-            .foregroundColor(.gray)
+            .foregroundColor(ThemeColors.accentButton)
     }
     
     @State var goToGumball = false
@@ -85,7 +85,7 @@ struct DeathScreenPopOverView: View {
         } label: {
             Text("Replace \(viewModel.pet.name)?")
                 .font(.custom("Yoster Island", size: 26))
-                .foregroundColor(.black)
+                .foregroundColor(ThemeColors.primaryText)
                 .bold()
                 .padding()
                 .background(
@@ -111,7 +111,7 @@ struct DeathScreenPopOverView: View {
         } label: {
             Text("Bury \(viewModel.pet.name)? 💲50")
                 .font(.custom("Yoster Island", size: 26))
-                .foregroundColor(.black)
+                .foregroundColor(ThemeColors.primaryText)
                 .bold()
                 .padding()
                 .background(

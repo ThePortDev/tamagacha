@@ -132,8 +132,6 @@ struct InventoryView: View {
                     .frame(width: Constants.inventoryFrameWidth, height: Constants.inventoryFrameHeight)
                 
                 VStack(spacing: 0) {
-                    
-                    VStack {
                         ScrollView {
                             ForEach(Array(viewModel.store.inventory.keys), id: \.self) { item in
                                 if viewModel.store.inventory[item]! > 0 {
@@ -167,12 +165,10 @@ struct InventoryView: View {
                                 }
                             }
                         }
-                    }
                     .padding(.top, 100)
                     .padding(.trailing)
                     
                 }
-                .padding(.bottom, 600)
                 .padding(.trailing, 5)
                 
                 if expandInventory {
@@ -183,25 +179,27 @@ struct InventoryView: View {
                     } label: {
                         VStack {
                             Image(systemName: "chevron.up")
-                                .foregroundColor(.black)
+                                .foregroundColor(ThemeColors.primaryText)
                         }
                     }
                     .padding(.top, screenHeight - 200)
                 }
                 
-                    Button {
-                        withAnimation {
-                            expandInventory = true
-                        }
-                    } label: {
-                        VStack {
-                            Image("inventoryBackpack")
-                                .font(.custom("Yoster Island", size: 34))
-                                .foregroundColor(.black)
-                            Spacer()
-                            Image(systemName: "chevron.down")
-                                .foregroundColor(.black)
-                        }
+                Button {
+                    withAnimation {
+                        expandInventory = true
+                    }
+                } label: {
+                    VStack {
+                        Text("Inventory")
+                            .font(.custom("Yoster Island", size: 15))
+                            .foregroundColor(ThemeColors.primaryText)
+                        Image("inventoryBackpack")
+                            .font(.custom("Yoster Island", size: 34))
+                            .foregroundColor(ThemeColors.primaryText)
+                        Spacer()
+                        Image(systemName: "chevron.down")
+                            .foregroundColor(ThemeColors.primaryText)
                     }
                     .padding(.trailing, 10)
                     .padding(.top, (expandInventory ? screenHeight - 30 : screenHeight - 60))

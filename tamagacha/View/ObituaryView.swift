@@ -9,7 +9,7 @@ import SwiftUI
 
 struct ObituaryView: View {
     
-    @StateObject var DeadPetsVM: DeadPetUserDefaults
+    @ObservedObject var DeadPetsVM: DeadPetUserDefaults
     
     @EnvironmentObject var viewModel: PetViewModel
     
@@ -84,10 +84,14 @@ Age: \(viewModel.pet.age / 86400)
     
     var submitButton: some View {
         Button {
-            viewModel.pet.description = petLT
-            DeadPetsVM.deadPets.append(viewModel.pet)
-            DeadPetsVM.saveDeadPets(dead: DeadPetsVM.deadPets)
+            if !petLT.isEmpty {
+                viewModel.pet.description = petLT
+            }
+//            DeadPetsVM.deadPets.append(viewModel.pet)
+//            DeadPetsVM.saveDeadPets(dead: DeadPetsVM.deadPets)
+            DeadPetsVM.saveDeadPet(viewModel.pet)
             viewModel.saveData()
+            print("Obituary Saved: \(DeadPetsVM.deadPets.first?.description ?? "'No description found.'")")
             goGumballBool = true
         } label: {
             ZStack {
@@ -102,7 +106,7 @@ Age: \(viewModel.pet.age / 86400)
                 Text("Submit Ode?")
                     .font(.custom("Yoster Island", size: 35))
                     .colorInvert()
-                    .foregroundColor(.black)
+                    .foregroundColor(ThemeColors.primaryText)
                     .bold()
                     .italic()
             }

@@ -12,7 +12,7 @@ struct MenuView: View {
     @State private var fadeInOut = false
     
     @EnvironmentObject var viewModel: PetViewModel
-    @StateObject var DeadPetsVM = DeadPetUserDefaults()
+    @StateObject var deadPetsVM = DeadPetUserDefaults()
     
     @State var navigateToHomeView = false
     @State var navigateToGumballView = false
@@ -30,10 +30,11 @@ struct MenuView: View {
             tapToGo
             Spacer()
         }
+        .frame(maxWidth: .infinity)
         .background(.gray)
         .onAppear {
             SoundManager.soundInstance.playMusic(sound: .zoid)
-            DeadPetsVM.deadPets = DeadPetsVM.load()
+            deadPetsVM.load()
         }
         .onTapGesture {
             SoundManager.soundInstance.playSound(sound: .click)
@@ -45,9 +46,9 @@ struct MenuView: View {
                 navigateToGumballView = true
             }
         }
-        .navigate(to: DeathScreenPopOverView(DeadPetsVM: DeadPetsVM).environmentObject(viewModel), when: $navigateToDeathView)
-        .navigate(to: GumballMachineView(DeadPetsVM: DeadPetsVM).environmentObject(viewModel), when: $navigateToGumballView)
-        .navigate(to: HomeView(DeadPetsVM: DeadPetsVM).environmentObject(viewModel), when: $navigateToHomeView)
+        .navigate(to: DeathScreenPopOverView(DeadPetsVM: deadPetsVM).environmentObject(viewModel), when: $navigateToDeathView)
+        .navigate(to: GumballMachineView(DeadPetsVM: deadPetsVM).environmentObject(viewModel), when: $navigateToGumballView)
+        .navigate(to: HomeView(DeadPetsVM: deadPetsVM).environmentObject(viewModel), when: $navigateToHomeView)
 
     }
     
@@ -61,7 +62,7 @@ struct MenuView: View {
                     radius: 10,
                     x:0.0, y:10)
             Text("TAMAGACHA")
-                .foregroundColor(.black)
+                .foregroundColor(ThemeColors.primaryText)
                 .font(.custom("Yoster Island", size: 40))
                 .bold()
                 .colorInvert()
@@ -72,13 +73,13 @@ struct MenuView: View {
         Image(viewModel.pet.image)
             .resizable()
             .frame(width: 180, height: 160)
-            .position(x:200, y:185)
-            
+            .offset(x: 0.0, y: -115)
     }
     
     var background: some View {
         Image("GamePad")
             .resizable()
+            .aspectRatio(contentMode: .fill)
             .frame(width: 360, height: 570)
             .shadow(
                 color: .black.opacity(0.7),
@@ -97,7 +98,7 @@ struct MenuView: View {
                     radius: 10,
                     x:0.0, y:10)
             Text("Tap To Start")
-                .foregroundColor(.black)
+                .foregroundColor(ThemeColors.primaryText)
                 .font(.custom("Yoster Island", size: 30))
                 .bold()
                 .colorInvert()
@@ -114,7 +115,7 @@ struct MenuView: View {
 
 struct MenuView_Previews: PreviewProvider {
     static var previews: some View {
-        MenuView(DeadPetsVM: DeadPetUserDefaults())
+        MenuView(deadPetsVM: DeadPetUserDefaults())
             .environmentObject(PetViewModel())
     }
 }

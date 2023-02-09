@@ -18,7 +18,7 @@ struct DeveloperToolsView: View {
                 .ignoresSafeArea()
             VStack {
                 Text("Developer Tools")
-                    .foregroundColor(Defaults.textColor)
+                    .foregroundColor(ThemeColors.primaryText)
                     .bold()
                     .font(.custom("Yoster Island", size: 35))
                     .frame(alignment: .top)
@@ -46,7 +46,7 @@ struct DeveloperToolsView: View {
     var misc: some View {
         VStack {
             Text("Miscallaneous:")
-                .foregroundColor(Defaults.textColor)
+                .foregroundColor(ThemeColors.primaryText)
                 .bold()
                 .font(.custom("Yoster Island", size: 25))
                 .frame(alignment: .top)
@@ -74,7 +74,7 @@ struct DeveloperToolsView: View {
     var addMoneyButtons: some View {
         VStack {
             Text("Add Money:")
-                .foregroundColor(Defaults.textColor)
+                .foregroundColor(ThemeColors.primaryText)
                 .bold()
                 .font(.custom("Yoster Island", size: 25))
                 .frame(alignment: .top)
@@ -117,7 +117,7 @@ struct DeveloperToolsView: View {
     var changePetButtons: some View {
         VStack {
             Text("Change Pet Type:")
-                .foregroundColor(Defaults.textColor)
+                .foregroundColor(ThemeColors.primaryText)
                 .bold()
                 .font(.custom("Yoster Island", size: 25))
                 .frame(alignment: .top)

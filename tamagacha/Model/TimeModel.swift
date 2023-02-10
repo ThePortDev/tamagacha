@@ -73,6 +73,9 @@ func calculateTimeSince(data: Date) -> Int {
 }
 
 class SettingsUserDefaults {
+    
+    private static var NOT_FIRST_LAUNCH = "FIRST_LAUNCH"
+    
     private static var SETTINGS_KEY = "SETTINGS_KEY"
     static var VOLUME_KEY: String { "\(SETTINGS_KEY)_VOLUME" }
     private static var SFX_KEY = "SFX_KEY"
@@ -84,6 +87,16 @@ class SettingsUserDefaults {
     var sfxVolume: Double = 0.5
     
     init() {
+        
+        if !UserDefaults.standard.bool(forKey: SettingsUserDefaults.NOT_FIRST_LAUNCH) {
+            UserDefaults.standard.set(true, forKey: SettingsUserDefaults.NOT_FIRST_LAUNCH)
+            UserDefaults.standard.set(0.5, forKey: SettingsUserDefaults.VOLUME_KEY)
+            UserDefaults.standard.set(0.5, forKey: SettingsUserDefaults.SFXVOLUME_KEY)
+            self.volume = 0.5
+            self.sfxVolume = 0.5
+            return
+        }
+        
         self.volume = UserDefaults.standard.double(forKey: SettingsUserDefaults.VOLUME_KEY)
         self.sfxVolume = UserDefaults.standard.double(forKey: SettingsUserDefaults.SFXVOLUME_KEY)
     }

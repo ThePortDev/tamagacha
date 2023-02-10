@@ -112,6 +112,6 @@ struct Pet: Codable, Identifiable {
 
 extension Pet {
     static var decreaseRate: CGFloat = 1
-    static var decreaseTime: CGFloat = 15
+    static var decreaseTime: CGFloat = 30
     static var saveRate: CGFloat = 15
 }

@@ -26,6 +26,7 @@ struct GumballMachineView: View {
             Button {
                 SoundManager.soundInstance.playSound(sound: .click)
                 viewModel.pet = gumballViewModel.getPet()
+                
                 viewModel.saveData()
                 showingPopover = true
             } label: {

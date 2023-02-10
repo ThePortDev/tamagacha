@@ -125,6 +125,11 @@ struct PopOverView: View {
     var goHome: some View {
         Button {
             SoundManager.soundInstance.playSound(sound: .click)
+            viewModel.gameScene = GameScene()
+            viewModel.gameScene.setup(with: viewModel)
+            viewModel.gameScene.size = CGSize(width: screenWidth, height: screenHeight)
+            viewModel.gameScene.scaleMode = .fill
+            viewModel.gameScene.anchorPoint = CGPoint(x: 0.5, y: 0.5)
             goHomeBool = true
         } label: {
             ZStack {

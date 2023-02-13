@@ -23,7 +23,7 @@ struct DeveloperToolsView: View {
                     .font(.custom("Yoster Island", size: 35))
                     .frame(alignment: .top)
                     .padding()
-                changePetButtons
+                //changePetButtons
                 addMoneyButtons
                 misc
                 Spacer()

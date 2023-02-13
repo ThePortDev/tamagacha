@@ -77,6 +77,7 @@ struct GraveyardView: View {
                         VStack {
                             Text(pet.name)
                                 .font(.custom("Yoster Island", size: 15))
+                                .foregroundColor(.white)
                             Image(pet.image)
                                 .resizable()
                                 .frame(width: 100, height: 100)

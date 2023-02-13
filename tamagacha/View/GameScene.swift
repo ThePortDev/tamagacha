@@ -31,6 +31,8 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     var box: SKSpriteNode?
     var boxName: SKLabelNode?
     var moveBox: SKNode?
+    
+    var buggedSKNode = SKNode()
         
     override func didMove(to view: SKView) {
         let background = SKSpriteNode(imageNamed: "livingroom")
@@ -210,13 +212,13 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         let contactTypeA = Item(name: (contact.bodyA.node?.name) ?? "").type
         let contactTypeB = Item(name: (contact.bodyB.node?.name) ?? "").type
         if "\(contactTypeA)" == "food" {
-            collisionBetween(ball: contact.bodyA.node!, object: contact.bodyB.node!)
+            collisionBetween(ball: contact.bodyA.node ?? buggedSKNode, object: contact.bodyB.node ?? buggedSKNode)
         } else if "\(contactTypeB)" == "food" {
-            collisionBetween(ball: contact.bodyB.node!, object: contact.bodyA.node!)
+            collisionBetween(ball: contact.bodyB.node ?? buggedSKNode, object: contact.bodyA.node ?? buggedSKNode)
         } else if "\(contactTypeA)" == "beverage" {
-            collisionBetween(ball: contact.bodyA.node!, object: contact.bodyB.node!)
+            collisionBetween(ball: contact.bodyA.node ?? buggedSKNode, object: contact.bodyB.node ?? buggedSKNode)
         } else if "\(contactTypeB)" == "beverage" {
-            collisionBetween(ball: contact.bodyB.node!, object: contact.bodyA.node!)
+            collisionBetween(ball: contact.bodyB.node ?? buggedSKNode, object: contact.bodyA.node ?? buggedSKNode)
         }
     }
     
@@ -255,7 +257,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         let imageName = toy.imageName
         let toySprite = SKSpriteNode(imageNamed: imageName)
         toySprite.size = CGSize(width: 200, height: 100)
-        toySprite.position = CGPoint(x: screenWidth - 100, y: 200)
+        toySprite.position = CGPoint(x: screenWidth - 100, y: 150)
         toySprite.physicsBody = SKPhysicsBody(rectangleOf: CGSize(width: 200, height: 100))
         //toySprite.physicsBody!.contactTestBitMask = toySprite.physicsBody!.collisionBitMask
         //itemSprite.name = "\(item.type)"
@@ -263,16 +265,20 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         toySprite.name = "\(toy.name)"
         print("\(toySprite.name!)")
         
-        addChild(toySprite)
         
         let toyMovesToCenter = SKAction.moveTo(x: Constants.centerOfFirstSceneX, duration: 0.5)
-        let toyStaysOnGroundY = SKAction.moveTo(y: 100, duration: 2.5)
-        let toyStaysOnGroundX = SKAction.moveTo(x: Constants.centerOfFirstSceneX, duration: 2.5)
+        let toyStaysOnGroundY = SKAction.moveTo(y: 100, duration: 3)
+        let toyStaysOnGroundX = SKAction.moveTo(x: Constants.centerOfFirstSceneX, duration: 3)
         let toyStaysOnGround = SKAction.group([toyStaysOnGroundX, toyStaysOnGroundY])
+        
+        let addTire = SKAction.run {
+            self.addChild(toySprite)
+        }
+        let delayAddTire = SKAction.sequence([SKAction.wait(forDuration: 0.2), addTire])
         
         let petFirstJumpsX = SKAction.moveTo(x: Constants.centerOfFirstSceneX, duration: 0.5)
         let petFirstJumpsY = SKAction.moveTo(y: 600, duration: 0.5)
-        let petFirstJumps = SKAction.group([petFirstJumpsX, petFirstJumpsY])
+        let petFirstJumps = SKAction.group([petFirstJumpsX, petFirstJumpsY, delayAddTire])
         
         let petJumpsUpSoundEffect = SKAction.run {
             SoundManager.soundInstance.playSound(sound: .meow)
@@ -292,10 +298,11 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             self.viewModel.petPet(amount: toy.improveStatsBy)
         }
         
-        let toySequence = SKAction.sequence([SKAction.wait(forDuration: 0.2), toyMovesToCenter, toyStaysOnGround, destroyToy])
+        let toySequence = SKAction.sequence([toyMovesToCenter, toyStaysOnGround, destroyToy])
         let petSequence = SKAction.sequence([petFirstJumps, petJumpsDown, petJumpsUp, petJumpsDown, petJumpsUp, petJumpsDown, petJumpsUp, increaseLoveStat])
         
         isPlayingWithToy = true
+        
         toySprite.run(toySequence)
         box!.run(petSequence)
     }
@@ -323,8 +330,11 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         let toyStaysWithPetX = SKAction.moveTo(x: Constants.centerOfFirstSceneX, duration: 2)
         let toyStaysWithPet = SKAction.group([toyStaysWithPetY, toyStaysWithPetX])
         
-        let flip = SKAction.scaleX(to: box!.xScale * -1, duration: 1)
-        let flip2 = SKAction.scaleX(to: box!.xScale, duration: 1)
+        let petGoesMiddle = SKAction.moveTo(x: Constants.centerOfFirstSceneX, duration: 1)
+        
+        let petStayMiddle = SKAction.moveTo(x: Constants.centerOfFirstSceneX, duration: 1)
+        let flip = SKAction.group([SKAction.scaleX(to: box!.xScale * -1, duration: 1), petStayMiddle])
+        let flip2 = SKAction.group([SKAction.scaleX(to: box!.xScale, duration: 1), petStayMiddle])
         let action = SKAction.sequence([flip, flip2])
         action.timingMode = .easeOut
         
@@ -338,7 +348,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         }
         
         let toySequence = SKAction.sequence([toyGoesToPet, toyStaysWithPet, destroyToy])
-        let petSequence = SKAction.sequence([SKAction.wait(forDuration: 1), action, increaseLoveStat])
+        let petSequence = SKAction.sequence([petGoesMiddle, action, increaseLoveStat])
         
         isPlayingWithToy = true
         toySprite.run(toySequence)
@@ -455,6 +465,8 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         }
         let sequence = SKAction.sequence([delay, stationary, turnOffShower, moveToCenter])
         
+        isShowering = true
+
         box!.run(SKAction.moveTo(x: -screenWidth / 2, duration: 1))
         box!.run(SKAction.moveTo(y: 550, duration: 1))
 //        let moveToShowerX = SKAction.moveTo(x: -screenWidth / 2, duration: 1)
@@ -463,7 +475,6 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
 //        let moveToShowerX2 = SKAction.moveTo(x: -screenWidth / 2 - 1, duration: 5)
 //
 //        let sequence = SKAction.sequence([moveToShowerY, wait, moveToShowerX, moveToShowerX2])
-        isShowering = true
         
         box!.run(sequence)
 

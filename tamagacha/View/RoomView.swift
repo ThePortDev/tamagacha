@@ -165,6 +165,7 @@ struct InventoryView: View {
                             }
                         }
                     }
+                    .padding(.bottom, 150)
                     .padding(.top, 100)
                     .padding(.trailing, 5)
                     
